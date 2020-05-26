@@ -1,0 +1,12 @@
+package ${packageName}.system.auth.repository;
+
+import ${packageName}.system.auth.enumeration.AuthRoleEnum;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import ${packageName}.system.auth.entity.AuthUserRole;
+
+public interface AuthUserRoleRepository extends JpaRepository<AuthUserRole, Integer> {
+
+	AuthUserRole findByName(AuthRoleEnum roleEnum);
+
+}

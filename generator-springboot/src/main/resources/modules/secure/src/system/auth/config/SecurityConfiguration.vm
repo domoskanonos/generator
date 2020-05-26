@@ -1,0 +1,89 @@
+package ${packageName}.system.auth.config;
+
+import ${packageName}.system.auth.handler.OAuth2AuthenticationFailureHandler;
+import ${packageName}.system.auth.handler.OAuth2AuthenticationSuccessHandler;
+import ${packageName}.system.auth.handler.SpringBootBasicAuthenticationFailureHandler;
+import ${packageName}.system.auth.handler.SpringBootBasicAuthenticationSuccessHandler;
+import ${packageName}.system.auth.service.AuthenticationService;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@ConditionalOnProperty(name = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    public static final String KEY_JSESSION = "JSESSIONID";
+
+    public static final String URL_LOGIN = "/dologin";
+    public static final String URL_LOGOUT = "/dologout";
+    public static final String URL_LOGOUT_SUCCESS = "/index.html";
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final AuthenticationService authenticationService;
+
+    private final SpringBootBasicAuthenticationSuccessHandler authenticationSuccessHandler;
+
+    private final SpringBootBasicAuthenticationFailureHandler authenticationFailureHandler;
+
+    private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+
+    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+
+    public SecurityConfiguration(BCryptPasswordEncoder bCryptPasswordEncoder, AuthenticationService authenticationService, SpringBootBasicAuthenticationSuccessHandler authenticationSuccessHandler, SpringBootBasicAuthenticationFailureHandler authenticationFailureHandler, OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler, OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.authenticationService = authenticationService;
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.authenticationFailureHandler = authenticationFailureHandler;
+        this.oAuth2AuthenticationSuccessHandler = oAuth2AuthenticationSuccessHandler;
+        this.oAuth2AuthenticationFailureHandler = oAuth2AuthenticationFailureHandler;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(authenticationService).passwordEncoder(bCryptPasswordEncoder);
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and()
+                .authorizeRequests()
+                .antMatchers("/SYSTEM/AUTH/REGISTER", "/SYSTEM/AUTH/RESET_PASSWORD", "/SYSTEM/AUTH/ACTIVATE_USER").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .csrf().disable()
+                .formLogin()
+                .loginPage(URL_LOGIN)
+                .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler)
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl(URL_LOGOUT)
+                .invalidateHttpSession(true)
+                .deleteCookies(KEY_JSESSION)
+                .logoutSuccessUrl(URL_LOGOUT_SUCCESS)
+                .permitAll();
+        http.exceptionHandling().authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/ajax/**",
+                        "/data/**", "/fonts/**", "/image/**");
+    }
+}

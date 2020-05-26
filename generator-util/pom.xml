@@ -11,15 +11,6 @@
     <artifactId>generator-util</artifactId>
     <version>1.0.0</version>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>13</java.version>
-        <project.build.java.source>13</project.build.java.source>
-        <project.build.java.target>13</project.build.java.target>
-        <maven.compiler.target>13</maven.compiler.target>
-        <maven.compiler.source>13</maven.compiler.source>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.dbr.generator</groupId>

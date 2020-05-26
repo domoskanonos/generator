@@ -1,0 +1,5 @@
+package ${packageName}.system.auth.enumeration;
+
+public enum AuthRoleEnum {
+    ROLE_ADMIN, ROLE_USER
+}

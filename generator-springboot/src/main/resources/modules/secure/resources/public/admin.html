@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>spring-boot-generator-ws API</title>
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">
+        <span class="text-uppercase">spring-boot-generator-ws</span> API [ 1.0.0 ]
+    </a>
+</nav>
+
+<div class="container pt-4">
+    <div class="jumbotron">
+        <h1 class="display-4">Administration Console</h1>
+        <p class="lead">This is the administration console for <span class="text-uppercase">spring-boot-generator-ws</span> API [ ${profile-id} ] </p>
+        <hr class="my-4">
+        <p>From here, you get access to many useful tools like Swagger, Javadoc or Logging. In addition, this page contains useful information about application properties.</p>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="apidocs/index.html" role="button">Javadoc</a>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/logfile" role="button">Logfile</a>
+        <a class="btn btn-primary btn-lg btn-block" href="SYSTEM/ADMIN/PDF/APPLICATION_PROPERTIES" role="button">System Properties PDF</a>
+        <a class="btn btn-primary btn-lg btn-block" href="/dologout" role="button">Logout</a>
+    </div>
+
+    <div class="jumbotron">
+        <h1 class="display-4">Swagger</h1>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="swagger-ui.html" role="button">Swagger UI</a>
+        <a class="btn btn-primary btn-lg btn-block" href="v2/api-docs?group=System" role="button">Open Api-Docs JSON - SYSTEM</a>
+        <a class="btn btn-primary btn-lg btn-block" href="v2/api-docs?group=App" role="button">Open Api-Docs JSON - APPLICATION</a>
+    </div>
+
+    <div class="jumbotron">
+        <h1 class="display-4">Spring Boot Actuator</h1>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/auditevents" role="button">/auditevents</a>
+        <div>
+            /auditevents – lists security audit-related events such as user login/logout. Also, we can filter by principal or type among others fields
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/beans" role="button">/beans</a>
+        <div>
+            /beans – returns all available beans in our BeanFactory. Unlike /auditevents, it doesn't support filtering
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/conditions" role="button">/conditions</a>
+        <div>
+            /conditions – formerly known as /autoconfig, builds a report of conditions around auto-configuration
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/configprops" role="button">/configprops</a>
+        <div>
+            /configprops – allows us to fetch all @ConfigurationProperties beans
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/env" role="button">/env</a>
+        <div>
+            /env – returns the current environment properties. Additionally, we can retrieve single properties
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/flyway" role="button">/flyway</a>
+        <div>
+            /flyway – provides details about our Flyway database migrations
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/health" role="button">/health</a>
+        <div>
+            /health – summarises the health status of our application
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/heapdump" role="button">/heapdump</a>
+        <div>
+            /heapdump – builds and returns a heap dump from the JVM used by our application
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/info" role="button">/info</a>
+        <div>
+            /info – returns general information. It might be custom data, build information or details about the latest commit
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/liquibase" role="button">/liquibase</a>
+        <div>
+            /liquibase – behaves like /flyway but for Liquibase
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/logfile" role="button">/logfile</a>
+        <div>
+            /logfile – returns ordinary application logs
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/loggers" role="button">/loggers</a>
+        <div>
+            /loggers – enables us to query and modify the logging level of our application
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/metrics" role="button">/metrics</a>
+        <div>
+            /metrics – details metrics of our application. This might include generic metrics as well as custom ones
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/prometheus" role="button">/prometheus</a>
+        <div>
+            /prometheus – returns metrics like the previous one, but formatted to work with a Prometheus server
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/scheduledtasks" role="button">/scheduledtasks</a>
+        <div>
+            /scheduledtasks – provides details about every scheduled task within our application
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/sessions" role="button">/sessions</a>
+        <div>
+            /sessions – lists HTTP sessions given we are using Spring Session
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/shutdown" role="button">/shutdown</a>
+        <div>
+            /shutdown – performs a graceful shutdown of the application
+        </div>
+        <div class="pt-4"></div>
+        <a class="btn btn-primary btn-lg btn-block" href="actuator/threaddump" role="button">/threaddump</a>
+        <div>
+            /threaddump – dumps the thread information of the underlying JVM
+        </div>
+        <div class="pt-4"></div>
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

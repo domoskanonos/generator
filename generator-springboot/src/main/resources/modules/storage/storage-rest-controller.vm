@@ -1,0 +1,32 @@
+package ${packageName}.rest;
+
+import  ${packageName}.service.StorageService;
+
+import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+@Api(tags = StorageRestController.PATH_PREFIX)
+@RestController
+@RequestMapping(StorageRestController.PATH_PREFIX)
+public class StorageRestController {
+
+    public static final String PATH_PREFIX = "STORAGE";
+
+    private StorageService service;
+
+    @Autowired
+    public StorageRestController(StorageService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> upload(@RequestParam("file") MultipartFile file, @RequestParam("pathSuffix") String pathSuffix) {
+        service.upload(file, pathSuffix);
+        return ResponseEntity.ok().build();
+    }
+
+
+}

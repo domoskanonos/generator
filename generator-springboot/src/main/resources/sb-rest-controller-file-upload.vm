@@ -1,0 +1,30 @@
+    @CrossOrigin
+    @PostMapping("/uploadFile${fieldNameFirstLetterUpperCase}/{id}")
+    public ResponseEntity uploadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${idClazz} id, @RequestParam("file") MultipartFile file) throws IOException {
+
+        Optional<${dtoClazzSimpleName}> dtoOptional = service.findById(id);
+        if (!dtoOptional.isPresent()) {
+            log.error(String.format("id %d is not existed", id));
+            ResponseEntity.badRequest().build();
+        }
+        ${dtoClazzSimpleName} dto = dtoOptional.get();
+        dto.set${fieldNameFirstLetterUpperCase}(file.getBytes());
+        service.save(dto);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @CrossOrigin
+    @GetMapping("/downloadFile${fieldNameFirstLetterUpperCase}/{id}")
+    public ResponseEntity<InputStreamResource> downloadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${idClazz} id) {
+        Optional<${dtoClazzSimpleName}> dtoOptional = service.findById(id);
+        ${dtoClazzSimpleName} dto = dtoOptional.get();
+        boolean imageExist = dtoOptional.isPresent() && dto.get${fieldNameFirstLetterUpperCase}() != null;
+        if (!imageExist) {
+            log.error(String.format("image not exist, id=", id));
+        }
+        return imageExist ? ResponseEntity.ok()
+                .contentLength(dto.get${fieldNameFirstLetterUpperCase}().length)
+                .contentType(MediaType.parseMediaType(MediaType.IMAGE_PNG_VALUE))
+                .body(new InputStreamResource(new ByteArrayInputStream(dto.get${fieldNameFirstLetterUpperCase}()))) : ResponseEntity.badRequest().build();
+    }

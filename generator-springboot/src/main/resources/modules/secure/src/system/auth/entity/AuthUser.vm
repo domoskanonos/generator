@@ -1,0 +1,72 @@
+package ${packageName}.system.auth.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.hibernate.envers.RelationTargetAuditMode.NOT_AUDITED;
+
+@Entity
+@Table(name = "AUTH_USER")
+@Data
+@ToString(exclude = {"roles"})
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@EqualsAndHashCode
+public class AuthUser {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", unique = true, nullable = false)
+    private Long id;
+
+    @Column(name = "EMAIL", unique = true, nullable = false)
+    @Email
+    private String email;
+
+    @JsonIgnore
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "BIRTHDAY")
+    private Date birthday;
+
+    @Column(name = "ACTIVE", nullable = false)
+    private Boolean active = false;
+
+    @Column(name = "ACCEPT_TERMS_OF_USE", nullable = false)
+    private Boolean acceptTermsOfUse = false;
+
+    @Column(name = "CITY")
+    private String city;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USERS_ROLES",
+            joinColumns = @JoinColumn(
+                    name = "USER_ID", nullable = false, updatable = false, referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "ROLE_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
+    private Set<AuthUserRole> roles = new HashSet<>();
+
+    public void addRole(AuthUserRole authUserRole) {
+        this.roles.add(authUserRole);
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+}

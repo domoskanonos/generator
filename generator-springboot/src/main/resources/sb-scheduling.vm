@@ -1,0 +1,27 @@
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+/**
+*
+* ${clazzSimpleName} scheduled with cron expression: ${cron}
+*
+*/
+@Component
+public class ${clazzSimpleName} {
+
+    private static final Logger log = LoggerFactory.getLogger(${clazzSimpleName}.class);
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+    @Scheduled(cron = "${cron}")
+    public void run() {
+        log.info("run ${clazzSimpleName}: " + dateFormat.format(new Date()));
+        //TODO:
+        log.info("${clazzSimpleName} stopped: " + dateFormat.format(new Date()));
+    }
+
+}

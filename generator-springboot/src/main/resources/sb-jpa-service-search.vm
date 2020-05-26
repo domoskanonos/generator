@@ -1,0 +1,96 @@
+package ${packageName};
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
+import org.apache.commons.lang3.StringUtils;
+
+import ${systemPackageName}.general.builder.PageBuilder;
+
+import ${basePackageName}.dto.${dtoClazzSimpleName};
+import ${basePackageName}.entity.${jpaClazzSimpleName};
+import ${basePackageName}.mapping.${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping;
+
+import javax.persistence.*;
+import javax.persistence.criteria.*;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ *
+ * This service class provides basic functionality for the hibernate entity <code>${jpaClazzSimpleName}</code>.
+ * The return value of each function always returns a mapped <code>${dtoClazzSimpleName}</code> object,
+ * instead of the original hibernate entity.
+ *
+ */
+@Service
+@RequiredArgsConstructor
+public class ${serviceClazzName} {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
+
+    private final EntityManager em;
+
+    private final ${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+
+    /**
+     * Returns a pagination object with a list of <code>${dtoClazzSimpleName}</code> objects restricted to the search criteria.
+     * This list corresponds to the list of <code>${jpaClazzSimpleName}</code> entities from the database.
+     * Result will be sorted according to the given sorting string.
+     * Result is restricted according to the paging criteria passed (page, size).
+     *
+     * @param page current page of pagination
+     * @param size current item size of pagination
+     * @param sort current sorting string for sorting
+     * #foreach( $propertie in $properties )#if($propertie.isSearchable())@param ${propertie.name} search criteria #end#end
+     *
+     * @return a <code>Page<${dtoClazzSimpleName}></code> object, containing a list of <code>${dtoClazzSimpleName}</code> objects and additional paging information.
+     *
+     */
+    @Transactional
+    public Page<${dtoClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $propertie in $properties )#if($propertie.isSearchable()), ${propertie.typeSimpleName} ${propertie.name}#end#end) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $propertie in $properties )#if($propertie.isSearchable()){} #end#end", page, size, sort #foreach( $propertie in $properties )#if($propertie.isSearchable()), ${propertie.name}#end#end);
+        return new PageBuilder<${jpaClazzSimpleName}, ${dtoClazzSimpleName}>(page, size, sort) {
+
+            @Override
+            protected List<${dtoClazzSimpleName}> toDTOs(List<${jpaClazzSimpleName}> resultList) {
+                return mapping.toDTOs(resultList);
+            }
+
+            @Override
+            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<${jpaClazzSimpleName}> cq, Root<${jpaClazzSimpleName}> entityRoot) {
+                List<Predicate> predicates = new ArrayList<>();
+                #foreach( $propertie in $properties )
+                #if( !${generatorUtil.isIdField($propertie.field)})
+
+                #if(${propertie.typeSimpleName} == 'String')
+                if (StringUtils.isNotBlank(${propertie.name})) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("${propertie.name}")), "%" + ${propertie.name}.toLowerCase() + "%"));
+                }
+                #elseif(${propertie.typeSimpleName} == 'Boolean')
+                if (${propertie.name} != null) {
+                    predicates.add(cb.equal(entityRoot.get("${propertie.name}"), ${propertie.name}));
+                }
+                #elseif(${propertie.typeSimpleName} == 'Integer' || ${propertie.type} == 'Long')
+                if (${propertie.name} != null) {
+                    //TODO:check
+                    predicates.add(cb.equal(entityRoot.get("${propertie.name}"), ${propertie.name}));//equal
+                    //predicates.add(cb.ge(entityRoot.get("${propertie.name}"), ${propertie.name}));//greater than
+                    //predicates.add(cb.le(entityRoot.get("${propertie.name}"), ${propertie.name}));//lower than
+                }
+                #end
+                #end
+                #end
+                if (predicates.size() > 0) {
+                    cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
+                }
+            }
+        }.build(${jpaClazzSimpleName}.class, em);
+    }
+}

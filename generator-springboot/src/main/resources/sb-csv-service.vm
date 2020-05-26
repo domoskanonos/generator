@@ -1,0 +1,70 @@
+package ${packageName};
+
+import ${csvImporterPackageName}.${csvImporterClazzSimpleName};
+import ${dtoPackageName}.${dtoClazzSimpleName};
+import ${mappingPackageName}.${mapperClazzSimpleName};
+import ${jpaRepositoryPackageName}.${jpaRepositoryClazzSimpleName};
+
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class ${clazzSimpleName} {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
+
+    @Autowired
+    private ${jpaRepositoryClazzSimpleName} repository;
+
+    @Autowired
+    private ${mapperClazzSimpleName} mapper;
+
+    /**
+     * convert <code>MultipartFile</code> content to entites and persist it.
+     *
+     * @param file
+     * @return count of saved entites.
+     * @throws IOException
+     */
+    public int save(MultipartFile file) throws IOException {
+        log.info("import csv file: {}", file.getOriginalFilename());
+        return save(file.getBytes());
+    }
+
+    /**
+     * convert content byte array to entites and persist it.
+     *
+     * @param content
+     * @return count of saved entites.
+     */
+    public int save(byte[] content) {
+        log.debug("import csv, byte length: {}", content.length);
+        return save(new String(content));
+    }
+
+    /**
+     * convert content string to entites and persist it.
+     *
+     * @param content
+     * @return count of saved entites.
+     */
+    public int save(String content) {
+        log.debug("import csv content: {}", content);
+        ${csvImporterClazzSimpleName} csvImporter = new ${csvImporterClazzSimpleName}();
+        List<${dtoClazzSimpleName}> dtos = csvImporter.getDTOs(content);
+        for (${dtoClazzSimpleName} dto : dtos) {
+            log.debug("import dto: {}", dto.toString());
+            repository.save(mapper.to${jpaClazzSimpleName}(dto));
+        }
+        return dtos.size();
+    }
+
+}

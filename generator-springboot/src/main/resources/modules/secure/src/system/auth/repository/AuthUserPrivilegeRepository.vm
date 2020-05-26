@@ -1,0 +1,11 @@
+package ${packageName}.system.auth.repository;
+
+import ${packageName}.system.auth.entity.AuthUserPrivilege;
+import ${packageName}.system.auth.enumeration.AuthPrivilegeEnum;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AuthUserPrivilegeRepository extends JpaRepository<AuthUserPrivilege, Long> {
+
+	AuthUserPrivilege findByName(AuthPrivilegeEnum name);
+
+}

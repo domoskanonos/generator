@@ -1,0 +1,105 @@
+package ${packageName};
+
+import ${dtoClazzName};
+import ${serviceClazzName};
+
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class ${clazzSimpleName} {
+
+    @Autowired
+    private ${serviceClazzSimpleName} service;
+
+    @Autowired
+    private ${entityClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+
+    @Test
+    public void baseCheckEntity() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        ${entityClazzSimpleName} entity = GeneratorUtil.createTestObject(${entityClazzSimpleName}.class, true);
+        ${entityClazzSimpleName} entityClone = entity.toBuilder().build();
+        assertThat(entity).isSameAs(entity);
+        assertThat(entity).isEqualTo(entityClone);
+        assertThat(entity.hashCode()).isEqualTo(entity.hashCode());
+        assertThat(entity.toString()).isEqualTo(entityClone.toString());
+
+        ${entityClazzSimpleName} notEqualEntity = GeneratorUtil.createTestObject(${entityClazzSimpleName}.class, false);
+
+        assertThat(entity).isNotEqualTo(notEqualEntity);
+        assertThat(entity.hashCode()).isNotEqualTo(notEqualEntity.hashCode());
+
+    }
+
+    @Test
+    public void baseCheckDTO() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        ${dtoClazzSimpleName} dto = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, true);
+        ${dtoClazzSimpleName} dtoClone = dto.toBuilder().build();
+        assertThat(dto).isSameAs(dto);
+        assertThat(dto).isEqualTo(dtoClone);
+        assertThat(dto.hashCode()).isEqualTo(dto.hashCode());
+        assertThat(dto.toString()).isEqualTo(dtoClone.toString());
+
+        ${dtoClazzSimpleName} notEqualDTO = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, false);
+
+        assertThat(dto).isNotEqualTo(notEqualDTO);
+        assertThat(dto.hashCode()).isNotEqualTo(notEqualDTO.hashCode());
+
+    }
+
+
+    @Test
+    public void checkMapping() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        List<${entityClazzSimpleName}> entities = GeneratorUtil.createTestObjects(${entityClazzSimpleName}.class, true, 10);
+        List<${dtoClazzSimpleName}> dtos = mapping.toDTOs(entities);
+        assertThat(dtos).isNotEmpty();
+        assertThat(dtos.size()).isEqualTo(entities.size());
+        List<${entityClazzSimpleName}> entitiesFromDTOs = mapping.toEntities(dtos);
+        assertThat(entitiesFromDTOs).isNotEmpty();
+        assertThat(entitiesFromDTOs.size()).isEqualTo(dtos.size());
+    }
+
+    /**
+     * save a <code>{@link ${dtoClazzSimpleName}}</code> object as entity to database and check if all values are saved and mapped correctly.
+     */
+    @Test
+    public void test1save() {
+
+        #foreach( $propertie in $properties )
+        #if( !${generatorUtil.isIdField($propertie.field)})
+        ${propertie.typeSimpleName} ${propertie.name} = ${generatorUtil.getSampleData($propertie.field)};
+        #end
+        #end
+
+        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        #foreach( $propertie in $properties )
+        #if( !${generatorUtil.isIdField($propertie.field)})
+        dto.${stringUtil.toSetterMethodPrefix($propertie.name)}(${propertie.name});
+        #end
+        #end
+
+        ${dtoClazzSimpleName} savedDTO = service.save(dto);
+
+        assertThat(savedDTO).isNotNull();
+        assertThat(savedDTO.getId()).isNotNull();
+        #foreach( $propertie in $properties )
+        #if( !${generatorUtil.isIdField($propertie.field)})
+        assertThat(savedDTO.${stringUtil.toGetterMethodName($propertie.name)}).isEqualTo(${propertie.name});
+        #end
+        #end
+
+    }
+
+}
