@@ -1,0 +1,24 @@
+package ${packageName};
+
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.math.BigDecimal;
+
+#if($idClazz)@IdClass(${idClazzSimpleName}.class)#end
+@Entity
+@Table(name = "${tableName}")
+@Data
+@ToString
+@Builder(toBuilder = true)
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+public class ${clazzSimpleName} {
+#foreach( $entityProperty in $entityProperties )
+    ${entityProperty.propertieAnnotations()}
+    private #if(${entityProperty.typeSimpleName}=='TYPE_DATE_ISO8601')Date#else${entityProperty.typeSimpleName}#end ${entityProperty.name};
+#end
+
+}

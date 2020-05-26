@@ -1,0 +1,79 @@
+#set( $escapeDollar = '$' )
+import { customElement, html, query, TemplateResult } from 'lit-element';
+import {DefaultPage} from "../page-default";
+import {
+   I18nService,
+   RouterService
+} from '@domoskanonos/frontend-basis';
+import {
+NidocaAbstractComponentEdit
+} from '@domoskanonos/nidoca-app';
+import {${clazzTypescriptWrapper.getModelName()}} from "../../model/${clazzTypescriptWrapper.getModelNameLowerCase()}-model";
+
+@customElement('${clazzTypescriptWrapper.getEditPageTagName()}')
+export class ${clazzTypescriptWrapper.getModelName()}EditPage extends DefaultPage {
+
+   constructor() {
+      super();
+      this.navigationTitle = I18nService.getUniqueInstance().getValue(
+         '${clazzTypescriptWrapper.getI18nEditPageTitleKey()}'
+      );
+   }
+
+   @query('#editComponent')
+   editComponent: NidocaAbstractComponentEdit<${clazzTypescriptWrapper.getModelName()}> | undefined;
+
+   getTopRightComponent(): TemplateResult {
+      return html`
+         <nidoca-icon
+            title="$escapeDollar{I18nService.getUniqueInstance().getValue('cancel')}"
+            slot="rightComponents"
+            icon="$escapeDollar{RouterService.getUniqueInstance().getStateProperty('id') != null
+               ? 'arrow_back'
+               : 'cancel'}"
+            clickable="true"
+            @nidoca-event-icon-clicked="${() =>
+               RouterService.getUniqueInstance().back()}"
+         ></nidoca-icon>
+         <nidoca-icon
+            title="$escapeDollar{I18nService.getUniqueInstance().getValue('save')}"
+            .rendered="${true}"
+            slot="rightComponents"
+            icon="save"
+            clickable="true"
+            @nidoca-event-icon-clicked="${() => this.save()}"
+         ></nidoca-icon>
+         <nidoca-icon
+            title="$escapeDollar{I18nService.getUniqueInstance().getValue('delete')}"
+            .rendered="$escapeDollar{RouterService.getUniqueInstance().getStateProperty(
+               'id'
+            ) != null}"
+            slot="rightComponents"
+            icon="delete"
+            clickable="true"
+            @nidoca-event-icon-clicked="${() => this.delete()}"
+         ></nidoca-icon>
+      `;
+   }
+
+   getMainComponent(): TemplateResult {
+      return html`
+         <${clazzTypescriptWrapper.getEditComponentTagName()}  id="editComponent"></${clazzTypescriptWrapper.getEditComponentTagName()}>
+      `;
+   }
+
+   private save() {
+      if (this.editComponent?.identifier == null) {
+         this.editComponent?.saveItem();
+      } else {
+         this.editComponent?.updateItem();
+      }
+   }
+
+   private delete() {
+      if (this.editComponent) {
+         this.editComponent.showDeleteDialog = true;
+      }
+   }
+
+}

@@ -1,0 +1,15 @@
+export class ${remoteServiceName} {
+
+    private static uniqueInstance: ${remoteServiceName};
+
+    constructor() {
+    }
+
+    static getUniqueInstance() {
+        if (!${remoteServiceName}.uniqueInstance) {
+            ${remoteServiceName}.uniqueInstance = new ${remoteServiceName}();
+        }
+        return ${remoteServiceName}.uniqueInstance;
+    }
+
+}

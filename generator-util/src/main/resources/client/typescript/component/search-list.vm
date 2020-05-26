@@ -1,0 +1,101 @@
+#set( $escapeDollar = '$' )
+import {
+NidocaAbstractComponentSearchList
+} from '@domoskanonos/nidoca-app';
+import { PageableContainer, RouterService, I18nService } from '@domoskanonos/frontend-basis';
+import { customElement, html, TemplateResult } from 'lit-element';
+import {
+TypographyType,
+FlexJustifyContent,
+FlexAlignItems,
+SpacerAlignment,
+SpacerSize,
+FlexContainerProperties
+} from '@domoskanonos/nidoca-core';
+import {${clazzTypescriptWrapper.getModelName()}RemoteRepository} from '../../repo/${clazzTypescriptWrapper.getModelNameLowerCase()}-remote-repository';
+import {${clazzTypescriptWrapper.getModelName()}} from '../../model/${clazzTypescriptWrapper.getModelNameLowerCase()}-model';
+
+@customElement('${clazzTypescriptWrapper.getSearchNidocaListTagName()}')
+export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends NidocaAbstractComponentSearchList<${clazzTypescriptWrapper.getModelName()}> {
+
+    async executeSearch(search: string): Promise<${clazzTypescriptWrapper.getModelName()}[]> {
+        let pageableContainer: PageableContainer<${clazzTypescriptWrapper.getModelName()}> = await ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().search(
+            0,
+            this.resultSize,
+            '', ''
+            #foreach( $propertie in $clazzTypescriptWrapper.properties )
+                #set( $isNotIdField = !${propertie.idField} )
+                #set( $isString = ${propertie.typeName} == "string" )
+                #if($isNotIdField && $isString)
+                .concat('&${propertie.fieldName}=')
+                .concat(search)
+                #end
+            #end
+        );
+        return pageableContainer.content;
+    }
+
+    renderListItem(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}) : TemplateResult {
+        return html`
+    <nidoca-spacer
+    .spacerSize="${SpacerSize.MEDIUM}"
+    spacerAlignment="${SpacerAlignment.VERTICAL}"
+    ></nidoca-spacer>
+    <nidoca-spacer
+    .spacerSize="${SpacerSize.MAX}"
+    spacerAlignment="${SpacerAlignment.HORIZONTAL}"
+    >
+        <nidoca-flex-container
+        .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
+        itemFlexBasisValue="100%"
+        .justifyContent="${FlexJustifyContent.FLEX_START}"
+        .alignItems="${FlexAlignItems.CENTER}"
+        >
+            #foreach( $propertie in $clazzTypescriptWrapper.properties )
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${clazzTypescriptWrapper.getModelNameLowerCase()}.${propertie.fieldName}}"></nidoca-typography>
+            #end
+        </nidoca-flex-container>
+    </nidoca-spacer>
+    <nidoca-spacer
+    .spacerSize="${SpacerSize.MEDIUM}"
+    spacerAlignment="${SpacerAlignment.VERTICAL}"
+    ></nidoca-spacer>
+      `;
+    }
+
+    itemClicked(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}, index: number): void {
+        console.debug("${clazzTypescriptWrapper.getModelName()} list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${clazzTypescriptWrapper.getModelEditPageUrl()}',{ 'id' : ${clazzTypescriptWrapper.getModelNameLowerCase()}.${clazzTypescriptWrapper.getIdFieldName()}});
+    }
+
+   renderNoRecord(): TemplateResult {
+      return html`
+         <nidoca-flex-container
+            .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
+            itemFlexBasisValue="auto"
+            .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
+            .alignItems="${FlexAlignItems.CENTER}"
+         >
+            <nidoca-spacer
+               .spacerSize="${SpacerSize.BIG}"
+               spacerAlignment="${SpacerAlignment.BOTH}"
+            >
+               <nidoca-typography
+                  .typographyType="${TypographyType.BUTTON}"
+                  text="${I18nService.getUniqueInstance().getValue(
+                     'no_entry_found'
+                  )}"
+               ></nidoca-typography>
+            </nidoca-spacer>
+         </nidoca-flex-container>
+      `;
+   }
+
+   async deleteItems(${clazzTypescriptWrapper.getModelNameLowerCase()}s: ${clazzTypescriptWrapper.getModelName()}[]): Promise<void> {
+        ${clazzTypescriptWrapper.getModelNameLowerCase()}s.forEach((${clazzTypescriptWrapper.getModelNameLowerCase()}) => {
+             console.log('delete ${clazzTypescriptWrapper.getModelNameLowerCase()} with id: {}', ${clazzTypescriptWrapper.getModelNameLowerCase()}.id);
+        ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().delete(${clazzTypescriptWrapper.getModelNameLowerCase()}.id);
+        });
+   }
+
+}

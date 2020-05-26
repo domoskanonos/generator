@@ -1,0 +1,5 @@
+export class ${modelName} {
+#foreach( $propertie in $properties )
+    ${propertie.fieldName} : ${propertie.typeName} = ${propertie.defaultValue};
+#end
+}

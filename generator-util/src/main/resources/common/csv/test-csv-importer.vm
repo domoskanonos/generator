@@ -1,0 +1,22 @@
+package ${packageName};
+
+import com.dbr.generator.result.dto.TestDTO;
+import org.junit.Test;
+import org.springframework.util.Assert;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+public class ${clazzSimpleName} {
+
+    private ${importerClazzSimpleName} importer = new ${importerClazzSimpleName}();
+
+    @Test
+    public void getObjectsByFile() throws Exception {
+        File file = new File(getClass().getResource("/${filename}").getPath());
+        List<${modelClazzSimpleName}> objects = importer.getObjects(file, true);
+        Assert.isTrue(objects.size() == ${rowCount}, "row count must be ${rowCount} elements");
+    }
+
+}

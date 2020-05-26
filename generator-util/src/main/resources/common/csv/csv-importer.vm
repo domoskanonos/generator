@@ -1,0 +1,31 @@
+package ${packageName};
+
+import com.dbr.abstr.AbstractCSVImporter;
+
+import ${modelClazzPackageName}.${modelClazzSimpleName};
+
+import com.dbr.util.DateUtil;
+import java.util.List;
+
+public class ${clazzSimpleName} extends AbstractCSVImporter<${modelClazzSimpleName}> {
+
+    public ${clazzSimpleName}() {
+        super("", "");
+    }
+
+    @Override
+    protected ${modelClazzSimpleName} mapObject(List<String> columns) throws Exception {
+
+        ${modelClazzSimpleName} object = new ${modelClazzSimpleName}();
+
+        #foreach( $propertie in $properties )
+        #if(${foreach.index}==0)String#end column = columns.get(${foreach.index});
+        if(column!=null && column.length()>0) {
+            object.${stringUtil.toSetterMethodPrefix($propertie.name)}(#if(${propertie.typeSimpleName}=='TYPE_DATE_ISO8601')DateUtil.DATE_FORMAT_ISO8601.parse(column)#elseif(${propertie.typeSimpleName}!='String')${propertie.typeSimpleName}.valueOf(column)#elseif(${propertie.typeSimpleName}=='String')column#end);
+        }
+        #end
+
+        return object;
+    }
+
+}

@@ -13,6 +13,7 @@
     <project.build.java.target>12</project.build.java.target>
     <maven.compiler.target>12</maven.compiler.target>
     <maven.compiler.source>12</maven.compiler.source>
+    <spring.boot.version>2.2.5.RELEASE</spring.boot.version>
   </properties>
   <repositories>
     <repository>
@@ -79,7 +80,10 @@
     </plugins>
   </build>
   <modules>
+    <module>generator-basic</module>
     <module>generator-util</module>
-    <module>generator-jpa</module>
+    <module>generator-typescript</module>
+    <module>generator-nidoca</module>
+    <module>generator-springboot</module>
   </modules>
 </project>

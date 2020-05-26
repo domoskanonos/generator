@@ -1,0 +1,27 @@
+#set( $escapeDollar = '$' )
+import {customElement} from 'lit-element';
+import {
+NidocaAbstractPageSearchList
+} from '@domoskanonos/nidoca-app';
+import {I18nService} from "@domoskanonos/frontend-basis";
+import {${clazzTypescriptWrapper.getModelName()}SearchNidocaList} from '../../components/${clazzTypescriptWrapper.getModelNameLowerCase()}/search-list';
+
+@customElement('${clazzTypescriptWrapper.getSearchListPageTagName()}')
+export class ${clazzTypescriptWrapper.getModelName()}SearchListPage extends NidocaAbstractPageSearchList {
+
+   constructor() {
+      super(new ${clazzTypescriptWrapper.getModelName()}SearchNidocaList());
+   }
+
+   getNavigationTitle(): string {
+      return I18nService.getUniqueInstance().getValue('${clazzTypescriptWrapper.getI18nSearchListPageTitleKey()}');
+   }
+
+   getAddTitle(): string {
+      return I18nService.getUniqueInstance().getValue('${clazzTypescriptWrapper.getI18nAddKey()}');
+   }
+
+   getEditPageUrl(): string {
+      return '${clazzTypescriptWrapper.getModelEditPageUrl()}';
+   }
+}

@@ -1,0 +1,41 @@
+package ${packageName};
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import ${firstClazzName};
+import ${secondClazzName};
+
+
+public class ${clazzSimpleName} {
+
+    public ${firstClazzSimpleName} to${firstClazzSimpleName}(${secondClazzSimpleName} source)
+    {
+        ${firstClazzSimpleName} dest = new ${firstClazzSimpleName}();
+        #foreach( $mappingDTOEntityEntrie in $mappingSecondFirstEntries )
+        ${mappingDTOEntityEntrie}
+        #end
+        return dest;
+    }
+
+    public ${secondClazzSimpleName} to${secondClazzSimpleName}(${firstClazzSimpleName} source)
+    {
+        ${secondClazzSimpleName} dest = new ${secondClazzSimpleName}();
+        #foreach( $mappingEntityDTOEntrie in $mappingFirstSecondEntries )
+        ${mappingEntityDTOEntrie}
+        #end
+        return dest;
+    }
+
+    public List<${secondClazzSimpleName}> to${secondClazzSimpleName}s(Collection<${firstClazzSimpleName}> sources) {
+        return sources.stream().map(source -> to${secondClazzSimpleName}(source)).collect(Collectors.toList());
+    }
+
+    public List<${firstClazzSimpleName}> to${firstClazzSimpleName}s(Collection<${secondClazzSimpleName}> sources) {
+        return sources.stream().map(source -> to${firstClazzSimpleName}(source)).collect(Collectors.toList());
+    }
+
+
+
+}
