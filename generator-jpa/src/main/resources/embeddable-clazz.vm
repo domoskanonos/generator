@@ -1,0 +1,29 @@
+package ${model.packageName};
+
+import lombok.*;
+
+import javax.persistence.*;
+
+import java.io.Serializable;
+
+@Data
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Embeddable
+public class ${model.javaIdClassName} implements Serializable {
+
+    #foreach( $columnReference in $model.columnReferences )
+        #set( $importedKeyReference = $model.getImportedKeyReference($columnReference) )
+        #if(${importedKeyReference})
+        @ManyToOne
+        @JoinColumn(name ="${importedKeyReference.fkColumnName}")
+        private ${importedKeyReference.javaPkClassName} ${importedKeyReference.javaPkFieldName};
+        #else
+        @Column(name = "${columnReference.columnName}")
+        private ${columnReference.javaType} ${columnReference.javaFieldName};
+        #end
+
+    #end
+}

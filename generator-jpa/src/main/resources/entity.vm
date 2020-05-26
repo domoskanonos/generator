@@ -1,0 +1,41 @@
+package ${model.packageName};
+
+import lombok.*;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "${model.tableReference.tableName}"#if(${model.tableReference.tableCat}), catalog="${model.tableReference.tableCat}"#end#if(${model.tableReference.tableSchema}), schema="${model.tableReference.tableSchema}"#end)
+@Data
+@ToString
+@Builder(toBuilder = true)
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+#if(${model.associationOverrides})
+@AssociationOverrides({
+    #foreach( $columnImportedReference in $model.columnImportedKeyReferencesIdFields )
+        @AssociationOverride(name = "id.${columnImportedReference.javaPkFieldName}",
+                joinColumns = @JoinColumn(name = "${columnImportedReference.fkColumnName}")),
+    #end
+})
+#end
+public class ${model.javaClassName} {
+
+    #if(${model.idClazz})
+    @EmbeddedId
+    ${model.javaIdClassName} id;
+    
+    #end
+    #foreach( $columnReference in $model.columnReferencesFiltered )
+    #if(${model.isIdColumn($columnReference)})
+    @Id
+    #if(${model.generateIdAnnotation})
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    #end
+    #end
+    @Column(name = "${columnReference.columnName}"#if(${columnReference.nullable}), nullable=false#end#if(${columnReference.generateColumnLength}), length=${columnReference.columnSize}#end)
+    private ${columnReference.javaType} ${columnReference.javaFieldName};
+
+    #end
+}

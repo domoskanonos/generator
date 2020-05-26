@@ -1,0 +1,4 @@
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "${importedKeyReference.getMappedByFieldName(${model})}")
+    private java.util.Set<${importedKeyReference.javaFkClassName}> ${importedKeyReference.javaFkFieldName} = new java.util.HashSet<>(0);
+
+}

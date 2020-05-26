@@ -4,12 +4,12 @@
     <parent>
     <artifactId>generator</artifactId>
     <groupId>com.dbr.generator</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
     <groupId>com.dbr.generator</groupId>
     <artifactId>generator-util</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.dbr.generator</groupId>
             <artifactId>generator-base</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     
