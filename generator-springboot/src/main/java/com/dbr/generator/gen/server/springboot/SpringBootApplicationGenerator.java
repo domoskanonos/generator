@@ -15,7 +15,7 @@ import com.dbr.generator.gen.server.springboot.service.jpa.SpringBootJPAServiceB
 import com.dbr.generator.gen.server.springboot.service.jpa.SpringBootJPAServiceSearchGenerator;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceSearchVM;
-import com.dbr.generator.util.generator.GeneratorUtil;
+import com.dbr.generator.basic.model.GeneratorUtil;
 import lombok.Data;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;

@@ -2,7 +2,7 @@ package com.dbr.generator.gen.client.typescript.compound;
 
 import com.dbr.generator.gen.client.i18n.I18nJSONGenerator;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
-import com.dbr.generator.gen.client.i18n.model.KeyValue;
+import com.dbr.generator.basic.model.KeyValue;
 import com.dbr.generator.gen.client.typescript.*;
 import com.dbr.generator.gen.client.typescript.compound.model.TypescriptClientCVM;
 import com.dbr.generator.gen.client.typescript.model.*;

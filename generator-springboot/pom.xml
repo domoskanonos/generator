@@ -27,12 +27,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>${spring.boot.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.dbr.generator</groupId>
             <artifactId>generator-util</artifactId>
             <version>1.0.0</version>

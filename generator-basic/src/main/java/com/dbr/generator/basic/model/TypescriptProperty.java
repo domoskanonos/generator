@@ -1,7 +1,5 @@
-package com.dbr.generator.gen.client.typescript.model;
+package com.dbr.generator.basic.model;
 
-import com.dbr.generator.gen.client.i18n.model.KeyValue;
-import com.dbr.generator.util.generator.GeneratorUtil;
 import com.dbr.util.DataTypes;
 import lombok.*;
 import org.springframework.data.annotation.Id;

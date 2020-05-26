@@ -1,8 +1,5 @@
-package com.dbr.generator.util.generator;
+package com.dbr.generator.basic.model;
 
-import com.dbr.generator.gen.common.csv.model.CSVJavaProperty;
-import com.dbr.generator.gen.model.JavaProperty;
-import com.dbr.generator.gen.client.typescript.model.TypescriptProperty;
 import com.dbr.util.DataTypes;
 import com.dbr.util.resource.ResourceUtil;
 import org.slf4j.Logger;
@@ -13,6 +10,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.validation.constraints.Email;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;

@@ -1,8 +1,8 @@
 package com.dbr.generator.gen.server.entity.model;
 
-import com.dbr.generator.gen.common.csv.model.CSVJavaProperty;
-import com.dbr.generator.gen.model.JavaProperty;
-import com.dbr.generator.util.generator.GeneratorUtil;
+import com.dbr.generator.basic.model.CSVJavaProperty;
+import com.dbr.generator.basic.model.JavaProperty;
+import com.dbr.generator.basic.model.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.*;
 

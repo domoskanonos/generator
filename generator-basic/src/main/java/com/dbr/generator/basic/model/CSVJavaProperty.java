@@ -1,6 +1,5 @@
-package com.dbr.generator.gen.common.csv.model;
+package com.dbr.generator.basic.model;
 
-import com.dbr.generator.gen.model.JavaProperty;
 import lombok.Data;
 
 @Data

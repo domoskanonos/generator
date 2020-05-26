@@ -1,6 +1,5 @@
-package com.dbr.generator.gen.model;
+package com.dbr.generator.basic.model;
 
-import com.dbr.generator.util.generator.GeneratorUtil;
 import lombok.*;
 
 import java.lang.reflect.Field;

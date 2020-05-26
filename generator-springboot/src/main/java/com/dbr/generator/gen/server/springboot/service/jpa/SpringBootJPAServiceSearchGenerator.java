@@ -4,7 +4,7 @@ import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceSearchVM;
 import com.dbr.generator.sample.entity.Example;
-import com.dbr.generator.util.generator.GeneratorUtil;
+import com.dbr.generator.basic.model.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;

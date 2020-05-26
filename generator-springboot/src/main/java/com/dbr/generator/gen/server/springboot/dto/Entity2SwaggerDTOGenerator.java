@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.dto;
 
-import com.dbr.generator.util.generator.GeneratorUtil;
+import com.dbr.generator.basic.model.GeneratorUtil;
 import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import org.apache.velocity.Template;

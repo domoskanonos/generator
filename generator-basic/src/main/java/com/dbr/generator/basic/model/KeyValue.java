@@ -1,4 +1,4 @@
-package com.dbr.generator.gen.client.i18n.model;
+package com.dbr.generator.basic.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

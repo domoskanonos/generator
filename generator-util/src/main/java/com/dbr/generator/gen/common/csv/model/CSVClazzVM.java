@@ -1,5 +1,6 @@
 package com.dbr.generator.gen.common.csv.model;
 
+import com.dbr.generator.basic.model.CSVJavaProperty;
 import com.dbr.util.DataTypes;
 import com.dbr.util.StringUtil;
 import com.google.common.base.Splitter;

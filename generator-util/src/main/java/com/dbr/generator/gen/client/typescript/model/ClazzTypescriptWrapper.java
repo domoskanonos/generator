@@ -1,8 +1,9 @@
 package com.dbr.generator.gen.client.typescript.model;
 
+import com.dbr.generator.basic.model.TypescriptProperty;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
-import com.dbr.generator.gen.client.i18n.model.KeyValue;
-import com.dbr.generator.util.generator.GeneratorUtil;
+import com.dbr.generator.basic.model.KeyValue;
+import com.dbr.generator.basic.model.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;

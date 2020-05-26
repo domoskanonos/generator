@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.server.springboot.repository.model;
 
-import com.dbr.generator.util.generator.GeneratorUtil;
-import com.dbr.generator.gen.model.JavaProperty;
+import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.model.JavaProperty;
 import lombok.*;
 
 import java.util.ArrayList;

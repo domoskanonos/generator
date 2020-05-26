@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.i18n.model;
 
-import com.dbr.generator.gen.client.typescript.model.ClazzTypescriptWrapper;
+import com.dbr.generator.basic.model.KeyValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
