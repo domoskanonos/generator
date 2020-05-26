@@ -1,4 +1,4 @@
-package com.dbr.generator;
+package com.dbr.generator.jpa;
 
 import com.dbr.util.StringUtil;
 import lombok.*;
