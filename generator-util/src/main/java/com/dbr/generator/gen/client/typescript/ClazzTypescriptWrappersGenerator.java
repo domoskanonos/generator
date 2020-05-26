@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript;
 
-import com.dbr.generator.VelocityUtil;
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.client.typescript.model.ClazzTypescriptWrappersVM;
 import lombok.AllArgsConstructor;
 import org.apache.velocity.Template;

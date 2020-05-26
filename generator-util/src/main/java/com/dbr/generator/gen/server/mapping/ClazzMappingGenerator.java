@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.mapping;
 
-import com.dbr.generator.VelocityUtil;
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.model.JavaProperty;
 import com.dbr.generator.gen.server.mapping.model.ClazzMappingVM;

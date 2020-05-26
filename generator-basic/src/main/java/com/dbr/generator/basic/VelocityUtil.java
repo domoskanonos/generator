@@ -1,4 +1,4 @@
-package com.dbr.generator;
+package com.dbr.generator.basic;
 
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;

@@ -1,15 +1,12 @@
 package com.dbr.generator.gen.client.i18n;
 
-import com.dbr.generator.VelocityUtil;
-import com.dbr.generator.gen.AbstractGenerator;
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
 import com.dbr.generator.gen.client.typescript.BasicTypescriptGenerator;
-import com.dbr.generator.sample.dto.UserDTO;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
-import java.io.File;
 import java.io.StringWriter;
 
 public class I18nJSONGenerator extends BasicTypescriptGenerator {

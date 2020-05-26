@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.pom;
 
-import com.dbr.generator.VelocityUtil;
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.AbstractGenerator;
 import com.dbr.generator.gen.pom.model.PomVM;
 import org.apache.velocity.Template;

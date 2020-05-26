@@ -1,11 +1,8 @@
 package com.dbr.generator.gen.server.springboot.modules;
 
-import com.dbr.generator.VelocityUtil;
-import com.dbr.generator.gen.AbstractGeneratorJava;
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.server.springboot.modules.model.ModulItem;
 import com.dbr.generator.gen.server.springboot.modules.model.ResourceItem;
-import com.dbr.generator.gen.server.springboot.repository.model.SpringBootJPARepositoryVM;
-import com.dbr.util.StringUtil;
 import com.dbr.util.resource.ResourceUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.velocity.Template;
@@ -22,9 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 
 public abstract class AbstractModuleGenerator {
 

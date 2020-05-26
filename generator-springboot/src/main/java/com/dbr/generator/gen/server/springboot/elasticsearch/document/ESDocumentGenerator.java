@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.elasticsearch.document;
 
-import com.dbr.generator.VelocityUtil;
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.springboot.elasticsearch.document.model.ESDocumentVM;
 import org.apache.velocity.Template;
