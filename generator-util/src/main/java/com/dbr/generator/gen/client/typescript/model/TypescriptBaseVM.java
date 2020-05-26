@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript.model;
 
-import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.model.TypescriptProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;

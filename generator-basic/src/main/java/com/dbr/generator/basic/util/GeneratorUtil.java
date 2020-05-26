@@ -1,5 +1,8 @@
-package com.dbr.generator.basic.model;
+package com.dbr.generator.basic.util;
 
+import com.dbr.generator.basic.model.CSVJavaProperty;
+import com.dbr.generator.basic.model.JavaProperty;
+import com.dbr.generator.basic.model.TypescriptProperty;
 import com.dbr.util.DataTypes;
 import com.dbr.util.resource.ResourceUtil;
 import org.slf4j.Logger;
@@ -403,7 +406,7 @@ public class GeneratorUtil {
                 lines.add(line);
             }
         } catch (Exception e) {
-            throw new GeneratorException(e);
+            throw new GeneratorUtilException(e);
         }
 
         for (String line : lines) {

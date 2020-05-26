@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.i18n;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
 import com.dbr.generator.gen.client.typescript.BasicTypescriptGenerator;
 import org.apache.velocity.Template;

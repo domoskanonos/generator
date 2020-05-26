@@ -5,7 +5,7 @@ import com.dbr.generator.gen.server.mapping.model.ClazzMappingVM;
 import com.dbr.generator.gen.server.springboot.repository.model.SpringBootJPARepositoryVM;
 import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerBasicVM;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
-import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.Data;
 import lombok.ToString;
 

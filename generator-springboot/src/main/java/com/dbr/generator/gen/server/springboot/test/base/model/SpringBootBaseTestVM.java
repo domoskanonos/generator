@@ -5,7 +5,7 @@ import com.dbr.generator.gen.server.dto.model.DTOVM;
 import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerBasicVM;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
 import com.dbr.generator.gen.server.springboot.test.TestVM;
-import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.Data;
 
 import java.util.List;

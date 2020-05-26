@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.server.mapping.model;
 
 import com.dbr.generator.basic.model.JavaProperty;
-import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.*;
 
 import java.util.ArrayList;

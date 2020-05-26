@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.csv;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVServiceVM;
 import com.dbr.util.StringUtil;

@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.modules;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.server.springboot.modules.model.ModulItem;
 import com.dbr.generator.gen.server.springboot.modules.model.ResourceItem;
 import com.dbr.util.resource.ResourceUtil;

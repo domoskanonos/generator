@@ -1,6 +1,6 @@
 package ${packageName}.system.auth.service;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import ${packageName}.system.ApplicationProperties;
 import ${packageName}.system.auth.entity.AuthUser;
 import ${packageName}.system.auth.entity.AuthUserPrivilege;

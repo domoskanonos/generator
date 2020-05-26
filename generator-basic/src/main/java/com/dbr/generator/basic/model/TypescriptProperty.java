@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.model;
 
+import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.DataTypes;
 import lombok.*;
 import org.springframework.data.annotation.Id;

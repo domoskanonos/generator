@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.dto;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.dto.model.DTOVM;
 import com.dbr.generator.sample.entity.UserEntity;

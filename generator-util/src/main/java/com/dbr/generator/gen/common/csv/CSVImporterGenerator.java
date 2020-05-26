@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.common.csv;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.common.csv.model.CSVImporterVM;
 import com.dbr.util.StringUtil;

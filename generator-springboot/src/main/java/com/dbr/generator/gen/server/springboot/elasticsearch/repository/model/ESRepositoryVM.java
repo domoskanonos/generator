@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.elasticsearch.repository.model;
 
-import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.*;
 
 import java.util.ArrayList;

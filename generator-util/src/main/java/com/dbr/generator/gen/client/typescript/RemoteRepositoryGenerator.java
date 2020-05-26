@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.client.typescript.model.RemoteRepositoryVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.scheduling;
 
-import com.dbr.generator.basic.VelocityUtil;
+import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.springboot.scheduling.model.Scheduling;
 import org.apache.velocity.Template;

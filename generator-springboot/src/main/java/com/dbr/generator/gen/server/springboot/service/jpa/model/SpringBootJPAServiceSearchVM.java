@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.service.jpa.model;
 
 import com.dbr.generator.basic.model.JavaProperty;
 import com.dbr.generator.gen.server.springboot.repository.model.SpringBootJPARepositoryVM;
-import com.dbr.generator.basic.model.GeneratorUtil;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
