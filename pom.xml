@@ -82,6 +82,7 @@
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.1.0</version>
       </plugin>
+      <!-- mvn formatter:format -->
       <plugin>
         <groupId>net.revelc.code.formatter</groupId>
         <artifactId>formatter-maven-plugin</artifactId>
