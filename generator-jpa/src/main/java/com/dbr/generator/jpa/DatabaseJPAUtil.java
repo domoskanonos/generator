@@ -1,5 +1,6 @@
 package com.dbr.generator.jpa;
 
+import com.dbr.generator.basic.VelocityUtil;
 import com.dbr.util.StringUtil;
 import lombok.*;
 import org.apache.velocity.Template;
@@ -118,10 +119,7 @@ public class DatabaseJPAUtil {
         String writeDownPath = this.getClass().getResource("/").getPath() + "../../src/main/java/" + jpaEntityReference.getPackagePath();
         File path = new File(writeDownPath);
 
-        VelocityEngine velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-        velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-        velocityEngine.init();
+        VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         for (ImportedKeyReference importedKeyReference : jpaEntityReference.getImportedKeys()) {
             Template templateEntity = velocityEngine.getTemplate("entity-mn-relation.vm");
@@ -153,10 +151,7 @@ public class DatabaseJPAUtil {
             path.mkdirs();
         }
 
-        VelocityEngine velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
-        velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
-        velocityEngine.init();
+        VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         Template templateEntity = velocityEngine.getTemplate("entity.vm");
         VelocityContext contextEntity = new VelocityContext();
