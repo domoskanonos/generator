@@ -35,7 +35,6 @@ public class UserEntity {
     @Column(name = "USER_IMG")
     private byte[] userImg;
 
-
     @Column(name = "BIRTHDAY")
     private Date birthday;
 

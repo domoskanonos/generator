@@ -7,7 +7,8 @@ import com.dbr.generator.gen.server.springboot.test.base.model.SpringBootBaseTes
 public class SpringBootServiceBasicTestGenerator extends SpringBootTestGenerator {
 
     public SpringBootServiceBasicTestGenerator(Class<?> entityClazz, String basePackageName) {
-        super(new SpringBootBaseTestVM("sb-test-service-basic.vm", SpringBootJPAServiceBasicVM.SERVICE_NAME_SUFFIX, SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX, entityClazz, basePackageName));
+        super(new SpringBootBaseTestVM("sb-test-service-basic.vm", SpringBootJPAServiceBasicVM.SERVICE_NAME_SUFFIX,
+                SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX, entityClazz, basePackageName));
     }
 
 }

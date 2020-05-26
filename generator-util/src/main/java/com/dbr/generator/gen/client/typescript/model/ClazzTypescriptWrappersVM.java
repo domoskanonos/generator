@@ -13,10 +13,11 @@ public class ClazzTypescriptWrappersVM {
     private String templatePath;
     private String folderName;
     private String filename;
-    private Boolean d=true;
+    private Boolean d = true;
     private ClazzTypescriptWrapper[] clazzTypescriptWrappers;
 
-    public ClazzTypescriptWrappersVM(TypescriptClientCVM typescriptClientCVM, String templatePath, String folderName, String filename, ClazzTypescriptWrapper[] clazzTypescriptWrappers) {
+    public ClazzTypescriptWrappersVM(TypescriptClientCVM typescriptClientCVM, String templatePath, String folderName,
+            String filename, ClazzTypescriptWrapper[] clazzTypescriptWrappers) {
         this.typescriptClientCVM = typescriptClientCVM;
         this.templatePath = templatePath;
         this.folderName = folderName;

@@ -38,5 +38,4 @@ public class SpringBootJPAServiceBasicVM {
         this.idClazz = GeneratorUtil.getIDClazzSimpleName(entityClazz);
     }
 
-
 }

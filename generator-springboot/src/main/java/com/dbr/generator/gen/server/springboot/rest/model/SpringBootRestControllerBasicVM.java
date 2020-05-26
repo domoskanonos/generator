@@ -38,8 +38,10 @@ public class SpringBootRestControllerBasicVM {
         this.clazzSimpleName = entityClazzSimpleName + REST_NAME_SUFFIX;
         this.basePackageName = basePackageName;
         this.dtoPackageName = String.format("%s%s", this.basePackageName, DTOVM.DTO_PACKAGE_SUFFIX);
-        this.servicePackageName = String.format("%s%s", this.basePackageName, SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX);
-        this.restControllerPackageName = String.format("%s%s", this.basePackageName, SpringBootCSVRestControllerVM.REST_PACKAGE_SUFFIX);
+        this.servicePackageName = String.format("%s%s", this.basePackageName,
+                SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX);
+        this.restControllerPackageName = String.format("%s%s", this.basePackageName,
+                SpringBootCSVRestControllerVM.REST_PACKAGE_SUFFIX);
         this.serviceClazzSimpleName = entityClazzSimpleName + SpringBootJPAServiceBasicVM.SERVICE_NAME_SUFFIX;
         this.restControllerClazzSimpleName = entityClazzSimpleName + SpringBootCSVRestControllerVM.REST_NAME_SUFFIX;
         this.dtoClazzSimpleName = entityClazzSimpleName + DTOVM.DTO_NAME_SUFFIX;
@@ -59,7 +61,6 @@ public class SpringBootRestControllerBasicVM {
     public String getDTOClazzName() {
         return this.dtoPackageName + "." + this.dtoClazzSimpleName;
     }
-
 
     public String getPrefixPath() {
         return String.format("%s/BASIC", getEntityClazzSimpleName().toUpperCase());

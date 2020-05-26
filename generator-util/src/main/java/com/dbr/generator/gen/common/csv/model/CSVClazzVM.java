@@ -33,7 +33,8 @@ public class CSVClazzVM {
 
     private List<CSVJavaProperty> properties = new ArrayList<>();
 
-    public CSVClazzVM(String packageName, String clazzSimpleName, String content, String columnSplit, String rowSplit, Boolean withHeaderRow) {
+    public CSVClazzVM(String packageName, String clazzSimpleName, String content, String columnSplit, String rowSplit,
+            Boolean withHeaderRow) {
         this.packageName = packageName;
         this.clazzSimpleName = clazzSimpleName;
         this.content = content;
@@ -121,7 +122,8 @@ public class CSVClazzVM {
 
         log.info("create CSVJavaProperties...");
         for (int i = 0; i < columnSize; i++) {
-            properties.add(new CSVJavaProperty(StringUtil.toPropertieName(headers.get(i).toLowerCase()), StringUtil.getType(contentMatrix[i]), lengths[i]));
+            properties.add(new CSVJavaProperty(StringUtil.toPropertieName(headers.get(i).toLowerCase()),
+                    StringUtil.getType(contentMatrix[i]), lengths[i]));
         }
 
     }

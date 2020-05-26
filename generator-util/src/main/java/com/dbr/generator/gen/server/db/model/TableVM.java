@@ -13,7 +13,8 @@ public class TableVM {
     private Database database;
 
     public String getJavaName() {
-        return String.valueOf(tableName.charAt(0)).toUpperCase() + StringUtil.underscoreToUpperLetter(tableName.substring(1).toLowerCase()) + "Entity";
+        return String.valueOf(tableName.charAt(0)).toUpperCase()
+                + StringUtil.underscoreToUpperLetter(tableName.substring(1).toLowerCase()) + "Entity";
     }
 
 }

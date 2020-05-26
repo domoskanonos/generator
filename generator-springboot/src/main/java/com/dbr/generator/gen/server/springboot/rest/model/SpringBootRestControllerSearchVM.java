@@ -39,8 +39,10 @@ public class SpringBootRestControllerSearchVM {
         this.clazzSimpleName = entityClazzSimpleName + REST_NAME_SUFFIX;
         this.basePackageName = basePackageName;
         this.dtoPackageName = String.format("%s%s", this.basePackageName, DTOVM.DTO_PACKAGE_SUFFIX);
-        this.servicePackageName = String.format("%s%s", this.basePackageName, SpringBootJPAServiceSearchVM.SERVICE_PACKAGE_SUFFIX);
-        this.restControllerPackageName = String.format("%s%s", this.basePackageName, SpringBootCSVRestControllerVM.REST_PACKAGE_SUFFIX);
+        this.servicePackageName = String.format("%s%s", this.basePackageName,
+                SpringBootJPAServiceSearchVM.SERVICE_PACKAGE_SUFFIX);
+        this.restControllerPackageName = String.format("%s%s", this.basePackageName,
+                SpringBootCSVRestControllerVM.REST_PACKAGE_SUFFIX);
         this.serviceClazzSimpleName = entityClazzSimpleName + SpringBootJPAServiceSearchVM.SERVICE_NAME_SUFFIX;
         this.restControllerClazzSimpleName = entityClazzSimpleName + SpringBootCSVRestControllerVM.REST_NAME_SUFFIX;
         this.dtoClazzSimpleName = entityClazzSimpleName + DTOVM.DTO_NAME_SUFFIX;

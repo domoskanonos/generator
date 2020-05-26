@@ -39,10 +39,10 @@ public class TypescriptClientCompoundGenerator extends BasicTypescriptGenerator 
             pagesImportFile.add(new StringBuilder().append("import './").append("page-reset-password';").toString());
         }
 
-        if(this.cvm.isGenerateTermsOfUse()){
+        if (this.cvm.isGenerateTermsOfUse()) {
             pagesImportFile.add(new StringBuilder().append("import './").append("page-terms-of-use';").toString());
             i18nKeyValues.add(new KeyValue("terms_of_use", "Nutzungsbedingungen"));
-            //TODO: Copy simple files without replacement
+            // TODO: Copy simple files without replacement
         }
 
         for (Class clazz : clazzes) {
@@ -51,7 +51,8 @@ public class TypescriptClientCompoundGenerator extends BasicTypescriptGenerator 
 
             if (this.cvm.isGenerateModel()) {
                 Clazz2TypescriptModelVM clazz2TypescriptModelVM = new Clazz2TypescriptModelVM(clazz, modelName);
-                Clazz2TypescriptModelGenerator clazz2TypescriptModelGenerator = new Clazz2TypescriptModelGenerator(clazz2TypescriptModelVM);
+                Clazz2TypescriptModelGenerator clazz2TypescriptModelGenerator = new Clazz2TypescriptModelGenerator(
+                        clazz2TypescriptModelVM);
                 clazz2TypescriptModelGenerator.writeDown();
             }
 
@@ -67,69 +68,97 @@ public class TypescriptClientCompoundGenerator extends BasicTypescriptGenerator 
                 remoteServiceGenerator.writeDown();
             }
 
-            ClazzTypescriptWrapper clazzTypescriptWrapper = new ClazzTypescriptWrapper(clazz, this.cvm.getModelNameReplaceKey(), this.cvm.getModelNameReplaceValue());
+            ClazzTypescriptWrapper clazzTypescriptWrapper = new ClazzTypescriptWrapper(clazz,
+                    this.cvm.getModelNameReplaceKey(), this.cvm.getModelNameReplaceValue());
 
             if (clazzTypescriptWrapper.getIdFieldName() != null) {
 
-                //add i18n keyValues for clazzes
+                // add i18n keyValues for clazzes
                 i18nKeyValues.addAll(clazzTypescriptWrapper.getI18nKeyValues());
 
-                //component edit
+                // component edit
                 if (this.cvm.isGenerateEditComponent()) {
-                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM("client/typescript/component/edit.vm", clazzTypescriptWrapper.getFolderNameComponents(), "edit.ts", clazzTypescriptWrapper);
-                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(clazzTypescriptWrapperVM);
+                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM(
+                            "client/typescript/component/edit.vm", clazzTypescriptWrapper.getFolderNameComponents(),
+                            "edit.ts", clazzTypescriptWrapper);
+                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(
+                            clazzTypescriptWrapperVM);
                     clazzTypescriptWrapperGenerator.writeDown();
-                    componentImportFile.add(new StringBuilder().append("import './").append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/edit';").toString());
+                    componentImportFile.add(new StringBuilder().append("import './")
+                            .append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/edit';").toString());
                 }
 
-                //component searchList
+                // component searchList
                 if (this.cvm.isGenerateSearchNidocaList()) {
-                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM("client/typescript/component/search-list.vm", clazzTypescriptWrapper.getFolderNameComponents(), "search-list.ts", clazzTypescriptWrapper);
-                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(clazzTypescriptWrapperVM);
+                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM(
+                            "client/typescript/component/search-list.vm",
+                            clazzTypescriptWrapper.getFolderNameComponents(), "search-list.ts", clazzTypescriptWrapper);
+                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(
+                            clazzTypescriptWrapperVM);
                     clazzTypescriptWrapperGenerator.writeDown();
-                    componentImportFile.add(new StringBuilder().append("import './").append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/search-list';").toString());
+                    componentImportFile.add(new StringBuilder().append("import './")
+                            .append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/search-list';")
+                            .toString());
                 }
 
-                //component inputfieldComboboxComponent
+                // component inputfieldComboboxComponent
                 if (this.cvm.isGenerateComboboxComponent()) {
-                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM("client/typescript/component/combobox.vm", clazzTypescriptWrapper.getFolderNameComponents(), "combobox.ts", clazzTypescriptWrapper);
-                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(clazzTypescriptWrapperVM);
+                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM(
+                            "client/typescript/component/combobox.vm", clazzTypescriptWrapper.getFolderNameComponents(),
+                            "combobox.ts", clazzTypescriptWrapper);
+                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(
+                            clazzTypescriptWrapperVM);
                     clazzTypescriptWrapperGenerator.writeDown();
-                    componentImportFile.add(new StringBuilder().append("import './").append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/combobox';").toString());
+                    componentImportFile.add(new StringBuilder().append("import './")
+                            .append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/combobox';").toString());
                 }
 
-                //page edit
+                // page edit
                 if (this.cvm.isGenerateEditPage()) {
-                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM("client/typescript/page/edit.vm", clazzTypescriptWrapper.getFolderNamePages(), "edit.ts", clazzTypescriptWrapper);
-                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(clazzTypescriptWrapperVM);
+                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM(
+                            "client/typescript/page/edit.vm", clazzTypescriptWrapper.getFolderNamePages(), "edit.ts",
+                            clazzTypescriptWrapper);
+                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(
+                            clazzTypescriptWrapperVM);
                     clazzTypescriptWrapperGenerator.writeDown();
-                    pagesImportFile.add(new StringBuilder().append("import './").append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/edit';").toString());
+                    pagesImportFile.add(new StringBuilder().append("import './")
+                            .append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/edit';").toString());
                 }
 
-                //page searchList
+                // page searchList
                 if (this.cvm.isGenerateSearchListPage()) {
-                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM("client/typescript/page/search-list.vm", clazzTypescriptWrapper.getFolderNamePages(), "search-list.ts", clazzTypescriptWrapper);
-                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(clazzTypescriptWrapperVM);
+                    ClazzTypescriptWrapperVM clazzTypescriptWrapperVM = new ClazzTypescriptWrapperVM(
+                            "client/typescript/page/search-list.vm", clazzTypescriptWrapper.getFolderNamePages(),
+                            "search-list.ts", clazzTypescriptWrapper);
+                    ClazzTypescriptWrapperGenerator clazzTypescriptWrapperGenerator = new ClazzTypescriptWrapperGenerator(
+                            clazzTypescriptWrapperVM);
                     clazzTypescriptWrapperGenerator.writeDown();
-                    pagesImportFile.add(new StringBuilder().append("import './").append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/search-list';").toString());
+                    pagesImportFile.add(new StringBuilder().append("import './")
+                            .append(clazzTypescriptWrapper.getModelNameLowerCase()).append("/search-list';")
+                            .toString());
                 }
 
             }
 
         }
 
-        ClazzTypescriptWrapper[] clazzTypescriptWrappers = ClazzTypescriptWrapper.toWrapper(clazzes, this.cvm.getModelNameReplaceKey(), this.cvm.getModelNameReplaceValue());
+        ClazzTypescriptWrapper[] clazzTypescriptWrappers = ClazzTypescriptWrapper.toWrapper(clazzes,
+                this.cvm.getModelNameReplaceKey(), this.cvm.getModelNameReplaceValue());
 
         if (this.cvm.isGeneratePageService()) {
-            ClazzTypescriptWrappersVM clazzTypescriptWrappersVM = new ClazzTypescriptWrappersVM(this.cvm, "client/typescript/app/page-service.vm", "service/", "page-service.ts", clazzTypescriptWrappers);
-            ClazzTypescriptWrappersGenerator clazzTypescriptWrappersGenerator = new ClazzTypescriptWrappersGenerator(clazzTypescriptWrappersVM);
+            ClazzTypescriptWrappersVM clazzTypescriptWrappersVM = new ClazzTypescriptWrappersVM(this.cvm,
+                    "client/typescript/app/page-service.vm", "service/", "page-service.ts", clazzTypescriptWrappers);
+            ClazzTypescriptWrappersGenerator clazzTypescriptWrappersGenerator = new ClazzTypescriptWrappersGenerator(
+                    clazzTypescriptWrappersVM);
             clazzTypescriptWrappersGenerator.writeDown();
         }
 
         if (this.cvm.isGenerateMenuComponent()) {
             pagesImportFile.add("import './page-default';");
-            ClazzTypescriptWrappersVM clazzTypescriptWrappersVM = new ClazzTypescriptWrappersVM(this.cvm, "client/typescript/app/page-default.vm", "pages/", "page-default.ts", clazzTypescriptWrappers);
-            ClazzTypescriptWrappersGenerator clazzTypescriptWrappersGenerator = new ClazzTypescriptWrappersGenerator(clazzTypescriptWrappersVM);
+            ClazzTypescriptWrappersVM clazzTypescriptWrappersVM = new ClazzTypescriptWrappersVM(this.cvm,
+                    "client/typescript/app/page-default.vm", "pages/", "page-default.ts", clazzTypescriptWrappers);
+            ClazzTypescriptWrappersGenerator clazzTypescriptWrappersGenerator = new ClazzTypescriptWrappersGenerator(
+                    clazzTypescriptWrappersVM);
             clazzTypescriptWrappersGenerator.writeDown();
         }
 
@@ -138,20 +167,23 @@ public class TypescriptClientCompoundGenerator extends BasicTypescriptGenerator 
             writeI18n("message-en.json", i18nKeyValues);
         }
 
-        //import.ts file pages
+        // import.ts file pages
         StringBuilder importFilePagesContent = new StringBuilder();
         for (String imp : pagesImportFile) {
             importFilePagesContent.append(imp).append("\n");
         }
-        BasicTypescriptGenerator.writeDownExternal(new File(BasicTypescriptGenerator.TYPESCRIPT_SOURCE_PATH_EXTENDED + "pages/", "import.ts"), importFilePagesContent.toString());
+        BasicTypescriptGenerator.writeDownExternal(
+                new File(BasicTypescriptGenerator.TYPESCRIPT_SOURCE_PATH_EXTENDED + "pages/", "import.ts"),
+                importFilePagesContent.toString());
 
-        //import.ts file component
+        // import.ts file component
         StringBuilder importFileComponentContent = new StringBuilder();
         for (String imp : componentImportFile) {
             importFileComponentContent.append(imp).append("\n");
         }
-        BasicTypescriptGenerator.writeDownExternal(new File(BasicTypescriptGenerator.TYPESCRIPT_SOURCE_PATH_EXTENDED + "components/", "import.ts"), importFileComponentContent.toString());
-
+        BasicTypescriptGenerator.writeDownExternal(
+                new File(BasicTypescriptGenerator.TYPESCRIPT_SOURCE_PATH_EXTENDED + "components/", "import.ts"),
+                importFileComponentContent.toString());
 
     }
 
@@ -160,10 +192,10 @@ public class TypescriptClientCompoundGenerator extends BasicTypescriptGenerator 
         i18NJSONGenerator.writeDown();
     }
 
-
     public static void main(String[] args) throws Exception {
         TypescriptClientCVM typescriptClientCVM = new TypescriptClientCVM(UserDTO.class);
-        TypescriptClientCompoundGenerator typescriptClientCompoundGenerator = new TypescriptClientCompoundGenerator(typescriptClientCVM);
+        TypescriptClientCompoundGenerator typescriptClientCompoundGenerator = new TypescriptClientCompoundGenerator(
+                typescriptClientCVM);
         typescriptClientCompoundGenerator.writeDown();
     }
 

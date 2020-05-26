@@ -14,7 +14,8 @@ public class BasicTypescriptGenerator {
 
     protected static final Logger _log = LoggerFactory.getLogger(BasicTypescriptGenerator.class);
 
-    public static String TYPESCRIPT_SOURCE_PATH_EXTENDED = AbstractGeneratorJava.class.getResource("/").getPath() + "../../source/";
+    public static String TYPESCRIPT_SOURCE_PATH_EXTENDED = AbstractGeneratorJava.class.getResource("/").getPath()
+            + "../../source/";
 
     protected String typescriptSuffixPath = "";
 
@@ -40,7 +41,8 @@ public class BasicTypescriptGenerator {
     }
 
     public File getDestinationFolder() {
-        File destinationFolder = new File(new StringBuilder().append(this.TYPESCRIPT_SOURCE_PATH_EXTENDED).append(this.typescriptSuffixPath).toString());
+        File destinationFolder = new File(new StringBuilder().append(this.TYPESCRIPT_SOURCE_PATH_EXTENDED)
+                .append(this.typescriptSuffixPath).toString());
         _log.info(String.format("write down destination folder: %s", destinationFolder.getAbsolutePath()));
         if (!destinationFolder.exists()) {
             destinationFolder.mkdirs();

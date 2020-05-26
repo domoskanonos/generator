@@ -11,8 +11,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
- * Generiert aus einer JAVA Entity Klasse eine entsprechende DTO Klasse mit Swagger Api Annotations.
- * .
+ * Generiert aus einer JAVA Entity Klasse eine entsprechende DTO Klasse mit Swagger Api Annotations. .
  */
 public class Entity2SwaggerDTOGenerator extends AbstractGeneratorJava {
 
@@ -33,8 +32,7 @@ public class Entity2SwaggerDTOGenerator extends AbstractGeneratorJava {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
-        Template t = velocityEngine
-                .getTemplate("sb-swagger-dto.vm");
+        Template t = velocityEngine.getTemplate("sb-swagger-dto.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("generatorUtil", new GeneratorUtil());

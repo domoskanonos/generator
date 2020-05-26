@@ -30,7 +30,8 @@ public class SpringBootJPAServiceSearchVM {
 
     private List<JavaProperty> properties;
 
-    public SpringBootJPAServiceSearchVM(String systemPackageName, String basePackageName, String dtoClazzSimpleName, Class<?> entityClazz) {
+    public SpringBootJPAServiceSearchVM(String systemPackageName, String basePackageName, String dtoClazzSimpleName,
+            Class<?> entityClazz) {
         this.systemPackageName = systemPackageName;
         this.properties = GeneratorUtil.getJavaProperties(entityClazz);
         String simpleName = entityClazz.getSimpleName();
@@ -42,6 +43,5 @@ public class SpringBootJPAServiceSearchVM {
         this.dtoClazzSimpleName = dtoClazzSimpleName;
         this.idClazz = GeneratorUtil.getIDClazzSimpleName(entityClazz);
     }
-
 
 }

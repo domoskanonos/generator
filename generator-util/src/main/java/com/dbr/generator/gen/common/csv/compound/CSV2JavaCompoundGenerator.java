@@ -22,7 +22,8 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
     private CSV2JavaCVM cvm;
 
     public static void main(String[] args) throws Exception {
-        CSV2JavaCVM csv2JavaCVM = new CSV2JavaCVM(new File("C:/en.openfoodfacts.org.products.csv"), "\t", "\n", true, 0, "Test", "com.dbr.generator.result", 1500);
+        CSV2JavaCVM csv2JavaCVM = new CSV2JavaCVM(new File("C:/en.openfoodfacts.org.products.csv"), "\t", "\n", true, 0,
+                "Test", "com.dbr.generator.result", 1500);
         CSV2JavaCompoundGenerator csv2JavaCompoundGenerator = new CSV2JavaCompoundGenerator(csv2JavaCVM);
         csv2JavaCompoundGenerator.writeDown();
     }
@@ -44,7 +45,8 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
         String dtoClazzSimpleName = clazzSimpleBaseName + "DTO";
         String dtoClazzPackageName = basePackageName + ".dto";
 
-        CSVClazzVM csvClazzVM = new CSVClazzVM(dtoClazzPackageName, dtoClazzSimpleName, content, columnSplit, rowSplit, withHeaderRow);
+        CSVClazzVM csvClazzVM = new CSVClazzVM(dtoClazzPackageName, dtoClazzSimpleName, content, columnSplit, rowSplit,
+                withHeaderRow);
         if (this.cvm.isGenerateModel()) {
             log.info("generate model...");
             new CSV2ClazzGenerator(csvClazzVM).writeDown();
@@ -65,14 +67,8 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
         }
 
         String entityClazzPackageName = basePackageName + ".entity";
-        EntityVM entityVM = new EntityVM(
-                entityClazzPackageName,
-                StringUtil.toDatabaseName(clazzSimpleBaseName),
-                clazzSimpleBaseName,
-                null,
-                false,
-                null,
-                entityProperties);
+        EntityVM entityVM = new EntityVM(entityClazzPackageName, StringUtil.toDatabaseName(clazzSimpleBaseName),
+                clazzSimpleBaseName, null, false, null, entityProperties);
         if (this.cvm.isGenerateJPAEntity()) {
             log.info("generate entity...");
             new EntityGenerator(entityVM).writeDown();
@@ -80,7 +76,9 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
 
         String importerClazzSimpleName = clazzSimpleBaseName + "CSVImporter";
         String csvPackageName = basePackageName + ".csv";
-        CSVImporterVM csvImporterVM = new CSVImporterVM(csvPackageName, importerClazzSimpleName, dtoClazzPackageName, dtoClazzSimpleName, columnSplit, rowSplit, withHeaderRow, this.cvm.getFile(), this.cvm.getContent(), csvClazzVM.getRowSize(), javaProperties);
+        CSVImporterVM csvImporterVM = new CSVImporterVM(csvPackageName, importerClazzSimpleName, dtoClazzPackageName,
+                dtoClazzSimpleName, columnSplit, rowSplit, withHeaderRow, this.cvm.getFile(), this.cvm.getContent(),
+                csvClazzVM.getRowSize(), javaProperties);
         CSVImporterGenerator csvImporterGenerator = new CSVImporterGenerator(csvImporterVM);
 
         if (this.cvm.isGenerateCSVImporter()) {

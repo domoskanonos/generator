@@ -19,5 +19,4 @@ public class ExampleDTO {
 
     private byte[] userImg;
 
-
 }

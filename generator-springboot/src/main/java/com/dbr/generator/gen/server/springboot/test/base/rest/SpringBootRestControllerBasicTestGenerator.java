@@ -8,7 +8,9 @@ import com.dbr.generator.gen.server.springboot.test.base.model.SpringBootBaseTes
 public class SpringBootRestControllerBasicTestGenerator extends SpringBootTestGenerator {
 
     public SpringBootRestControllerBasicTestGenerator(Class<?> entityClazz, String basePackageName) {
-        super(new SpringBootBaseTestVM("sb-test-rest-controller-basic.vm", SpringBootRestControllerBasicVM.REST_NAME_SUFFIX, SpringBootCSVRestControllerVM.REST_PACKAGE_SUFFIX, entityClazz, basePackageName));
+        super(new SpringBootBaseTestVM("sb-test-rest-controller-basic.vm",
+                SpringBootRestControllerBasicVM.REST_NAME_SUFFIX, SpringBootCSVRestControllerVM.REST_PACKAGE_SUFFIX,
+                entityClazz, basePackageName));
     }
 
 }

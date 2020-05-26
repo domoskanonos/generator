@@ -69,9 +69,11 @@ public class EntityVM {
             String columnSize = size != null && size > 0 ? ", length=" + size : "";
             String nullableAnnotation = nullable && !primaryKey ? "" : ", nullable = false";
             String unique = primaryKey ? ", unique = true" : "";
-            String column = "\n    @Column(name = \"" + columnName + "\"" + unique + columnSize + nullableAnnotation + " )";
+            String column = "\n    @Column(name = \"" + columnName + "\"" + unique + columnSize + nullableAnnotation
+                    + " )";
             String type = getTypeSimpleName();
-            String oneToMany = GeneratorUtil.isBaseJavaType(type) || (!type.contains("List") && !type.contains("Set")) ? "" : "\n    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )";
+            String oneToMany = GeneratorUtil.isBaseJavaType(type) || (!type.contains("List") && !type.contains("Set"))
+                    ? "" : "\n    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )";
             return id + column + oneToMany;
         }
 
@@ -95,7 +97,4 @@ public class EntityVM {
         return list;
     }
 
-
 }
-
-

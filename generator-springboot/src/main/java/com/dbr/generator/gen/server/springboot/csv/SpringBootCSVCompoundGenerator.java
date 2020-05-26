@@ -1,12 +1,10 @@
 package com.dbr.generator.gen.server.springboot.csv;
 
-
 import com.dbr.generator.gen.CompoundAbstractGenerator;
 import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVCVM;
 import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVRestControllerVM;
 import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVServiceVM;
 import com.dbr.util.StringUtil;
-
 
 public class SpringBootCSVCompoundGenerator extends CompoundAbstractGenerator {
 
@@ -38,33 +36,24 @@ public class SpringBootCSVCompoundGenerator extends CompoundAbstractGenerator {
         String mapperClazzSimpleName = String.format("%s%sMapping", clazzSimpleBaseName, dtoClazzSimpleName);
         String mappingPackageName = String.format("%s.mapping", basePackageName);
 
-        SpringBootCSVServiceVM springBootCSVServiceVM = new SpringBootCSVServiceVM(
-                serviceClazzSimpleName,
-                servicePackageName,
-                clazzSimpleBaseName,
-                csvImporterPackageName,
-                csvImporterClazzSimpleName,
-                dtoPackageName,
-                dtoClazzSimpleName,
-                jpaRepositoryPackageName,
-                jpaRepositoryClazzSimpleName,
-                mappingPackageName,
-                mapperClazzSimpleName);
+        SpringBootCSVServiceVM springBootCSVServiceVM = new SpringBootCSVServiceVM(serviceClazzSimpleName,
+                servicePackageName, clazzSimpleBaseName, csvImporterPackageName, csvImporterClazzSimpleName,
+                dtoPackageName, dtoClazzSimpleName, jpaRepositoryPackageName, jpaRepositoryClazzSimpleName,
+                mappingPackageName, mapperClazzSimpleName);
 
-        SpringBootCSVServiceGenerator springBootCSVServiceGenerator = new SpringBootCSVServiceGenerator(springBootCSVServiceVM);
+        SpringBootCSVServiceGenerator springBootCSVServiceGenerator = new SpringBootCSVServiceGenerator(
+                springBootCSVServiceVM);
         springBootCSVServiceGenerator.writeDown();
 
         String controllerClazzSimpleName = String.format("%sCSVRestController", clazzSimpleBaseName);
         String controllerPackageName = String.format("%s.rest", basePackageName);
 
         SpringBootCSVRestControllerVM springBootCSVRestControllerVM = new SpringBootCSVRestControllerVM(
-                controllerClazzSimpleName,
-                controllerPackageName,
-                servicePackageName,
-                serviceClazzSimpleName,
+                controllerClazzSimpleName, controllerPackageName, servicePackageName, serviceClazzSimpleName,
                 StringUtil.toUpperCase(clazzSimpleBaseName));
 
-        SpringBootCSVRestControllerGenerator springBootCSVRestControllerGenerator = new SpringBootCSVRestControllerGenerator(springBootCSVRestControllerVM);
+        SpringBootCSVRestControllerGenerator springBootCSVRestControllerGenerator = new SpringBootCSVRestControllerGenerator(
+                springBootCSVRestControllerVM);
         springBootCSVRestControllerGenerator.writeDown();
 
     }

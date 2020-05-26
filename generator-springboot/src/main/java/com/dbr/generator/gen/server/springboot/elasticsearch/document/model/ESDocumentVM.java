@@ -34,7 +34,4 @@ public class ESDocumentVM {
         private String type;
     }
 
-
 }
-
-

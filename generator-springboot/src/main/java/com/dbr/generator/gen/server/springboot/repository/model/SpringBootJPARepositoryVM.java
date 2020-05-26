@@ -26,7 +26,8 @@ public class SpringBootJPARepositoryVM {
     private List<JavaProperty> properties;
 
     public SpringBootJPARepositoryVM(String repositoryClazzPackageName, Class<?> clazz) {
-        this(repositoryClazzPackageName, clazz.getSimpleName() + REPOSITORY_NAME_SUFFIX, clazz.getPackage().getName(), clazz.getSimpleName(), GeneratorUtil.getIDClazzSimpleName(clazz), true, true, new ArrayList<>());
+        this(repositoryClazzPackageName, clazz.getSimpleName() + REPOSITORY_NAME_SUFFIX, clazz.getPackage().getName(),
+                clazz.getSimpleName(), GeneratorUtil.getIDClazzSimpleName(clazz), true, true, new ArrayList<>());
         GeneratorUtil.getPrimitivesOnly(clazz).forEach(field -> {
             properties.add(new JavaProperty(field.getName(), field.getType().getSimpleName()));
         });

@@ -25,11 +25,13 @@ public class ClazzTypescriptWrapper {
         this.properties = GeneratorUtil.getTypescriptProperties(this.clazz.getDeclaredFields());
     }
 
-    public static ClazzTypescriptWrapper[] toWrapper(Class[] clazzes, String modelNameReplaceKey, String modelNameReplaceValue) {
+    public static ClazzTypescriptWrapper[] toWrapper(Class[] clazzes, String modelNameReplaceKey,
+            String modelNameReplaceValue) {
         ClazzTypescriptWrapper[] clazzTypescriptWrappers = new ClazzTypescriptWrapper[clazzes.length];
         int index = 0;
         for (Class clazz : clazzes) {
-            clazzTypescriptWrappers[index] = new ClazzTypescriptWrapper(clazz, modelNameReplaceKey, modelNameReplaceValue);
+            clazzTypescriptWrappers[index] = new ClazzTypescriptWrapper(clazz, modelNameReplaceKey,
+                    modelNameReplaceValue);
             index++;
         }
         return clazzTypescriptWrappers;
@@ -70,7 +72,8 @@ public class ClazzTypescriptWrapper {
 
     public String getModelName() {
         String simpleName = clazz.getSimpleName();
-        return StringUtils.isNotBlank(modelNameReplaceKey) ? simpleName.replace(modelNameReplaceKey, modelNameReplaceValue) : simpleName;
+        return StringUtils.isNotBlank(modelNameReplaceKey)
+                ? simpleName.replace(modelNameReplaceKey, modelNameReplaceValue) : simpleName;
     }
 
     public String getI18nSearchListPageTitleKey() {
@@ -126,7 +129,8 @@ public class ClazzTypescriptWrapper {
     }
 
     public String getI18nEditDialogDeleteDescriptionValue() {
-        return new StringBuilder().append("Der ").append(getModelName()).append(" wird unwiederuflich gelöscht").toString();
+        return new StringBuilder().append("Der ").append(getModelName()).append(" wird unwiederuflich gelöscht")
+                .toString();
     }
 
     public String getModelListPageUrl() {
@@ -169,5 +173,3 @@ public class ClazzTypescriptWrapper {
     }
 
 }
-
-

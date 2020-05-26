@@ -8,9 +8,7 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class GenerateTemplatePathArrayList {
-
 
     public static void main(String[] args) {
         File srcFolder = ResourceUtil.getResource("/modules/secure/src/");
@@ -27,9 +25,11 @@ public class GenerateTemplatePathArrayList {
         } else {
             String templatePath = absolutePath.substring(absolutePath.indexOf(moduleName));
             templatePath = templatePath.replace("\\", "/");
-            String packageSuffix = templatePath.substring(templatePath.indexOf("src") + 4, templatePath.lastIndexOf("/"));
+            String packageSuffix = templatePath.substring(templatePath.indexOf("src") + 4,
+                    templatePath.lastIndexOf("/"));
             packageSuffix = packageSuffix.replace("/", ".");
-            System.out.println("items.add(new ModulItem(\"." + packageSuffix + "\", \"" + templatePath + "\", \"" + file.getName().replace(".vm", ".java") + "\"));");
+            System.out.println("items.add(new ModulItem(\"." + packageSuffix + "\", \"" + templatePath + "\", \""
+                    + file.getName().replace(".vm", ".java") + "\"));");
         }
     }
 

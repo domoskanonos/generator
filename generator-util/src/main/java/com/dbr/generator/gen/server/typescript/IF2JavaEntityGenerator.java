@@ -26,11 +26,9 @@ public class IF2JavaEntityGenerator extends AbstractGeneratorJava {
     }
 
     public static void main(String[] args) throws Exception {
-        IF2JavaEntityGenerator if2JavaEntityGenerator = new IF2JavaEntityGenerator("com.dbr.generator.entity", "export interface ECommerceTileListIF extends AbstractInterfaceIF {\n" +
-                "   gridClazz: string;\n" +
-                "   columnFlexBasisValue?: string;\n" +
-                "   items: ECommerceItemIF[];\n" +
-                "}");
+        IF2JavaEntityGenerator if2JavaEntityGenerator = new IF2JavaEntityGenerator("com.dbr.generator.entity",
+                "export interface ECommerceTileListIF extends AbstractInterfaceIF {\n" + "   gridClazz: string;\n"
+                        + "   columnFlexBasisValue?: string;\n" + "   items: ECommerceItemIF[];\n" + "}");
 
         String entity = if2JavaEntityGenerator.create();
         log.info(entity);
@@ -86,33 +84,31 @@ public class IF2JavaEntityGenerator extends AbstractGeneratorJava {
 
     }
 
-
     private String toJavaType(String typescriptType) {
         String javaType = typescriptType.trim();
         switch (javaType) {
-            case "string":
-                javaType = String.class.getSimpleName();
-                break;
-            case "number":
-                javaType = Integer.class.getSimpleName();
-                break;
-            case "any":
-                javaType = Object.class.getSimpleName();
-                break;
-            case "boolean":
-                javaType = Boolean.class.getSimpleName();
-                break;
-            case "string[]":
-                javaType = String.class.getSimpleName() + "[]";
-                break;
-            default:
-                break;
+        case "string":
+            javaType = String.class.getSimpleName();
+            break;
+        case "number":
+            javaType = Integer.class.getSimpleName();
+            break;
+        case "any":
+            javaType = Object.class.getSimpleName();
+            break;
+        case "boolean":
+            javaType = Boolean.class.getSimpleName();
+            break;
+        case "string[]":
+            javaType = String.class.getSimpleName() + "[]";
+            break;
+        default:
+            break;
         }
 
         javaType = StringUtil.arrayToList(javaType);
 
         return javaType;
     }
-
 
 }

@@ -15,31 +15,31 @@ public class TypescriptClientCVM {
     private String modelNameReplaceKey = "";
     private String modelNameReplaceValue = "";
 
-    //modules
+    // modules
     private boolean generateSecurityModule = true;
 
-    //i18n
+    // i18n
     private boolean generateI18n = true;
 
-    //app services
+    // app services
     private boolean generatePageService = true;
 
-    //data services
+    // data services
     private boolean generateModel = true;
     private boolean generateMessageEntriesList = true;
     private boolean generateMessageEntriesEdit = true;
     private boolean generateBasicRemoteRepository = true;
     private boolean generateBasicRemoteService = true;
 
-    //components app
+    // components app
     private boolean generateMenuComponent = true;
 
-    //components clazzes
+    // components clazzes
     private boolean generateEditComponent = true;
     private boolean generateSearchNidocaList = true;
     private boolean generateComboboxComponent = true;
 
-    //pages
+    // pages
     private boolean generateEditPage = true;
     private boolean generateSearchListPage = true;
     private boolean generateTermsOfUse = true;

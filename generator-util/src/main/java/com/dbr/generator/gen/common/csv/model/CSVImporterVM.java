@@ -26,5 +26,4 @@ public class CSVImporterVM {
 
     private List<CSVJavaProperty> properties = new ArrayList<>();
 
-
 }

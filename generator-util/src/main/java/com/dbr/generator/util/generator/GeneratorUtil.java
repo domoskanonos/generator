@@ -28,8 +28,8 @@ public class GeneratorUtil {
 
     private static final Logger _log = LoggerFactory.getLogger(GeneratorUtil.class);
 
-
-    public static <T> List<T> createTestObjects(Class<T> clazz, boolean ignoreIdField, int size) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static <T> List<T> createTestObjects(Class<T> clazz, boolean ignoreIdField, int size)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         List<T> retval = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             retval.add(createTestObject(clazz, ignoreIdField));
@@ -37,7 +37,8 @@ public class GeneratorUtil {
         return retval;
     }
 
-    public static <T> T createTestObject(Class<T> clazz, boolean ignoreIdField) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static <T> T createTestObject(Class<T> clazz, boolean ignoreIdField)
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         T retval = clazz.getConstructor().newInstance();
         for (Field field : retval.getClass().getDeclaredFields()) {
             if (field.getAnnotation(Id.class) != null && ignoreIdField) {
@@ -142,23 +143,23 @@ public class GeneratorUtil {
     public static boolean isBaseJavaType(String typeSimpleName) {
         boolean baseJavaType = false;
         switch (typeSimpleName) {
-            case DataTypes.TYPE_STRING:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_BOOLEAN:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_DOUBLE:
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-            case DataTypes.TYPE_DATE:
-            case DataTypes.TYPE_ARRAY_STRING:
-                baseJavaType = true;
-                break;
-            default:
-                _log.info("no baseJavaType: {}", typeSimpleName);
-                break;
+        case DataTypes.TYPE_STRING:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_BOOLEAN:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_DOUBLE:
+        case DataTypes.TYPE_CHAR:
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+        case DataTypes.TYPE_DATE:
+        case DataTypes.TYPE_ARRAY_STRING:
+            baseJavaType = true;
+            break;
+        default:
+            _log.info("no baseJavaType: {}", typeSimpleName);
+            break;
         }
         return baseJavaType;
     }
@@ -186,7 +187,8 @@ public class GeneratorUtil {
     }
 
     public static boolean isSearchableType(String typeSimpleName) {
-        return isBaseJavaType(typeSimpleName) && !typeSimpleName.contains("[") && !typeSimpleName.contains(DataTypes.TYPE_DATE);
+        return isBaseJavaType(typeSimpleName) && !typeSimpleName.contains("[")
+                && !typeSimpleName.contains(DataTypes.TYPE_DATE);
     }
 
     public static List<TypescriptProperty> getTypescriptProperties(Field[] fields) {
@@ -199,44 +201,44 @@ public class GeneratorUtil {
 
     public static String toTypescriptType(String javaType) {
         switch (javaType) {
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.TYPE_STRING:
-            case DataTypes.TYPE_BOOLEAN:
-                return javaType.toLowerCase();
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return "string";
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            case DataTypes.TYPE_DOUBLE:
-                return "number";
-            case DataTypes.TYPE_DATE:
-            default:
-                return javaType;
+        case DataTypes.TYPE_CHAR:
+        case DataTypes.TYPE_STRING:
+        case DataTypes.TYPE_BOOLEAN:
+            return javaType.toLowerCase();
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return "string";
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        case DataTypes.TYPE_DOUBLE:
+            return "number";
+        case DataTypes.TYPE_DATE:
+        default:
+            return javaType;
         }
     }
 
     public static String getSampleDataTypescript(String javaType) {
         switch (javaType) {
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.TYPE_STRING:
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return "''";
-            case DataTypes.TYPE_BOOLEAN:
-                return "false";
-            case DataTypes.TYPE_DATE:
-                return "new Date()";
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            case DataTypes.TYPE_DOUBLE:
-                return "0";
-            default:
-                return "null";
+        case DataTypes.TYPE_CHAR:
+        case DataTypes.TYPE_STRING:
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return "''";
+        case DataTypes.TYPE_BOOLEAN:
+            return "false";
+        case DataTypes.TYPE_DATE:
+            return "new Date()";
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        case DataTypes.TYPE_DOUBLE:
+            return "0";
+        default:
+            return "null";
         }
     }
 
@@ -258,15 +260,15 @@ public class GeneratorUtil {
         }
 
         switch (typeSimpleName) {
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return ", example = \"null\"";
-            case DataTypes.TYPE_DATE:
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm.ssZ");
-                String dateAsString = "\"" + simpleDateFormat.format(new Date()) + "\"";
-                return ", example = " + dateAsString + "";
-            default:
-                String value = sampleData.startsWith("\"") ? sampleData : "\"" + sampleData + "\"";
-                return ", example = " + value + "";
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return ", example = \"null\"";
+        case DataTypes.TYPE_DATE:
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm.ssZ");
+            String dateAsString = "\"" + simpleDateFormat.format(new Date()) + "\"";
+            return ", example = " + dateAsString + "";
+        default:
+            String value = sampleData.startsWith("\"") ? sampleData : "\"" + sampleData + "\"";
+            return ", example = " + value + "";
         }
 
     }
@@ -281,28 +283,28 @@ public class GeneratorUtil {
         Class<?> fieldType = field.getType();
         String typeSimpleName = fieldType.getSimpleName();
         switch (typeSimpleName) {
-            case DataTypes.TYPE_STRING:
-                return "\"" + getSampleWord(maxLength) + "\"";
-            case DataTypes.TYPE_DATE:
-                return "new Date()";
-            case DataTypes.TYPE_CHAR:
-                return "X";
-            case DataTypes.TYPE_BOOLEAN:
-                return "true";
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_DOUBLE:
-                return String.format("%d", ThreadLocalRandom.current().nextInt(0, 10000));
-            case DataTypes.TYPE_BIG_DECIMAL:
-                return "BigDecimal.ZERO";
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return "\"" + getSampleWord(maxLength) + "\".getBytes()";
-            default:
-                if (isEnumeration(fieldType)) {
-                    return typeSimpleName + ".values()[0]";
-                }
+        case DataTypes.TYPE_STRING:
+            return "\"" + getSampleWord(maxLength) + "\"";
+        case DataTypes.TYPE_DATE:
+            return "new Date()";
+        case DataTypes.TYPE_CHAR:
+            return "X";
+        case DataTypes.TYPE_BOOLEAN:
+            return "true";
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_DOUBLE:
+            return String.format("%d", ThreadLocalRandom.current().nextInt(0, 10000));
+        case DataTypes.TYPE_BIG_DECIMAL:
+            return "BigDecimal.ZERO";
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return "\"" + getSampleWord(maxLength) + "\".getBytes()";
+        default:
+            if (isEnumeration(fieldType)) {
+                return typeSimpleName + ".values()[0]";
+            }
 
         }
         return field.getAnnotation(Id.class) != null ? "" : field.getName();
@@ -318,28 +320,28 @@ public class GeneratorUtil {
         Class<?> fieldType = field.getType();
         String typeSimpleName = fieldType.getSimpleName();
         switch (typeSimpleName) {
-            case DataTypes.TYPE_STRING:
-                return "\"" + getSampleWord(maxLength) + "\"";
-            case DataTypes.TYPE_DATE:
-                return "new Date()";
-            case DataTypes.TYPE_CHAR:
-                return "X";
-            case DataTypes.TYPE_BOOLEAN:
-                return "true";
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_DOUBLE:
-                return String.format("%d", ThreadLocalRandom.current().nextInt(0, 10000));
-            case DataTypes.TYPE_BIG_DECIMAL:
-                return "BigDecimal.ZERO";
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return "\"" + getSampleWord(maxLength) + "\".getBytes()";
-            default:
-                if (isEnumeration(fieldType)) {
-                    return typeSimpleName + ".values()[0]";
-                }
+        case DataTypes.TYPE_STRING:
+            return "\"" + getSampleWord(maxLength) + "\"";
+        case DataTypes.TYPE_DATE:
+            return "new Date()";
+        case DataTypes.TYPE_CHAR:
+            return "X";
+        case DataTypes.TYPE_BOOLEAN:
+            return "true";
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_DOUBLE:
+            return String.format("%d", ThreadLocalRandom.current().nextInt(0, 10000));
+        case DataTypes.TYPE_BIG_DECIMAL:
+            return "BigDecimal.ZERO";
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return "\"" + getSampleWord(maxLength) + "\".getBytes()";
+        default:
+            if (isEnumeration(fieldType)) {
+                return typeSimpleName + ".values()[0]";
+            }
 
         }
         return field.getAnnotation(Id.class) != null ? "" : field.getName();
@@ -357,36 +359,36 @@ public class GeneratorUtil {
         String typeSimpleName = fieldType.getSimpleName();
         int randomInt = ThreadLocalRandom.current().nextInt(0, 10000);
         switch (typeSimpleName) {
-            case DataTypes.TYPE_STRING:
-                if (field.getAnnotation(Email.class) != null) {
-                    return "example@example.de";
-                }
-                return getSampleWord(maxLength);
-            case DataTypes.TYPE_DATE:
-                return new Date();
-            case DataTypes.TYPE_CHAR:
-                return "X";
-            case DataTypes.TYPE_BOOLEAN:
-                return true;
-            case DataTypes.TYPE_SHORT:
-                return (short) randomInt;
-            case DataTypes.TYPE_INTEGER:
-                return randomInt;
-            case DataTypes.TYPE_LONG:
-                return (long) randomInt;
-            case DataTypes.TYPE_FLOAT:
-                return (float) randomInt;
-            case DataTypes.TYPE_DOUBLE:
-                return (double) randomInt;
-            case DataTypes.TYPE_BIG_DECIMAL:
-                return BigDecimal.ZERO;
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return getSampleWord(maxLength).getBytes();
-            default:
-                if (field.getType().isEnum()) {
-                    return field.getType().getEnumConstants()[0];
-                }
-                return null;
+        case DataTypes.TYPE_STRING:
+            if (field.getAnnotation(Email.class) != null) {
+                return "example@example.de";
+            }
+            return getSampleWord(maxLength);
+        case DataTypes.TYPE_DATE:
+            return new Date();
+        case DataTypes.TYPE_CHAR:
+            return "X";
+        case DataTypes.TYPE_BOOLEAN:
+            return true;
+        case DataTypes.TYPE_SHORT:
+            return (short) randomInt;
+        case DataTypes.TYPE_INTEGER:
+            return randomInt;
+        case DataTypes.TYPE_LONG:
+            return (long) randomInt;
+        case DataTypes.TYPE_FLOAT:
+            return (float) randomInt;
+        case DataTypes.TYPE_DOUBLE:
+            return (double) randomInt;
+        case DataTypes.TYPE_BIG_DECIMAL:
+            return BigDecimal.ZERO;
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return getSampleWord(maxLength).getBytes();
+        default:
+            if (field.getType().isEnum()) {
+                return field.getType().getEnumConstants()[0];
+            }
+            return null;
         }
     }
 
@@ -396,9 +398,8 @@ public class GeneratorUtil {
 
         List<String> lines = null;
         try (InputStream is = ResourceUtil.getResourceAsStream("/sample-words.txt");
-             InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8);
-             BufferedReader br = new BufferedReader(reader);
-        ) {
+                InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(reader);) {
             lines = new ArrayList();
             for (String line = br.readLine(); line != null; line = br.readLine()) {
                 lines.add(line);
@@ -435,20 +436,20 @@ public class GeneratorUtil {
     public static String getSimpleName(Class<?> fieldType) {
         String typeSimpleName = fieldType.getSimpleName();
         switch (typeSimpleName) {
-            case DataTypes.TYPE_STRING:
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.TYPE_BOOLEAN:
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_DOUBLE:
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return fieldType.getSimpleName();
-            case DataTypes.TYPE_DATE:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            default:
-                return fieldType.getName();
+        case DataTypes.TYPE_STRING:
+        case DataTypes.TYPE_CHAR:
+        case DataTypes.TYPE_BOOLEAN:
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_DOUBLE:
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return fieldType.getSimpleName();
+        case DataTypes.TYPE_DATE:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        default:
+            return fieldType.getName();
         }
     }
 

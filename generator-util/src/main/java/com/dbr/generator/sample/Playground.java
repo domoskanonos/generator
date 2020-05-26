@@ -32,12 +32,8 @@ public class Playground {
     }
 
     private static void entityFromTableExample() throws SQLException, ClassNotFoundException {
-        Database database = new Database(
-                "com.dbr.generator",
-                "oracle.jdbc.driver.OracleDriver",
-                "jdbc:oracle:thin:@localhost:scheme",
-                "username",
-                "password");
+        Database database = new Database("com.dbr.generator", "oracle.jdbc.driver.OracleDriver",
+                "jdbc:oracle:thin:@localhost:scheme", "username", "password");
         TableVM tableVM = new TableVM(EXAMPLE_PACKAGE, "MyTable", database);
         TableGenerator tableGenerator = new TableGenerator(tableVM);
         String content = tableGenerator.create();

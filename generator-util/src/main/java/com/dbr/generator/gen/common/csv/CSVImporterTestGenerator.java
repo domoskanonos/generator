@@ -35,7 +35,7 @@ public class CSVImporterTestGenerator extends AbstractGeneratorJava {
         context.put("packageName", getPackageName());
         context.put("clazzSimpleName", getClazzSimpleName());
         context.put("importerClazzSimpleName", vm.getClazzSimpleName());
-        //context.put("properties", vm.getProperties());
+        // context.put("properties", vm.getProperties());
         context.put("rowCount", vm.getRowCount());
         context.put("filename", vm.getFile().getName());
 
@@ -50,6 +50,7 @@ public class CSVImporterTestGenerator extends AbstractGeneratorJava {
     public void writeDown() throws Exception {
         super.writeDown();
         String filename = this.vm.getFile().getName();
-        super.writeDown(this.vm.getContent(), new File(AbstractGeneratorJava.class.getResource("/").getPath() + "../../src/main/resources", filename));
+        super.writeDown(this.vm.getContent(), new File(
+                AbstractGeneratorJava.class.getResource("/").getPath() + "../../src/main/resources", filename));
     }
 }

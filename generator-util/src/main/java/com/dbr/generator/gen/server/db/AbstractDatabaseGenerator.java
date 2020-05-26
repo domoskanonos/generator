@@ -11,34 +11,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * See documentation:
- * https://docs.oracle.com/javase/7/docs/api/java/sql/DatabaseMetaData.html
+ * See documentation: https://docs.oracle.com/javase/7/docs/api/java/sql/DatabaseMetaData.html
  */
 public abstract class AbstractDatabaseGenerator extends AbstractGeneratorJava {
 
     private Database database;
 
-    public AbstractDatabaseGenerator(Database database, String clazzSimpleName, String packageName) throws ClassNotFoundException {
+    public AbstractDatabaseGenerator(Database database, String clazzSimpleName, String packageName)
+            throws ClassNotFoundException {
         super(clazzSimpleName, packageName);
         this.database = database;
         Class.forName(this.database.getDriverClazz());
     }
 
     protected Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(this.database.getUrl(), this.database.getUsername(), this.database.getPassword());
+        return DriverManager.getConnection(this.database.getUrl(), this.database.getUsername(),
+                this.database.getPassword());
     }
 
     /**
      * get tables by type:
      * <p>
-     * TABLE_TYPE String => table type. Typical types are "TABLE", "VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY", "LOCAL TEMPORARY", "ALIAS", "SYNONYM".
+     * TABLE_TYPE String => table type. Typical types are "TABLE", "VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY", "LOCAL
+     * TEMPORARY", "ALIAS", "SYNONYM".
      *
      * @return
      * @throws SQLException
      */
     protected List<TableVM> getTables(String[] types) throws SQLException {
         if (types == null) {
-            types = new String[]{"TABLE"};
+            types = new String[] { "TABLE" };
         }
         Connection connection = null;
 
@@ -75,10 +77,8 @@ public abstract class AbstractDatabaseGenerator extends AbstractGeneratorJava {
 
             if (primaryKeys != null) {
                 while (primaryKeys.next()) {
-                    primaryKeyDTOS.add(new PrimaryKey(
-                            primaryKeys.getString("COLUMN_NAME"),
-                            primaryKeys.getString("KEY_SEQ"),
-                            primaryKeys.getString("PK_NAME")));
+                    primaryKeyDTOS.add(new PrimaryKey(primaryKeys.getString("COLUMN_NAME"),
+                            primaryKeys.getString("KEY_SEQ"), primaryKeys.getString("PK_NAME")));
                 }
             }
 
@@ -104,14 +104,9 @@ public abstract class AbstractDatabaseGenerator extends AbstractGeneratorJava {
 
             while (resultSet.next()) {
 
-                columns.add(new Column(
-                        resultSet.getString("COLUMN_NAME"),
-                        resultSet.getString("TYPE_NAME"),
-                        resultSet.getInt("DATA_TYPE"),
-                        resultSet.getInt("COLUMN_SIZE"),
-                        false,
-                        resultSet.getShort("NULLABLE") == 1,
-                        resultSet.getInt("DECIMAL_DIGITS"),
+                columns.add(new Column(resultSet.getString("COLUMN_NAME"), resultSet.getString("TYPE_NAME"),
+                        resultSet.getInt("DATA_TYPE"), resultSet.getInt("COLUMN_SIZE"), false,
+                        resultSet.getShort("NULLABLE") == 1, resultSet.getInt("DECIMAL_DIGITS"),
                         resultSet.getString("REMARKS")));
             }
         } finally {

@@ -24,8 +24,7 @@ public class SpringBootCSVServiceGenerator extends AbstractGeneratorJava {
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-csv-service.vm");
+            Template t = velocityEngine.getTemplate("sb-csv-service.vm");
 
             VelocityContext context = new VelocityContext();
 

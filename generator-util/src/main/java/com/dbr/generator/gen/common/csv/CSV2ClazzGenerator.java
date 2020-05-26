@@ -18,13 +18,11 @@ public class CSV2ClazzGenerator extends AbstractGeneratorJava {
         this.vm = vm;
     }
 
-
     @Override
     public String create() {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-        Template t = velocityEngine
-                .getTemplate("common/csv/csv-clazz.vm");
+        Template t = velocityEngine.getTemplate("common/csv/csv-clazz.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("packageName", vm.getPackageName());

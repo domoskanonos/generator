@@ -43,7 +43,9 @@ public class SpringBootApplicationGenerator extends CompoundAbstractGenerator {
     }
 
     public static void main(String[] args) throws Exception {
-        SpringBootApplicationGenerator springBootApplicationGenerator = new SpringBootApplicationGenerator(new SpringBootApplicationDataCVM("com.dbr.generator", "com.dbr.generator.result", "com.dbr.generator.sample"));
+        SpringBootApplicationGenerator springBootApplicationGenerator = new SpringBootApplicationGenerator(
+                new SpringBootApplicationDataCVM("com.dbr.generator", "com.dbr.generator.result",
+                        "com.dbr.generator.sample"));
         springBootApplicationGenerator.writeDown();
     }
 
@@ -60,7 +62,8 @@ public class SpringBootApplicationGenerator extends CompoundAbstractGenerator {
 
         Reflections reflections = new Reflections(new ConfigurationBuilder()
                 .setScanners(new SubTypesScanner(false /* don't exclude Object.class */), new TypeAnnotationsScanner())
-                .setUrls(urls).filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix(this.data.getEntityPackageName()))));
+                .setUrls(urls)
+                .filterInputsBy(new FilterBuilder().include(FilterBuilder.prefix(this.data.getEntityPackageName()))));
         Set<Class<?>> classes = reflections.getSubTypesOf(Object.class);
         for (Class<?> aClass : classes) {
             if (aClass.isAnnotationPresent(Entity.class) || aClass.isAnnotationPresent(Embeddable.class)) {
@@ -82,47 +85,61 @@ public class SpringBootApplicationGenerator extends CompoundAbstractGenerator {
 
         String dtoClazzSimpleName = baseName + "DTO";
         String dtoClazzName = dtoPackageName + "." + baseName + "DTO";
-        Entity2SwaggerDTOGenerator entity2SwaggerDTOGenerator = new Entity2SwaggerDTOGenerator(dtoClazzSimpleName, dtoPackageName, entityClazz);
+        Entity2SwaggerDTOGenerator entity2SwaggerDTOGenerator = new Entity2SwaggerDTOGenerator(dtoClazzSimpleName,
+                dtoPackageName, entityClazz);
         entity2SwaggerDTOGenerator.writeDown();
 
         if (entityClazz.isAnnotationPresent(Embeddable.class)) {
             return;
         }
 
-        SpringBootJPARepositoryGenerator springBootJPARepositoryGenerator = new SpringBootJPARepositoryGenerator(new SpringBootJPARepositoryVM(repositoryPackageName, entityClazz));
+        SpringBootJPARepositoryGenerator springBootJPARepositoryGenerator = new SpringBootJPARepositoryGenerator(
+                new SpringBootJPARepositoryVM(repositoryPackageName, entityClazz));
         springBootJPARepositoryGenerator.writeDown();
 
         String entityClazzPackageName = entityClazz.getPackage().getName();
         String jpaClazzSimpleName = entityClazz.getSimpleName();
-        ClazzMappingVM clazzMappingVM = new ClazzMappingVM("sb-clazz-mapping.vm", mappingPackageName, jpaClazzSimpleName + dtoClazzSimpleName + "Mapping", entityClazzPackageName, jpaClazzSimpleName, dtoPackageName, dtoClazzSimpleName, GeneratorUtil.getJavaProperties(entityClazz));
+        ClazzMappingVM clazzMappingVM = new ClazzMappingVM("sb-clazz-mapping.vm", mappingPackageName,
+                jpaClazzSimpleName + dtoClazzSimpleName + "Mapping", entityClazzPackageName, jpaClazzSimpleName,
+                dtoPackageName, dtoClazzSimpleName, GeneratorUtil.getJavaProperties(entityClazz));
         ClazzMappingGenerator clazzMappingGenerator = new ClazzMappingGenerator(clazzMappingVM);
         clazzMappingGenerator.writeDown();
 
-        SpringBootJPAServiceBasicVM springBootJpaServiceBasicVM = new SpringBootJPAServiceBasicVM(basePackageName, dtoClazzSimpleName, entityClazz);
-        SpringBootJPAServiceBasicGenerator springBootJPAServiceBasicGenerator = new SpringBootJPAServiceBasicGenerator(springBootJpaServiceBasicVM);
+        SpringBootJPAServiceBasicVM springBootJpaServiceBasicVM = new SpringBootJPAServiceBasicVM(basePackageName,
+                dtoClazzSimpleName, entityClazz);
+        SpringBootJPAServiceBasicGenerator springBootJPAServiceBasicGenerator = new SpringBootJPAServiceBasicGenerator(
+                springBootJpaServiceBasicVM);
         springBootJPAServiceBasicGenerator.writeDown();
 
-        SpringBootJPAServiceSearchVM springBootJpaServiceSearchVM = new SpringBootJPAServiceSearchVM(systemPackageName, basePackageName, dtoClazzSimpleName, entityClazz);
-        SpringBootJPAServiceSearchGenerator springBootJPAServiceSearchGenerator = new SpringBootJPAServiceSearchGenerator(springBootJpaServiceSearchVM);
+        SpringBootJPAServiceSearchVM springBootJpaServiceSearchVM = new SpringBootJPAServiceSearchVM(systemPackageName,
+                basePackageName, dtoClazzSimpleName, entityClazz);
+        SpringBootJPAServiceSearchGenerator springBootJPAServiceSearchGenerator = new SpringBootJPAServiceSearchGenerator(
+                springBootJpaServiceSearchVM);
         springBootJPAServiceSearchGenerator.writeDown();
 
-        SpringBootRestControllerBasicGenerator springBootRestControllerBasicGenerator = new SpringBootRestControllerBasicGenerator(new SpringBootRestControllerBasicVM(basePackageName, entityClazz));
+        SpringBootRestControllerBasicGenerator springBootRestControllerBasicGenerator = new SpringBootRestControllerBasicGenerator(
+                new SpringBootRestControllerBasicVM(basePackageName, entityClazz));
         springBootRestControllerBasicGenerator.writeDown();
 
-        SpringBootRestControllerSearchGenerator springBootRestControllerSearchGenerator = new SpringBootRestControllerSearchGenerator(new SpringBootRestControllerSearchVM(basePackageName, entityClazz));
+        SpringBootRestControllerSearchGenerator springBootRestControllerSearchGenerator = new SpringBootRestControllerSearchGenerator(
+                new SpringBootRestControllerSearchVM(basePackageName, entityClazz));
         springBootRestControllerSearchGenerator.writeDown();
 
-
         String restControllerClazzSimpleName = baseName + "RestController";
-        String serviceClazzName = springBootJpaServiceBasicVM.getPackageName() + "." + springBootJpaServiceBasicVM.getServiceClazzSimpleName();
+        String serviceClazzName = springBootJpaServiceBasicVM.getPackageName() + "."
+                + springBootJpaServiceBasicVM.getServiceClazzSimpleName();
         String serviceClazzSimpleName = springBootJpaServiceBasicVM.getServiceClazzSimpleName();
 
-        //RestControllerTestGenerator restControllerTestGenerator = new RestControllerTestGenerator(testPackageName, restPackageName + "." + restControllerClazzSimpleName, restControllerClazzSimpleName, serviceClazzName, serviceClazzSimpleName, dtoClazzName, dtoClazzSimpleName, entityClazz);
-        //restControllerTestGenerator.writeDown();
+        // RestControllerTestGenerator restControllerTestGenerator = new RestControllerTestGenerator(testPackageName,
+        // restPackageName + "." + restControllerClazzSimpleName, restControllerClazzSimpleName, serviceClazzName,
+        // serviceClazzSimpleName, dtoClazzName, dtoClazzSimpleName, entityClazz);
+        // restControllerTestGenerator.writeDown();
 
-        //SpringBootServiceTestGenerator springBootServiceTestGenerator = new SpringBootServiceTestGenerator(testPackageName, restPackageName + "." + restControllerClazzSimpleName, restControllerClazzSimpleName, serviceClazzName, serviceClazzSimpleName, dtoClazzName, dtoClazzSimpleName, entityClazz);
-        //springBootServiceTestGenerator.writeDown();
-
+        // SpringBootServiceTestGenerator springBootServiceTestGenerator = new
+        // SpringBootServiceTestGenerator(testPackageName, restPackageName + "." + restControllerClazzSimpleName,
+        // restControllerClazzSimpleName, serviceClazzName, serviceClazzSimpleName, dtoClazzName, dtoClazzSimpleName,
+        // entityClazz);
+        // springBootServiceTestGenerator.writeDown();
 
     }
 

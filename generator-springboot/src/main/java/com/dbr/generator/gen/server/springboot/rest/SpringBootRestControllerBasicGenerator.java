@@ -13,8 +13,8 @@ import java.io.StringWriter;
 import java.lang.reflect.Field;
 
 /**
- * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem clazzSimpleName,
- * welcher den Service Klassennamen darstellt.
+ * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem clazzSimpleName, welcher den Service
+ * Klassennamen darstellt.
  */
 public class SpringBootRestControllerBasicGenerator extends AbstractGeneratorJava {
 
@@ -35,8 +35,7 @@ public class SpringBootRestControllerBasicGenerator extends AbstractGeneratorJav
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-rest-controller-basic.vm");
+            Template t = velocityEngine.getTemplate("sb-rest-controller-basic.vm");
 
             VelocityContext context = new VelocityContext();
 
@@ -59,12 +58,13 @@ public class SpringBootRestControllerBasicGenerator extends AbstractGeneratorJav
 
             context.put("idFieldName", GeneratorUtil.getIDFieldName(this.vm.getEntityClazz()));
 
-            //fileUploadMethods - START
+            // fileUploadMethods - START
             String fileUploadMethods = "";
             for (Field field : GeneratorUtil.getFieldsByTypeName(this.vm.getEntityClazz(), "byte[]")) {
                 VelocityContext contextFileUpload = new VelocityContext();
                 Template templateFileUpload = velocityEngine.getTemplate("sb-rest-controller-file-upload.vm");
-                contextFileUpload.put("fieldNameFirstLetterUpperCase", StringUtil.firstLetterToUpperCase(field.getName()));
+                contextFileUpload.put("fieldNameFirstLetterUpperCase",
+                        StringUtil.firstLetterToUpperCase(field.getName()));
                 contextFileUpload.put("idClazz", this.vm.getIdClazzSimpleName());
                 contextFileUpload.put("dtoClazzSimpleName", this.vm.getDtoClazzSimpleName());
                 StringWriter writerFileUpload = new StringWriter();
@@ -73,11 +73,10 @@ public class SpringBootRestControllerBasicGenerator extends AbstractGeneratorJav
 
             }
             context.put("fileUploadMethods", fileUploadMethods);
-            //fileUploadMethods - END
+            // fileUploadMethods - END
 
             StringWriter writer = new StringWriter();
             t.merge(context, writer);
-
 
             return writer.toString();
 

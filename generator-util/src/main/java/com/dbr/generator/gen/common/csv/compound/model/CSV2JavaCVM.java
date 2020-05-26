@@ -29,9 +29,11 @@ public class CSV2JavaCVM {
     private boolean generateCSVImporter = true;
     private boolean generateCSVImporterTest = true;
 
-    public CSV2JavaCVM(File file, String columnSplit, String rowSplit, boolean withHeaderRow, Integer idColumnIndex, String clazzSimpleBaseName, String basePackageName, Integer maxRowCount) throws IOException {
+    public CSV2JavaCVM(File file, String columnSplit, String rowSplit, boolean withHeaderRow, Integer idColumnIndex,
+            String clazzSimpleBaseName, String basePackageName, Integer maxRowCount) throws IOException {
         this.file = file;
-        this.content = CSVUtil.readContent(file, maxRowCount == null ? FILE_IMPORT_MAX_ROW_COUNT : maxRowCount, rowSplit);
+        this.content = CSVUtil.readContent(file, maxRowCount == null ? FILE_IMPORT_MAX_ROW_COUNT : maxRowCount,
+                rowSplit);
         this.columnSplit = columnSplit;
         this.rowSplit = rowSplit;
         this.withHeaderRow = withHeaderRow;

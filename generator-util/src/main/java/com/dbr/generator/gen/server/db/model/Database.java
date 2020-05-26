@@ -2,7 +2,6 @@ package com.dbr.generator.gen.server.db.model;
 
 import lombok.*;
 
-
 @Data
 @ToString
 @AllArgsConstructor

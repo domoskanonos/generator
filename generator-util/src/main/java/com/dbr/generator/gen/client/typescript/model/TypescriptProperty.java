@@ -37,42 +37,42 @@ public class TypescriptProperty {
 
     private String toWCAtomicInputfieldType(String javaType) {
         switch (javaType) {
-            case DataTypes.TYPE_BOOLEAN:
-                return "${InputfieldType.CHECKBOX}";
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return "${InputfieldType.TEXTAREA}";
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            case DataTypes.TYPE_DOUBLE:
-                return "${InputfieldType.NUMBER}";
-            case DataTypes.TYPE_DATE:
-                return "${InputfieldType.DATE}";
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.TYPE_STRING:
-            default:
-                return "${InputfieldType.TEXT}";
+        case DataTypes.TYPE_BOOLEAN:
+            return "${InputfieldType.CHECKBOX}";
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return "${InputfieldType.TEXTAREA}";
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        case DataTypes.TYPE_DOUBLE:
+            return "${InputfieldType.NUMBER}";
+        case DataTypes.TYPE_DATE:
+            return "${InputfieldType.DATE}";
+        case DataTypes.TYPE_CHAR:
+        case DataTypes.TYPE_STRING:
+        default:
+            return "${InputfieldType.TEXT}";
         }
     }
 
     private String toWCAtomicInputfieldValueProperty(String javaType) {
         switch (javaType) {
-            case DataTypes.TYPE_BOOLEAN:
-                return ".checked";
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            case DataTypes.TYPE_DOUBLE:
-            case DataTypes.TYPE_DATE:
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.TYPE_STRING:
-            default:
-                return ".value";
+        case DataTypes.TYPE_BOOLEAN:
+            return ".checked";
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+        case DataTypes.TYPE_SHORT:
+        case DataTypes.TYPE_INTEGER:
+        case DataTypes.TYPE_LONG:
+        case DataTypes.TYPE_FLOAT:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        case DataTypes.TYPE_DOUBLE:
+        case DataTypes.TYPE_DATE:
+        case DataTypes.TYPE_CHAR:
+        case DataTypes.TYPE_STRING:
+        default:
+            return ".value";
         }
     }
 

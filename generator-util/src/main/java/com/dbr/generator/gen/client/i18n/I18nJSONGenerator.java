@@ -30,7 +30,6 @@ public class I18nJSONGenerator extends BasicTypescriptGenerator {
         return writer.toString();
     }
 
-
     public void writeDown() throws Exception {
         this.typescriptSuffixPath = "../i18n";
         writeDown(vm.getFilename(), create());

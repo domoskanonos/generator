@@ -12,8 +12,8 @@ import org.apache.velocity.app.VelocityEngine;
 import java.io.StringWriter;
 
 /**
- * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem clazzSimpleName,
- * welcher den Service Klassennamen darstellt.
+ * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem clazzSimpleName, welcher den Service
+ * Klassennamen darstellt.
  */
 public class SpringBootJPAServiceBasicGenerator extends AbstractGeneratorJava {
 
@@ -25,14 +25,15 @@ public class SpringBootJPAServiceBasicGenerator extends AbstractGeneratorJava {
     }
 
     public static void main(String[] args) {
-        SpringBootJPAServiceBasicGenerator generator = new SpringBootJPAServiceBasicGenerator(new SpringBootJPAServiceBasicVM("com.dbr.springboot.ws.service", "AppDTO", Example.class));
+        SpringBootJPAServiceBasicGenerator generator = new SpringBootJPAServiceBasicGenerator(
+                new SpringBootJPAServiceBasicVM("com.dbr.springboot.ws.service", "AppDTO", Example.class));
         String content = generator.create();
         _log.info(content);
     }
 
     /**
-     * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem serviceClazzName,
-     * welcher den Service Klassennamen darstellt.
+     * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem serviceClazzName, welcher den Service
+     * Klassennamen darstellt.
      *
      * @return
      */
@@ -41,8 +42,7 @@ public class SpringBootJPAServiceBasicGenerator extends AbstractGeneratorJava {
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-jpa-service-basic.vm");
+            Template t = velocityEngine.getTemplate("sb-jpa-service-basic.vm");
 
             VelocityContext context = new VelocityContext();
 

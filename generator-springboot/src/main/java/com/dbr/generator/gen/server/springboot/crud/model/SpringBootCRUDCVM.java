@@ -33,9 +33,16 @@ public class SpringBootCRUDCVM {
         this.basePackageName = basePackageName;
         this.entityClazz = entityClazz;
         this.dtovm = new DTOVM(String.format("%s%s", this.basePackageName, DTOVM.DTO_PACKAGE_SUFFIX), entityClazz);
-        this.clazzMappingVM = new ClazzMappingVM("sb-clazz-mapping.vm", this.basePackageName + ClazzMappingVM.MAPPING_PACKAGE_SUFFIX, entityClazz.getSimpleName() + dtovm.getClazzSimpleName() + ClazzMappingVM.MAPPING_NAME_SUFFIX, entityClazz.getPackage().getName(), entityClazz.getSimpleName(), this.dtovm.getPackageName(), this.dtovm.getClazzSimpleName(), GeneratorUtil.getJavaProperties(entityClazz, true));
-        this.springBootJPARepositoryVM = new SpringBootJPARepositoryVM(this.basePackageName + SpringBootJPARepositoryVM.REPOSITORY_PACKAGE_SUFFIX, entityClazz);
-        this.springBootJPAServiceBasicVM = new SpringBootJPAServiceBasicVM(this.basePackageName + SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX, this.dtovm.getClazzSimpleName(), entityClazz);
+        this.clazzMappingVM = new ClazzMappingVM("sb-clazz-mapping.vm",
+                this.basePackageName + ClazzMappingVM.MAPPING_PACKAGE_SUFFIX,
+                entityClazz.getSimpleName() + dtovm.getClazzSimpleName() + ClazzMappingVM.MAPPING_NAME_SUFFIX,
+                entityClazz.getPackage().getName(), entityClazz.getSimpleName(), this.dtovm.getPackageName(),
+                this.dtovm.getClazzSimpleName(), GeneratorUtil.getJavaProperties(entityClazz, true));
+        this.springBootJPARepositoryVM = new SpringBootJPARepositoryVM(
+                this.basePackageName + SpringBootJPARepositoryVM.REPOSITORY_PACKAGE_SUFFIX, entityClazz);
+        this.springBootJPAServiceBasicVM = new SpringBootJPAServiceBasicVM(
+                this.basePackageName + SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX,
+                this.dtovm.getClazzSimpleName(), entityClazz);
         this.springBootRestControllerBasicVM = new SpringBootRestControllerBasicVM(this.basePackageName, entityClazz);
     }
 

@@ -23,8 +23,7 @@ public class CSVImporterGenerator extends AbstractGeneratorJava {
     public String create() throws Exception {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-        Template t = velocityEngine
-                .getTemplate("common/csv/csv-importer.vm");
+        Template t = velocityEngine.getTemplate("common/csv/csv-importer.vm");
 
         VelocityContext context = new VelocityContext();
 
@@ -45,6 +44,5 @@ public class CSVImporterGenerator extends AbstractGeneratorJava {
 
         return writer.toString();
     }
-
 
 }

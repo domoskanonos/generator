@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
- * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName,
- * welcher den Repository Klassennamen darstellt.
+ * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName, welcher den
+ * Repository Klassennamen darstellt.
  */
 public class ESRepositoryGenerator extends AbstractGeneratorJava {
 
@@ -33,8 +33,8 @@ public class ESRepositoryGenerator extends AbstractGeneratorJava {
     }
 
     /**
-     * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName,
-     * welcher den Repository Klassennamen darstellt.
+     * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName, welcher den
+     * Repository Klassennamen darstellt.
      *
      * @return clazz content as string
      */
@@ -43,8 +43,7 @@ public class ESRepositoryGenerator extends AbstractGeneratorJava {
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-es-repository.vm");
+            Template t = velocityEngine.getTemplate("sb-es-repository.vm");
 
             VelocityContext context = new VelocityContext();
 

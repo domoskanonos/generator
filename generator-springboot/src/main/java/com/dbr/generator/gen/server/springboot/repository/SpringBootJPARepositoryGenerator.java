@@ -13,28 +13,30 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
- * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName,
- * welcher den Repository Klassennamen darstellt.
+ * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName, welcher den
+ * Repository Klassennamen darstellt.
  */
 public class SpringBootJPARepositoryGenerator extends AbstractGeneratorJava {
 
     private SpringBootJPARepositoryVM SpringBootJPARepositoryVM;
 
     public SpringBootJPARepositoryGenerator(SpringBootJPARepositoryVM SpringBootJPARepositoryVM) {
-        super(SpringBootJPARepositoryVM.getRepositoryClazzSimpleName(), SpringBootJPARepositoryVM.getRepositoryPackageName());
+        super(SpringBootJPARepositoryVM.getRepositoryClazzSimpleName(),
+                SpringBootJPARepositoryVM.getRepositoryPackageName());
         this.SpringBootJPARepositoryVM = SpringBootJPARepositoryVM;
     }
 
     public static void main(String[] args) throws IOException {
-        SpringBootJPARepositoryVM SpringBootJPARepositoryVM = new SpringBootJPARepositoryVM("com.dbr.generator.result", Example.class);
+        SpringBootJPARepositoryVM SpringBootJPARepositoryVM = new SpringBootJPARepositoryVM("com.dbr.generator.result",
+                Example.class);
         SpringBootJPARepositoryGenerator generator = new SpringBootJPARepositoryGenerator(SpringBootJPARepositoryVM);
         String content = generator.create();
         _log.info(content);
     }
 
     /**
-     * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName,
-     * welcher den Repository Klassennamen darstellt.
+     * Erstellt eine Spring Boot JPA Repository Klasse aus einer Entity Class und einem clazzSimpleName, welcher den
+     * Repository Klassennamen darstellt.
      *
      * @return clazz content as string
      */
@@ -43,8 +45,7 @@ public class SpringBootJPARepositoryGenerator extends AbstractGeneratorJava {
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-jpa-repository.vm");
+            Template t = velocityEngine.getTemplate("sb-jpa-repository.vm");
 
             VelocityContext context = new VelocityContext();
 

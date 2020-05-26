@@ -29,8 +29,7 @@ public class SpringBootCSVRestControllerGenerator extends AbstractGeneratorJava 
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-csv-rest-controller.vm");
+            Template t = velocityEngine.getTemplate("sb-csv-rest-controller.vm");
 
             VelocityContext context = new VelocityContext();
 

@@ -26,5 +26,4 @@ public class TypescriptBaseVM {
         this.properties = GeneratorUtil.getTypescriptProperties(modelClazz.getDeclaredFields());
     }
 
-
 }

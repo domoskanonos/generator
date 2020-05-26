@@ -39,8 +39,7 @@ public class ClazzMappingGenerator extends AbstractGeneratorJava {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
-        Template t = velocityEngine
-                .getTemplate(this.clazzMappingVM.getTemplate());
+        Template t = velocityEngine.getTemplate(this.clazzMappingVM.getTemplate());
 
         VelocityContext context = new VelocityContext();
         context.put("packageName", getPackageName());
@@ -56,9 +55,12 @@ public class ClazzMappingGenerator extends AbstractGeneratorJava {
             for (JavaProperty secondProperty : clazzMappingVM.getProperties()) {
                 String firstName = firstProperty.getName();
                 String secondName = secondProperty.getName();
-                if (firstName.equals(secondName) && firstProperty.getTypeSimpleName().equals(secondProperty.getTypeSimpleName())) {
-                    mappingSecondFirstEntries.add("dest." + StringUtil.toSetterMethodPrefix(secondName) + "(source." + StringUtil.toGetterMethodName(firstName) + ");");
-                    mappingFirstSecondEntries.add("dest." + StringUtil.toSetterMethodPrefix(secondName) + "(source." + StringUtil.toGetterMethodName(firstName) + ");");
+                if (firstName.equals(secondName)
+                        && firstProperty.getTypeSimpleName().equals(secondProperty.getTypeSimpleName())) {
+                    mappingSecondFirstEntries.add("dest." + StringUtil.toSetterMethodPrefix(secondName) + "(source."
+                            + StringUtil.toGetterMethodName(firstName) + ");");
+                    mappingFirstSecondEntries.add("dest." + StringUtil.toSetterMethodPrefix(secondName) + "(source."
+                            + StringUtil.toGetterMethodName(firstName) + ");");
                 }
 
             }

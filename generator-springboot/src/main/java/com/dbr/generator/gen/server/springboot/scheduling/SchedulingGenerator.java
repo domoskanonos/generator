@@ -23,7 +23,8 @@ public class SchedulingGenerator extends AbstractGeneratorJava {
     }
 
     public static void main(String[] args) {
-        SchedulingGenerator schedulingGenerator = new SchedulingGenerator(new Scheduling(null, "UserJob", "com.dbr.generator", "* * * * 0"));
+        SchedulingGenerator schedulingGenerator = new SchedulingGenerator(
+                new Scheduling(null, "UserJob", "com.dbr.generator", "* * * * 0"));
         String content = schedulingGenerator.create();
         System.out.println(content);
     }
@@ -38,8 +39,7 @@ public class SchedulingGenerator extends AbstractGeneratorJava {
     public String create() {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-        Template t = velocityEngine
-                .getTemplate("sb-scheduling.vm");
+        Template t = velocityEngine.getTemplate("sb-scheduling.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("clazzSimpleName", getClazzSimpleName());

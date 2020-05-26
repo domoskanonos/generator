@@ -13,7 +13,8 @@ public class ClazzTypescriptWrapperVM {
     private String filename;
     private ClazzTypescriptWrapper clazzTypescriptWrapper;
 
-    public ClazzTypescriptWrapperVM(String templatePath, String folderName, String filename, ClazzTypescriptWrapper clazzTypescriptWrapper) {
+    public ClazzTypescriptWrapperVM(String templatePath, String folderName, String filename,
+            ClazzTypescriptWrapper clazzTypescriptWrapper) {
         this.templatePath = templatePath;
         this.folderName = folderName;
         this.filename = filename;

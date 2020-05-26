@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 /**
- * Generiert aus einer JAVA Entity Klasse eine entsprechende DTO Klasse.
- * .
+ * Generiert aus einer JAVA Entity Klasse eine entsprechende DTO Klasse. .
  */
 public class DTOGenerator extends AbstractGeneratorJava {
 
@@ -42,8 +41,7 @@ public class DTOGenerator extends AbstractGeneratorJava {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
-        Template t = velocityEngine
-                .getTemplate("common/dto.vm");
+        Template t = velocityEngine.getTemplate("common/dto.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("packageName", getPackageName());

@@ -14,8 +14,8 @@ import org.apache.velocity.app.VelocityEngine;
 import java.io.StringWriter;
 
 /**
- * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem clazzSimpleName,
- * welcher den Service Klassennamen darstellt.
+ * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem clazzSimpleName, welcher den Service
+ * Klassennamen darstellt.
  */
 public class SpringBootJPAServiceSearchGenerator extends AbstractGeneratorJava {
 
@@ -27,14 +27,16 @@ public class SpringBootJPAServiceSearchGenerator extends AbstractGeneratorJava {
     }
 
     public static void main(String[] args) {
-        SpringBootJPAServiceSearchGenerator generator = new SpringBootJPAServiceSearchGenerator(new SpringBootJPAServiceSearchVM("com.dbr.springboot", "com.dbr.springboot.ws.service", "AppDTO", Example.class));
+        SpringBootJPAServiceSearchGenerator generator = new SpringBootJPAServiceSearchGenerator(
+                new SpringBootJPAServiceSearchVM("com.dbr.springboot", "com.dbr.springboot.ws.service", "AppDTO",
+                        Example.class));
         String content = generator.create();
         _log.info(content);
     }
 
     /**
-     * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem serviceClazzName,
-     * welcher den Service Klassennamen darstellt.
+     * Erstellt eine Spring Boot Service Klasse aus einer Entity Class und einem serviceClazzName, welcher den Service
+     * Klassennamen darstellt.
      *
      * @return
      */
@@ -43,8 +45,7 @@ public class SpringBootJPAServiceSearchGenerator extends AbstractGeneratorJava {
         {
             VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
-            Template t = velocityEngine
-                    .getTemplate("sb-jpa-service-search.vm");
+            Template t = velocityEngine.getTemplate("sb-jpa-service-search.vm");
 
             VelocityContext context = new VelocityContext();
 

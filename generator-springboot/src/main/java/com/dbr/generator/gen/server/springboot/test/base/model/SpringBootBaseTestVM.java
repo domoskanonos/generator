@@ -29,7 +29,8 @@ public class SpringBootBaseTestVM extends TestVM {
 
     private List<JavaProperty> properties;
 
-    public SpringBootBaseTestVM(String templateName, String testClazzMiddleName, String testPackageSuffix, Class<?> entityClazz, String basePackageName) {
+    public SpringBootBaseTestVM(String templateName, String testClazzMiddleName, String testPackageSuffix,
+            Class<?> entityClazz, String basePackageName) {
         this.templateName = templateName;
         this.entityClazz = entityClazz;
         this.entityClazzSimpleName = this.entityClazz.getSimpleName();
@@ -37,10 +38,13 @@ public class SpringBootBaseTestVM extends TestVM {
         this.basePackageName = basePackageName;
         this.testPackageName = basePackageName + testPackageSuffix;
         this.dtoPackageName = String.format("%s%s", basePackageName, DTOVM.DTO_PACKAGE_SUFFIX);
-        this.servicePackageName = String.format("%s%s", basePackageName, SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX);
-        this.restControllerPackageName = String.format("%s%s", basePackageName, SpringBootRestControllerBasicVM.REST_PACKAGE_SUFFIX);
+        this.servicePackageName = String.format("%s%s", basePackageName,
+                SpringBootJPAServiceBasicVM.SERVICE_PACKAGE_SUFFIX);
+        this.restControllerPackageName = String.format("%s%s", basePackageName,
+                SpringBootRestControllerBasicVM.REST_PACKAGE_SUFFIX);
         this.serviceClazzSimpleName = this.entityClazzSimpleName + SpringBootJPAServiceBasicVM.SERVICE_NAME_SUFFIX;
-        this.restControllerClazzSimpleName = this.entityClazzSimpleName + SpringBootRestControllerBasicVM.REST_NAME_SUFFIX;
+        this.restControllerClazzSimpleName = this.entityClazzSimpleName
+                + SpringBootRestControllerBasicVM.REST_NAME_SUFFIX;
         this.dtoClazzSimpleName = this.entityClazzSimpleName + DTOVM.DTO_NAME_SUFFIX;
         this.idClazzSimpleName = GeneratorUtil.getIDClazzSimpleName(entityClazz);
         this.properties = GeneratorUtil.getJavaProperties(entityClazz);
@@ -57,6 +61,5 @@ public class SpringBootBaseTestVM extends TestVM {
     public String getDTOClazzName() {
         return this.dtoPackageName + "." + this.dtoClazzSimpleName;
     }
-
 
 }
