@@ -15,6 +15,7 @@ import javax.persistence.IdClass;
 import javax.validation.constraints.Email;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
@@ -444,14 +445,23 @@ public class GeneratorUtil {
         case DataTypes.TYPE_INTEGER:
         case DataTypes.TYPE_LONG:
         case DataTypes.TYPE_FLOAT:
-        case DataTypes.TYPE_DOUBLE:
-        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-            return fieldType.getSimpleName();
-        case DataTypes.TYPE_DATE:
-        case DataTypes.TYPE_BIG_DECIMAL:
-        default:
-            return fieldType.getName();
+            case DataTypes.TYPE_DOUBLE:
+            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+                return fieldType.getSimpleName();
+            case DataTypes.TYPE_DATE:
+            case DataTypes.TYPE_BIG_DECIMAL:
+            default:
+                return fieldType.getName();
         }
     }
 
+    public static void makeDir(File folder) {
+        String absolutePath = folder.getAbsolutePath();
+        if (!folder.exists()) {
+            _log.info("create folder: {}", absolutePath);
+            folder.mkdir();
+        } else {
+            _log.info("folder already exists: {}", absolutePath);
+        }
+    }
 }
