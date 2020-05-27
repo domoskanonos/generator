@@ -61,6 +61,7 @@ public class MainGenerator {
 
             if (!model.getAddSpringBootStorageModule()) {
                 deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
             }
 
         }
