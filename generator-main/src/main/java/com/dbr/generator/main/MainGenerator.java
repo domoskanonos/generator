@@ -52,10 +52,11 @@ public class MainGenerator {
                 deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
             }
 
-            if(!model.getAddSpringBootSecurityModule()){
+            if (!model.getAddSpringBootSecurityModule()) {
                 deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
                 deleteFile(new File(model.getSpringBootProjectResourceFolder(), "mail"));
                 deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
             }
 
         }
