@@ -59,6 +59,10 @@ public class MainGenerator {
                 deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
             }
 
+            if (!model.getAddSpringBootStorageModule()) {
+                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
+            }
+
         }
 
         logger.info("generate project end...");

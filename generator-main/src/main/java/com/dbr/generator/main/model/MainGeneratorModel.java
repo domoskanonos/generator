@@ -26,6 +26,7 @@ public class MainGeneratorModel {
     private String springBootGroupId = "com.dbr.springboot.template";
     private Boolean addSpringBootMailRestController = false;
     private Boolean addSpringBootSecurityModule = false;
+    private Boolean addSpringBootStorageModule = false;
 
     public File getProjectFolder() {
         return new File(rootFolder, technicalDescriptor);
