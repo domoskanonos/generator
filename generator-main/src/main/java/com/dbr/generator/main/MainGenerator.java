@@ -23,6 +23,7 @@ public class MainGenerator {
         mainGeneratorModel.setTechnicalDescriptor("ocivap");
         mainGeneratorModel.setProjectJavaPackageBaseName("com.dbr.ocivap");
         mainGeneratorModel.setUseSpringBootTemplate(true);
+        mainGeneratorModel.setAddSpringBootSecurityModule(false);
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(mainGeneratorModel);
     }
@@ -50,6 +51,13 @@ public class MainGenerator {
             if (!model.getAddSpringBootMailRestController()) {
                 deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
             }
+
+            if(!model.getAddSpringBootSecurityModule()){
+                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "mail"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
+            }
+
         }
 
         logger.info("generate project end...");

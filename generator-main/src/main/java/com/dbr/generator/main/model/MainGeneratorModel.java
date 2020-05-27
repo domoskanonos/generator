@@ -25,6 +25,7 @@ public class MainGeneratorModel {
     private String springBootArchetypeArtifactId = "spring-boot-template-archetype";
     private String springBootGroupId = "com.dbr.springboot.template";
     private Boolean addSpringBootMailRestController = false;
+    private Boolean addSpringBootSecurityModule = false;
 
     public File getProjectFolder() {
         return new File(rootFolder, technicalDescriptor);
@@ -52,6 +53,10 @@ public class MainGeneratorModel {
 
     public File getSpringBootProjectSourceFolder() {
         return new File(getSpringBootProjectFolder(), "src/main/java");
+    }
+
+    public File getSpringBootProjectResourceFolder() {
+        return new File(getSpringBootProjectFolder(), "src/main/resources");
     }
 
     public File getSpringBootProjectSourceBasePackageFolder() {
