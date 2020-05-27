@@ -445,13 +445,13 @@ public class GeneratorUtil {
         case DataTypes.TYPE_INTEGER:
         case DataTypes.TYPE_LONG:
         case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_DOUBLE:
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return fieldType.getSimpleName();
-            case DataTypes.TYPE_DATE:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            default:
-                return fieldType.getName();
+        case DataTypes.TYPE_DOUBLE:
+        case DataTypes.JAVA_TYPE_BYTE_ARRAY:
+            return fieldType.getSimpleName();
+        case DataTypes.TYPE_DATE:
+        case DataTypes.TYPE_BIG_DECIMAL:
+        default:
+            return fieldType.getName();
         }
     }
 

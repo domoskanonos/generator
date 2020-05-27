@@ -19,40 +19,77 @@ public class MainGenerator {
     public static void main(String[] args) throws IOException, InterruptedException {
         MainGeneratorModel mainGeneratorModel = new MainGeneratorModel();
         mainGeneratorModel.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
-        mainGeneratorModel.setRootFolder(new File("C:\\_dev"));
+        mainGeneratorModel.setRootFolder(new File("D:\\_dev\\vhs\\git"));
         mainGeneratorModel.setTechnicalDescriptor("ocivap");
+        mainGeneratorModel.setProjectJavaPackageBaseName("com.dbr.ocivap");
         mainGeneratorModel.setUseSpringBootTemplate(true);
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(mainGeneratorModel);
     }
 
     public void generate(MainGeneratorModel model) throws IOException, InterruptedException {
+
+        model.validate();
+
         logger.info("generate project start...");
+
         GeneratorUtil.makeDir(model.getTempFolder());
         GeneratorUtil.makeDir(model.getRootFolder());
         GeneratorUtil.makeDir(model.getProjectFolder());
 
         if (model.getUseSpringBootTemplate()) {
-            File springBootZipFile = copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(), model.getSpringBootTemplateZipFile());
+            deleteFile(model.getSpringBootProjectFolder());
+            File springBootZipFile = copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
+                    model.getSpringBootTemplateZipFile());
             unzipFile(springBootZipFile, model.getTempFolder());
             createMavenArchetype(model.getSpringBootTemplateFolder());
+            createFromArchetype(model.getProjectFolder(), model.getSpringBootProjectArtifactId(),
+                    model.getSpringBootProjectGroupId(), model.getSpringBootArchetypeArtifactId(),
+                    model.getSpringBootGroupId());
+
+            if (!model.getAddSpringBootMailRestController()) {
+                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
+            }
         }
 
         logger.info("generate project end...");
 
     }
 
-    private void createMavenArchetype(File folder) throws IOException, InterruptedException {
-        logger.info("execute command, path: {}", folder.getAbsolutePath());
-        try {
-            Process process = Runtime.
-                    getRuntime().
-                    exec("cmd /c start \"\" create-maven-archetype.bat",null,folder);
-            System.out.println(process.getInputStream());
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+    private void deleteFile(File file) throws IOException {
+        String absolutePath = file.getAbsolutePath();
+        if (file.exists()) {
 
+            if (file.isDirectory()) {
+                logger.info("delete directory recursive: {}", absolutePath);
+                FileUtils.deleteDirectory(file);
+                return;
+            }
+
+            logger.info("delete file: {}", absolutePath);
+            if (file.delete()) {
+                logger.info("file deleted: {}", absolutePath);
+            }
+        } else {
+            logger.info("file not exist: {}", absolutePath);
+        }
+    }
+
+    private void createFromArchetype(File folder, String artifactId, String groupId, String archetypeArtifactId,
+                                     String archetypeGroupId) throws IOException, InterruptedException {
+        logger.info("execute create from maven archetype command, path: {}", folder.getAbsolutePath());
+        String createFromArchetypeCommand = new StringBuilder().append("mvn -DgroupId=").append(groupId).append(" -DartifactId=").append(artifactId)
+                .append(" -Dversion=1.0.0 archetype:generate -B -DarchetypeGroupId=").append(archetypeGroupId)
+                .append(" -DarchetypeArtifactId=").append(archetypeArtifactId)
+                .append(" -DarchetypeVersion=1.0.0 -DarchetypeRepository=local").toString();
+        logger.info("execute create from maven archetype command, command: {}", createFromArchetypeCommand);
+        SystemUtil.executeCommand(folder, "cmd.exe", "/C",
+                createFromArchetypeCommand);
+    }
+
+    private void createMavenArchetype(File folder) throws IOException, InterruptedException {
+        logger.info("execute create maven archetype command, path: {}", folder.getAbsolutePath());
+        SystemUtil.executeCommand(folder, "cmd.exe", "/C", "create-maven-archetype.bat");
     }
 
     private void unzipFile(File file, File destination) throws IOException {
@@ -62,13 +99,8 @@ public class MainGenerator {
 
     private File copyUrlToTempFolder(String url, File destination) throws IOException {
         logger.info("copy url to temp folder, url: {}", url);
-        FileUtils.copyURLToFile(
-                new URL(url),
-                destination,
-                2000,
-                2000);
+        FileUtils.copyURLToFile(new URL(url), destination, 2000, 2000);
         return destination;
     }
-
 
 }
