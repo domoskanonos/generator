@@ -22,8 +22,12 @@ public class MainGenerator {
         mainGeneratorModel.setRootFolder(new File("D:\\_dev\\vhs\\git"));
         mainGeneratorModel.setTechnicalDescriptor("ocivap");
         mainGeneratorModel.setProjectJavaPackageBaseName("com.dbr.ocivap");
-        mainGeneratorModel.setUseSpringBootTemplate(true);
+
+        mainGeneratorModel.setUseSpringBootTemplate(false);
         mainGeneratorModel.setAddSpringBootSecurityModule(false);
+
+        mainGeneratorModel.setUseNidocaClient(true);
+
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(mainGeneratorModel);
     }
@@ -65,6 +69,15 @@ public class MainGenerator {
             }
 
         }
+
+        if (model.getUseNidocaClient()) {
+            deleteFile(model.getNidocaProjectFolder());
+            File nidocaTemplateZipFile = copyUrlToTempFolder(model.getNidocaTemplateZipUrl(),
+                    model.getNidocaTemplateZipFile());
+            unzipFile(nidocaTemplateZipFile, model.getProjectFolder());
+            FileUtils.moveDirectory(new File(model.getProjectFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
+        }
+
 
         logger.info("generate project end...");
 
@@ -113,7 +126,7 @@ public class MainGenerator {
 
     private File copyUrlToTempFolder(String url, File destination) throws IOException {
         logger.info("copy url to temp folder, url: {}", url);
-        FileUtils.copyURLToFile(new URL(url), destination, 2000, 2000);
+        FileUtils.copyURLToFile(new URL(url), destination, 3000, 3000);
         return destination;
     }
 

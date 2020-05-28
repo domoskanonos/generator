@@ -28,6 +28,12 @@ public class MainGeneratorModel {
     private Boolean addSpringBootSecurityModule = false;
     private Boolean addSpringBootStorageModule = false;
 
+    private Boolean useNidocaClient = false;
+    private String nidocaTemplateZipUrl = "https://github.com/domoskanonos/nidoca-template-all/archive/master.zip";
+    private String nidocaTemplateFilename = "nidoca-template-all-master";
+    private String nidocaTemplateZipFilename = new StringBuilder().append(nidocaTemplateFilename).append(".zip")
+            .toString();
+
     public File getProjectFolder() {
         return new File(rootFolder, technicalDescriptor);
     }
@@ -64,6 +70,21 @@ public class MainGeneratorModel {
         return new File(getSpringBootProjectSourceFolder(), getSpringBootProjectGroupId().replaceAll("\\.", "\\/"));
     }
 
+    public File getNidocaTemplateFolder() {
+        return new File(this.tempFolder, this.nidocaTemplateFilename);
+    }
+
+    public File getNidocaTemplateZipFile() {
+        return new File(this.tempFolder, getNidocaTemplateZipFilename());
+    }
+
+    public String getNidocaProjectArtifactId() {
+        return new StringBuilder().append(technicalDescriptor).append("-nidoca").toString();
+    }
+
+    public File getNidocaProjectFolder() {
+        return new File(this.getProjectFolder(), getNidocaProjectArtifactId());
+    }
 
     public void validate() {
         validateNotHDDBaseDirectory(getRootFolder());
@@ -79,8 +100,8 @@ public class MainGeneratorModel {
     }
 
     private void validateNotHDDBaseDirectory(File folder) {
-        if (folder.getAbsoluteFile().length() < 4) {
-            throw new RuntimeException("root folder can't be hdd base directory");
+        if (folder.getAbsolutePath().length() < 4) {
+            throw new RuntimeException(String.format("root folder can't be hdd base directory: %s", folder.getAbsolutePath()));
         }
     }
 
