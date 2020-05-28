@@ -1,8 +1,7 @@
 package com.dbr.generator.basic.util;
 
-import com.dbr.generator.basic.converter.JavaField2PropertieDTOConverter;
+import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.basic.model.TypescriptProperty;
 import com.dbr.util.DataTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -152,7 +151,7 @@ public class GeneratorUtil {
     public static List<PropertyDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
         List<PropertyDTO> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
-            javaProperties.add(new JavaField2PropertieDTOConverter().convert(field));
+            javaProperties.add(new JavaField2PropertyDTOConverter().convert(field));
         }
         return javaProperties;
     }
@@ -160,14 +159,6 @@ public class GeneratorUtil {
     public static boolean isSearchableType(String typeSimpleName) {
         return isBaseJavaType(typeSimpleName) && !typeSimpleName.contains("[")
                 && !typeSimpleName.contains(DataTypes.TYPE_DATE);
-    }
-
-    public static List<TypescriptProperty> getTypescriptProperties(Field[] fields) {
-        List<TypescriptProperty> properties = new ArrayList<>();
-        for (Field field : fields) {
-            properties.add(new TypescriptProperty(field));
-        }
-        return properties;
     }
 
     public static String toTypescriptType(String javaType) {
@@ -284,8 +275,8 @@ public class GeneratorUtil {
 
     public static List<PropertyDTO> toJavaProperties(List<PropertyDTO> javaProperties) {
         List<PropertyDTO> retval = new ArrayList<>();
-        javaProperties.forEach(csvPropertieDTO -> {
-            retval.add(csvPropertieDTO);
+        javaProperties.forEach(csvPropertyDTO -> {
+            retval.add(csvPropertyDTO);
         });
         return retval;
     }

@@ -1,6 +1,7 @@
 package com.dbr.generator.gen.client.typescript.model;
 
-import com.dbr.generator.basic.model.TypescriptProperty;
+import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
 import com.dbr.generator.basic.model.KeyValue;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -9,6 +10,7 @@ import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Data
@@ -17,13 +19,13 @@ public class ClazzTypescriptWrapper {
     private Class clazz;
     private String modelNameReplaceKey;
     private String modelNameReplaceValue;
-    private List<TypescriptProperty> properties;
+    private List<PropertyDTO> properties;
 
     public ClazzTypescriptWrapper(Class clazz, String modelNameReplaceKey, String modelNameReplaceValue) {
         this.clazz = clazz;
         this.modelNameReplaceKey = modelNameReplaceKey;
         this.modelNameReplaceValue = modelNameReplaceValue;
-        this.properties = GeneratorUtil.getTypescriptProperties(this.clazz.getDeclaredFields());
+        this.properties = new JavaField2PropertyDTOConverter().convert(Arrays.asList(this.clazz.getDeclaredFields()));
     }
 
     public static ClazzTypescriptWrapper[] toWrapper(Class[] clazzes, String modelNameReplaceKey,
@@ -39,9 +41,9 @@ public class ClazzTypescriptWrapper {
     }
 
     public String getIdFieldName() {
-        for (TypescriptProperty typescriptProperty : properties) {
-            if (typescriptProperty.getIdField()) {
-                return typescriptProperty.getFieldName();
+        for (PropertyDTO typescriptProperty : properties) {
+            if (typescriptProperty.getIdProperty()) {
+                return typescriptProperty.getName();
             }
         }
         return null;
@@ -166,10 +168,10 @@ public class ClazzTypescriptWrapper {
         return keyValues;
     }
 
-    private KeyValue addI18nKeyValueProperty(TypescriptProperty typescriptProperty) {
-        String key = getModelNameLowerCase() + I18nVM.I18N_PROPERTY_SEPERATOR + typescriptProperty.getFieldName();
-        KeyValue i18nKeyValue = new KeyValue(key, StringUtil.firstLetterToUpperCase(typescriptProperty.getFieldName()));
-        typescriptProperty.setI18nKeyValue(i18nKeyValue);
+    private KeyValue addI18nKeyValueProperty(PropertyDTO typescriptProperty) {
+        String key = getModelNameLowerCase() + I18nVM.I18N_PROPERTY_SEPERATOR + typescriptProperty.getName();
+        KeyValue i18nKeyValue = new KeyValue(key, StringUtil.firstLetterToUpperCase(typescriptProperty.getName()));
+        //typescriptProperty.setI18nKeyValue(i18nKeyValue);
         return i18nKeyValue;
     }
 
