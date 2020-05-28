@@ -1,12 +1,14 @@
 package com.dbr.generator.basic.converter;
 
+import com.dbr.generator.basic.dto.ConverterDTO;
+
 import java.util.Collection;
 import java.util.List;
 
-public interface ConverterInterface<T, S> {
+public interface ConverterInterface<PARENT, DESTINATION, SOURCE> {
 
-    S convert(T source);
+    DESTINATION convert(ConverterDTO<PARENT, SOURCE> converterDTO);
 
-    List<S> convert(Collection<T> source);
+    List<DESTINATION> convert(Collection<ConverterDTO<PARENT, SOURCE>> source);
 
 }

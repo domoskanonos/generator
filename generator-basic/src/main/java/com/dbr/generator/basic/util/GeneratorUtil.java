@@ -1,6 +1,9 @@
 package com.dbr.generator.basic.util;
 
+import com.dbr.generator.basic.converter.JavaClass2ModelDTOConverter;
 import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
+import com.dbr.generator.basic.dto.ConverterDTO;
+import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.util.DataTypes;
 import org.slf4j.Logger;
@@ -151,15 +154,11 @@ public class GeneratorUtil {
     public static List<PropertyDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
         List<PropertyDTO> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
-            javaProperties.add(new JavaField2PropertyDTOConverter().convert(field));
+            javaProperties.add(new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(new ProjectDTO(), clazz)), field)));
         }
         return javaProperties;
     }
 
-    public static boolean isSearchableType(String typeSimpleName) {
-        return isBaseJavaType(typeSimpleName) && !typeSimpleName.contains("[")
-                && !typeSimpleName.contains(DataTypes.TYPE_DATE);
-    }
 
     public static String toTypescriptType(String javaType) {
         switch (javaType) {
@@ -182,58 +181,7 @@ public class GeneratorUtil {
         }
     }
 
-    public static String getSampleDataTypescript(String javaType) {
-        switch (javaType) {
-            case DataTypes.TYPE_CHAR:
-            case DataTypes.TYPE_STRING:
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return "''";
-            case DataTypes.TYPE_BOOLEAN:
-                return "false";
-            case DataTypes.TYPE_DATE:
-                return "new Date()";
-            case DataTypes.TYPE_SHORT:
-            case DataTypes.TYPE_INTEGER:
-            case DataTypes.TYPE_LONG:
-            case DataTypes.TYPE_FLOAT:
-            case DataTypes.TYPE_BIG_DECIMAL:
-            case DataTypes.TYPE_DOUBLE:
-                return "0";
-            default:
-                return "null";
-        }
-    }
 
-    public static boolean isIdField(Field field) {
-        return field != null && field.getAnnotation(Id.class) != null;
-    }
-
-    public static String getSampleDataSwaggerAPI(Field field) {
-        String sampleData = getSampleDataTypescript(field);
-
-        if (field.getAnnotation(Id.class) != null) {
-            return ", example = \"null\"";
-        }
-
-        String typeSimpleName = field.getType().getSimpleName();
-
-        if (isEnumeration(field.getType())) {
-            return ", example = \"\"";
-        }
-
-        switch (typeSimpleName) {
-            case DataTypes.JAVA_TYPE_BYTE_ARRAY:
-                return ", example = \"null\"";
-            case DataTypes.TYPE_DATE:
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm.ssZ");
-                String dateAsString = "\"" + simpleDateFormat.format(new Date()) + "\"";
-                return ", example = " + dateAsString + "";
-            default:
-                String value = sampleData.startsWith("\"") ? sampleData : "\"" + sampleData + "\"";
-                return ", example = " + value + "";
-        }
-
-    }
 
     public static String getSampleDataTypescript(Field field) {
         Integer maxLength = null;
@@ -272,14 +220,6 @@ public class GeneratorUtil {
         return field.getAnnotation(Id.class) != null ? "" : field.getName();
     }
 
-
-    public static List<PropertyDTO> toJavaProperties(List<PropertyDTO> javaProperties) {
-        List<PropertyDTO> retval = new ArrayList<>();
-        javaProperties.forEach(csvPropertyDTO -> {
-            retval.add(csvPropertyDTO);
-        });
-        return retval;
-    }
 
     public static String getSimpleName(Class<?> fieldType) {
         String typeSimpleName = fieldType.getSimpleName();

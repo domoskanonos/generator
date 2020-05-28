@@ -9,8 +9,8 @@ import java.util.List;
 @Data
 public class ObjectDTO {
 
+    private ProjectDTO projectDTO;
     private String idClazzSimpleName;
-    private String packageName;
     private String clazzName;
     private String clazzSimpleName;
     private List<PropertyDTO> properties = new ArrayList<>();

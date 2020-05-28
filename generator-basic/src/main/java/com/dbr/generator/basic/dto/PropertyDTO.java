@@ -16,7 +16,7 @@ public class PropertyDTO {
     private boolean idProperty;
     private boolean searchable;
     private boolean nullable;
-    private boolean useIdClazz;
+    private ObjectDTO objectDTO;
     private Integer length;
 
     public PropertyDTO(String name, String javaTypeSimpleName) {
@@ -32,7 +32,7 @@ public class PropertyDTO {
         String id = "";
         if (idProperty) {
             id = "\n    @Id";
-            if (!useIdClazz) {
+            if (!objectDTO.useJPAIdClazz()) {
                 id += "\n    @GeneratedValue(strategy = GenerationType.IDENTITY)";
             }
         }

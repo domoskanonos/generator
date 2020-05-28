@@ -1,5 +1,5 @@
 package com.dbr.generator.basic.merger;
 
-public interface TemplateDTOMergerInterface<T> {
+public interface TemplateModelMergerInterface<T> {
     String create(T model) throws Exception;
 }

@@ -1,6 +1,7 @@
-package com.dbr.generator.basic.merger;
+package com.dbr.generator.basic.merger.object;
 
 import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.merger.TemplateModelMergerInterface;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -8,7 +9,7 @@ import org.apache.velocity.app.VelocityEngine;
 
 import java.io.StringWriter;
 
-public class TypescriptModelMerger implements TemplateDTOMergerInterface<ObjectDTO> {
+public class TypescriptModelMerger implements TemplateModelMergerInterface<ObjectDTO> {
 
     @Override
     public String create(ObjectDTO objectDTO) {

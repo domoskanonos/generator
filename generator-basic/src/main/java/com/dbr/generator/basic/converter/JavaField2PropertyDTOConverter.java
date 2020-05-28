@@ -1,5 +1,7 @@
 package com.dbr.generator.basic.converter;
 
+import com.dbr.generator.basic.dto.ConverterDTO;
+import com.dbr.generator.basic.dto.ObjectDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 
@@ -10,20 +12,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaField2PropertyDTOConverter implements ConverterInterface<Field, PropertyDTO> {
-    @Override
-    public PropertyDTO convert(Field source) {
-        PropertyDTO propertyDTO = new PropertyDTO();
-        propertyDTO.setName(source.getName());
-        propertyDTO.setPropertyType(PropertyTypeEnum.byField(source));
-        propertyDTO.setIdProperty(isIDField(source));
-        return propertyDTO;
-    }
+public class JavaField2PropertyDTOConverter implements ConverterInterface<ObjectDTO, PropertyDTO, Field> {
 
-    @Override
-    public List<PropertyDTO> convert(Collection<Field> source) {
-        return source.stream().map(this::convert).collect(Collectors.toList());
-    }
 
     public boolean isIDField(Field field) {
         if (field.getAnnotation(Id.class) != null || field.getAnnotation(EmbeddedId.class) != null) {
@@ -32,4 +22,20 @@ public class JavaField2PropertyDTOConverter implements ConverterInterface<Field,
         return false;
     }
 
+    @Override
+    public PropertyDTO convert(ConverterDTO<ObjectDTO, Field> converterDTO) {
+        PropertyDTO propertyDTO = new PropertyDTO();
+        Field source = converterDTO.getSource();
+        ObjectDTO objectDTO = converterDTO.getParent();
+        propertyDTO.setObjectDTO(objectDTO);
+        propertyDTO.setName(source.getName());
+        propertyDTO.setPropertyType(PropertyTypeEnum.byField(source));
+        propertyDTO.setIdProperty(isIDField(source));
+        return propertyDTO;
+    }
+
+    @Override
+    public List<PropertyDTO> convert(Collection<ConverterDTO<ObjectDTO, Field>> converterDTOS) {
+        return converterDTOS.stream().map(this::convert).collect(Collectors.toList());
+    }
 }

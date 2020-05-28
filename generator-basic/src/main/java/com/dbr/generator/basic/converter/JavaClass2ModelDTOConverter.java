@@ -1,6 +1,8 @@
 package com.dbr.generator.basic.converter;
 
+import com.dbr.generator.basic.dto.ConverterDTO;
 import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 
 import javax.persistence.EmbeddedId;
@@ -11,30 +13,30 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaClass2ModelDTOConverter implements ConverterInterface<Class<?>, ObjectDTO> {
+public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDTO, ObjectDTO, Class<?>> {
 
     @Override
-    public ObjectDTO convert(Class<?> source) {
+    public ObjectDTO convert(ConverterDTO<ProjectDTO, Class<?>> converterDTO) {
         ObjectDTO objectDTO = new ObjectDTO();
-        objectDTO.setIdClazzSimpleName(getIDClazzSimpleName(source));
-        objectDTO.setPackageName(source.getPackage().getName());
-        objectDTO.setClazzSimpleName(getClazzSimpleName(source));
-        objectDTO.setClazzName(String.format("%s.%s", objectDTO.getPackageName(), objectDTO.getClazzSimpleName()));
-        for (Field field : source.getDeclaredFields()) {
-            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(field);
-            propertyDTO.setUseIdClazz(objectDTO.useJPAIdClazz());
+        objectDTO.setIdClazzSimpleName(getIDClazzSimpleName(converterDTO.getSource()));
+        ProjectDTO projectDTO = converterDTO.getParent();
+        objectDTO.setProjectDTO(projectDTO);
+        objectDTO.setClazzSimpleName(getClazzSimpleName(converterDTO.getSource()));
+        objectDTO.setClazzName(String.format("%s.%s", projectDTO.getJavaPackageName(), objectDTO.getClazzSimpleName()));
+        for (Field field : converterDTO.getSource().getDeclaredFields()) {
+            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(objectDTO, field));
             objectDTO.getProperties().add(propertyDTO);
         }
         return objectDTO;
     }
 
-    private String getClazzSimpleName(Class<?> source) {
-        return source.getSimpleName().replace("DTO", "").replace("Model", "").replace("Entity", "");
+    @Override
+    public List<ObjectDTO> convert(Collection<ConverterDTO<ProjectDTO, Class<?>>> converterDTOS) {
+        return converterDTOS.stream().map(this::convert).collect(Collectors.toList());
     }
 
-    @Override
-    public List<ObjectDTO> convert(Collection<Class<?>> source) {
-        return source.stream().map(this::convert).collect(Collectors.toList());
+    private String getClazzSimpleName(Class<?> source) {
+        return source.getSimpleName().replace("DTO", "").replace("Model", "").replace("Entity", "");
     }
 
     public static String getIDClazzSimpleName(Class<?> clazz) {
