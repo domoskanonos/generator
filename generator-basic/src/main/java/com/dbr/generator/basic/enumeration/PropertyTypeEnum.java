@@ -87,33 +87,25 @@ public enum PropertyTypeEnum {
 
         switch (this) {
             case TYPE_STRING:
+            case TYPE_CHAR:
                 return "string";
             case TYPE_INTEGER:
+            case TYPE_BIG_DECIMAL:
+            case TYPE_LONG:
+            case TYPE_FLOAT:
+            case TYPE_SHORT:
+            case TYPE_DOUBLE:
                 return "number";
             case TYPE_BOOLEAN:
                 return "boolean";
-            case TYPE_BIG_DECIMAL:
-                return "";
-            case TYPE_LONG:
-                return "";
-            case TYPE_FLOAT:
-                return "";
-            case TYPE_SHORT:
-                return "";
-            case TYPE_DOUBLE:
-                return "";
-            case TYPE_CHAR:
-                return "";
             case TYPE_DATE:
-                return "";
             case TYPE_DATE_ISO8601:
-                return "";
-            case BYTE_ARRAY:
-                return "array";
+                return "Date";
             case TYPE_ARRAY_STRING:
                 return "string[]";
+            case BYTE_ARRAY:
             case LIST:
-                return "[]";
+                return "array";
             default:
                 return "any";
         }
