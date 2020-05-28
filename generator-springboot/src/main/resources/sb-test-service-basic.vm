@@ -77,16 +77,16 @@ public class ${clazzSimpleName} {
     @Test
     public void test1save() {
 
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        ${propertie.typeSimpleName} ${propertie.name} = ${generatorUtil.getSampleData($propertie.field)};
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
         #end
         #end
 
         ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        dto.${stringUtil.toSetterMethodPrefix($propertie.name)}(${propertie.name});
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
         #end
         #end
 
@@ -94,9 +94,9 @@ public class ${clazzSimpleName} {
 
         assertThat(savedDTO).isNotNull();
         assertThat(savedDTO.getId()).isNotNull();
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        assertThat(savedDTO.${stringUtil.toGetterMethodName($propertie.name)}).isEqualTo(${propertie.name});
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        assertThat(savedDTO.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
         #end
         #end
 

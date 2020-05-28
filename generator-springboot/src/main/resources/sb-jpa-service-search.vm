@@ -48,14 +48,14 @@ public class ${serviceClazzName} {
      * @param page current page of pagination
      * @param size current item size of pagination
      * @param sort current sorting string for sorting
-     * #foreach( $propertie in $properties )#if($propertie.isSearchable())@param ${propertie.name} search criteria #end#end
+     * #foreach( $property in $properties )#if($property.isSearchable())@param ${property.name} search criteria #end#end
      *
      * @return a <code>Page<${dtoClazzSimpleName}></code> object, containing a list of <code>${dtoClazzSimpleName}</code> objects and additional paging information.
      *
      */
     @Transactional
-    public Page<${dtoClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $propertie in $properties )#if($propertie.isSearchable()), ${propertie.typeSimpleName} ${propertie.name}#end#end) {
-        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $propertie in $properties )#if($propertie.isSearchable()){} #end#end", page, size, sort #foreach( $propertie in $properties )#if($propertie.isSearchable()), ${propertie.name}#end#end);
+    public Page<${dtoClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $property in $properties )#if($property.isSearchable()){} #end#end", page, size, sort #foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end);
         return new PageBuilder<${jpaClazzSimpleName}, ${dtoClazzSimpleName}>(page, size, sort) {
 
             @Override
@@ -66,23 +66,23 @@ public class ${serviceClazzName} {
             @Override
             protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<${jpaClazzSimpleName}> cq, Root<${jpaClazzSimpleName}> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
-                #foreach( $propertie in $properties )
-                #if( !${generatorUtil.isIdField($propertie.field)})
+                #foreach( $property in $properties )
+                #if( !${generatorUtil.isIdField($property.field)})
 
-                #if(${propertie.typeSimpleName} == 'String')
-                if (StringUtils.isNotBlank(${propertie.name})) {
-                    predicates.add(cb.like(cb.lower(entityRoot.get("${propertie.name}")), "%" + ${propertie.name}.toLowerCase() + "%"));
+                #if(${property.propertyType.javaTypeSimpleName} == 'String')
+                if (StringUtils.isNotBlank(${property.name})) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("${property.name}")), "%" + ${property.name}.toLowerCase() + "%"));
                 }
-                #elseif(${propertie.typeSimpleName} == 'Boolean')
-                if (${propertie.name} != null) {
-                    predicates.add(cb.equal(entityRoot.get("${propertie.name}"), ${propertie.name}));
+                #elseif(${property.propertyType.javaTypeSimpleName} == 'Boolean')
+                if (${property.name} != null) {
+                    predicates.add(cb.equal(entityRoot.get("${property.name}"), ${property.name}));
                 }
-                #elseif(${propertie.typeSimpleName} == 'Integer' || ${propertie.type} == 'Long')
-                if (${propertie.name} != null) {
+                #elseif(${property.propertyType.javaTypeSimpleName} == 'Integer' || ${property.type} == 'Long')
+                if (${property.name} != null) {
                     //TODO:check
-                    predicates.add(cb.equal(entityRoot.get("${propertie.name}"), ${propertie.name}));//equal
-                    //predicates.add(cb.ge(entityRoot.get("${propertie.name}"), ${propertie.name}));//greater than
-                    //predicates.add(cb.le(entityRoot.get("${propertie.name}"), ${propertie.name}));//lower than
+                    predicates.add(cb.equal(entityRoot.get("${property.name}"), ${property.name}));//equal
+                    //predicates.add(cb.ge(entityRoot.get("${property.name}"), ${property.name}));//greater than
+                    //predicates.add(cb.le(entityRoot.get("${property.name}"), ${property.name}));//lower than
                 }
                 #end
                 #end

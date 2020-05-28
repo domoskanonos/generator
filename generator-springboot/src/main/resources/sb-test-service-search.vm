@@ -81,16 +81,16 @@ public class ${clazzSimpleName} {
         List<${dtoClazzSimpleName}> all = service.findAll();
         int sizeBeforeSave = all.size();
 
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        ${propertie.typeSimpleName} ${propertie.name} = ${generatorUtil.getSampleData($propertie.field)};
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
         #end
         #end
 
         ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        dto.${stringUtil.toSetterMethodPrefix($propertie.name)}(${propertie.name});
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
         #end
         #end
 
@@ -98,9 +98,9 @@ public class ${clazzSimpleName} {
 
         assertThat(savedDTO).isNotNull();
         assertThat(savedDTO.getId()).isNotNull();
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        assertThat(savedDTO.${stringUtil.toGetterMethodName($propertie.name)}).isEqualTo(${propertie.name});
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        assertThat(savedDTO.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
         #end
         #end
 
@@ -120,23 +120,23 @@ public class ${clazzSimpleName} {
 
         ${dtoClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
 
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        ${propertie.typeSimpleName} ${propertie.name} = ${generatorUtil.getSampleData($propertie.field)};
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
         #end
         #end
 
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        dto.${stringUtil.toSetterMethodPrefix($propertie.name)}(${propertie.name});
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
         #end
         #end
 
         ${dtoClazzSimpleName} savedDTO = service.save(dto);
 
-        #foreach( $propertie in $properties )
-        #if( !${generatorUtil.isIdField($propertie.field)})
-        assertThat(savedDTO.${stringUtil.toGetterMethodName($propertie.name)}).isEqualTo(${propertie.name});
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        assertThat(savedDTO.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
         #end
         #end
 
@@ -158,14 +158,14 @@ public class ${clazzSimpleName} {
     @Test
     public void findByAllCriteriaQueryArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int currentObjectCount = prepareSearchTest();
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, null#foreach( $propertie in $properties )#if($propertie.isSearchable()),null#end#end);
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
     }
 
     @Test
     public void findByAllCriteriaQueryPageZeroSizeZeroOtherArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int currentObjectCount = prepareSearchTest();
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(0, 0, null#foreach( $propertie in $properties )#if($propertie.isSearchable()),null#end#end);
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(0, 0, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
         page = service.findByAll(0, 0, null, null);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
@@ -174,7 +174,7 @@ public class ${clazzSimpleName} {
     @Test
     public void findByAllCriteriaQueryPageNegativSizeNegativOtherArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int currentObjectCount = prepareSearchTest();
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(-1, -1, null#foreach( $propertie in $properties )#if($propertie.isSearchable()),null#end#end);
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(-1, -1, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
         page = service.findByAll(-1, -1, null, null);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
@@ -182,7 +182,7 @@ public class ${clazzSimpleName} {
 
     @Test
     public void findByAllCriteriaQueryNegativTestWrongSorting() {
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, "id:x"#foreach( $propertie in $properties )#if($propertie.isSearchable()),null#end#end);
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, "id:x"#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.unsorted());
         page = service.findByAll(null, null, "id:x", null);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.unsorted());
@@ -191,9 +191,9 @@ public class ${clazzSimpleName} {
     @Test
     public void findByAllCriteriaQuerySortingAscDesc() {
         String sortingField = "${properties[0].name}";
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, String.format("%s:asc", sortingField)#foreach( $propertie in $properties )#if($propertie.isSearchable()),null#end#end);
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, String.format("%s:asc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.asc(sortingField)));
-        page = service.findByAllCriteriaQuery(null, null, String.format("%s:desc", sortingField)#foreach( $propertie in $properties )#if($propertie.isSearchable()),null#end#end);
+        page = service.findByAllCriteriaQuery(null, null, String.format("%s:desc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.desc(sortingField)));
         page = service.findByAll(null, null, String.format("%s:asc", sortingField), null);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.asc(sortingField)));

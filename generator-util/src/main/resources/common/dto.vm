@@ -13,8 +13,8 @@ import java.util.Date;
 @Builder(toBuilder=true)
 public class ${clazzSimpleName} {
 
-#foreach( $propertie in $properties )
-    private ${propertie.typeSimpleName} ${propertie.name};
+#foreach( $property in $properties )
+    private ${property.propertyType.javaTypeSimpleName} ${property.name};
 
 #end
 

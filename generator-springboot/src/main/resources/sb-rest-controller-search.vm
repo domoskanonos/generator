@@ -34,8 +34,8 @@ public class ${clazzSimpleName} {
     public ResponseEntity<Page<${dtoClazzSimpleName}>> findByAllCriteriaQuery(
         @ApiParam(defaultValue = "0", example = "0") @RequestParam(required = false) Integer page,
         @ApiParam(defaultValue = "10", example = "10") @RequestParam(required = false) Integer size,
-        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort#foreach( $propertie in $properties )#if($propertie.isSearchable()), ${propertie.typeSimpleName} ${propertie.name}#end#end){
-        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort#foreach( $propertie in $properties )#if($propertie.isSearchable()), ${propertie.name}#end#end));
+        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end){
+        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end));
     }
 
 ${fileUploadMethods}

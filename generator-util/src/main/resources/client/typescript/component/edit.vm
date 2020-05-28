@@ -35,22 +35,22 @@ export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends Nidoc
         return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().delete(identifier);
     }
 
-    #foreach( $propertie in $clazzTypescriptWrapper.properties )
-    #if(!${propertie.idField})
+    #foreach( $property in $clazzTypescriptWrapper.properties )
+    #if(!${property.idField})
     @property()
-    ${propertie.fieldName} : ${propertie.typeName} = ${propertie.defaultValue};
+    ${property.fieldName} : ${property.typeName} = ${property.defaultValue};
     #end
     #end
 
     renderFormFields(): TemplateResult {
         return html`
-            #foreach( $propertie in $clazzTypescriptWrapper.properties )
-            #if(!${propertie.idField})
+            #foreach( $property in $clazzTypescriptWrapper.properties )
+            #if(!${property.idField})
             <nidoca-inputfield
-                    ${propertie.wcAtomicInputfieldValueProperty}="$escapeDollar{this.${propertie.fieldName}}"
-                    name="${propertie.fieldName}"
-                    inputfieldType="${propertie.wcAtomicInputfieldType}"
-                    label="$escapeDollar{I18nService.getUniqueInstance().getValue('${propertie.getI18nKey()}')}"
+                    ${property.wcAtomicInputfieldValueProperty}="$escapeDollar{this.${property.fieldName}}"
+                    name="${property.fieldName}"
+                    inputfieldType="${property.wcAtomicInputfieldType}"
+                    label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
             ></nidoca-inputfield>
             #end
             #end
@@ -58,9 +58,9 @@ export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends Nidoc
     }
 
     itemToProperties(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}): void {
-        #foreach( $propertie in $clazzTypescriptWrapper.properties )
-        #if(!${propertie.idField})
-        this.${propertie.fieldName} = ${clazzTypescriptWrapper.getModelNameLowerCase()}.${propertie.fieldName};
+        #foreach( $property in $clazzTypescriptWrapper.properties )
+        #if(!${property.idField})
+        this.${property.fieldName} = ${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.fieldName};
         #end
         #end
     }

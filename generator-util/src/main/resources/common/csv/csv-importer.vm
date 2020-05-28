@@ -18,10 +18,10 @@ public class ${clazzSimpleName} extends AbstractCSVImporter<${modelClazzSimpleNa
 
         ${modelClazzSimpleName} object = new ${modelClazzSimpleName}();
 
-        #foreach( $propertie in $properties )
+        #foreach( $property in $properties )
         #if(${foreach.index}==0)String#end column = columns.get(${foreach.index});
         if(column!=null && column.length()>0) {
-            object.${stringUtil.toSetterMethodPrefix($propertie.name)}(#if(${propertie.typeSimpleName}=='TYPE_DATE_ISO8601')DateUtil.DATE_FORMAT_ISO8601.parse(column)#elseif(${propertie.typeSimpleName}!='String')${propertie.typeSimpleName}.valueOf(column)#elseif(${propertie.typeSimpleName}=='String')column#end);
+            object.${stringUtil.toSetterMethodPrefix($property.name)}(#if(${property.propertyType.javaTypeSimpleName}=='TYPE_DATE_ISO8601')DateUtil.DATE_FORMAT_ISO8601.parse(column)#elseif(${property.propertyType.javaTypeSimpleName}!='String')${property.propertyType.javaTypeSimpleName}.valueOf(column)#elseif(${property.propertyType.javaTypeSimpleName}=='String')column#end);
         }
         #end
 

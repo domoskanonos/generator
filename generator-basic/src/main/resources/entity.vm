@@ -2,17 +2,22 @@ package ${packageName};
 
 import lombok.*;
 
-import java.math.BigDecimal;
+import javax.persistence.*;
 import java.util.Date;
+import java.math.BigDecimal;
 
+#if($useJPAIdClazz)@IdClass(${idClazzSimpleName}.class)#end
+@Entity
+@Table(name = "${tableName}")
 @Data
 @ToString
+@Builder(toBuilder = true)
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class ${clazzSimpleName} {
-
 #foreach( $property in $properties )
+    ${property.jpaPropertyAnnotations}
     private #if(${property.propertyType.javaTypeSimpleName}=='TYPE_DATE_ISO8601')Date#else${property.propertyType.javaTypeSimpleName}#end ${property.name};
 #end
 

@@ -1,11 +1,11 @@
 package com.dbr.generator.basic.enumeration;
 
 import com.dbr.util.DataTypes;
-import com.dbr.util.StringUtil;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public enum PropertyTypeEnum {
 
@@ -21,7 +21,8 @@ public enum PropertyTypeEnum {
     TYPE_CHAR(char.class),
     TYPE_DATE(Date.class),
     TYPE_DATE_ISO8601(Date.class),
-    TYPE_ARRAY_STRING(String[].class);
+    TYPE_ARRAY_STRING(String[].class),
+    LIST(List.class);
 
     private Class<?> type;
 
@@ -30,11 +31,16 @@ public enum PropertyTypeEnum {
     }
 
     public String getJavaTypeName() {
+
+
+        System.out.println(type.getTypeParameters()[0]);
+
+
         return type.getName();
     }
 
     public String getJavaTypeSimpleName() {
-        return type.getSimpleName();
+        return isBaseJavaType() ? type.getSimpleName() : getJavaTypeName();
     }
 
     public Boolean getJavaBaseType() {
@@ -77,9 +83,9 @@ public enum PropertyTypeEnum {
         }
     }
 
-    private String getTypescriptType() {
+    public String getTypescriptType() {
 
-        switch (this){
+        switch (this) {
             case TYPE_STRING:
                 return "string";
             case TYPE_INTEGER:
@@ -106,19 +112,51 @@ public enum PropertyTypeEnum {
                 return "array";
             case TYPE_ARRAY_STRING:
                 return "string[]";
-            default:return "any";
+            case LIST:
+                return "[]";
+            default:
+                return "any";
         }
 
 
     }
 
+    public String getTypescriptInitValue() {
+        switch (this) {
+            case TYPE_CHAR:
+            case BYTE_ARRAY:
+            case TYPE_STRING:
+                return "''";
+            case TYPE_INTEGER:
+                break;
+            case TYPE_BOOLEAN:
+                return "false";
+            case TYPE_BIG_DECIMAL:
+            case TYPE_LONG:
+            case TYPE_FLOAT:
+            case TYPE_SHORT:
+            case TYPE_DOUBLE:
+                return "0";
+            case TYPE_DATE:
+            case TYPE_DATE_ISO8601:
+                return "new Date()";
+            case TYPE_ARRAY_STRING:
+            case LIST:
+                return "[]";
+            default:
+                return "{}";
+        }
+        return null;
+    }
+
 
     public static PropertyTypeEnum byJavaTypeSimpleName(String javaTypeSimpleName) {
         for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
-            if(propertyTypeEnum.getJavaTypeSimpleName().equals(javaTypeSimpleName)){
+            if (propertyTypeEnum.getJavaTypeSimpleName().equals(javaTypeSimpleName)) {
                 return propertyTypeEnum;
             }
-        }return null;
+        }
+        return null;
     }
 
     public static PropertyTypeEnum byTypescriptType(String typescriptType){
@@ -131,7 +169,8 @@ public enum PropertyTypeEnum {
 
     public static PropertyTypeEnum byField(Field source) {
         for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
-           if(propertyTypeEnum.getType().getSimpleName().equals(source.getType().getSimpleName())){
+            Class<?> type = propertyTypeEnum.getType();
+            if (type.getSimpleName().equals(source.getType().getSimpleName())) {
                 return propertyTypeEnum;
             }
         }

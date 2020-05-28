@@ -1,6 +1,7 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.dto.ModelDTO;
+import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
@@ -10,23 +11,29 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaClass2ModelDTOConverter implements ConverterInterface<Class<?>, ModelDTO> {
+public class JavaClass2ModelDTOConverter implements ConverterInterface<Class<?>, ObjectDTO> {
 
     @Override
-    public ModelDTO convert(Class<?> source) {
-        ModelDTO modelDTO = new ModelDTO();
+    public ObjectDTO convert(Class<?> source) {
+        ObjectDTO objectDTO = new ObjectDTO();
+        objectDTO.setIdClazzSimpleName(getIDClazzSimpleName(source));
+        objectDTO.setPackageName(source.getPackage().getName());
+        objectDTO.setClazzSimpleName(getClazzSimpleName(source));
+        objectDTO.setClazzName(String.format("%s.%s", objectDTO.getPackageName(), objectDTO.getClazzSimpleName()));
         for (Field field : source.getDeclaredFields()) {
-            modelDTO.getProperties().add(new JavaField2PropertyDTOConverter().convert(field));
+            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(field);
+            propertyDTO.setUseIdClazz(objectDTO.useJPAIdClazz());
+            objectDTO.getProperties().add(propertyDTO);
         }
-        modelDTO.setIdClazzSimpleName(getIDClazzSimpleName(source));
-        modelDTO.setPackageName(source.getPackage().getName());
-        modelDTO.setClazzSimpleName(source.getSimpleName());
-        modelDTO.setClazzName(String.format("%s.%s", modelDTO.getPackageName(), modelDTO.getClazzSimpleName()));
-        return modelDTO;
+        return objectDTO;
+    }
+
+    private String getClazzSimpleName(Class<?> source) {
+        return source.getSimpleName().replace("DTO", "").replace("Model", "").replace("Entity", "");
     }
 
     @Override
-    public List<ModelDTO> convert(Collection<Class<?>> source) {
+    public List<ObjectDTO> convert(Collection<Class<?>> source) {
         return source.stream().map(this::convert).collect(Collectors.toList());
     }
 

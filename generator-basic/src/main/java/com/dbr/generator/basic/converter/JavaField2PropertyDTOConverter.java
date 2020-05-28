@@ -1,6 +1,5 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.dto.ModelDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 

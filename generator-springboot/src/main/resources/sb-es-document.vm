@@ -9,9 +9,9 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @ToString
 @EqualsAndHashCode
 public class ${clazzSimpleName} {
-#foreach( $propertie in $properties )
+#foreach( $property in $properties )
 
-    private ${propertie.type} ${propertie.name};
+    private ${property.type} ${property.name};
 #end
 
 }

@@ -42,7 +42,7 @@ public class ClazzTypescriptWrapper {
 
     public String getIdFieldName() {
         for (PropertyDTO typescriptProperty : properties) {
-            if (typescriptProperty.getIdProperty()) {
+            if (typescriptProperty.isIdProperty()) {
                 return typescriptProperty.getName();
             }
         }
