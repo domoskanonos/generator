@@ -1,7 +1,8 @@
 package com.dbr.generator.gen.server.entity.model;
 
-import com.dbr.generator.basic.model.CSVJavaProperty;
-import com.dbr.generator.basic.model.JavaProperty;
+import com.dbr.generator.basic.converter.JavaField2PropertieDTOConverter;
+import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertieDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.*;
@@ -40,22 +41,17 @@ public class EntityVM {
     @ToString
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class EntityProperty extends JavaProperty {
+    public static class EntityProperty extends PropertieDTO {
         private String columnName;
         private Integer size;
         private boolean primaryKey = false;
         private boolean nullable = true;
         private boolean idClazz = false;
 
-        public EntityProperty(CSVJavaProperty javaProperty) {
+        public EntityProperty(PropertieDTO javaProperty) {
             super(javaProperty.getName(), javaProperty.getTypeSimpleName());
             this.columnName = StringUtil.toDatabaseName(javaProperty.getName());
             this.size = javaProperty.getLength();
-        }
-
-        public EntityProperty(JavaProperty javaProperty) {
-            super(javaProperty.getField());
-            this.columnName = StringUtil.toDatabaseName(javaProperty.getName());
         }
 
         public String propertieAnnotations() {
@@ -79,18 +75,18 @@ public class EntityVM {
 
     }
 
-    public static List<EntityProperty> map(List<JavaProperty> javaProperties) {
+    public static List<EntityProperty> map(List<PropertieDTO> javaProperties) {
         List<EntityProperty> list = new ArrayList<>();
-        for (JavaProperty javaProperty : javaProperties) {
+        for (PropertieDTO javaProperty : javaProperties) {
             EntityProperty property = new EntityProperty(javaProperty);
             list.add(property);
         }
         return list;
     }
 
-    public static List<EntityProperty> mapCSV(List<CSVJavaProperty> javaProperties) {
+    public static List<EntityProperty> mapCSV(List<PropertieDTO> javaProperties) {
         List<EntityProperty> list = new ArrayList<>();
-        for (CSVJavaProperty javaProperty : javaProperties) {
+        for (PropertieDTO javaProperty : javaProperties) {
             EntityProperty property = new EntityProperty(javaProperty);
             list.add(property);
         }

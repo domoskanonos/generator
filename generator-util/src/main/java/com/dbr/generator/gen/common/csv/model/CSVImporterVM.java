@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.common.csv.model;
 
-import com.dbr.generator.basic.model.CSVJavaProperty;
+import com.dbr.generator.basic.dto.PropertieDTO;
 import lombok.*;
 
 import java.io.File;
@@ -25,6 +25,6 @@ public class CSVImporterVM {
     private String content;
     private int rowCount;
 
-    private List<CSVJavaProperty> properties = new ArrayList<>();
+    private List<PropertieDTO> properties = new ArrayList<>();
 
 }

@@ -1,7 +1,8 @@
 package com.dbr.generator.basic.util;
 
-import com.dbr.generator.basic.model.CSVJavaProperty;
-import com.dbr.generator.basic.model.JavaProperty;
+import com.dbr.generator.basic.converter.JavaField2PropertieDTOConverter;
+import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertieDTO;
 import com.dbr.generator.basic.model.TypescriptProperty;
 import com.dbr.util.DataTypes;
 import com.dbr.util.resource.ResourceUtil;
@@ -153,14 +154,14 @@ public class GeneratorUtil {
         return fields.toArray(new Field[fields.size()]);
     }
 
-    public static List<JavaProperty> getJavaProperties(Class<?> clazz) {
+    public static List<PropertieDTO> getJavaProperties(Class<?> clazz) {
         return getJavaProperties(clazz, false);
     }
 
-    public static List<JavaProperty> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
-        List<JavaProperty> javaProperties = new ArrayList<>();
+    public static List<PropertieDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
+        List<PropertieDTO> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
-            javaProperties.add(new JavaProperty(field));
+            javaProperties.add(new JavaField2PropertieDTOConverter().convert(field));
         }
         return javaProperties;
     }
@@ -290,10 +291,10 @@ public class GeneratorUtil {
     }
 
 
-    public static List<JavaProperty> toJavaProperties(List<CSVJavaProperty> javaProperties) {
-        List<JavaProperty> retval = new ArrayList<>();
-        javaProperties.forEach(csvJavaProperty -> {
-            retval.add(csvJavaProperty);
+    public static List<PropertieDTO> toJavaProperties(List<PropertieDTO> javaProperties) {
+        List<PropertieDTO> retval = new ArrayList<>();
+        javaProperties.forEach(csvPropertieDTO -> {
+            retval.add(csvPropertieDTO);
         });
         return retval;
     }

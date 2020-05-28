@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.mapping;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.basic.model.JavaProperty;
+import com.dbr.generator.basic.dto.PropertieDTO;
 import com.dbr.generator.gen.server.mapping.model.ClazzMappingVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import com.dbr.generator.sample.entity.UserEntity;
@@ -51,8 +51,8 @@ public class ClazzMappingGenerator extends AbstractGeneratorJava {
 
         List<String> mappingFirstSecondEntries = new ArrayList<>();
         List<String> mappingSecondFirstEntries = new ArrayList<>();
-        for (JavaProperty firstProperty : clazzMappingVM.getProperties()) {
-            for (JavaProperty secondProperty : clazzMappingVM.getProperties()) {
+        for (PropertieDTO firstProperty : clazzMappingVM.getProperties()) {
+            for (PropertieDTO secondProperty : clazzMappingVM.getProperties()) {
                 String firstName = firstProperty.getName();
                 String secondName = secondProperty.getName();
                 if (firstName.equals(secondName)

@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.common.csv.model;
 
-import com.dbr.generator.basic.model.CSVJavaProperty;
+import com.dbr.generator.basic.dto.PropertieDTO;
 import com.dbr.util.DataTypes;
 import com.dbr.util.StringUtil;
 import com.google.common.base.Splitter;
@@ -32,7 +32,7 @@ public class CSVClazzVM {
     private List<String> headers = new ArrayList<>();
     private Integer[] lengths;
 
-    private List<CSVJavaProperty> properties = new ArrayList<>();
+    private List<PropertieDTO> properties = new ArrayList<>();
 
     public CSVClazzVM(String packageName, String clazzSimpleName, String content, String columnSplit, String rowSplit,
             Boolean withHeaderRow) {
@@ -123,7 +123,7 @@ public class CSVClazzVM {
 
         log.info("create CSVJavaProperties...");
         for (int i = 0; i < columnSize; i++) {
-            properties.add(new CSVJavaProperty(StringUtil.toPropertieName(headers.get(i).toLowerCase()),
+            properties.add(new PropertieDTO(StringUtil.toPropertieName(headers.get(i).toLowerCase()),
                     StringUtil.getType(contentMatrix[i]), lengths[i]));
         }
 
