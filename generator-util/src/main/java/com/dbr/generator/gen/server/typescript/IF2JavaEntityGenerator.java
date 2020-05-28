@@ -1,5 +1,6 @@
 package com.dbr.generator.gen.server.typescript;
 
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
 import com.dbr.generator.gen.server.entity.model.EntityVM;
@@ -52,7 +53,7 @@ public class IF2JavaEntityGenerator extends AbstractGeneratorJava {
         idProperty.setPrimaryKey(true);
         idProperty.setName("id");
         idProperty.setColumnName("ID");
-        idProperty.setTypeSimpleName("Long");
+        idProperty.setPropertyType(PropertyTypeEnum.TYPE_LONG);
         idProperty.setNullable(false);
         idProperty.setIdClazz(false);
         propertieList.add(idProperty);
@@ -68,7 +69,7 @@ public class IF2JavaEntityGenerator extends AbstractGeneratorJava {
                 String propertieName = typescriptName.replaceAll("\\?", "");
                 property.setName(propertieName);
                 property.setColumnName(StringUtil.toDatabaseName(propertieName));
-                property.setTypeSimpleName(toJavaType(typescriptType));
+                property.setPropertyType(PropertyTypeEnum.byTypescriptType(typescriptType));
                 property.setNullable(typescriptName.contains("?"));
                 property.setPrimaryKey(false);
                 propertieList.add(property);

@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.dto.model;
 
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.*;
 
@@ -19,7 +19,7 @@ public class DTOVM {
 
     private String packageName;
     private String clazzSimpleName;
-    private List<PropertieDTO> properties = new ArrayList<>();
+    private List<PropertyDTO> properties = new ArrayList<>();
 
     public DTOVM(String packageName, String clazzSimpleName, Class<?> clazz) {
         this(packageName, clazz);

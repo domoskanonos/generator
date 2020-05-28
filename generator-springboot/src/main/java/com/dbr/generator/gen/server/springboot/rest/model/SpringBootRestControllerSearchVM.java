@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.rest.model;
 
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.dto.model.DTOVM;
 import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVRestControllerVM;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceSearchVM;
@@ -27,7 +27,7 @@ public class SpringBootRestControllerSearchVM {
     private String restControllerClazzSimpleName;
     private String restControllerPackageName;
 
-    private List<PropertieDTO> properties;
+    private List<PropertyDTO> properties;
 
     public SpringBootRestControllerSearchVM(String basePackageName, Class<?> entityClazz) {
         this.basePackageName = basePackageName;

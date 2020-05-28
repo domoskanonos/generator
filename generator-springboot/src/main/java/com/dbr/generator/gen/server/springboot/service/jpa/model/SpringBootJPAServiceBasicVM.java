@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.server.springboot.service.jpa.model;
 
 import com.dbr.generator.basic.util.GeneratorUtil;
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.springboot.repository.model.SpringBootJPARepositoryVM;
 import lombok.*;
 
@@ -24,7 +24,7 @@ public class SpringBootJPAServiceBasicVM {
     private String jpaClazzSimpleName;
     private String idClazz;
 
-    private List<PropertieDTO> properties;
+    private List<PropertyDTO> properties;
 
     public SpringBootJPAServiceBasicVM(String basePackageName, String dtoClazzSimpleName, Class<?> entityClazz) {
         this.properties = GeneratorUtil.getJavaProperties(entityClazz);

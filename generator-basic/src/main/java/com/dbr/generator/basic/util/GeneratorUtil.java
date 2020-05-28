@@ -1,11 +1,9 @@
 package com.dbr.generator.basic.util;
 
 import com.dbr.generator.basic.converter.JavaField2PropertieDTOConverter;
-import com.dbr.generator.basic.dto.PropertieDTO;
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.model.TypescriptProperty;
 import com.dbr.util.DataTypes;
-import com.dbr.util.resource.ResourceUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,16 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-import javax.validation.constraints.Email;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -154,12 +145,12 @@ public class GeneratorUtil {
         return fields.toArray(new Field[fields.size()]);
     }
 
-    public static List<PropertieDTO> getJavaProperties(Class<?> clazz) {
+    public static List<PropertyDTO> getJavaProperties(Class<?> clazz) {
         return getJavaProperties(clazz, false);
     }
 
-    public static List<PropertieDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
-        List<PropertieDTO> javaProperties = new ArrayList<>();
+    public static List<PropertyDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
+        List<PropertyDTO> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
             javaProperties.add(new JavaField2PropertieDTOConverter().convert(field));
         }
@@ -291,8 +282,8 @@ public class GeneratorUtil {
     }
 
 
-    public static List<PropertieDTO> toJavaProperties(List<PropertieDTO> javaProperties) {
-        List<PropertieDTO> retval = new ArrayList<>();
+    public static List<PropertyDTO> toJavaProperties(List<PropertyDTO> javaProperties) {
+        List<PropertyDTO> retval = new ArrayList<>();
         javaProperties.forEach(csvPropertieDTO -> {
             retval.add(csvPropertieDTO);
         });

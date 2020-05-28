@@ -12,5 +12,5 @@ public class ModelDTO {
     private String packageName;
     private String clazzName;
     private String clazzSimpleName;
-    private List<PropertieDTO> properties = new ArrayList<>();
+    private List<PropertyDTO> properties = new ArrayList<>();
 }

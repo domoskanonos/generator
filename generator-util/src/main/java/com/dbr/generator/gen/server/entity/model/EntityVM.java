@@ -1,8 +1,6 @@
 package com.dbr.generator.gen.server.entity.model;
 
-import com.dbr.generator.basic.converter.JavaField2PropertieDTOConverter;
-import com.dbr.generator.basic.dto.PropertieDTO;
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.*;
@@ -41,15 +39,16 @@ public class EntityVM {
     @ToString
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class EntityProperty extends PropertieDTO {
+    public static class EntityProperty extends PropertyDTO {
         private String columnName;
         private Integer size;
         private boolean primaryKey = false;
         private boolean nullable = true;
         private boolean idClazz = false;
 
-        public EntityProperty(PropertieDTO javaProperty) {
-            super(javaProperty.getName(), javaProperty.getTypeSimpleName());
+        public EntityProperty(PropertyDTO javaProperty) {
+            this.setPropertyType(javaProperty.getPropertyType());
+            this.setName(javaProperty.getName());
             this.columnName = StringUtil.toDatabaseName(javaProperty.getName());
             this.size = javaProperty.getLength();
         }
@@ -67,26 +66,26 @@ public class EntityVM {
             String unique = primaryKey ? ", unique = true" : "";
             String column = "\n    @Column(name = \"" + columnName + "\"" + unique + columnSize + nullableAnnotation
                     + " )";
-            String type = getTypeSimpleName();
-            String oneToMany = GeneratorUtil.isBaseJavaType(type) || (!type.contains("List") && !type.contains("Set"))
+            String type = getPropertyType().getJavaTypeSimpleName();
+            String oneToMany = getPropertyType().isBaseJavaType() || (!type.contains("List") && !type.contains("Set"))
                     ? "" : "\n    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true )";
             return id + column + oneToMany;
         }
 
     }
 
-    public static List<EntityProperty> map(List<PropertieDTO> javaProperties) {
+    public static List<EntityProperty> map(List<PropertyDTO> javaProperties) {
         List<EntityProperty> list = new ArrayList<>();
-        for (PropertieDTO javaProperty : javaProperties) {
+        for (PropertyDTO javaProperty : javaProperties) {
             EntityProperty property = new EntityProperty(javaProperty);
             list.add(property);
         }
         return list;
     }
 
-    public static List<EntityProperty> mapCSV(List<PropertieDTO> javaProperties) {
+    public static List<EntityProperty> mapCSV(List<PropertyDTO> javaProperties) {
         List<EntityProperty> list = new ArrayList<>();
-        for (PropertieDTO javaProperty : javaProperties) {
+        for (PropertyDTO javaProperty : javaProperties) {
             EntityProperty property = new EntityProperty(javaProperty);
             list.add(property);
         }

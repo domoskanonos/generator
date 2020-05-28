@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.test.base.model;
 
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.dto.model.DTOVM;
 import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerBasicVM;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
@@ -27,7 +27,7 @@ public class SpringBootBaseTestVM extends TestVM {
     private String restControllerClazzSimpleName;
     private String restControllerPackageName;
 
-    private List<PropertieDTO> properties;
+    private List<PropertyDTO> properties;
 
     public SpringBootBaseTestVM(String templateName, String testClazzMiddleName, String testPackageSuffix,
             Class<?> entityClazz, String basePackageName) {

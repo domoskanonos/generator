@@ -1,8 +1,6 @@
 package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ModelDTO;
-import com.dbr.generator.basic.dto.PropertieDTO;
-import com.dbr.util.DataTypes;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;

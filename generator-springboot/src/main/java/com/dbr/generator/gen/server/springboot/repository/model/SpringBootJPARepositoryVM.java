@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.server.springboot.repository.model;
 
 import com.dbr.generator.basic.util.GeneratorUtil;
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ public class SpringBootJPARepositoryVM {
     private String idClazz;
     private Boolean generateSinglePropertieQuerys;
     private Boolean generateAllPropertieQuery;
-    private List<PropertieDTO> properties;
+    private List<PropertyDTO> properties;
 
     public SpringBootJPARepositoryVM(String repositoryClazzPackageName, Class<?> clazz) {
         this(repositoryClazzPackageName, clazz.getSimpleName() + REPOSITORY_NAME_SUFFIX, clazz.getPackage().getName(),
                 clazz.getSimpleName(), GeneratorUtil.getIDClazzSimpleName(clazz), true, true, new ArrayList<>());
         GeneratorUtil.getPrimitivesOnly(clazz).forEach(field -> {
-            properties.add(new PropertieDTO(field.getName(), field.getType().getSimpleName()));
+            properties.add(new PropertyDTO(field.getName(), field.getType().getSimpleName()));
         });
     }
 

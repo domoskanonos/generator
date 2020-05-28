@@ -7,8 +7,7 @@ import com.dbr.generator.gen.common.csv.CSVImporterTestGenerator;
 import com.dbr.generator.gen.common.csv.compound.model.CSV2JavaCVM;
 import com.dbr.generator.gen.common.csv.model.CSVClazzVM;
 import com.dbr.generator.gen.common.csv.model.CSVImporterVM;
-import com.dbr.generator.basic.dto.PropertieDTO;
-import com.dbr.generator.basic.dto.PropertieDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
 import com.dbr.generator.gen.server.entity.model.EntityVM;
 import com.dbr.util.StringUtil;
@@ -52,7 +51,7 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
             new CSV2ClazzGenerator(csvClazzVM).writeDown();
         }
 
-        List<PropertieDTO> javaProperties = csvClazzVM.getProperties();
+        List<PropertyDTO> javaProperties = csvClazzVM.getProperties();
         List<EntityVM.EntityProperty> entityProperties = EntityVM.mapCSV(javaProperties);
 
         Integer idColumnIndex = this.cvm.getIdColumnIndex();
@@ -60,7 +59,7 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
             entityProperties.get(idColumnIndex).setPrimaryKey(true);
         } else {
             List<EntityVM.EntityProperty> newEntityProperties = new ArrayList<>();
-            EntityVM.EntityProperty idEntityProperty = new EntityVM.EntityProperty(new PropertieDTO("id", "Long"));
+            EntityVM.EntityProperty idEntityProperty = new EntityVM.EntityProperty(new PropertyDTO("id", "Long"));
             idEntityProperty.setPrimaryKey(true);
             newEntityProperties.add(idEntityProperty);
             newEntityProperties.addAll(entityProperties);
