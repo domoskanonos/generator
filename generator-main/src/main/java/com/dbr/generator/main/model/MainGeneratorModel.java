@@ -29,8 +29,8 @@ public class MainGeneratorModel {
     private Boolean addSpringBootStorageModule = false;
 
     private Boolean useNidocaClient = false;
-    private String nidocaTemplateZipUrl = "https://github.com/domoskanonos/nidoca-template-all/archive/master.zip";
-    private String nidocaTemplateFilename = "nidoca-template-all-master";
+    private String nidocaTemplateZipUrl = "https://github.com/domoskanonos/nidoca-template-dashboard/archive/master.zip";
+    private String nidocaTemplateFilename = "nidoca-template-dashboard-master";
     private String nidocaTemplateZipFilename = new StringBuilder().append(nidocaTemplateFilename).append(".zip")
             .toString();
 
