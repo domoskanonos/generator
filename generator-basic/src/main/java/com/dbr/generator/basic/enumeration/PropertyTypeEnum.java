@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public enum PropertyTypeEnum {
 
@@ -22,7 +23,8 @@ public enum PropertyTypeEnum {
     TYPE_DATE(Date.class),
     TYPE_DATE_ISO8601(Date.class),
     TYPE_ARRAY_STRING(String[].class),
-    LIST(List.class);
+    LIST(List.class),
+    OBJECT(Object.class);
 
     private Class<?> type;
 
@@ -31,11 +33,6 @@ public enum PropertyTypeEnum {
     }
 
     public String getJavaTypeName() {
-
-
-        System.out.println(type.getTypeParameters()[0]);
-
-
         return type.getName();
     }
 
@@ -148,24 +145,25 @@ public enum PropertyTypeEnum {
                 return propertyTypeEnum;
             }
         }
-        return null;
+        return PropertyTypeEnum.OBJECT;
     }
 
-    public static PropertyTypeEnum byTypescriptType(String typescriptType){
+    public static PropertyTypeEnum byTypescriptType(String typescriptType) {
         for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
-            if(propertyTypeEnum.getTypescriptType().equals(typescriptType)){
+            if (propertyTypeEnum.getTypescriptType().equals(typescriptType)) {
                 return propertyTypeEnum;
             }
-        }return null;
+        }
+        return PropertyTypeEnum.OBJECT;
     }
 
     public static PropertyTypeEnum byField(Field source) {
         for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
             Class<?> type = propertyTypeEnum.getType();
-            if (type.getSimpleName().equals(source.getType().getSimpleName())) {
+            if (Objects.equals(type.getSimpleName(), source.getType().getSimpleName())) {
                 return propertyTypeEnum;
             }
         }
-        return null;
+        return PropertyTypeEnum.OBJECT;
     }
 }
