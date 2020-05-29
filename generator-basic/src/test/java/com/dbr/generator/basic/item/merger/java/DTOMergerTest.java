@@ -4,8 +4,8 @@ import com.dbr.generator.basic.BaseTestUtil;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.dto.ItemMergerDTO;
 import com.dbr.generator.basic.item.merger.DTOMerger;
+import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        DTOMerger dtoMerger = new DTOMerger(new ItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO, ItemDTO.class))));
+        DTOMerger dtoMerger = new DTOMerger(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO, ItemDTO.class))));
         String content = dtoMerger.create();
         log.info(content);
         assertNotNull(content);

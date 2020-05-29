@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.project.dto;
 
-import com.dbr.generator.basic.item.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import lombok.Data;
 
 import java.io.File;

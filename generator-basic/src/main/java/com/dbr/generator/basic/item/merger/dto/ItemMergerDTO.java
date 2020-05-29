@@ -1,13 +1,17 @@
-package com.dbr.generator.basic.item.dto;
+package com.dbr.generator.basic.item.merger.dto;
 
+import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.item.merger.enumeration.ItemMergerEnum;
 import lombok.Data;
 
 @Data
 public class ItemMergerDTO {
 
+    private ItemMergerEnum itemMergerEnum;
     private ItemDTO[] objects;
 
-    public ItemMergerDTO(ItemDTO... objects) {
+    public ItemMergerDTO(ItemMergerEnum itemMergerEnum, ItemDTO... objects) {
+        this.itemMergerEnum = itemMergerEnum;
         this.objects = objects;
     }
 

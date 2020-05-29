@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.item.merger;
 
-import com.dbr.generator.basic.item.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 
 public class EntityMerger extends ItemMerger {
     public EntityMerger(ItemMergerDTO dto) {

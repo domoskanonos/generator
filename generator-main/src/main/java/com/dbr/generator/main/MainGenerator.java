@@ -2,7 +2,8 @@ package com.dbr.generator.main;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.dto.ItemConverterDTO;
-import com.dbr.generator.basic.item.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.item.merger.ItemMergerFactory;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -32,7 +33,7 @@ public class MainGenerator {
 
         projectDTO.setUseNidocaClient(false);
 
-        projectDTO.getItemMergerDTOS().add(new ItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ProjectDTO.class))));
+        projectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ProjectDTO.class))));
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(projectDTO);
@@ -41,6 +42,14 @@ public class MainGenerator {
     public void generate(ProjectDTO model) throws IOException, InterruptedException {
 
         model.validate();
+
+
+        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
+            ItemMergerFactory.createMerger(itemMergerDTO).writeDown(new File(model.getProjectFolder(), "XXXX.java").getAbsolutePath());
+        }
+
+        if (true)
+            return;
 
         logger.info("generate project start...");
 
