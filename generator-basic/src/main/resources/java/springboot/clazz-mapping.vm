@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ${firstClazzName};
-import ${secondClazzName};
+import ${model.objects[0].javaClazzName};
+import ${model.objects[1].javaClazzName};
 
 import org.springframework.stereotype.Component;
 
