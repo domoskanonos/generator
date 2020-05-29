@@ -1,10 +1,6 @@
 package com.dbr.generator.basic.util;
 
-import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
-import com.dbr.generator.basic.converter.dto.ConverterDTO;
-import com.dbr.generator.basic.dto.ProjectDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.util.DataTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +9,11 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
-
 import java.io.File;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GeneratorUtil {
@@ -153,7 +150,7 @@ public class GeneratorUtil {
     public static List<PropertyDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
         List<PropertyDTO> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
-            javaProperties.add(new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(new JavaClass2ItemDTOConverter().convert(new ConverterDTO<>(new ProjectDTO(), clazz)), field)));
+            //javaProperties.add(new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(new JavaClass2ItemDTOConverter().convert(new ConverterDTO<>(new ProjectDTO(), clazz)), field)));
         }
         return javaProperties;
     }

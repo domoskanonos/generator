@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.common.csv.model;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.util.DataTypes;
 import com.dbr.util.StringUtil;
 import com.google.common.base.Splitter;

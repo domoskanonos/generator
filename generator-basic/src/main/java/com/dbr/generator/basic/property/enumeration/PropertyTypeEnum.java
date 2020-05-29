@@ -1,6 +1,4 @@
-package com.dbr.generator.basic.enumeration;
-
-import com.dbr.util.DataTypes;
+package com.dbr.generator.basic.property.enumeration;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;

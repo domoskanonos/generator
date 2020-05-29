@@ -1,8 +1,8 @@
 package com.dbr.generator.basic.item.dto;
 
-import com.dbr.generator.basic.dto.ProjectDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.basic.item.generatoraction.ItemGeneratorActionDTO;
+import com.dbr.generator.basic.project.dto.ProjectDTO;
+import com.dbr.generator.basic.item.dto.generatoraction.ItemGeneratorActionDTO;
+import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 

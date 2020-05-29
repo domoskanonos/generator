@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.item.merger;
 
 import com.dbr.generator.basic.item.dto.ItemMergerDTO;
-import com.dbr.generator.basic.merger.TemplateModelMergerInterface;
+import com.dbr.generator.basic.TemplateModelMergerInterface;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;

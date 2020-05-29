@@ -1,10 +1,10 @@
 package com.dbr.generator.main;
 
+import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.converter.dto.ConverterDTO;
+import com.dbr.generator.basic.item.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.dto.ProjectDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.SystemUtil;
 import com.dbr.util.ZipUtil;
@@ -32,9 +32,9 @@ public class MainGenerator {
 
         projectDTO.setUseNidocaClient(false);
 
-        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ProjectDTO.class)));
-        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ItemDTO.class)));
-        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, PropertyDTO.class)));
+        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ProjectDTO.class)));
+        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ItemDTO.class)));
+        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, PropertyDTO.class)));
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(projectDTO);
