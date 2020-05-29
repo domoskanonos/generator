@@ -62,12 +62,20 @@ public class MainGeneratorModel {
         return new File(getSpringBootProjectFolder(), "src/main/java");
     }
 
+    public File getSpringBootProjectTestSourceFolder() {
+        return new File(getSpringBootProjectFolder(), "src/test/java");
+    }
+
     public File getSpringBootProjectResourceFolder() {
         return new File(getSpringBootProjectFolder(), "src/main/resources");
     }
 
     public File getSpringBootProjectSourceBasePackageFolder() {
         return new File(getSpringBootProjectSourceFolder(), getSpringBootProjectGroupId().replaceAll("\\.", "\\/"));
+    }
+
+    public File getSpringBootProjectTestSourceBasePackageFolder() {
+        return new File(getSpringBootProjectTestSourceFolder(), getSpringBootProjectGroupId().replaceAll("\\.", "\\/"));
     }
 
     public File getNidocaTemplateFolder() {
