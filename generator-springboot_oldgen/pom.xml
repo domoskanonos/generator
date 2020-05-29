@@ -9,7 +9,7 @@
         <version>1.0.0</version>
     </parent>
     <groupId>com.dbr.generator</groupId>
-    <artifactId>generator-springboot</artifactId>
+    <artifactId>generator-springboot_oldgen</artifactId>
     <version>1.0.0</version>
 
     <dependencies>

@@ -378,9 +378,6 @@
 
 
     <module>generator-main</module>
-          
-    
-    <module>generator-springboot</module>
       
   </modules>
     
