@@ -4,12 +4,12 @@ import com.dbr.generator.gen.CompoundAbstractGenerator;
 import com.dbr.generator.gen.common.csv.CSV2ClazzGenerator;
 import com.dbr.generator.gen.common.csv.CSVImporterGenerator;
 import com.dbr.generator.gen.common.csv.CSVImporterTestGenerator;
-import com.dbr.generator.gen.common.csv.compound.model.CSV2JavaCVM;
-import com.dbr.generator.gen.common.csv.model.CSVClazzVM;
-import com.dbr.generator.gen.common.csv.model.CSVImporterVM;
+import com.dbr.generator.gen.common.csv.compound.model[0].CSV2JavaCVM;
+import com.dbr.generator.gen.common.csv.model[0].CSVClazzVM;
+import com.dbr.generator.gen.common.csv.model[0].CSVImporterVM;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
-import com.dbr.generator.gen.server.entity.model.EntityVM;
+import com.dbr.generator.gen.server.entity.model[0].EntityVM;
 import com.dbr.util.StringUtil;
 
 import java.io.File;
@@ -47,7 +47,7 @@ public class CSV2JavaCompoundGenerator extends CompoundAbstractGenerator {
         CSVClazzVM csvClazzVM = new CSVClazzVM(dtoClazzPackageName, dtoClazzSimpleName, content, columnSplit, rowSplit,
                 withHeaderRow);
         if (this.cvm.isGenerateModel()) {
-            log.info("generate model...");
+            log.info("generate model[0]...");
             new CSV2ClazzGenerator(csvClazzVM).writeDown();
         }
 

@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.test.base;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.springboot.test.base.model.SpringBootBaseTestVM;
+import com.dbr.generator.gen.server.springboot.test.base.model[0].SpringBootBaseTestVM;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;

@@ -1,9 +1,9 @@
 package com.dbr.generator.gen.server.springboot.csv;
 
 import com.dbr.generator.gen.CompoundAbstractGenerator;
-import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVCVM;
-import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVRestControllerVM;
-import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVServiceVM;
+import com.dbr.generator.gen.server.springboot.csv.model[0].SpringBootCSVCVM;
+import com.dbr.generator.gen.server.springboot.csv.model[0].SpringBootCSVRestControllerVM;
+import com.dbr.generator.gen.server.springboot.csv.model[0].SpringBootCSVServiceVM;
 import com.dbr.util.StringUtil;
 
 public class SpringBootCSVCompoundGenerator extends CompoundAbstractGenerator {
@@ -17,14 +17,14 @@ public class SpringBootCSVCompoundGenerator extends CompoundAbstractGenerator {
     }
 
     public SpringBootCSVCompoundGenerator(SpringBootCSVCVM model) {
-        super(model.getBasePackageName());
+        super(model[0].getBasePackageName());
         this.model = model;
     }
 
     @Override
     public void writeDown() throws Exception {
 
-        String clazzSimpleBaseName = this.model.getClazzSimpleBaseName();
+        String clazzSimpleBaseName = this.model[0].getClazzSimpleBaseName();
         String serviceClazzSimpleName = String.format("%sCSVService", clazzSimpleBaseName);
         String servicePackageName = String.format("%s.service", getBasePackageName());
         String csvImporterPackageName = String.format("%s.csv", getBasePackageName());

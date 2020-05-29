@@ -1,11 +1,11 @@
 package com.dbr.generator.gen.server.db;
 
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
-import com.dbr.generator.gen.server.db.model.Column;
-import com.dbr.generator.gen.server.db.model.PrimaryKey;
-import com.dbr.generator.gen.server.db.model.TableVM;
+import com.dbr.generator.gen.server.db.model[0].Column;
+import com.dbr.generator.gen.server.db.model[0].PrimaryKey;
+import com.dbr.generator.gen.server.db.model[0].TableVM;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
-import com.dbr.generator.gen.server.entity.model.EntityVM;
+import com.dbr.generator.gen.server.entity.model[0].EntityVM;
 import com.dbr.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

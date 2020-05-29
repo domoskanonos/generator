@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript.compound.model;
 
-import com.dbr.generator.gen.client.typescript.model.ClazzTypescriptWrapper;
+import com.dbr.generator.gen.client.typescript.model[0].ClazzTypescriptWrapper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;

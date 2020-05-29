@@ -1,4 +1,4 @@
-package ${model.javaPackageName};
+package ${model[0].javaPackageName};
 
 import lombok.*;
 
@@ -12,10 +12,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public class ${model.javaIdClassName} implements Serializable {
+public class ${model[0].javaIdClassName} implements Serializable {
 
-    #foreach( $columnReference in $model.columnReferences )
-        #set( $importedKeyReference = $model.getImportedKeyReference($columnReference) )
+    #foreach( $columnReference in $model[0].columnReferences )
+        #set( $importedKeyReference = $model[0].getImportedKeyReference($columnReference) )
         #if(${importedKeyReference})
         @ManyToOne
         @JoinColumn(name ="${importedKeyReference.fkColumnName}")

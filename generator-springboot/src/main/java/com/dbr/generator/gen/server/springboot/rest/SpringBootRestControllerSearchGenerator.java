@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.rest;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerSearchVM;
+import com.dbr.generator.gen.server.springboot.rest.model[0].SpringBootRestControllerSearchVM;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;

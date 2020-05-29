@@ -1,8 +1,8 @@
 package com.dbr.generator.gen.server.springboot.test.base.service;
 
-import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
+import com.dbr.generator.gen.server.springboot.service.jpa.model[0].SpringBootJPAServiceBasicVM;
 import com.dbr.generator.gen.server.springboot.test.base.SpringBootTestGenerator;
-import com.dbr.generator.gen.server.springboot.test.base.model.SpringBootBaseTestVM;
+import com.dbr.generator.gen.server.springboot.test.base.model[0].SpringBootBaseTestVM;
 
 public class SpringBootServiceSearchTestGenerator extends SpringBootTestGenerator {
 

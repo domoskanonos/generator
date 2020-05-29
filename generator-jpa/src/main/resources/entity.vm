@@ -1,36 +1,36 @@
-package ${model.javaPackageName};
+package ${model[0].javaPackageName};
 
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "${model.tableReference.tableName}"#if(${model.tableReference.tableCat}), catalog="${model.tableReference.tableCat}"#end#if(${model.tableReference.tableSchema}), schema="${model.tableReference.tableSchema}"#end)
+@Table(name = "${model[0].tableReference.tableName}"#if(${model[0].tableReference.tableCat}), catalog="${model[0].tableReference.tableCat}"#end#if(${model[0].tableReference.tableSchema}), schema="${model[0].tableReference.tableSchema}"#end)
 @Data
 @ToString
 @Builder(toBuilder = true)
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-#if(${model.associationOverrides})
+#if(${model[0].associationOverrides})
 @AssociationOverrides({
-    #foreach( $columnImportedReference in $model.columnImportedKeyReferencesIdFields )
+    #foreach( $columnImportedReference in $model[0].columnImportedKeyReferencesIdFields )
         @AssociationOverride(name = "id.${columnImportedReference.javaPkFieldName}",
                 joinColumns = @JoinColumn(name = "${columnImportedReference.fkColumnName}")),
     #end
 })
 #end
-public class ${model.javaClassName} {
+public class ${model[0].javaClassName} {
 
-    #if(${model.idClazz})
+    #if(${model[0].idClazz})
     @EmbeddedId
-    ${model.javaIdClassName} id;
+    ${model[0].javaIdClassName} id;
     
     #end
-    #foreach( $columnReference in $model.columnReferencesFiltered )
-    #if(${model.isIdColumn($columnReference)})
+    #foreach( $columnReference in $model[0].columnReferencesFiltered )
+    #if(${model[0].isIdColumn($columnReference)})
     @Id
-    #if(${model.generateIdAnnotation})
+    #if(${model[0].generateIdAnnotation})
     @GeneratedValue(strategy = GenerationType.AUTO)
     #end
     #end

@@ -1,9 +1,9 @@
 package com.dbr.generator.gen.server.springboot.test.base.model;
 
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.gen.server.dto.model.DTOVM;
-import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerBasicVM;
-import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
+import com.dbr.generator.gen.server.dto.model[0].DTOVM;
+import com.dbr.generator.gen.server.springboot.rest.model[0].SpringBootRestControllerBasicVM;
+import com.dbr.generator.gen.server.springboot.service.jpa.model[0].SpringBootJPAServiceBasicVM;
 import com.dbr.generator.gen.server.springboot.test.TestVM;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.Data;

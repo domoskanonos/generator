@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.client.typescript;
 
 import com.dbr.generator.basic.util.VelocityUtil;
-import com.dbr.generator.gen.client.typescript.model.RemoteServiceVM;
+import com.dbr.generator.gen.client.typescript.model[0].RemoteServiceVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.apache.velocity.Template;
@@ -23,7 +23,7 @@ public class RemoteServiceGenerator extends BasicTypescriptGenerator {
 
     public void writeDown() throws Exception {
         this.typescriptSuffixPath = "service/";
-        writeDown(model.getFilename(), create());
+        writeDown(model[0].getFilename(), create());
     }
 
     public String create() throws Exception {
@@ -32,7 +32,7 @@ public class RemoteServiceGenerator extends BasicTypescriptGenerator {
         Template t = velocityEngine.getTemplate("client/typescript/remote-service.vm");
         VelocityContext context = new VelocityContext();
 
-        context.put("remoteServiceName", model.getRemoteServiceName());
+        context.put("remoteServiceName", model[0].getRemoteServiceName());
 
         StringWriter writer = new StringWriter();
         t.merge(context, writer);

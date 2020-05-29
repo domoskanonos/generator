@@ -1,8 +1,8 @@
 package com.dbr.generator.gen.server.springboot.modules.secure;
 
 import com.dbr.generator.gen.server.springboot.modules.AbstractModuleGenerator;
-import com.dbr.generator.gen.server.springboot.modules.model.ModulItem;
-import com.dbr.generator.gen.server.springboot.modules.model.ResourceItem;
+import com.dbr.generator.gen.server.springboot.modules.model[0].ModulItem;
+import com.dbr.generator.gen.server.springboot.modules.model[0].ResourceItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;

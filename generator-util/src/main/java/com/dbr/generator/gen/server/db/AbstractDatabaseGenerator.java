@@ -1,10 +1,10 @@
 package com.dbr.generator.gen.server.db;
 
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.db.model.Column;
-import com.dbr.generator.gen.server.db.model.Database;
-import com.dbr.generator.gen.server.db.model.PrimaryKey;
-import com.dbr.generator.gen.server.db.model.TableVM;
+import com.dbr.generator.gen.server.db.model[0].Column;
+import com.dbr.generator.gen.server.db.model[0].Database;
+import com.dbr.generator.gen.server.db.model[0].PrimaryKey;
+import com.dbr.generator.gen.server.db.model[0].TableVM;
 
 import java.sql.*;
 import java.util.ArrayList;

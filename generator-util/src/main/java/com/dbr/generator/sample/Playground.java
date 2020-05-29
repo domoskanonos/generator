@@ -1,12 +1,12 @@
 package com.dbr.generator.sample;
 
 import com.dbr.generator.gen.server.db.TableGenerator;
-import com.dbr.generator.gen.server.db.model.Database;
-import com.dbr.generator.gen.server.db.model.TableVM;
+import com.dbr.generator.gen.server.db.model[0].Database;
+import com.dbr.generator.gen.server.db.model[0].TableVM;
 import com.dbr.generator.gen.server.dto.DTOGenerator;
-import com.dbr.generator.gen.server.dto.model.DTOVM;
+import com.dbr.generator.gen.server.dto.model[0].DTOVM;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
-import com.dbr.generator.gen.server.entity.model.EntityVM;
+import com.dbr.generator.gen.server.entity.model[0].EntityVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import com.dbr.generator.sample.entity.UserEntity;
 import org.slf4j.Logger;

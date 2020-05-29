@@ -3,7 +3,7 @@ package com.dbr.generator.gen.server.springboot.crud;
 import com.dbr.generator.gen.CompoundAbstractGenerator;
 import com.dbr.generator.gen.server.dto.DTOGenerator;
 import com.dbr.generator.gen.server.mapping.ClazzMappingGenerator;
-import com.dbr.generator.gen.server.springboot.crud.model.SpringBootCRUDCVM;
+import com.dbr.generator.gen.server.springboot.crud.model[0].SpringBootCRUDCVM;
 import com.dbr.generator.gen.server.springboot.repository.SpringBootJPARepositoryGenerator;
 import com.dbr.generator.gen.server.springboot.rest.SpringBootRestControllerBasicGenerator;
 import com.dbr.generator.gen.server.springboot.service.jpa.SpringBootJPAServiceBasicGenerator;

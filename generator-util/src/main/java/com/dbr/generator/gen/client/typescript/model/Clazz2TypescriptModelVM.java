@@ -15,7 +15,7 @@ public class Clazz2TypescriptModelVM extends TypescriptBaseVM {
 
     public Clazz2TypescriptModelVM(Class<?> modelClazz, String modelName) {
         super(modelClazz, modelName);
-        this.filename = String.format("%s-model.ts", this.getModelName().toLowerCase());
+        this.filename = String.format("%s-model[0].ts", this.getModelName().toLowerCase());
     }
 
 }

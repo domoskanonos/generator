@@ -1,4 +1,4 @@
-package ${model.projectDTO.javaPackageName};
+package ${model[0].projectDTO.javaPackageName};
 
 import lombok.*;
 
@@ -11,9 +11,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder=true)
-public class ${model.clazzSimpleName} {
+public class ${model[0].clazzSimpleName} {
 
-#foreach( $property in $model.properties )
+#foreach( $property in $model[0].properties )
     private ${property.propertyType.javaTypeSimpleName} ${property.name};
 #end
 

@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript.model;
 
-import com.dbr.generator.gen.client.typescript.compound.model.TypescriptClientCVM;
+import com.dbr.generator.gen.client.typescript.compound.model[0].TypescriptClientCVM;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;

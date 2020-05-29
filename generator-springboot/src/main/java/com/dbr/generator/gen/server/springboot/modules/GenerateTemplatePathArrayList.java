@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.modules;
 
-import com.dbr.generator.gen.server.springboot.modules.model.ModulItem;
+import com.dbr.generator.gen.server.springboot.modules.model[0].ModulItem;
 import com.dbr.util.resource.ResourceUtil;
 
 import java.io.File;

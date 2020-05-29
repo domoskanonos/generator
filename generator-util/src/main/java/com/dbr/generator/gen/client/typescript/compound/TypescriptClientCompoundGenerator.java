@@ -1,11 +1,11 @@
 package com.dbr.generator.gen.client.typescript.compound;
 
 import com.dbr.generator.gen.client.i18n.I18nJSONGenerator;
-import com.dbr.generator.gen.client.i18n.model.I18nVM;
-import com.dbr.generator.basic.model.KeyValue;
+import com.dbr.generator.gen.client.i18n.model[0].I18nVM;
+import com.dbr.generator.basic.model[0].KeyValue;
 import com.dbr.generator.gen.client.typescript.*;
-import com.dbr.generator.gen.client.typescript.compound.model.TypescriptClientCVM;
-import com.dbr.generator.gen.client.typescript.model.*;
+import com.dbr.generator.gen.client.typescript.compound.model[0].TypescriptClientCVM;
+import com.dbr.generator.gen.client.typescript.model[0].*;
 import com.dbr.generator.sample.dto.UserDTO;
 
 import java.io.File;

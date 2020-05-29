@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.client.typescript;
 
 import com.dbr.generator.basic.util.VelocityUtil;
-import com.dbr.generator.gen.client.typescript.model.RemoteRepositoryVM;
+import com.dbr.generator.gen.client.typescript.model[0].RemoteRepositoryVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.apache.velocity.Template;
@@ -23,7 +23,7 @@ public class RemoteRepositoryGenerator extends BasicTypescriptGenerator {
 
     public void writeDown() throws Exception {
         this.typescriptSuffixPath = "repo/";
-        writeDown(model.getFilename(), create());
+        writeDown(model[0].getFilename(), create());
     }
 
     public String create() throws Exception {
@@ -32,11 +32,11 @@ public class RemoteRepositoryGenerator extends BasicTypescriptGenerator {
         Template t = velocityEngine.getTemplate("client/typescript/remote-repository.vm");
         VelocityContext context = new VelocityContext();
 
-        context.put("idClazz", model.getIdClazz());
-        context.put("remoteRepositoryName", model.getRemoteRepositoryName());
-        context.put("modelName", model.getModelName());
-        context.put("modelPath", model.getModelPath());
-        context.put("restPath", String.format("/%s", model.getModelName().toUpperCase()));
+        context.put("idClazz", model[0].getIdClazz());
+        context.put("remoteRepositoryName", model[0].getRemoteRepositoryName());
+        context.put("modelName", model[0].getModelName());
+        context.put("modelPath", model[0].getModelPath());
+        context.put("restPath", String.format("/%s", model[0].getModelName().toUpperCase()));
 
         StringWriter writer = new StringWriter();
         t.merge(context, writer);

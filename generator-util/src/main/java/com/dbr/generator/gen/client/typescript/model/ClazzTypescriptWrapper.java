@@ -2,8 +2,8 @@ package com.dbr.generator.gen.client.typescript.model;
 
 import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.gen.client.i18n.model.I18nVM;
-import com.dbr.generator.basic.model.KeyValue;
+import com.dbr.generator.gen.client.i18n.model[0].I18nVM;
+import com.dbr.generator.basic.model[0].KeyValue;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;

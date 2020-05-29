@@ -2,7 +2,7 @@ package com.dbr.generator.gen.pom;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGenerator;
-import com.dbr.generator.gen.pom.model.PomVM;
+import com.dbr.generator.gen.pom.model[0].PomVM;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -24,15 +24,15 @@ public class PomGenerator extends AbstractGenerator {
         Template t = velocityEngine.getTemplate("pom.vm");
         VelocityContext context = new VelocityContext();
 
-        context.put("groupId", this.model.getGroupId());
-        context.put("artifactId", this.model.getArtifactId());
-        context.put("version", this.model.getVersion());
-        context.put("name", this.model.getName());
-        context.put("url", this.model.getUrl());
-        context.put("encoding", this.model.getEncoding());
-        context.put("javaVersionSource", this.model.getJavaVersionSource());
-        context.put("javaVersionTarget", this.model.getJavaVersionTarget());
-        context.put("dependencys", this.model.getDependencys());
+        context.put("groupId", this.model[0].getGroupId());
+        context.put("artifactId", this.model[0].getArtifactId());
+        context.put("version", this.model[0].getVersion());
+        context.put("name", this.model[0].getName());
+        context.put("url", this.model[0].getUrl());
+        context.put("encoding", this.model[0].getEncoding());
+        context.put("javaVersionSource", this.model[0].getJavaVersionSource());
+        context.put("javaVersionTarget", this.model[0].getJavaVersionTarget());
+        context.put("dependencys", this.model[0].getDependencys());
 
         StringWriter writer = new StringWriter();
         t.merge(context, writer);

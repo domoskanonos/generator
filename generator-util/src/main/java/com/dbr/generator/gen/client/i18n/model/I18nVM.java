@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.i18n.model;
 
-import com.dbr.generator.basic.model.KeyValue;
+import com.dbr.generator.basic.model[0].KeyValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
