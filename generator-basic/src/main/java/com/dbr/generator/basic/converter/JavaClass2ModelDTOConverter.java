@@ -22,7 +22,7 @@ public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDT
         ProjectDTO projectDTO = converterDTO.getParent();
         itemDTO.setProjectDTO(projectDTO);
         itemDTO.setJavaClazzSimpleName(getClazzSimpleName(converterDTO.getSource()));
-        itemDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaPackageName(), itemDTO.getJavaClazzSimpleName()));
+        itemDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaBasePackage(), itemDTO.getJavaClazzSimpleName()));
         for (Field field : converterDTO.getSource().getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(itemDTO, field));
             itemDTO.getProperties().add(propertyDTO);

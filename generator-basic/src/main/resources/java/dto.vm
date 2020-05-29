@@ -1,4 +1,4 @@
-package ${model.objects[0].projectDTO.javaPackageName};
+package ${model.objects[0].projectDTO.javaBasePackage};
 
 import lombok.*;
 

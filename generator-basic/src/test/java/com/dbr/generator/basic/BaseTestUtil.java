@@ -6,6 +6,6 @@ public class BaseTestUtil {
     public static ProjectDTO projectDTO = new ProjectDTO();
 
     static {
-        projectDTO.setJavaPackageName("com.dbr.generator.test");
+        projectDTO.setJavaBasePackage("com.dbr.generator.test");
     }
 }

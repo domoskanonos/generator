@@ -1,7 +1,7 @@
 package com.dbr.generator.main;
 
+import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
-import com.dbr.generator.main.model.MainGeneratorModel;
 import com.dbr.util.SystemUtil;
 import com.dbr.util.ZipUtil;
 import org.apache.commons.io.FileUtils;
@@ -17,22 +17,22 @@ public class MainGenerator {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        MainGeneratorModel mainGeneratorModel = new MainGeneratorModel();
-        mainGeneratorModel.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
-        mainGeneratorModel.setRootFolder(new File("C:\\_dev\\vhs"));
-        mainGeneratorModel.setTechnicalDescriptor("generator");
-        mainGeneratorModel.setProjectJavaPackageBaseName("com.dbr.generator");
+        ProjectDTO projectDTO = new ProjectDTO();
+        projectDTO.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
+        projectDTO.setRootFolder(new File("C:\\_dev\\vhs"));
+        projectDTO.setTechnicalDescriptor("generator");
+        projectDTO.setJavaBasePackage("com.dbr.generator");
 
-        mainGeneratorModel.setUseSpringBootTemplate(true);
-        mainGeneratorModel.setAddSpringBootSecurityModule(false);
+        projectDTO.setUseSpringBootTemplate(true);
+        projectDTO.setAddSpringBootSecurityModule(false);
 
-        mainGeneratorModel.setUseNidocaClient(false);
+        projectDTO.setUseNidocaClient(false);
 
         MainGenerator mainGenerator = new MainGenerator();
-        mainGenerator.generate(mainGeneratorModel);
+        mainGenerator.generate(projectDTO);
     }
 
-    public void generate(MainGeneratorModel model) throws IOException, InterruptedException {
+    public void generate(ProjectDTO model) throws IOException, InterruptedException {
 
         model.validate();
 

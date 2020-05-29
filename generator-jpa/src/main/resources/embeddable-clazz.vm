@@ -1,4 +1,4 @@
-package ${model.javaPackageName};
+package ${model.javaBasePackage};
 
 import lombok.*;
 
