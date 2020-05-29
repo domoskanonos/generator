@@ -54,7 +54,7 @@ export abstract class DefaultPage extends NidocaTemplate {
                )}"
                href="dashboard"
             ></nidoca-navigation-link>
-            #if(${model[0].typescriptClientCVM.generateSecurityModule})
+            #if(${model.typescriptClientCVM.generateSecurityModule})
             <nidoca-navigation-section slot="links" text="$escapeDollar{I18nService.getUniqueInstance().getValue("section_membership")}"></nidoca-navigation-section>
              <nidoca-navigation-link
                slot="links"
@@ -97,7 +97,7 @@ export abstract class DefaultPage extends NidocaTemplate {
                     slot="links"
                     text="$escapeDollar{I18nService.getUniqueInstance().getValue("section_search")}"
             ></nidoca-navigation-section>
-            #foreach( $clazzTypescriptWrapper in $model[0].clazzTypescriptWrappers )
+            #foreach( $clazzTypescriptWrapper in $model.clazzTypescriptWrappers )
             #if(${clazzTypescriptWrapper.getIdFieldName()})
             <nidoca-navigation-link
                slot="links"
@@ -113,7 +113,7 @@ export abstract class DefaultPage extends NidocaTemplate {
                  slot="links"
                  text="$escapeDollar{I18nService.getUniqueInstance().getValue("section_add")}"
             ></nidoca-navigation-section>
-            #foreach( $clazzTypescriptWrapper in $model[0].clazzTypescriptWrappers )
+            #foreach( $clazzTypescriptWrapper in $model.clazzTypescriptWrappers )
             #if(${clazzTypescriptWrapper.getIdFieldName()})
              <nidoca-navigation-link
                slot="links"
@@ -133,7 +133,7 @@ export abstract class DefaultPage extends NidocaTemplate {
                )}"
                href="settings"
             ></nidoca-navigation-link>
-            #if(${model[0].typescriptClientCVM.generateTermsOfUse})
+            #if(${model.typescriptClientCVM.generateTermsOfUse})
             <nidoca-navigation-link
                slot="links"
                icon="format_list_numbered"

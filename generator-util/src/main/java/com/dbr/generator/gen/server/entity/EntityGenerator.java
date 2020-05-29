@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.entity;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.entity.model[0].EntityVM;
+import com.dbr.generator.gen.server.entity.model.EntityVM;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;

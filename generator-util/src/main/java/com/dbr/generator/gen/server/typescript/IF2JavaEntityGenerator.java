@@ -3,7 +3,7 @@ package com.dbr.generator.gen.server.typescript;
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
-import com.dbr.generator.gen.server.entity.model[0].EntityVM;
+import com.dbr.generator.gen.server.entity.model.EntityVM;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 import lombok.ToString;

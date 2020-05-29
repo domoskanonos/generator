@@ -1,7 +1,7 @@
 package com.dbr.generator.main;
 
 import com.dbr.generator.basic.util.GeneratorUtil;
-import com.dbr.generator.main.model[0].MainGeneratorModel;
+import com.dbr.generator.main.model.MainGeneratorModel;
 import com.dbr.util.SystemUtil;
 import com.dbr.util.ZipUtil;
 import org.apache.commons.io.FileUtils;
@@ -34,48 +34,48 @@ public class MainGenerator {
 
     public void generate(MainGeneratorModel model) throws IOException, InterruptedException {
 
-        model[0].validate();
+        model.validate();
 
         logger.info("generate project start...");
 
-        GeneratorUtil.makeDir(model[0].getTempFolder());
-        GeneratorUtil.makeDir(model[0].getRootFolder());
-        GeneratorUtil.makeDir(model[0].getProjectFolder());
+        GeneratorUtil.makeDir(model.getTempFolder());
+        GeneratorUtil.makeDir(model.getRootFolder());
+        GeneratorUtil.makeDir(model.getProjectFolder());
 
-        if (model[0].getUseSpringBootTemplate()) {
-            deleteFile(model[0].getSpringBootProjectFolder());
-            File springBootZipFile = copyUrlToTempFolder(model[0].getSpringBootTemplateZipUrl(),
-                    model[0].getSpringBootTemplateZipFile());
-            unzipFile(springBootZipFile, model[0].getTempFolder());
-            createMavenArchetype(model[0].getSpringBootTemplateFolder());
-            createFromArchetype(model[0].getProjectFolder(), model[0].getSpringBootProjectArtifactId(),
-                    model[0].getSpringBootProjectGroupId(), model[0].getSpringBootArchetypeArtifactId(),
-                    model[0].getSpringBootGroupId());
+        if (model.getUseSpringBootTemplate()) {
+            deleteFile(model.getSpringBootProjectFolder());
+            File springBootZipFile = copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
+                    model.getSpringBootTemplateZipFile());
+            unzipFile(springBootZipFile, model.getTempFolder());
+            createMavenArchetype(model.getSpringBootTemplateFolder());
+            createFromArchetype(model.getProjectFolder(), model.getSpringBootProjectArtifactId(),
+                    model.getSpringBootProjectGroupId(), model.getSpringBootArchetypeArtifactId(),
+                    model.getSpringBootGroupId());
 
-            if (!model[0].getAddSpringBootMailRestController()) {
-                deleteFile(new File(model[0].getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
+            if (!model.getAddSpringBootMailRestController()) {
+                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
             }
 
-            if (!model[0].getAddSpringBootSecurityModule()) {
-                deleteFile(new File(model[0].getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
-                deleteFile(new File(model[0].getSpringBootProjectResourceFolder(), "mail"));
-                deleteFile(new File(model[0].getSpringBootProjectResourceFolder(), "public/login.html"));
-                deleteFile(new File(model[0].getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
+            if (!model.getAddSpringBootSecurityModule()) {
+                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "mail"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
             }
 
-            if (!model[0].getAddSpringBootStorageModule()) {
-                deleteFile(new File(model[0].getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
-                deleteFile(new File(model[0].getSpringBootProjectResourceFolder(), "upload.properties"));
+            if (!model.getAddSpringBootStorageModule()) {
+                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
+                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
             }
 
         }
 
-        if (model[0].getUseNidocaClient()) {
-            deleteFile(model[0].getNidocaProjectFolder());
-            File nidocaTemplateZipFile = copyUrlToTempFolder(model[0].getNidocaTemplateZipUrl(),
-                    model[0].getNidocaTemplateZipFile());
-            unzipFile(nidocaTemplateZipFile, model[0].getProjectFolder());
-            FileUtils.moveDirectory(new File(model[0].getProjectFolder(), model[0].getNidocaTemplateFilename()), model[0].getNidocaProjectFolder());
+        if (model.getUseNidocaClient()) {
+            deleteFile(model.getNidocaProjectFolder());
+            File nidocaTemplateZipFile = copyUrlToTempFolder(model.getNidocaTemplateZipUrl(),
+                    model.getNidocaTemplateZipFile());
+            unzipFile(nidocaTemplateZipFile, model.getProjectFolder());
+            FileUtils.moveDirectory(new File(model.getProjectFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
         }
 
 

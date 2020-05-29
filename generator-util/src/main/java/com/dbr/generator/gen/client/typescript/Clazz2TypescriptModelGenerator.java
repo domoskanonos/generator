@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.client.typescript;
 
 import com.dbr.generator.basic.util.VelocityUtil;
-import com.dbr.generator.gen.client.typescript.model[0].Clazz2TypescriptModelVM;
+import com.dbr.generator.gen.client.typescript.model.Clazz2TypescriptModelVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import org.apache.velocity.Template;
@@ -23,17 +23,17 @@ public class Clazz2TypescriptModelGenerator extends BasicTypescriptGenerator {
 
     public void writeDown() throws Exception {
         this.typescriptSuffixPath = "model/";
-        writeDown(model[0].getFilename(), create());
+        writeDown(model.getFilename(), create());
     }
 
     public String create() throws Exception {
 
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
-        Template t = velocityEngine.getTemplate("client/typescript/clazz-2-typescript-model[0].vm");
+        Template t = velocityEngine.getTemplate("client/typescript/clazz-2-typescript-model.vm");
 
         VelocityContext context = new VelocityContext();
-        context.put("modelName", this.model[0].getModelName());
-        context.put("properties", this.model[0].getProperties());
+        context.put("modelName", this.model.getModelName());
+        context.put("properties", this.model.getProperties());
 
         StringWriter writer = new StringWriter();
         t.merge(context, writer);

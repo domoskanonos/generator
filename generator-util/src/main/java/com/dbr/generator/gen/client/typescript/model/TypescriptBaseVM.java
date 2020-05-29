@@ -1,6 +1,9 @@
 package com.dbr.generator.gen.client.typescript.model;
 
 import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
+import com.dbr.generator.basic.dto.ConverterDTO;
+import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import lombok.AllArgsConstructor;
@@ -26,7 +29,7 @@ public class TypescriptBaseVM {
         this.modelClazz = modelClazz;
         this.modelName = modelName;
         this.modelPath = String.format("../model/%s-model", this.modelName.toLowerCase());
-        this.properties = new JavaField2PropertyDTOConverter().convert(Arrays.asList(modelClazz.getDeclaredFields()));
+       // this.properties = new JavaField2PropertyDTOConverter().convert(new ConverterDTO(new ObjectDTO(), Arrays.asList(modelClazz.getDeclaredFields())));
     }
 
 }

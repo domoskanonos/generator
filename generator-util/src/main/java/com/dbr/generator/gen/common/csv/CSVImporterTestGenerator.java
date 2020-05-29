@@ -2,7 +2,7 @@ package com.dbr.generator.gen.common.csv;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.common.csv.model[0].CSVImporterVM;
+import com.dbr.generator.gen.common.csv.model.CSVImporterVM;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;

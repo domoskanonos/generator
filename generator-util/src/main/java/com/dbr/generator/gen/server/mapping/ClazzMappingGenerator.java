@@ -3,7 +3,7 @@ package com.dbr.generator.gen.server.mapping;
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.gen.server.mapping.model[0].ClazzMappingVM;
+import com.dbr.generator.gen.server.mapping.model.ClazzMappingVM;
 import com.dbr.generator.sample.dto.UserDTO;
 import com.dbr.generator.sample.entity.UserEntity;
 import com.dbr.util.StringUtil;

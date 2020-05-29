@@ -18,7 +18,7 @@ export class PageService {
         let currentPage = RouterService.getUniqueInstance().getCurrentPage();
         console.log('render page: '.concat(currentPage));
         switch (currentPage) {
-            #foreach( $clazzTypescriptWrapper in $model[0].clazzTypescriptWrappers)
+            #foreach( $clazzTypescriptWrapper in $model.clazzTypescriptWrappers)
             case '${clazzTypescriptWrapper.getModelEditPageUrl()}':
             return html`
             <${clazzTypescriptWrapper.getEditPageTagName()}></${clazzTypescriptWrapper.getEditPageTagName()}>
@@ -36,7 +36,7 @@ export class PageService {
                   )}"
                ></page-settings>
             `;
-            #if(${model[0].typescriptClientCVM.generateSecurityModule})
+            #if(${model.typescriptClientCVM.generateSecurityModule})
             case 'register':
             return html`
             <page-register
@@ -87,7 +87,7 @@ export class PageService {
             `;
             #end
 
-            #if(${model[0].typescriptClientCVM.generateTermsOfUse})
+            #if(${model.typescriptClientCVM.generateTermsOfUse})
             case 'terms_of_use':
             return html`
             <page-terms-of-use
