@@ -18,7 +18,7 @@ public class ProjectDTO {
 
     private String javaBasePackage;
 
-    private List<ItemDTO> objects = new ArrayList<>();
+    private List<ItemDTO> itemDTOS = new ArrayList<>();
 
     private Boolean useSpringBootTemplate = false;
     private String springBootTemplateZipUrl = "https://github.com/domoskanonos/spring-boot-template/archive/master.zip";

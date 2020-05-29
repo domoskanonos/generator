@@ -32,9 +32,9 @@ public class MainGenerator {
 
         projectDTO.setUseNidocaClient(false);
 
-        projectDTO.getObjects().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ProjectDTO.class)));
-        projectDTO.getObjects().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ItemDTO.class)));
-        projectDTO.getObjects().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, PropertyDTO.class)));
+        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ProjectDTO.class)));
+        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ItemDTO.class)));
+        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, PropertyDTO.class)));
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(projectDTO);
