@@ -1,4 +1,4 @@
-package ${packageName};
+package ${model.javaMappingClazzPackageName};
 
 import java.util.Collection;
 import java.util.List;

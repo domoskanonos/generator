@@ -25,6 +25,6 @@ public class MappingClazzMergerTest {
         String content = mappingClazzMerger.create(new ItemMergerDTO(itemDTO1, itemDTO2));
         log.info(content);
         assertNotNull(content);
-        //assertFalse(content.contains("${"));
+        assertFalse(content.contains("${"));
     }
 }
