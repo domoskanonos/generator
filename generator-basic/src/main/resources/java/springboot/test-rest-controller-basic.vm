@@ -1,0 +1,195 @@
+package ${packageName};
+
+import ${dtoClazzName};
+import ${restControllerClazzName};
+import ${serviceClazzName};
+
+
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@ActiveProfiles("disable-security")
+public class ${clazzSimpleName} {
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Autowired
+    ${serviceClazzSimpleName} service;
+
+     /**
+     * save a <code>{@link ${dtoClazzSimpleName}}</code> object to database via restController call.
+     * check, if result size of <code>{@link ${dtoClazzSimpleName}}</code> objects increased by 1.
+     */
+    @Test
+    public void test1saveAndCheckCount() {
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
+        #end
+        #end
+
+        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
+        #end
+        #end
+
+        ResponseEntity<${dtoClazzSimpleName}> responseEntity = restTemplate
+                .postForEntity(${restControllerClazzSimpleName}.PATH_PREFIX, dto, ${dtoClazzSimpleName}.class);
+
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
+        dto = responseEntity.getBody();
+        assertThat(dto).isNotNull();
+        assertThat(dto.getId()).isNotNull();
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        assertThat(dto.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
+        #end
+        #end
+
+        ResponseEntity<List<${dtoClazzSimpleName}>> response = restTemplate.exchange(
+                ${restControllerClazzSimpleName}.PATH_PREFIX,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<${dtoClazzSimpleName}>>() {
+                });
+        List<${dtoClazzSimpleName}> dtos = response.getBody();
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+    }
+
+    /**
+     * get the first <code>{@link ${dtoClazzSimpleName}}</code> object found in list <code>service.findAll()</code>.
+     * object values are changed and the update method of restController service is called.
+     * check, if the response object has the same values as the input data entered before.
+     */
+    @Test
+    public void test2findAndUpdate() {
+
+        List<${dtoClazzSimpleName}> all = service.findAll();
+
+        ${idClazzSimpleName} id = all.get(0).getId();
+
+        String urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, id);
+        ResponseEntity<${dtoClazzSimpleName}> responseFindById = restTemplate.exchange(
+                urlFindById,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                });
+        assertThat(responseFindById.getStatusCode()).isEqualTo(HttpStatus.OK);
+        ${dtoClazzSimpleName} dto = responseFindById.getBody();
+
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
+        #end
+        #end
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
+        #end
+        #end
+
+        urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, dto.getId());
+        ResponseEntity<${dtoClazzSimpleName}> response = restTemplate.exchange(
+                urlFindById,
+                HttpMethod.PUT,
+                new HttpEntity<>(dto),
+                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                });
+        dto = response.getBody();
+        assertThat(dto).isNotNull();
+
+        #foreach( $property in $properties )
+        assertThat(dto.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
+        #end
+
+    }
+
+    /**
+     * get the first <code>{@link ${dtoClazzSimpleName}}</code> object found in list <code>service.findAll()</code>.
+     * delete the object via restController method <code>delete</code>.
+     * check, if the response code is 200 and list size of <code>service.findAll()</code> decreased by 1.
+     */
+    @Test
+    public void test3deleteAndCheckCount() {
+
+        List<${dtoClazzSimpleName}> all = service.findAll();
+
+        String url = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, all.get(0).getId());
+        ResponseEntity response = restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                null,
+                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                });
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        ResponseEntity<List<${dtoClazzSimpleName}>> responseFindAll = restTemplate.exchange(
+                ${restControllerClazzSimpleName}.PATH_PREFIX,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<${dtoClazzSimpleName}>>() {
+                });
+        List<${dtoClazzSimpleName}> dtos = responseFindAll.getBody();
+        assertThat(responseFindAll.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+    }
+
+
+    /**
+     * call methods: <code>findById</code>  and <code>update</code> with wrong id.
+     * no object should be found and BadRequest should be send from rest service.
+     */
+    @Test
+    public void test4NegativTestObjectNotFound() {
+
+        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+
+        String urlUpdate = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, -1);
+        ResponseEntity responseUpdate = restTemplate.exchange(
+                urlUpdate,
+                HttpMethod.PUT,
+                new HttpEntity<>(dto),
+                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                });
+        assertThat(responseUpdate.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+
+        String urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, -1);
+        ResponseEntity<${dtoClazzSimpleName}> responseFindById = restTemplate.exchange(
+                urlFindById,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                });
+        assertThat(responseFindById.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+
+    }
+
+
+}

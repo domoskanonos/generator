@@ -1,0 +1,24 @@
+package ${packageName};
+
+import io.swagger.annotations.*;
+import org.springframework.data.annotation.*;
+
+import lombok.*;
+
+@Data
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@ApiModel(description = "${clazzSimpleName} data transfer object")
+public class ${clazzSimpleName} {
+
+#foreach( $property in $properties )
+    #if(${generatorUtil.isIdField($property)})
+    @Id
+    #end
+    @ApiModelProperty(notes = "propertie ${property.name} of type <code>${property.type.name}</code>"${generatorUtil.getSampleDataSwaggerAPI($property)}, allowEmptyValue = true)
+    private ${property.type.name} ${property.name};
+
+#end
+
+}

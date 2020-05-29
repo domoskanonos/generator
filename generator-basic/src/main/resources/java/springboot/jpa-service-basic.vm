@@ -1,0 +1,81 @@
+package ${packageName};
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import ${basePackageName}.dto.${dtoClazzSimpleName};
+import ${basePackageName}.entity.${jpaClazzSimpleName};
+import ${basePackageName}.mapping.${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping;
+import ${basePackageName}.repository.${repositoryClazzSimpleName};
+
+import javax.persistence.*;
+
+import java.util.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ *
+ * This service class provides basic functionality for the hibernate entity <code>${jpaClazzSimpleName}</code>.
+ * The return value of each function always returns a mapped <code>${dtoClazzSimpleName}</code> object,
+ * instead of the original hibernate entity.
+ *
+ */
+@Service
+@RequiredArgsConstructor
+public class ${serviceClazzName} {
+
+    private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
+
+    private final EntityManager em;
+
+    private final ${repositoryClazzSimpleName} repository;
+
+    private final ${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+
+    /**
+     * get a list of all available database <code>${jpaClazzSimpleName}</code> object's, mapped to <code>${dtoClazzSimpleName}</code> objects.
+     *
+     * @return a list of <code>${dtoClazzSimpleName}'s</code>
+     *
+     */
+    public List<${dtoClazzSimpleName}> findAll() {
+        log.debug("findAll");
+        return mapping.toDTOs(repository.findAll());
+    }
+
+    /**
+     * Find hibernate entity of type <code>${jpaClazzSimpleName}</code> by id, mapped to <code>${dtoClazzSimpleName}</code>.
+     *
+     * @param id of hibernate entity
+     * @return optional object of type <code>Optional<${dtoClazzSimpleName}></code>
+     */
+    public Optional<${dtoClazzSimpleName}> findById(${idClazz} id) {
+        log.debug("findById: {}", id);
+        Optional<${jpaClazzSimpleName}> entityOptional = repository.findById(id);
+        return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
+    }
+
+    /**
+     * save or update an <code>${jpaClazzSimpleName}</code> object, mapped from <code>${dtoClazzSimpleName}</code> object.
+     *
+     * @param dto to save or update
+     * @return new saved or updated object as <code>${dtoClazzSimpleName}</code>
+     */
+    public ${dtoClazzSimpleName} save(${dtoClazzSimpleName} dto) {
+        log.debug("save or update object: {}", dto);
+        return mapping.toDTO(repository.save(mapping.toEntity(dto)));
+    }
+
+    /**
+     * delete hibernate entity by id.
+     *
+     * @param id
+     */
+    public void deleteById(${idClazz} id) {
+        log.debug("delete by id: {}", id);
+        repository.deleteById(id);
+    }
+
+}

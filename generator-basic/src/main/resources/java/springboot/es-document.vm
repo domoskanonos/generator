@@ -1,0 +1,17 @@
+package ${packageName};
+
+import lombok.*;
+
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName = "${indexName}", createIndex = false)
+@Data
+@ToString
+@EqualsAndHashCode
+public class ${clazzSimpleName} {
+#foreach( $property in $properties )
+
+    private ${property.type} ${property.name};
+#end
+
+}

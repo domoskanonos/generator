@@ -1,0 +1,44 @@
+package ${packageName};
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import ${firstClazzName};
+import ${secondClazzName};
+
+import org.springframework.stereotype.Component;
+
+
+@Component
+public class ${clazzSimpleName} {
+
+    public ${firstClazzSimpleName} toEntity(${secondClazzSimpleName} source)
+    {
+        ${firstClazzSimpleName} dest = new ${firstClazzSimpleName}();
+        #foreach( $mappingDTOEntityEntrie in $mappingSecondFirstEntries )
+        ${mappingDTOEntityEntrie}
+        #end
+        return dest;
+    }
+
+    public ${secondClazzSimpleName} toDTO(${firstClazzSimpleName} source)
+    {
+        ${secondClazzSimpleName} dest = new ${secondClazzSimpleName}();
+        #foreach( $mappingEntityDTOEntrie in $mappingFirstSecondEntries )
+        ${mappingEntityDTOEntrie}
+        #end
+        return dest;
+    }
+
+    public List<${secondClazzSimpleName}> toDTOs(Collection<${firstClazzSimpleName}> sources) {
+        return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
+    }
+
+    public List<${firstClazzSimpleName}> toEntities(Collection<${secondClazzSimpleName}> sources) {
+        return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
+    }
+
+
+
+}

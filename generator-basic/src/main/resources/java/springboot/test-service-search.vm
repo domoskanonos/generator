@@ -1,0 +1,221 @@
+package ${packageName};
+
+import ${dtoClazzName};
+import ${serviceClazzName};
+
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class ${clazzSimpleName} {
+
+    @Autowired
+    private ${serviceClazzSimpleName} service;
+
+    @Autowired
+    private ${entityClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+
+    @Test
+    public void baseCheckEntity() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        ${entityClazzSimpleName} entity = GeneratorUtil.createTestObject(${entityClazzSimpleName}.class, true);
+        ${entityClazzSimpleName} entityClone = entity.toBuilder().build();
+        assertThat(entity).isSameAs(entity);
+        assertThat(entity).isEqualTo(entityClone);
+        assertThat(entity.hashCode()).isEqualTo(entity.hashCode());
+        assertThat(entity.toString()).isEqualTo(entityClone.toString());
+
+        ${entityClazzSimpleName} notEqualEntity = GeneratorUtil.createTestObject(${entityClazzSimpleName}.class, false);
+
+        assertThat(entity).isNotEqualTo(notEqualEntity);
+        assertThat(entity.hashCode()).isNotEqualTo(notEqualEntity.hashCode());
+
+    }
+
+    @Test
+    public void baseCheckDTO() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        ${dtoClazzSimpleName} dto = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, true);
+        ${dtoClazzSimpleName} dtoClone = dto.toBuilder().build();
+        assertThat(dto).isSameAs(dto);
+        assertThat(dto).isEqualTo(dtoClone);
+        assertThat(dto.hashCode()).isEqualTo(dto.hashCode());
+        assertThat(dto.toString()).isEqualTo(dtoClone.toString());
+
+        ${dtoClazzSimpleName} notEqualDTO = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, false);
+
+        assertThat(dto).isNotEqualTo(notEqualDTO);
+        assertThat(dto.hashCode()).isNotEqualTo(notEqualDTO.hashCode());
+
+    }
+
+
+    @Test
+    public void checkMapping() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        List<${entityClazzSimpleName}> entities = GeneratorUtil.createTestObjects(${entityClazzSimpleName}.class, true, 10);
+        List<${dtoClazzSimpleName}> dtos = mapping.toDTOs(entities);
+        assertThat(dtos).isNotEmpty();
+        assertThat(dtos.size()).isEqualTo(entities.size());
+        List<${entityClazzSimpleName}> entitiesFromDTOs = mapping.toEntities(dtos);
+        assertThat(entitiesFromDTOs).isNotEmpty();
+        assertThat(entitiesFromDTOs.size()).isEqualTo(dtos.size());
+    }
+
+    /**
+     * get current count of <code>{@link ${dtoClazzSimpleName}}</code> objects.
+     * compare count after save one new <code>{@link ${dtoClazzSimpleName}}</code> object to database.
+     */
+    @Test
+    public void test1save() {
+
+        List<${dtoClazzSimpleName}> all = service.findAll();
+        int sizeBeforeSave = all.size();
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
+        #end
+        #end
+
+        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
+        #end
+        #end
+
+        ${dtoClazzSimpleName} savedDTO = service.save(dto);
+
+        assertThat(savedDTO).isNotNull();
+        assertThat(savedDTO.getId()).isNotNull();
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        assertThat(savedDTO.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
+        #end
+        #end
+
+        assertThat(service.findAll().size()).isEqualTo(sizeBeforeSave + 1);
+
+    }
+
+    /**
+     * get last available <code>{@link ${dtoClazzSimpleName}}</code> object from list.
+     * object values are changed and the update method of service is called.
+     * check, if the response object has the same values as the input data entered before.
+     */
+    @Test
+    public void test2update() {
+
+        List<${dtoClazzSimpleName}> all = service.findAll();
+
+        ${dtoClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        ${property.propertyType.javaTypeSimpleName} ${property.name} = ${generatorUtil.getSampleData($property.field)};
+        #end
+        #end
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
+        #end
+        #end
+
+        ${dtoClazzSimpleName} savedDTO = service.save(dto);
+
+        #foreach( $property in $properties )
+        #if( !${generatorUtil.isIdField($property.field)})
+        assertThat(savedDTO.${stringUtil.toGetterMethodName($property.name)}).isEqualTo(${property.name});
+        #end
+        #end
+
+    }
+
+   /**
+     * get last available <code>{@link ${dtoClazzSimpleName}}</code> object from list.
+     * delete the object via service method <code>delete</code>.
+     * compare new <code>{@link ${dtoClazzSimpleName}}</code> count after object removed from database.
+     */
+    @Test
+    public void test3delete() {
+        List<${dtoClazzSimpleName}> all = service.findAll();
+        ${dtoClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
+        service.deleteById(dto.getId());
+        assertThat(service.findById(dto.getId())).isEmpty();
+    }
+
+    @Test
+    public void findByAllCriteriaQueryArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        int currentObjectCount = prepareSearchTest();
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
+    }
+
+    @Test
+    public void findByAllCriteriaQueryPageZeroSizeZeroOtherArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        int currentObjectCount = prepareSearchTest();
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(0, 0, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
+        page = service.findByAll(0, 0, null, null);
+        checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
+    }
+
+    @Test
+    public void findByAllCriteriaQueryPageNegativSizeNegativOtherArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        int currentObjectCount = prepareSearchTest();
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(-1, -1, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
+        page = service.findByAll(-1, -1, null, null);
+        checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
+    }
+
+    @Test
+    public void findByAllCriteriaQueryNegativTestWrongSorting() {
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, "id:x"#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        assertThat(page.getPageable().getSort()).isEqualTo(Sort.unsorted());
+        page = service.findByAll(null, null, "id:x", null);
+        assertThat(page.getPageable().getSort()).isEqualTo(Sort.unsorted());
+    }
+
+    @Test
+    public void findByAllCriteriaQuerySortingAscDesc() {
+        String sortingField = "${properties[0].name}";
+        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, String.format("%s:asc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.asc(sortingField)));
+        page = service.findByAllCriteriaQuery(null, null, String.format("%s:desc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.desc(sortingField)));
+        page = service.findByAll(null, null, String.format("%s:asc", sortingField), null);
+        assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.asc(sortingField)));
+        page = service.findByAll(null, null, String.format("%s:desc", sortingField), null);
+        assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.desc(sortingField)));
+    }
+
+    private int prepareSearchTest() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        GeneratorUtil.createTestObjects(${dtoClazzSimpleName}.class, true, 5).forEach(dto -> {
+        service.save(dto);
+        });
+        return service.findAll().size();
+    }
+
+    private void checkPagingResultDefault(Page<${dtoClazzSimpleName}> productPage, int totalPages, int pageSizeCompare, int totalElementsCompare) {
+        assertThat(productPage).isNotNull();
+        assertThat(productPage.getTotalPages()).isEqualTo(totalPages);
+        assertThat(productPage.getTotalElements()).isEqualTo(totalElementsCompare);
+        assertThat(productPage.getSize()).isEqualTo(pageSizeCompare);
+        assertThat(productPage.getPageable().getPageSize()).isEqualTo(pageSizeCompare);
+        assertThat(productPage.getPageable().getPageNumber()).isEqualTo(0);
+    }
+
+
+}
