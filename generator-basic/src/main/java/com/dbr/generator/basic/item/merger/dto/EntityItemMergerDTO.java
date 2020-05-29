@@ -5,6 +5,6 @@ import com.dbr.generator.basic.item.merger.enumeration.ItemMergerEnum;
 
 public class EntityItemMergerDTO extends ItemMergerDTO {
     public EntityItemMergerDTO(ItemDTO... objects) {
-        super(ItemMergerEnum.ENTITY, objects);
+        super(objects[0].getJavaFilePathSuffix(), ItemMergerEnum.ENTITY, objects);
     }
 }

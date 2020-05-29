@@ -5,6 +5,6 @@ import com.dbr.generator.basic.item.merger.enumeration.ItemMergerEnum;
 
 public class MappingClazzItemMergerDTO extends ItemMergerDTO {
     public MappingClazzItemMergerDTO(ItemDTO... objects) {
-        super(ItemMergerEnum.MAPPING_CLAZZ, objects);
+        super(objects[0].getJavaFilePathSuffix(), ItemMergerEnum.MAPPING_CLAZZ, objects);
     }
 }

@@ -5,6 +5,6 @@ import com.dbr.generator.basic.item.merger.enumeration.ItemMergerEnum;
 
 public class TypescriptModelItemMergerDTO extends ItemMergerDTO {
     public TypescriptModelItemMergerDTO(ItemDTO... objects) {
-        super(ItemMergerEnum.TYPESCRIPT_MODEL, objects);
+        super(objects[0].getJavaFilePathSuffix(), ItemMergerEnum.TYPESCRIPT_MODEL, objects);
     }
 }

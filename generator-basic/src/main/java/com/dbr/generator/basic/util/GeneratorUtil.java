@@ -246,4 +246,8 @@ public class GeneratorUtil {
             _log.info("folder already exists: {}", absolutePath);
         }
     }
+
+    public static String getPackagePath(String packageName) {
+        return packageName.replace(".", "/");
+    }
 }

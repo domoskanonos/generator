@@ -2,6 +2,7 @@ package com.dbr.generator.basic.item.dto;
 
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import java.util.List;
 public class ItemDTO {
 
     private ProjectDTO projectDTO;
+    private String javaPackageName;
     private String javaIdClazzSimpleName;
     private String javaClazzName;
     private String javaClazzSimpleName;
@@ -31,6 +33,18 @@ public class ItemDTO {
 
     public String getTypescriptModelFilename() {
         return String.format("%s.ts", getTypescriptModelFilename().toLowerCase());
+    }
+
+    public String getJavaFileName() {
+        return this.getJavaClazzName() + ".java";
+    }
+
+    private String getPackagePath() {
+        return GeneratorUtil.getPackagePath(javaPackageName);
+    }
+
+    public String getJavaFilePathSuffix() {
+        return new StringBuilder().append(getPackagePath()).append(getJavaFileName()).toString();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.item.dto;
+package com.dbr.generator.basic.item.converter.dto;
 
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import lombok.AllArgsConstructor;
@@ -9,6 +9,7 @@ import lombok.Data;
 public class ItemConverterDTO {
 
     private ProjectDTO projectDTO;
+    private String javaPackageName;
     private Class<?> clazz;
 
 }

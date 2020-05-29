@@ -2,7 +2,7 @@ package com.dbr.generator.basic.item.merger.java.typescript;
 
 import com.dbr.generator.basic.BaseTestUtil;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemConverterDTO;
+import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.dto.TypescriptModelItemMergerDTO;
 import com.dbr.generator.basic.item.merger.typescript.TypescriptModelMerger;
@@ -20,7 +20,7 @@ public class TypescriptModelMergerTest {
 
     @Test
     public void create() {
-        TypescriptModelMerger typescriptModelMerger = new TypescriptModelMerger(new TypescriptModelItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO, ItemDTO.class))));
+        TypescriptModelMerger typescriptModelMerger = new TypescriptModelMerger(new TypescriptModelItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO,BaseTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class))));
         String content = typescriptModelMerger.create();
         log.info(content);
         assertNotNull(content);

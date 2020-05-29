@@ -12,9 +12,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaField2PropertyDTOConverter implements PropertyConverterInterface {
+public class JavaField2PropertyDTOConverter {
 
-    @Override
     public PropertyDTO convert(PropertyConverterDTO propertyConverterDTO) {
         PropertyDTO propertyDTO = new PropertyDTO();
         Field source = propertyConverterDTO.getSource();
@@ -26,7 +25,6 @@ public class JavaField2PropertyDTOConverter implements PropertyConverterInterfac
         return propertyDTO;
     }
 
-    @Override
     public List<PropertyDTO> convert(Collection<PropertyConverterDTO> propertyConverterDTOS) {
         return propertyConverterDTOS.stream().map(this::convert).collect(Collectors.toList());
     }

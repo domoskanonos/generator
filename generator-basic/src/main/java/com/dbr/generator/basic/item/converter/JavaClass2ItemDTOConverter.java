@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.item.converter;
 
 import com.dbr.generator.basic.project.dto.ProjectDTO;
-import com.dbr.generator.basic.item.dto.ItemConverterDTO;
+import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.property.converter.JavaField2PropertyDTOConverter;
 import com.dbr.generator.basic.property.dto.PropertyConverterDTO;
@@ -15,14 +15,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaClass2ItemDTOConverter implements ItemConverterInterface {
+public class JavaClass2ItemDTOConverter {
 
-    @Override
     public ItemDTO convert(ItemConverterDTO itemConverterDTO) {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(itemConverterDTO.getClazz()));
         ProjectDTO projectDTO = itemConverterDTO.getProjectDTO();
         itemDTO.setProjectDTO(projectDTO);
+        itemDTO.setJavaPackageName(itemConverterDTO.getJavaPackageName());
         itemDTO.setJavaClazzSimpleName(getClazzSimpleName(itemConverterDTO.getClazz()));
         itemDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaBasePackage(), itemDTO.getJavaClazzSimpleName()));
         for (Field field : itemConverterDTO.getClazz().getDeclaredFields()) {
@@ -32,7 +32,6 @@ public class JavaClass2ItemDTOConverter implements ItemConverterInterface {
         return itemDTO;
     }
 
-    @Override
     public List<ItemDTO> convert(Collection<ItemConverterDTO> itemConverterDTOS) {
         return itemConverterDTOS.stream().map(this::convert).collect(Collectors.toList());
     }

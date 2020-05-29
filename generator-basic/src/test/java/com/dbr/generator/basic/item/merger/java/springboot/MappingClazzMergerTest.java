@@ -2,7 +2,7 @@ package com.dbr.generator.basic.item.merger.java.springboot;
 
 import com.dbr.generator.basic.BaseTestUtil;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemConverterDTO;
+import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.dto.MappingClazzItemMergerDTO;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class MappingClazzMergerTest {
 
     @Test
     public void create() {
-        MappingClazzMerger mappingClazzMerger = new MappingClazzMerger(new MappingClazzItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO, ItemDTO.class)), new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO, ItemDTO.class))));
+        MappingClazzMerger mappingClazzMerger = new MappingClazzMerger(new MappingClazzItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO, BaseTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class)), new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO,BaseTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class))));
         String content = mappingClazzMerger.create();
         log.info(content);
         assertNotNull(content);

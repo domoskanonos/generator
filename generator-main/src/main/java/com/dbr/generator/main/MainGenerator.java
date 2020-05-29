@@ -1,7 +1,7 @@
 package com.dbr.generator.main;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemConverterDTO;
+import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.item.merger.ItemMergerFactory;
@@ -33,7 +33,7 @@ public class MainGenerator {
 
         projectDTO.setUseNidocaClient(false);
 
-        projectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ProjectDTO.class))));
+        projectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, new StringBuilder().append(projectDTO.getJavaBasePackage()).append(".dto").toString(), ProjectDTO.class))));
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(projectDTO);
@@ -45,7 +45,7 @@ public class MainGenerator {
 
 
         for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
-            ItemMergerFactory.createMerger(itemMergerDTO).writeDown(new File(model.getProjectFolder(), "XXXX.java").getAbsolutePath());
+            ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
         }
 
         if (true)

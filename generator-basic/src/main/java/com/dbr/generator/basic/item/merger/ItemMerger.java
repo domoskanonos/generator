@@ -7,6 +7,7 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import java.io.IOException;
 import java.io.StringWriter;
 
 public abstract class ItemMerger extends AbstractMerger {
@@ -34,4 +35,7 @@ public abstract class ItemMerger extends AbstractMerger {
         return writer.toString();
     }
 
+    public void writeDown() throws IOException {
+        super.writeDown(dto.getPath());
+    }
 }
