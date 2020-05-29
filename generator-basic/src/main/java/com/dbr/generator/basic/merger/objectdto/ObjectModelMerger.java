@@ -17,7 +17,7 @@ public class ObjectModelMerger implements TemplateModelMergerInterface {
     }
 
     @Override
-    public String create(Object model) {
+    public String create(Object... model) {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
