@@ -1,10 +1,10 @@
-package com.dbr.generator.basic.merger;
+package com.dbr.generator.basic.merger.object.java;
 
 import com.dbr.generator.basic.BaseTestUtil;
 import com.dbr.generator.basic.dto.ConverterDTO;
 import com.dbr.generator.basic.converter.JavaClass2ModelDTOConverter;
 import com.dbr.generator.basic.dto.ObjectDTO;
-import com.dbr.generator.basic.merger.object.ModelMerger;
+import com.dbr.generator.basic.merger.object.java.DTOMerger;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        ModelMerger dtoMerger = new ModelMerger();
+        DTOMerger dtoMerger = new DTOMerger();
         String content = dtoMerger.create(new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(BaseTestUtil.projectDTO, ObjectDTO.class)));
         log.info(content);
         assertNotNull(content);
