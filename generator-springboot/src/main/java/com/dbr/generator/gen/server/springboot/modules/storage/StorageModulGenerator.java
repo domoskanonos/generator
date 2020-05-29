@@ -1,7 +1,7 @@
 package com.dbr.generator.gen.server.springboot.modules.storage;
 
 import com.dbr.generator.gen.server.springboot.modules.AbstractModuleGenerator;
-import com.dbr.generator.gen.server.springboot.modules.model[0].ModulItem;
+import com.dbr.generator.gen.server.springboot.modules.model.ModulItem;
 
 import java.util.ArrayList;
 import java.util.List;

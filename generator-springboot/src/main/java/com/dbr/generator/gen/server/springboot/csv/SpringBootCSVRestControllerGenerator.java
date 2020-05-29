@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.csv;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.springboot.csv.model[0].SpringBootCSVRestControllerVM;
+import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVRestControllerVM;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -15,7 +15,7 @@ public class SpringBootCSVRestControllerGenerator extends AbstractGeneratorJava 
     private SpringBootCSVRestControllerVM model;
 
     public SpringBootCSVRestControllerGenerator(SpringBootCSVRestControllerVM model) {
-        super(model[0].getClazzSimpleName(), model[0].getPackageName());
+        super(model.getClazzSimpleName(), model.getPackageName());
         this.model = model;
     }
 
@@ -38,9 +38,9 @@ public class SpringBootCSVRestControllerGenerator extends AbstractGeneratorJava 
             context.put("packageName", getPackageName());
             context.put("clazzSimpleName", getClazzSimpleName());
 
-            context.put("csvServiceClazzSimpleName", model[0].getCsvServiceClazzSimpleName());
-            context.put("csvServicePackageName", model[0].getCsvServicePackageName());
-            context.put("prefixPath", model[0].getPrefixPath());
+            context.put("csvServiceClazzSimpleName", model.getCsvServiceClazzSimpleName());
+            context.put("csvServicePackageName", model.getCsvServicePackageName());
+            context.put("prefixPath", model.getPrefixPath());
 
             StringWriter writer = new StringWriter();
             t.merge(context, writer);

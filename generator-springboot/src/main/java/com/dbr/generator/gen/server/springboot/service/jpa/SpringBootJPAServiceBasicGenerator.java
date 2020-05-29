@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.service.jpa;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.springboot.service.jpa.model[0].SpringBootJPAServiceBasicVM;
+import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;
 import com.dbr.generator.sample.entity.Example;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;

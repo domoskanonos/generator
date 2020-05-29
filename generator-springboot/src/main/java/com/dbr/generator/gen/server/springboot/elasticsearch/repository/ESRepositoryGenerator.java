@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.elasticsearch.repository;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.springboot.elasticsearch.repository.model[0].ESRepositoryVM;
+import com.dbr.generator.gen.server.springboot.elasticsearch.repository.model.ESRepositoryVM;
 import com.dbr.generator.sample.entity.Example;
 import com.dbr.util.StringUtil;
 import org.apache.velocity.Template;
@@ -21,7 +21,7 @@ public class ESRepositoryGenerator extends AbstractGeneratorJava {
     private ESRepositoryVM model;
 
     public ESRepositoryGenerator(ESRepositoryVM model) {
-        super(model[0].getRepositoryClazzSimpleName(), model[0].getRepositoryPackageName());
+        super(model.getRepositoryClazzSimpleName(), model.getRepositoryPackageName());
         this.model = model;
     }
 
@@ -51,10 +51,10 @@ public class ESRepositoryGenerator extends AbstractGeneratorJava {
 
             context.put("packageName", getPackageName());
             context.put("clazzSimpleName", getClazzSimpleName());
-            context.put("documentClazzName", model[0].getDocumentClazzName());
+            context.put("documentClazzName", model.getDocumentClazzName());
 
-            context.put("properties", model[0].getProperties());
-            context.put("idClazz", model[0].getIdClazz());
+            context.put("properties", model.getProperties());
+            context.put("idClazz", model.getIdClazz());
 
             StringWriter writer = new StringWriter();
             t.merge(context, writer);

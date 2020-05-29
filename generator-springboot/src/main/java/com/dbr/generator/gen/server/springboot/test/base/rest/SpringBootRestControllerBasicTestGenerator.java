@@ -1,9 +1,9 @@
 package com.dbr.generator.gen.server.springboot.test.base.rest;
 
-import com.dbr.generator.gen.server.springboot.csv.model[0].SpringBootCSVRestControllerVM;
-import com.dbr.generator.gen.server.springboot.rest.model[0].SpringBootRestControllerBasicVM;
+import com.dbr.generator.gen.server.springboot.csv.model.SpringBootCSVRestControllerVM;
+import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerBasicVM;
 import com.dbr.generator.gen.server.springboot.test.base.SpringBootTestGenerator;
-import com.dbr.generator.gen.server.springboot.test.base.model[0].SpringBootBaseTestVM;
+import com.dbr.generator.gen.server.springboot.test.base.model.SpringBootBaseTestVM;
 
 public class SpringBootRestControllerBasicTestGenerator extends SpringBootTestGenerator {
 

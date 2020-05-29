@@ -2,7 +2,7 @@ package com.dbr.generator.gen.server.springboot.service.jpa;
 
 import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.generator.gen.AbstractGeneratorJava;
-import com.dbr.generator.gen.server.springboot.service.jpa.model[0].SpringBootJPAServiceSearchVM;
+import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceSearchVM;
 import com.dbr.generator.sample.entity.Example;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;

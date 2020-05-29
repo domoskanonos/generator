@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.model;
 
-import com.dbr.generator.gen.common.csv.compound.model[0].CSV2JavaCVM;
+import com.dbr.generator.gen.common.csv.compound.model.CSV2JavaCVM;
 import lombok.Data;
 import lombok.ToString;
 
