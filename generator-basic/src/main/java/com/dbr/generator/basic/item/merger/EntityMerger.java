@@ -1,10 +1,10 @@
 package com.dbr.generator.basic.item.merger;
 
-import com.dbr.generator.basic.item.merger.ItemMerger;
+import com.dbr.generator.basic.item.dto.ItemMergerDTO;
 
 public class EntityMerger extends ItemMerger {
-    public EntityMerger() {
-        super("java/entity.vm");
+    public EntityMerger(ItemMergerDTO dto) {
+        super(dto, "java/entity.vm");
     }
 }
 

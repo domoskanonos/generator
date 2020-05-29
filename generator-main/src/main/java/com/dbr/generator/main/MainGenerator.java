@@ -1,10 +1,10 @@
 package com.dbr.generator.main;
 
-import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.dto.ItemConverterDTO;
-import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.item.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.merger.ItemMergerFactory;
+import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.SystemUtil;
 import com.dbr.util.ZipUtil;
@@ -32,9 +32,7 @@ public class MainGenerator {
 
         projectDTO.setUseNidocaClient(false);
 
-        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ProjectDTO.class)));
-        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ItemDTO.class)));
-        projectDTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, PropertyDTO.class)));
+        projectDTO.getItemMergerDTOS().add(new ItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, ProjectDTO.class))));
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(projectDTO);
@@ -88,6 +86,11 @@ public class MainGenerator {
                     model.getNidocaTemplateZipFile());
             unzipFile(nidocaTemplateZipFile, model.getProjectFolder());
             FileUtils.moveDirectory(new File(model.getProjectFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
+        }
+
+
+        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
+            ItemMergerFactory.createMerger(itemMergerDTO).writeDown(new File(model.getProjectFolder(), itemMergerDTO.getPathSuffix()));
         }
 
 

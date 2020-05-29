@@ -597,24 +597,6 @@
     
     
     <module>generator-basic</module>
-                    
-    
-    
-    
-    <module>generator-util</module>
-                    
-    
-    
-    
-    <module>generator-typescript</module>
-                    
-    
-    
-    
-    <module>generator-nidoca</module>
-            
-    
-    <module>generator-springboot_oldgen</module>
             
     
     <module>generator-main</module>

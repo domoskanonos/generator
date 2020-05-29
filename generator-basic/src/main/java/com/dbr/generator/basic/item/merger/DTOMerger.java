@@ -1,9 +1,9 @@
 package com.dbr.generator.basic.item.merger;
 
-import com.dbr.generator.basic.item.merger.ItemMerger;
+import com.dbr.generator.basic.item.dto.ItemMergerDTO;
 
 public class DTOMerger extends ItemMerger {
-    public DTOMerger() {
-        super("java/dto.vm");
+    public DTOMerger(ItemMergerDTO dto) {
+        super(dto,"java/dto.vm");
     }
 }

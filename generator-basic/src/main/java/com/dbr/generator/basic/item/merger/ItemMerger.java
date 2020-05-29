@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.item.merger;
 
+import com.dbr.generator.basic.AbstractMerger;
 import com.dbr.generator.basic.item.dto.ItemMergerDTO;
-import com.dbr.generator.basic.TemplateModelMergerInterface;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -9,26 +9,29 @@ import org.apache.velocity.app.VelocityEngine;
 
 import java.io.StringWriter;
 
-public class ItemMerger implements TemplateModelMergerInterface<ItemMergerDTO> {
+public class ItemMerger extends AbstractMerger {
 
+    private ItemMergerDTO dto;
     private String templatePath;
 
-    public ItemMerger(String templatePath) {
+    public ItemMerger(ItemMergerDTO dto, String templatePath) {
+        this.dto = dto;
         this.templatePath = templatePath;
     }
 
     @Override
-    public String create(ItemMergerDTO model) {
+    public String create() {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
         Template t = velocityEngine.getTemplate(this.templatePath);
 
         VelocityContext context = new VelocityContext();
-        context.put("model", model);
+        context.put("model", this.dto);
         StringWriter writer = new StringWriter();
         t.merge(context, writer);
 
         return writer.toString();
     }
+
 }

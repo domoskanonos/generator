@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.project.dto;
 
-import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.item.dto.ItemMergerDTO;
 import lombok.Data;
 
 import java.io.File;
@@ -18,7 +18,7 @@ public class ProjectDTO {
 
     private String javaBasePackage;
 
-    private List<ItemDTO> itemDTOS = new ArrayList<>();
+    private List<ItemMergerDTO> itemMergerDTOS = new ArrayList<>();
 
     private Boolean useSpringBootTemplate = false;
     private String springBootTemplateZipUrl = "https://github.com/domoskanonos/spring-boot-template/archive/master.zip";
