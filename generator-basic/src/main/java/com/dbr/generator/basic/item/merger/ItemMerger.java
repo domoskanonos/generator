@@ -9,9 +9,9 @@ import org.apache.velocity.app.VelocityEngine;
 
 import java.io.StringWriter;
 
-public class ItemMerger extends AbstractMerger {
+public abstract class ItemMerger extends AbstractMerger {
 
-    private ItemMergerDTO dto;
+    protected ItemMergerDTO dto;
     private String templatePath;
 
     public ItemMerger(ItemMergerDTO dto, String templatePath) {

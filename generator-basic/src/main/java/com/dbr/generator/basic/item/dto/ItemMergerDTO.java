@@ -5,7 +5,6 @@ import lombok.Data;
 @Data
 public class ItemMergerDTO {
 
-    private String pathSuffix;
     private ItemDTO[] objects;
 
     public ItemMergerDTO(ItemDTO... objects) {

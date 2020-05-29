@@ -14,9 +14,12 @@ public abstract class AbstractMerger {
 
     public abstract String create();
 
-    public void writeDown(File file) throws IOException {
-        log.info("merger, write down content to file: {}", file.getAbsolutePath());
+    public void writeDown(String fileAbsolutePath) throws IOException {
+        log.info("merger, write down content to file: {}", fileAbsolutePath);
+        File file = new File(fileAbsolutePath);
         String content = create();
         FileUtils.writeStringToFile(file, content, Charset.defaultCharset());
     }
+
+
 }
