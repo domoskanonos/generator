@@ -1,0 +1,1 @@
+wmic PROCESS Where "CommandLine Like '%%${jar-final-name}%%'" Call Terminate

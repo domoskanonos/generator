@@ -1,0 +1,1 @@
+docker run -d -e "fakesmtp.authentication.username=generator-springboot-mail" -e "fakesmtp.authentication.password=generator-springboot-mail-123" -p 5080:5080 -p 5025:5025 gessnerfl/fake-smtp-server
