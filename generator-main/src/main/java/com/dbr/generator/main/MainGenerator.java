@@ -19,14 +19,14 @@ public class MainGenerator {
     public static void main(String[] args) throws IOException, InterruptedException {
         MainGeneratorModel mainGeneratorModel = new MainGeneratorModel();
         mainGeneratorModel.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
-        mainGeneratorModel.setRootFolder(new File("D:\\_dev\\vhs\\git"));
-        mainGeneratorModel.setTechnicalDescriptor("ocivap");
-        mainGeneratorModel.setProjectJavaPackageBaseName("com.dbr.ocivap");
+        mainGeneratorModel.setRootFolder(new File("C:\\_dev\\vhs"));
+        mainGeneratorModel.setTechnicalDescriptor("generator");
+        mainGeneratorModel.setProjectJavaPackageBaseName("com.dbr.generator");
 
-        mainGeneratorModel.setUseSpringBootTemplate(false);
+        mainGeneratorModel.setUseSpringBootTemplate(true);
         mainGeneratorModel.setAddSpringBootSecurityModule(false);
 
-        mainGeneratorModel.setUseNidocaClient(true);
+        mainGeneratorModel.setUseNidocaClient(false);
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(mainGeneratorModel);
