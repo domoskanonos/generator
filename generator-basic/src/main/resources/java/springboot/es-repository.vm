@@ -2,7 +2,7 @@ package ${packageName};
 
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
-public interface ${clazzSimpleName} extends ElasticsearchRepository<${documentClazzName}, ${idClazz}> {
+public interface ${javaClazzSimpleName} extends ElasticsearchRepository<${documentClazzName}, ${idClazz}> {
 
 }
 

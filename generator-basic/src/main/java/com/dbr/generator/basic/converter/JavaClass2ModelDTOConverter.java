@@ -18,11 +18,11 @@ public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDT
     @Override
     public ObjectDTO convert(ConverterDTO<ProjectDTO, Class<?>> converterDTO) {
         ObjectDTO objectDTO = new ObjectDTO();
-        objectDTO.setIdClazzSimpleName(getIDClazzSimpleName(converterDTO.getSource()));
+        objectDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(converterDTO.getSource()));
         ProjectDTO projectDTO = converterDTO.getParent();
         objectDTO.setProjectDTO(projectDTO);
-        objectDTO.setClazzSimpleName(getClazzSimpleName(converterDTO.getSource()));
-        objectDTO.setClazzName(String.format("%s.%s", projectDTO.getJavaPackageName(), objectDTO.getClazzSimpleName()));
+        objectDTO.setJavaClazzSimpleName(getClazzSimpleName(converterDTO.getSource()));
+        objectDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaPackageName(), objectDTO.getJavaClazzSimpleName()));
         for (Field field : converterDTO.getSource().getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(objectDTO, field));
             objectDTO.getProperties().add(propertyDTO);
@@ -40,23 +40,23 @@ public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDT
     }
 
     public static String getIDClazzSimpleName(Class<?> clazz) {
-        String idClazzSimpleName = null;
+        String javaIdClazzSimpleName = null;
         IdClass idClassAnnotation = clazz.getAnnotation(IdClass.class);
         if (idClassAnnotation != null) {
-            idClazzSimpleName = idClassAnnotation.value().getSimpleName();
+            javaIdClazzSimpleName = idClassAnnotation.value().getSimpleName();
         } else {
             for (Field field : clazz.getDeclaredFields()) {
                 if (field.getAnnotation(Id.class) != null) {
-                    idClazzSimpleName = field.getType().getSimpleName();
+                    javaIdClazzSimpleName = field.getType().getSimpleName();
                     break;
                 }
                 if (field.getAnnotation(EmbeddedId.class) != null) {
-                    idClazzSimpleName = field.getType().getName();
+                    javaIdClazzSimpleName = field.getType().getName();
                     break;
                 }
             }
         }
-        return idClazzSimpleName;
+        return javaIdClazzSimpleName;
     }
 
 }

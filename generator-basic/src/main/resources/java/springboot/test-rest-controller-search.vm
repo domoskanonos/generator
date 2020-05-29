@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ActiveProfiles("disable-security")
-public class ${clazzSimpleName} {
+public class ${javaClazzSimpleName} {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -90,7 +90,7 @@ public class ${clazzSimpleName} {
 
         List<${dtoClazzSimpleName}> all = service.findAll();
 
-        ${idClazzSimpleName} id = all.get(0).getId();
+        ${javaIdClazzSimpleName} id = all.get(0).getId();
 
         String urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, id);
         ResponseEntity<${dtoClazzSimpleName}> responseFindById = restTemplate.exchange(

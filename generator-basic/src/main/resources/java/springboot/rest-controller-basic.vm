@@ -19,8 +19,8 @@ import java.util.*;
 @Api(tags = "${prefixPath}")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(${clazzSimpleName}.PATH_PREFIX)
-public class ${clazzSimpleName} {
+@RequestMapping(${javaClazzSimpleName}.PATH_PREFIX)
+public class ${javaClazzSimpleName} {
 
     public static final String PATH_PREFIX = "/${prefixPath}";
 

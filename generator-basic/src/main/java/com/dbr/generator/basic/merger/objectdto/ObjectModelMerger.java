@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.merger.objectdto;
 
+import com.dbr.generator.basic.dto.ObjectDTO;
 import com.dbr.generator.basic.merger.TemplateModelMergerInterface;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.velocity.Template;
@@ -8,7 +9,7 @@ import org.apache.velocity.app.VelocityEngine;
 
 import java.io.StringWriter;
 
-public class ObjectModelMerger implements TemplateModelMergerInterface {
+public class ObjectModelMerger implements TemplateModelMergerInterface<ObjectDTO> {
 
     private String templatePath;
 
@@ -17,7 +18,7 @@ public class ObjectModelMerger implements TemplateModelMergerInterface {
     }
 
     @Override
-    public String create(Object... model) {
+    public String create(ObjectDTO... model) {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();

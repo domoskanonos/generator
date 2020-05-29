@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ${clazzSimpleName} {
+public class ${javaClazzSimpleName} {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

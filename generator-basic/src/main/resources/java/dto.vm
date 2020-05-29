@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder=true)
-public class ${model[0].clazzSimpleName} {
+public class ${model[0].javaClazzSimpleName} {
 
 #foreach( $property in $model[0].properties )
     private ${property.propertyType.javaTypeSimpleName} ${property.name};

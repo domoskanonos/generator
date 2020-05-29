@@ -13,11 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
-@Api(tags = "${clazzSimpleName}")
+@Api(tags = "${javaClazzSimpleName}")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(${clazzSimpleName}.PATH_PREFIX)
-public class ${clazzSimpleName} {
+@RequestMapping(${javaClazzSimpleName}.PATH_PREFIX)
+public class ${javaClazzSimpleName} {
 
     public static final String PATH_PREFIX = "/${prefixPath}/CSV";
 

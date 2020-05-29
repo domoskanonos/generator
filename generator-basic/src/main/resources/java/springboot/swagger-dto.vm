@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-@ApiModel(description = "${clazzSimpleName} data transfer object")
-public class ${clazzSimpleName} {
+@ApiModel(description = "${javaClazzSimpleName} data transfer object")
+public class ${javaClazzSimpleName} {
 
 #foreach( $property in $properties )
     #if(${generatorUtil.isIdField($property)})

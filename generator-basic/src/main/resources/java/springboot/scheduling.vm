@@ -7,21 +7,21 @@ import org.springframework.stereotype.Component;
 
 /**
 *
-* ${clazzSimpleName} scheduled with cron expression: ${cron}
+* ${javaClazzSimpleName} scheduled with cron expression: ${cron}
 *
 */
 @Component
-public class ${clazzSimpleName} {
+public class ${javaClazzSimpleName} {
 
-    private static final Logger log = LoggerFactory.getLogger(${clazzSimpleName}.class);
+    private static final Logger log = LoggerFactory.getLogger(${javaClazzSimpleName}.class);
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(cron = "${cron}")
     public void run() {
-        log.info("run ${clazzSimpleName}: " + dateFormat.format(new Date()));
+        log.info("run ${javaClazzSimpleName}: " + dateFormat.format(new Date()));
         //TODO:
-        log.info("${clazzSimpleName} stopped: " + dateFormat.format(new Date()));
+        log.info("${javaClazzSimpleName} stopped: " + dateFormat.format(new Date()));
     }
 
 }

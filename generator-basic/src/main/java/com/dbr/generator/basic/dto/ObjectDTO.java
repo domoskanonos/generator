@@ -10,21 +10,21 @@ import java.util.List;
 public class ObjectDTO {
 
     private ProjectDTO projectDTO;
-    private String idClazzSimpleName;
-    private String clazzName;
-    private String clazzSimpleName;
+    private String javaIdClazzSimpleName;
+    private String javaClazzName;
+    private String javaClazzSimpleName;
     private List<PropertyDTO> properties = new ArrayList<>();
 
     public Boolean useJPAIdClazz() {
-        return this.idClazzSimpleName != null;
+        return this.javaIdClazzSimpleName != null;
     }
 
     public String getTableName() {
-        return StringUtil.toDatabaseName(this.clazzSimpleName);
+        return StringUtil.toDatabaseName(this.javaClazzSimpleName);
     }
 
     public String getTypescriptModelName() {
-        return new StringBuilder().append(clazzSimpleName).append("Model").toString();
+        return new StringBuilder().append(javaClazzSimpleName).append("Model").toString();
     }
 
     public String getTypescriptModelFilename() {

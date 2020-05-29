@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @Data
 @ToString
 @EqualsAndHashCode
-public class ${clazzSimpleName} {
+public class ${javaClazzSimpleName} {
 #foreach( $property in $properties )
 
     private ${property.type} ${property.name};

@@ -25,23 +25,23 @@ public class GeneratorUtil {
     private static final Logger _log = LoggerFactory.getLogger(GeneratorUtil.class);
 
     public static String getIDClazzSimpleName(Class<?> clazz) {
-        String idClazzSimpleName = null;
+        String javaIdClazzSimpleName = null;
         IdClass idClassAnnotation = clazz.getAnnotation(IdClass.class);
         if (idClassAnnotation != null) {
-            idClazzSimpleName = idClassAnnotation.value().getSimpleName();
+            javaIdClazzSimpleName = idClassAnnotation.value().getSimpleName();
         } else {
             for (Field field : clazz.getDeclaredFields()) {
                 if (field.getAnnotation(Id.class) != null) {
-                    idClazzSimpleName = field.getType().getSimpleName();
+                    javaIdClazzSimpleName = field.getType().getSimpleName();
                     break;
                 }
                 if (field.getAnnotation(EmbeddedId.class) != null) {
-                    idClazzSimpleName = field.getType().getName();
+                    javaIdClazzSimpleName = field.getType().getName();
                     break;
                 }
             }
         }
-        return idClazzSimpleName;
+        return javaIdClazzSimpleName;
     }
 
     public static String getIDFieldName(Class<?> clazz) {
