@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.merger.object;
+package com.dbr.generator.basic.merger.objectdto;
 
 import com.dbr.generator.basic.merger.TemplateModelMergerInterface;
 import com.dbr.generator.basic.util.VelocityUtil;
