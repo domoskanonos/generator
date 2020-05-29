@@ -1,5 +1,7 @@
 package com.dbr.generator.main;
 
+import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
+import com.dbr.generator.basic.dto.ConverterDTO;
 import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.SystemUtil;
@@ -27,6 +29,8 @@ public class MainGenerator {
         projectDTO.setAddSpringBootSecurityModule(false);
 
         projectDTO.setUseNidocaClient(false);
+
+        projectDTO.getObjects().add(new JavaClass2ItemDTOConverter().convert(new ConverterDTO(projectDTO, ProjectDTO.class)));
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(projectDTO);

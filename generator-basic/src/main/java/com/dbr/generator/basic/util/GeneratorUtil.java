@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.util;
 
-import com.dbr.generator.basic.converter.JavaClass2ModelDTOConverter;
+import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
 import com.dbr.generator.basic.dto.ConverterDTO;
 import com.dbr.generator.basic.dto.ProjectDTO;
@@ -16,7 +16,6 @@ import javax.persistence.IdClass;
 
 import java.io.File;
 import java.lang.reflect.Field;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -154,7 +153,7 @@ public class GeneratorUtil {
     public static List<PropertyDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
         List<PropertyDTO> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
-            javaProperties.add(new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(new ProjectDTO(), clazz)), field)));
+            javaProperties.add(new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(new JavaClass2ItemDTOConverter().convert(new ConverterDTO<>(new ProjectDTO(), clazz)), field)));
         }
         return javaProperties;
     }

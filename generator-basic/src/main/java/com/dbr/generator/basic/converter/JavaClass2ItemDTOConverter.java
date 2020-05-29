@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDTO, ItemDTO, Class<?>> {
+public class JavaClass2ItemDTOConverter implements ConverterInterface<ProjectDTO, ItemDTO, Class<?>> {
 
     @Override
     public ItemDTO convert(ConverterDTO<ProjectDTO, Class<?>> converterDTO) {
