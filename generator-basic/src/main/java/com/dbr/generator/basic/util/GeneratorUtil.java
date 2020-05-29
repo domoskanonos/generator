@@ -248,6 +248,6 @@ public class GeneratorUtil {
     }
 
     public static String getPackagePath(String packageName) {
-        return packageName.replace(".", "/");
+        return new StringBuilder().append(packageName.replace(".", "/")).append("/").toString();
     }
 }

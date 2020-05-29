@@ -36,7 +36,7 @@ public class ItemDTO {
     }
 
     public String getJavaFileName() {
-        return this.getJavaClazzName() + ".java";
+        return this.getJavaClazzSimpleName() + ".java";
     }
 
     private String getPackagePath() {

@@ -99,7 +99,7 @@ public class MainGenerator {
 
 
         for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
-            ItemMergerFactory.createMerger(itemMergerDTO).writeDown(new File(model.getProjectFolder(), "XXXX.java").getAbsolutePath());
+            ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
         }
 
 
