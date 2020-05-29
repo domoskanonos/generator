@@ -27,7 +27,7 @@ public class SpringBootJPAServiceSearchGenerator extends AbstractGeneratorJava {
 
     public static void main(String[] args) {
         SpringBootJPAServiceSearchGenerator generator = new SpringBootJPAServiceSearchGenerator(
-                new SpringBootJPAServiceSearchVM("com.dbr.springboot", "com.dbr.springboot.ws.service", "AppDTO",
+                new SpringBootJPAServiceSearchVM("com.dbr.springboot", "com.dbr.springboot.service", "AppDTO",
                         Example.class));
         String content = generator.create();
         _log.info(content);

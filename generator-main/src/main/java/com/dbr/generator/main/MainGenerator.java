@@ -38,7 +38,11 @@ public class MainGenerator {
 
         logger.info("generate project start...");
 
-        GeneratorUtil.makeDir(model.getTempFolder());
+        File tempFolder = model.getTempFolder();
+        if (tempFolder.exists()) {
+            FileUtils.deleteDirectory(tempFolder);
+        }
+        GeneratorUtil.makeDir(tempFolder);
         GeneratorUtil.makeDir(model.getRootFolder());
         GeneratorUtil.makeDir(model.getProjectFolder());
 
@@ -46,7 +50,7 @@ public class MainGenerator {
             deleteFile(model.getSpringBootProjectFolder());
             File springBootZipFile = copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
                     model.getSpringBootTemplateZipFile());
-            unzipFile(springBootZipFile, model.getTempFolder());
+            unzipFile(springBootZipFile, tempFolder);
             createMavenArchetype(model.getSpringBootTemplateFolder());
             createFromArchetype(model.getProjectFolder(), model.getSpringBootProjectArtifactId(),
                     model.getSpringBootProjectGroupId(), model.getSpringBootArchetypeArtifactId(),

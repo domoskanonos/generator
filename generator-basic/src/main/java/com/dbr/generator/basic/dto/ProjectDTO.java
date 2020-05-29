@@ -97,6 +97,7 @@ public class ProjectDTO {
     }
 
     public void validate() {
+        validateNotHDDBaseDirectory(getTempFolder());
         validateNotHDDBaseDirectory(getRootFolder());
         validateNotHDDBaseDirectory(getProjectFolder());
         validateNotHDDBaseDirectory(getSpringBootProjectFolder());

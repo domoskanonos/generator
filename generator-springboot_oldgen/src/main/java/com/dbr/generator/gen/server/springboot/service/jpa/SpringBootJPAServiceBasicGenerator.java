@@ -26,7 +26,7 @@ public class SpringBootJPAServiceBasicGenerator extends AbstractGeneratorJava {
 
     public static void main(String[] args) {
         SpringBootJPAServiceBasicGenerator generator = new SpringBootJPAServiceBasicGenerator(
-                new SpringBootJPAServiceBasicVM("com.dbr.springboot.ws.service", "AppDTO", Example.class));
+                new SpringBootJPAServiceBasicVM("com.dbr.springboot.service", "AppDTO", Example.class));
         String content = generator.create();
         _log.info(content);
     }
