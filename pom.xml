@@ -252,7 +252,7 @@
         
     <module>generator-main</module>
         
-    <module>generator-springboot</module>
+    <module>generator-springboot_oldgen</module>
       
   </modules>
   
