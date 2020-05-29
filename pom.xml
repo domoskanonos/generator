@@ -283,8 +283,8 @@
             
     
     <plugins>
-                  
-      
+
+
       <plugin>
                         
         
@@ -310,8 +310,8 @@
                       
       
       </plugin>
-                  
-      
+
+
       <plugin>
                         
         
@@ -378,6 +378,8 @@
 
 
     <module>generator-main</module>
+
+
       
   </modules>
     
