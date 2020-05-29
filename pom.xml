@@ -125,7 +125,7 @@
     <module>generator-util</module>
     <module>generator-typescript</module>
     <module>generator-nidoca</module>
-    <module>generator-springboot</module>
+    <module>generator-springboot_oldgen</module>
     <module>generator-main</module>
   </modules>
 </project>
