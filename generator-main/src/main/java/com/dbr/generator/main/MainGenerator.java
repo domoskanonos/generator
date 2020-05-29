@@ -58,7 +58,6 @@ public class MainGenerator {
 
             if (!model.getAddSpringBootSecurityModule()) {
                 deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
-                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "freemarker/mail"));
                 deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
                 deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
             }
