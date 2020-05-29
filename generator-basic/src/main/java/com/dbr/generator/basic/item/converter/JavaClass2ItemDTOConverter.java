@@ -1,7 +1,9 @@
-package com.dbr.generator.basic.converter;
+package com.dbr.generator.basic.item.converter;
 
-import com.dbr.generator.basic.dto.ConverterDTO;
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.converter.ConverterInterface;
+import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
+import com.dbr.generator.basic.converter.dto.ConverterDTO;
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 

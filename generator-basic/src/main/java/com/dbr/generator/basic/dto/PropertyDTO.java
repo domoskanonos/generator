@@ -1,6 +1,7 @@
 package com.dbr.generator.basic.dto;
 
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.dto;
+package com.dbr.generator.basic.converter.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

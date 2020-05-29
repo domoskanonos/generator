@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.dto;
 
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import lombok.Data;
 
 import java.io.File;

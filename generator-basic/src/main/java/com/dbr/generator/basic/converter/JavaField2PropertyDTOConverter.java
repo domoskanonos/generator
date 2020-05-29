@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.dto.ConverterDTO;
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.converter.dto.ConverterDTO;
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 

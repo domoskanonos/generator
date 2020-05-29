@@ -1,5 +1,8 @@
-package com.dbr.generator.basic.dto;
+package com.dbr.generator.basic.item.dto;
 
+import com.dbr.generator.basic.dto.ProjectDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.item.generatoraction.ItemGeneratorActionDTO;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
@@ -14,6 +17,7 @@ public class ItemDTO {
     private String javaClazzName;
     private String javaClazzSimpleName;
     private List<PropertyDTO> properties = new ArrayList<>();
+    private List<ItemGeneratorActionDTO> itemGeneratorActionDTOS = new ArrayList<>();
 
     public Boolean useJPAIdClazz() {
         return this.javaIdClazzSimpleName != null;

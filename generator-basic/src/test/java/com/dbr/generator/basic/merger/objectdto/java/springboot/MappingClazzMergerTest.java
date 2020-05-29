@@ -1,11 +1,12 @@
 package com.dbr.generator.basic.merger.objectdto.java.springboot;
 
 import com.dbr.generator.basic.BaseTestUtil;
-import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.dto.ConverterDTO;
-import com.dbr.generator.basic.dto.ItemMergerDTO;
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
+import com.dbr.generator.basic.converter.dto.ConverterDTO;
+import com.dbr.generator.basic.item.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.dto.ProjectDTO;
+import com.dbr.generator.basic.item.merger.java.springboot.MappingClazzMerger;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.merger.objectdto.java.springboot;
+package com.dbr.generator.basic.item.merger.java.springboot;
 
-import com.dbr.generator.basic.merger.objectdto.ItemMerger;
+import com.dbr.generator.basic.item.merger.ItemMerger;
 
 public class MappingClazzMerger extends ItemMerger {
 

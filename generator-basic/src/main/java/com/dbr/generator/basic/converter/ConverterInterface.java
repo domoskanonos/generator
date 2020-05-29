@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.dto.ConverterDTO;
+import com.dbr.generator.basic.converter.dto.ConverterDTO;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.merger.objectdto.typescript;
+package com.dbr.generator.basic.item.merger.typescript;
 
-import com.dbr.generator.basic.merger.objectdto.ItemMerger;
+import com.dbr.generator.basic.item.merger.ItemMerger;
 
 public class TypescriptModelMerger extends ItemMerger {
     public TypescriptModelMerger() {

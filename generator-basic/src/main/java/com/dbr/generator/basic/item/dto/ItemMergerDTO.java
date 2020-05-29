@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.dto;
+package com.dbr.generator.basic.item.dto;
 
 import lombok.Data;
 
