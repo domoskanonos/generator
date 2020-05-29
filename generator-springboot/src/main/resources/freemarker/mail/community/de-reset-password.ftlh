@@ -1,0 +1,3 @@
+Passwort reseted:
+
+${model.newPassword}
