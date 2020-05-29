@@ -36,7 +36,8 @@ public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDT
     }
 
     private String getClazzSimpleName(Class<?> source) {
-        return source.getSimpleName().replace("DTO", "").replace("Model", "").replace("Entity", "");
+        return source.getSimpleName();
+        //return source.getSimpleName().replace("DTO", "").replace("Model", "").replace("Entity", "");
     }
 
     public static String getIDClazzSimpleName(Class<?> clazz) {

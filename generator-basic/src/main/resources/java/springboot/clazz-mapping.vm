@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class ${javaClazzSimpleName} {
+public class ${model.javaMappingClazzSimpleName} {
 
-    public ${model.objects[0].javaClazzSimpleName} toEntity(${model[1].javaClazzSimpleName} source)
+    public ${model.objects[0].javaClazzSimpleName} toEntity(${model.objects[1].javaClazzSimpleName} source)
     {
         ${model.objects[0].javaClazzSimpleName} dest = new ${model.objects[0].javaClazzSimpleName}();
         #foreach( $mappingDTOEntityEntrie in $mappingSecondFirstEntries )
@@ -22,20 +22,20 @@ public class ${javaClazzSimpleName} {
         return dest;
     }
 
-    public ${model[1].javaClazzSimpleName} toDTO(${model.objects[0].javaClazzSimpleName} source)
+    public ${model.objects[1].javaClazzSimpleName} toDTO(${model.objects[0].javaClazzSimpleName} source)
     {
-        ${model[1].javaClazzSimpleName} dest = new ${model[1].javaClazzSimpleName}();
+        ${model.objects[1].javaClazzSimpleName} dest = new ${model.objects[1].javaClazzSimpleName}();
         #foreach( $mappingEntityDTOEntrie in $mappingFirstSecondEntries )
         ${mappingEntityDTOEntrie}
         #end
         return dest;
     }
 
-    public List<${model[1].javaClazzSimpleName}> toDTOs(Collection<${model.objects[0].javaClazzSimpleName}> sources) {
+    public List<${model.objects[1].javaClazzSimpleName}> toDTOs(Collection<${model.objects[0].javaClazzSimpleName}> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<${model.objects[0].javaClazzSimpleName}> toEntities(Collection<${model[1].javaClazzSimpleName}> sources) {
+    public List<${model.objects[0].javaClazzSimpleName}> toEntities(Collection<${model.objects[1].javaClazzSimpleName}> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

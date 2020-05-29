@@ -2,9 +2,9 @@ package com.dbr.generator.basic.merger.objectdto.java.springboot;
 
 import com.dbr.generator.basic.merger.objectdto.ItemMerger;
 
-public class ClazzMappingMerger extends ItemMerger {
+public class MappingClazzMerger extends ItemMerger {
 
-    public ClazzMappingMerger() {
+    public MappingClazzMerger() {
         super("java/springboot/clazz-mapping.vm");
     }
 

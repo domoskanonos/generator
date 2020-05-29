@@ -13,16 +13,16 @@ import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
-public class ClazzMappingMergerMergerTest {
+public class MappingClazzMergerTest {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Test
     public void create() {
-        ClazzMappingMerger clazzMappingMerger = new ClazzMappingMerger();
+        MappingClazzMerger mappingClazzMerger = new MappingClazzMerger();
         ItemDTO itemDTO1 = new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(BaseTestUtil.projectDTO, ProjectDTO.class));
         ItemDTO itemDTO2 = new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(BaseTestUtil.projectDTO, ItemDTO.class));
-        String content = clazzMappingMerger.create(new ItemMergerDTO(itemDTO1, itemDTO2));
+        String content = mappingClazzMerger.create(new ItemMergerDTO(itemDTO1, itemDTO2));
         log.info(content);
         assertNotNull(content);
         //assertFalse(content.contains("${"));
