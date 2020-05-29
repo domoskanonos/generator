@@ -22,7 +22,7 @@ public class MainGeneratorModel {
     private String springBootTemplateFilename = "spring-boot-template-master";
     private String springBootTemplateZipFilename = new StringBuilder().append(springBootTemplateFilename).append(".zip")
             .toString();
-    private String springBootArchetypeArtifactId = "spring-boot-template-archetype";
+    private String springBootArchetypeArtifactId = "springboottemplate-archetype";
     private String springBootGroupId = "com.dbr.springboot.template";
     private Boolean addSpringBootMailRestController = false;
     private Boolean addSpringBootSecurityModule = false;
