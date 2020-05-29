@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 public class ProjectDTO {
     private String javaPackageName = "";
-    private List<ObjectDTO> objects = new ArrayList<>();
+    private List<ItemDTO> objects = new ArrayList<>();
 }

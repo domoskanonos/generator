@@ -3,7 +3,8 @@ package com.dbr.generator.basic.merger.objectdto.java;
 import com.dbr.generator.basic.BaseTestUtil;
 import com.dbr.generator.basic.dto.ConverterDTO;
 import com.dbr.generator.basic.converter.JavaClass2ModelDTOConverter;
-import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.dto.ItemMergerDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,8 @@ public class EntityMergerTest {
     @Test
     public void create() {
         EntityMerger entityMerger = new EntityMerger();
-        String content = entityMerger.create(new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(BaseTestUtil.projectDTO, ObjectDTO.class)));
+        ItemDTO itemDTO = new JavaClass2ModelDTOConverter().convert(new ConverterDTO<>(BaseTestUtil.projectDTO, ItemDTO.class));
+        String content = entityMerger.create(new ItemMergerDTO(itemDTO));
         log.info(content);
         assertNotNull(content);
         assertFalse(content.contains("${"));

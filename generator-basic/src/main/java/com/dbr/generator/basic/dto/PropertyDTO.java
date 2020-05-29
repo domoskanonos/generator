@@ -5,8 +5,6 @@ import com.dbr.util.StringUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.IdClass;
-
 @Data
 @NoArgsConstructor
 public class PropertyDTO {
@@ -16,7 +14,7 @@ public class PropertyDTO {
     private boolean idProperty;
     private boolean searchable;
     private boolean nullable;
-    private ObjectDTO objectDTO;
+    private ItemDTO itemDTO;
     private Integer length;
 
     public PropertyDTO(String name, String javaTypeSimpleName) {
@@ -32,7 +30,7 @@ public class PropertyDTO {
         String id = "";
         if (idProperty) {
             id = "\n    @Id";
-            if (!objectDTO.useJPAIdClazz()) {
+            if (!itemDTO.useJPAIdClazz()) {
                 id += "\n    @GeneratedValue(strategy = GenerationType.IDENTITY)";
             }
         }

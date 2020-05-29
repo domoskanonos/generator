@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ObjectDTO {
+public class ItemDTO {
 
     private ProjectDTO projectDTO;
     private String javaIdClazzSimpleName;

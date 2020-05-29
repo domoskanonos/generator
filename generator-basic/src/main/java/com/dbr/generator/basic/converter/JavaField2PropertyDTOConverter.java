@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ConverterDTO;
-import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 
@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaField2PropertyDTOConverter implements ConverterInterface<ObjectDTO, PropertyDTO, Field> {
+public class JavaField2PropertyDTOConverter implements ConverterInterface<ItemDTO, PropertyDTO, Field> {
 
 
     public boolean isIDField(Field field) {
@@ -23,11 +23,11 @@ public class JavaField2PropertyDTOConverter implements ConverterInterface<Object
     }
 
     @Override
-    public PropertyDTO convert(ConverterDTO<ObjectDTO, Field> converterDTO) {
+    public PropertyDTO convert(ConverterDTO<ItemDTO, Field> converterDTO) {
         PropertyDTO propertyDTO = new PropertyDTO();
         Field source = converterDTO.getSource();
-        ObjectDTO objectDTO = converterDTO.getParent();
-        propertyDTO.setObjectDTO(objectDTO);
+        ItemDTO itemDTO = converterDTO.getParent();
+        propertyDTO.setItemDTO(itemDTO);
         propertyDTO.setName(source.getName());
         propertyDTO.setPropertyType(PropertyTypeEnum.byField(source));
         propertyDTO.setIdProperty(isIDField(source));
@@ -35,7 +35,7 @@ public class JavaField2PropertyDTOConverter implements ConverterInterface<Object
     }
 
     @Override
-    public List<PropertyDTO> convert(Collection<ConverterDTO<ObjectDTO, Field>> converterDTOS) {
+    public List<PropertyDTO> convert(Collection<ConverterDTO<ItemDTO, Field>> converterDTOS) {
         return converterDTOS.stream().map(this::convert).collect(Collectors.toList());
     }
 }

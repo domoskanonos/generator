@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ConverterDTO;
-import com.dbr.generator.basic.dto.ObjectDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.ProjectDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 
@@ -13,25 +13,25 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDTO, ObjectDTO, Class<?>> {
+public class JavaClass2ModelDTOConverter implements ConverterInterface<ProjectDTO, ItemDTO, Class<?>> {
 
     @Override
-    public ObjectDTO convert(ConverterDTO<ProjectDTO, Class<?>> converterDTO) {
-        ObjectDTO objectDTO = new ObjectDTO();
-        objectDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(converterDTO.getSource()));
+    public ItemDTO convert(ConverterDTO<ProjectDTO, Class<?>> converterDTO) {
+        ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(converterDTO.getSource()));
         ProjectDTO projectDTO = converterDTO.getParent();
-        objectDTO.setProjectDTO(projectDTO);
-        objectDTO.setJavaClazzSimpleName(getClazzSimpleName(converterDTO.getSource()));
-        objectDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaPackageName(), objectDTO.getJavaClazzSimpleName()));
+        itemDTO.setProjectDTO(projectDTO);
+        itemDTO.setJavaClazzSimpleName(getClazzSimpleName(converterDTO.getSource()));
+        itemDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaPackageName(), itemDTO.getJavaClazzSimpleName()));
         for (Field field : converterDTO.getSource().getDeclaredFields()) {
-            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(objectDTO, field));
-            objectDTO.getProperties().add(propertyDTO);
+            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(itemDTO, field));
+            itemDTO.getProperties().add(propertyDTO);
         }
-        return objectDTO;
+        return itemDTO;
     }
 
     @Override
-    public List<ObjectDTO> convert(Collection<ConverterDTO<ProjectDTO, Class<?>>> converterDTOS) {
+    public List<ItemDTO> convert(Collection<ConverterDTO<ProjectDTO, Class<?>>> converterDTOS) {
         return converterDTOS.stream().map(this::convert).collect(Collectors.toList());
     }
 
