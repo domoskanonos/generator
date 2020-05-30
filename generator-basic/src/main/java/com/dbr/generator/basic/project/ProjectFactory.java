@@ -1,16 +1,14 @@
 package com.dbr.generator.basic.project;
 
-import com.dbr.generator.basic.project.generator.NidocaProjectGenerator;
-import com.dbr.generator.basic.project.dto.NidocaProjectDTO;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
-
-import java.io.IOException;
+import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
+import com.dbr.generator.basic.project.generator.SpringBootProjectGenerator;
 
 public class ProjectFactory {
 
-    public static ProjectGeneratorInterface create(ProjectDTO projectDTO) throws IOException {
-        if (projectDTO instanceof NidocaProjectDTO) {
-            new NidocaProjectGenerator().execute((NidocaProjectDTO) projectDTO);
+    public static ProjectGeneratorInterface create(ProjectDTO projectDTO) throws Exception {
+        if (projectDTO instanceof SpringBootProjectDTO) {
+            return new SpringBootProjectGenerator();
         }
         return null;
     }

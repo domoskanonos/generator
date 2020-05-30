@@ -20,16 +20,17 @@ public class SpringBootProjectDTO extends JavaProjectDTO {
     private Boolean addSpringBootSecurityModule = false;
     private Boolean addSpringBootStorageModule = false;
 
+    @Override
+    public String getJavaBasePackage() {
+        return new StringBuilder().append(super.getJavaBasePackage()).append(".springboot").toString();
+    }
+
     public File getSpringBootTemplateFolder() {
         return new File(getProcessDTO().getProcessTempPath(), this.springBootTemplateFilename);
     }
 
     public File getSpringBootTemplateZipFile() {
         return new File(getProcessDTO().getProcessTempPath(), getSpringBootTemplateZipFilename());
-    }
-
-    public String getSpringBootProjectGroupId() {
-        return new StringBuilder().append(getJavaBasePackage()).append(".springboot").toString();
     }
 
     public String getSpringBootProjectArtifactId() {
@@ -53,11 +54,11 @@ public class SpringBootProjectDTO extends JavaProjectDTO {
     }
 
     public File getSpringBootProjectSourceBasePackageFolder() {
-        return new File(getSpringBootProjectSourceFolder(), getSpringBootProjectGroupId().replaceAll("\\.", "\\/"));
+        return new File(getSpringBootProjectSourceFolder(), getJavaBasePackage().replaceAll("\\.", "\\/"));
     }
 
     public File getSpringBootProjectTestSourceBasePackageFolder() {
-        return new File(getSpringBootProjectTestSourceFolder(), getSpringBootProjectGroupId().replaceAll("\\.", "\\/"));
+        return new File(getSpringBootProjectTestSourceFolder(), getJavaBasePackage().replaceAll("\\.", "\\/"));
     }
 
     public File getProcessTempFolder() {

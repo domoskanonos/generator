@@ -17,13 +17,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.IOException;
 
 public class MainGenerator {
 
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws Exception {
 
         String processParentPath = new File("C:\\_dev\\vhs\\1").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
@@ -44,7 +43,7 @@ public class MainGenerator {
 
     }
 
-    public void generate(ProcessDTO processDTO) throws IOException, InterruptedException {
+    public void generate(ProcessDTO processDTO) throws Exception {
 
         processDTO.validate();
 
@@ -59,6 +58,7 @@ public class MainGenerator {
         GeneratorUtil.makeDir(processDTO.getProcessFolder());
 
         for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
+            logger.info("generate project, technical descriptor: {}", projectDTO.getTechnicalDescriptor());
 
             ProjectGeneratorInterface projectGeneratorInterface = ProjectFactory.create(projectDTO);
             projectGeneratorInterface.validate(projectDTO);
