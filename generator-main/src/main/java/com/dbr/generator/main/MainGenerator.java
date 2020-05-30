@@ -33,9 +33,9 @@ public class MainGenerator {
 
 
         ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
-        itemDTOItemDTO.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaDTOPackageName()).append("DTO").toString());
+        itemDTOItemDTO.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaDTOPackageName()).append(".ItemDTO").toString());
         ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
-        itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append("Item").toString());
+        itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
 
 
         springBootProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemDTO));
