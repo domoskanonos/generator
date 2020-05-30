@@ -19,4 +19,12 @@ public class JavaProjectDTO extends ProjectDTO {
         return getJavaBasePackage();
     }
 
+    public String getJavaEntityPackageName() {
+        return new StringBuilder().append(getJavaBasePackage()).append(".entity").toString();
+    }
+
+    public String getJavaDTOPackageName() {
+        return new StringBuilder().append(getJavaBasePackage()).append(".dto").toString();
+    }
+
 }

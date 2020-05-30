@@ -69,7 +69,4 @@ public class SpringBootProjectDTO extends JavaProjectDTO {
         return getProcessDTO().getProcessFolder();
     }
 
-    public String getJavaDTOPackageName() {
-        return new StringBuilder().append(getJavaBasePackage()).append(".dto").toString();
-    }
 }

@@ -1,7 +1,5 @@
 package com.dbr.generator.basic.item.converter;
 
-import com.dbr.generator.basic.project.dto.ProjectDTO;
-import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.property.converter.JavaField2PropertyDTOConverter;
 import com.dbr.generator.basic.property.dto.PropertyConverterDTO;
@@ -17,23 +15,19 @@ import java.util.stream.Collectors;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(ItemConverterDTO itemConverterDTO) {
-        ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(itemConverterDTO.getClazz()));
-        ProjectDTO projectDTO = itemConverterDTO.getProjectDTO();
-        itemDTO.setProjectDTO(projectDTO);
-        itemDTO.setJavaPackageName(itemConverterDTO.getJavaPackageName());
-        itemDTO.setJavaClazzSimpleName(getClazzSimpleName(itemConverterDTO.getClazz()));
-        itemDTO.setJavaClazzName(String.format("%s.%s", itemConverterDTO.getJavaPackageName(), itemDTO.getJavaClazzSimpleName()));
-        for (Field field : itemConverterDTO.getClazz().getDeclaredFields()) {
+    public ItemDTO convert(Class<?> clazz) {
+        ItemDTO itemDTO = ItemDTO.builder().build();
+        itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
+        itemDTO.setJavaClazzName(clazz.getName());
+        for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new PropertyConverterDTO(itemDTO, field));
-            itemDTO.getProperties().add(propertyDTO);
+            itemDTO.addProperty(propertyDTO);
         }
         return itemDTO;
     }
 
-    public List<ItemDTO> convert(Collection<ItemConverterDTO> itemConverterDTOS) {
-        return itemConverterDTOS.stream().map(this::convert).collect(Collectors.toList());
+    public List<ItemDTO> convert(Collection<Class<?>> clazzes) {
+        return clazzes.stream().map(this::convert).collect(Collectors.toList());
     }
 
     private String getClazzSimpleName(Class<?> source) {

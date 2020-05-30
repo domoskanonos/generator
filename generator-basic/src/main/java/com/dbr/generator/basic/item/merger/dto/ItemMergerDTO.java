@@ -8,12 +8,10 @@ import lombok.Data;
 public class ItemMergerDTO {
 
     private String path;
-    private ItemMergerEnum itemMergerEnum;
     private ItemDTO[] objects;
 
     public ItemMergerDTO(String path, ItemMergerEnum itemMergerEnum, ItemDTO... objects) {
-        this.path = new StringBuilder().append(objects[0].getProjectDTO().getProjectFolder().getAbsolutePath()).append("/").append(path).toString();
-        this.itemMergerEnum = itemMergerEnum;
+        this.path = path;
         this.objects = objects;
     }
 

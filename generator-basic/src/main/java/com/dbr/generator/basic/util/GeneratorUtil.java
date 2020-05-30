@@ -303,4 +303,11 @@ public class GeneratorUtil {
         return destination;
     }
 
+    public static String getJavaSimpleClazzName(String javaClazzName) {
+        return javaClazzName.substring(0, javaClazzName.lastIndexOf("."));
+    }
+
+    public static String getJavaPackageName(String javaClazzName) {
+        return javaClazzName.substring(javaClazzName.lastIndexOf("."));
+    }
 }

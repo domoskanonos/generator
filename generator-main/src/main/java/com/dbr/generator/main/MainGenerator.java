@@ -1,10 +1,8 @@
 package com.dbr.generator.main;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMergerFactory;
-import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.EntityItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
@@ -32,13 +30,15 @@ public class MainGenerator {
         SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "com.dbr.generator");
         springBootProjectDTO.setAddSpringBootSecurityModule(false);
 
-        ItemConverterDTO projectDTO2itemDTOConverterDTO = new ItemConverterDTO(springBootProjectDTO, springBootProjectDTO.getJavaDTOPackageName(), ProcessDTO.class);
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(projectDTO2itemDTOConverterDTO);
+
+        ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(ItemDTO.class);
+        ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(ItemDTO.class);
+        itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append("Item").toString());
 
 
-        springBootProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTO));
-        springBootProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTO));
-        //springBootProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTO));
+        springBootProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemDTO));
+        //springBootProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
+        //springBootProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOItemDTO));
 
         processDTO.getProjectDTOS().add(springBootProjectDTO);
 
