@@ -28,7 +28,7 @@ public class MainGenerator {
         ProcessDTO processDTO = new ProcessDTO(processTempPath, processParentPath, "generator");
 
         SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "com.dbr.generator");
-        //springBootProjectDTO.setAddSpringBootSecurityModule(false);
+        springBootProjectDTO.setAddSpringBootSecurityModule(true);
 
 
         ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(ItemDTO.class);
