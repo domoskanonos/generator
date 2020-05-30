@@ -9,6 +9,7 @@ import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
 import com.dbr.generator.basic.project.ProjectFactory;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
+import com.dbr.generator.basic.project.dto.JavaProjectDTO;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -30,19 +31,22 @@ public class MainGenerator {
 
         SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "com.dbr.generator");
         springBootProjectDTO.setAddSpringBootSecurityModule(true);
+        //processDTO.getProjectDTOS().add(springBootProjectDTO);
 
 
+
+        JavaProjectDTO javaProjectDTO = new JavaProjectDTO(processDTO, "springboot", "com.dbr.generator");
         ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
         itemDTOItemDTO.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaDTOPackageName()).append(".ItemDTO").toString());
         ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
         itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
 
 
-        springBootProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemDTO));
-        springBootProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
-        //springBootProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOItemDTO));
+        javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemDTO));
+        javaProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
+        //javaProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOItemDTO));
+        processDTO.getProjectDTOS().add(javaProjectDTO);
 
-        processDTO.getProjectDTOS().add(springBootProjectDTO);
 
 
         //NidocaProjectDTO nidocaProjectDTO = new NidocaProjectDTO(processDTO, "nidoca");
