@@ -23,10 +23,8 @@ public class MainGenerator {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        ProcessDTO processDTO = new ProcessDTO();
-        processDTO.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
-        processDTO.setRootFolder(new File("C:\\_dev\\vhs"));
-        processDTO.setTechnicalDescriptor("generator");
+
+        ProcessDTO processDTO = new ProcessDTO(new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath(), new File("C:\\_dev\\vhs").getAbsolutePath(), "generator");
         processDTO.setJavaBasePackage("com.dbr.generator");
 
         processDTO.setUseSpringBootTemplate(true);
@@ -34,7 +32,7 @@ public class MainGenerator {
 
         processDTO.setUseNidocaClient(false);
 
-        ProjectDTO projectDTO = new ProjectDTO();
+        ProjectDTO projectDTO = new ProjectDTO(processDTO, "springboot", "");
         processDTO.setJavaBasePackage("com.dbr.generator");
 
         processDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, new StringBuilder().append(processDTO.getJavaBasePackage()).append(".dto").toString(), ProjectDTO.class))));
@@ -57,12 +55,12 @@ public class MainGenerator {
 
         logger.info("generate project start...");
 
-        File tempFolder = processDTO.getTempFolder();
+        File tempFolder = processDTO.getProcessTempFolder();
         if (tempFolder.exists()) {
             FileUtils.deleteDirectory(tempFolder);
         }
         GeneratorUtil.makeDir(tempFolder);
-        GeneratorUtil.makeDir(processDTO.getRootFolder());
+        GeneratorUtil.makeDir(processDTO.getProcessParentFolder());
         GeneratorUtil.makeDir(processDTO.getProcessFolder());
 
         if (processDTO.getUseSpringBootTemplate()) {

@@ -13,8 +13,10 @@ public class ProjectDTO {
 
     private ProcessDTO processDTO;
 
-    public ProjectDTO(ProcessDTO processDTO) {
+    public ProjectDTO(ProcessDTO processDTO,String technicalDescriptor, String javaBasePackage) {
         this.processDTO = processDTO;
+        this.technicalDescriptor = technicalDescriptor;
+        this.javaBasePackage = javaBasePackage;
     }
 
     private String technicalDescriptor;

@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.item.merger.java;
 
-import com.dbr.generator.basic.BaseTestUtil;
+import com.dbr.generator.basic.BasicTestUtil;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
@@ -19,7 +19,7 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        DTOMerger dtoMerger = new DTOMerger(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BaseTestUtil.projectDTO,BaseTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class))));
+        DTOMerger dtoMerger = new DTOMerger(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, BasicTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class))));
         String content = dtoMerger.create();
         log.info(content);
         assertNotNull(content);

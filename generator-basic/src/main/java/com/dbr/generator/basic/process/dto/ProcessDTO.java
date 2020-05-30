@@ -10,9 +10,9 @@ import java.util.List;
 @Data
 public class ProcessDTO {
 
-    private File tempFolder;
+    private String processTempPath;
 
-    private File rootFolder;
+    private String processParentPath;
 
     private String technicalDescriptor;
 
@@ -37,16 +37,22 @@ public class ProcessDTO {
     private String nidocaTemplateZipFilename = new StringBuilder().append(nidocaTemplateFilename).append(".zip")
             .toString();
 
+    public ProcessDTO(String processTempPath, String processParentPath, String technicalDescriptor) {
+        this.processTempPath = processTempPath;
+        this.processParentPath = processParentPath;
+        this.technicalDescriptor = technicalDescriptor;
+    }
+
     public File getProcessFolder() {
-        return new File(rootFolder, technicalDescriptor);
+        return new File(processParentPath, technicalDescriptor);
     }
 
     public File getSpringBootTemplateFolder() {
-        return new File(this.tempFolder, this.springBootTemplateFilename);
+        return new File(this.processTempPath, this.springBootTemplateFilename);
     }
 
     public File getSpringBootTemplateZipFile() {
-        return new File(this.tempFolder, getSpringBootTemplateZipFilename());
+        return new File(this.processTempPath, getSpringBootTemplateZipFilename());
     }
 
     public String getSpringBootProjectGroupId() {
@@ -82,11 +88,11 @@ public class ProcessDTO {
     }
 
     public File getNidocaTemplateFolder() {
-        return new File(this.tempFolder, this.nidocaTemplateFilename);
+        return new File(this.processTempPath, this.nidocaTemplateFilename);
     }
 
     public File getNidocaTemplateZipFile() {
-        return new File(this.tempFolder, getNidocaTemplateZipFilename());
+        return new File(this.processTempPath, getNidocaTemplateZipFilename());
     }
 
     public String getNidocaProjectArtifactId() {
@@ -98,11 +104,19 @@ public class ProcessDTO {
     }
 
     public void validate() {
-        validateNotHDDBaseDirectory(getTempFolder());
-        validateNotHDDBaseDirectory(getRootFolder());
+        validateNotHDDBaseDirectory(getProcessTempFile());
+        validateNotHDDBaseDirectory(getProcessParentFolder());
         validateNotHDDBaseDirectory(getProcessFolder());
         validateNotHDDBaseDirectory(getSpringBootProjectFolder());
-        validateDirectoryPathNotEqual(getRootFolder(), getProcessFolder());
+        validateDirectoryPathNotEqual(getProcessParentFolder(), getProcessFolder());
+    }
+
+    public File getProcessParentFolder() {
+        return new File(getProcessParentPath());
+    }
+
+    private File getProcessTempFile() {
+        return new File(getProcessTempPath());
     }
 
     private void validateDirectoryPathNotEqual(File folderOne, File folderTwo) {
@@ -117,4 +131,7 @@ public class ProcessDTO {
         }
     }
 
+    public File getProcessTempFolder() {
+        return new File(getProcessTempPath());
+    }
 }
