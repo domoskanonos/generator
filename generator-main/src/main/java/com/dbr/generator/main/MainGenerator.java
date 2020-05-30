@@ -40,7 +40,7 @@ public class MainGenerator {
         itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
 
 
-        javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemDTO));
+        javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemEntity));
         javaProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
         //javaProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOItemDTO));
         processDTO.getProjectDTOS().add(javaProjectDTO);
