@@ -62,7 +62,6 @@ public class MainGenerator {
             }
         }
 
-
         logger.info("generate project end...");
 
     }
