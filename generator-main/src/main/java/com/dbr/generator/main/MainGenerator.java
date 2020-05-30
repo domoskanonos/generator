@@ -25,7 +25,7 @@ public class MainGenerator {
 
     public static void main(String[] args) throws Exception {
 
-        String processParentPath = new File("C:\\_dev\\vhs\\1").getAbsolutePath();
+        String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         ProcessDTO processDTO = new ProcessDTO(processTempPath, processParentPath, "generator");
 
