@@ -5,6 +5,7 @@ import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMergerFactory;
 import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.EntityItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
 import com.dbr.generator.basic.project.ProjectFactory;
@@ -31,10 +32,13 @@ public class MainGenerator {
         SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "com.dbr.generator");
         springBootProjectDTO.setAddSpringBootSecurityModule(false);
 
-        ItemConverterDTO projectDTO2itemDTOConverterDTO = new ItemConverterDTO(springBootProjectDTO, springBootProjectDTO.getJavaDTOPackageName(), ProjectDTO.class);
+        ItemConverterDTO projectDTO2itemDTOConverterDTO = new ItemConverterDTO(springBootProjectDTO, springBootProjectDTO.getJavaDTOPackageName(), ProcessDTO.class);
         ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(projectDTO2itemDTOConverterDTO);
-        DTOItemMergerDTO dtoItemMergerDTO = new DTOItemMergerDTO(itemDTO);
-        springBootProjectDTO.getItemMergerDTOS().add(dtoItemMergerDTO);
+
+
+        springBootProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTO));
+        springBootProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTO));
+        //springBootProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTO));
 
         processDTO.getProjectDTOS().add(springBootProjectDTO);
 

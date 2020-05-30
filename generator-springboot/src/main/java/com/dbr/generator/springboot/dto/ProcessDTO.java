@@ -11,11 +11,11 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder=true)
-public class ProjectDTO {
+public class ProcessDTO {
 
-    private java.lang.Object processDTO;
-    private java.util.List itemMergerDTOS;
-    private java.util.List downloadUrls;
+    private String processTempPath;
+    private String processParentPath;
     private String technicalDescriptor;
+    private java.util.List projectDTOS;
 
 }
