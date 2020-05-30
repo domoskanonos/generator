@@ -3,6 +3,7 @@ package com.dbr.generator.main;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMergerFactory;
+import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.EntityItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
@@ -32,12 +33,13 @@ public class MainGenerator {
 
 
         ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
+        itemDTOItemDTO.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaDTOPackageName()).append("DTO").toString());
         ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
         itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append("Item").toString());
 
 
         springBootProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemDTO));
-        //springBootProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
+        springBootProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
         //springBootProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOItemDTO));
 
         processDTO.getProjectDTOS().add(springBootProjectDTO);
