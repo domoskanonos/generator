@@ -44,7 +44,7 @@ public class ItemDTO {
     }
 
     public String getJavaFilePathSuffix() {
-        return new StringBuilder().append(getPackagePath()).append(getJavaFileName()).toString();
+        return new StringBuilder().append("src/main/java/").append(getPackagePath()).append(getJavaFileName()).toString();
     }
 
 }

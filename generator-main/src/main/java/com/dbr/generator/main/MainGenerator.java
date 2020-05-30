@@ -5,6 +5,7 @@ import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.item.merger.ItemMergerFactory;
+import com.dbr.generator.basic.process.dto.ProcessDTO;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.SystemUtil;
@@ -22,29 +23,32 @@ public class MainGenerator {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        ProcessDTO processDTO = new ProcessDTO();
+        processDTO.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
+        processDTO.setRootFolder(new File("C:\\_dev\\vhs"));
+        processDTO.setTechnicalDescriptor("generator");
+        processDTO.setJavaBasePackage("com.dbr.generator");
+
+        processDTO.setUseSpringBootTemplate(true);
+        processDTO.setAddSpringBootSecurityModule(false);
+
+        processDTO.setUseNidocaClient(false);
+
         ProjectDTO projectDTO = new ProjectDTO();
-        projectDTO.setTempFolder(new File(System.getProperty("java.io.tmpdir"), "generator"));
-        projectDTO.setRootFolder(new File("C:\\_dev\\vhs"));
-        projectDTO.setTechnicalDescriptor("generator");
-        projectDTO.setJavaBasePackage("com.dbr.generator");
+        processDTO.setJavaBasePackage("com.dbr.generator");
 
-        projectDTO.setUseSpringBootTemplate(true);
-        projectDTO.setAddSpringBootSecurityModule(false);
-
-        projectDTO.setUseNidocaClient(false);
-
-        projectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, new StringBuilder().append(projectDTO.getJavaBasePackage()).append(".dto").toString(), ProjectDTO.class))));
+        processDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(projectDTO, new StringBuilder().append(processDTO.getJavaBasePackage()).append(".dto").toString(), ProjectDTO.class))));
 
         MainGenerator mainGenerator = new MainGenerator();
-        mainGenerator.generate(projectDTO);
+        mainGenerator.generate(processDTO);
     }
 
-    public void generate(ProjectDTO model) throws IOException, InterruptedException {
+    public void generate(ProcessDTO processDTO) throws IOException, InterruptedException {
 
-        model.validate();
+        processDTO.validate();
 
 
-        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
+        for (ItemMergerDTO itemMergerDTO : processDTO.getItemMergerDTOS()) {
             ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
         }
 
@@ -53,52 +57,52 @@ public class MainGenerator {
 
         logger.info("generate project start...");
 
-        File tempFolder = model.getTempFolder();
+        File tempFolder = processDTO.getTempFolder();
         if (tempFolder.exists()) {
             FileUtils.deleteDirectory(tempFolder);
         }
         GeneratorUtil.makeDir(tempFolder);
-        GeneratorUtil.makeDir(model.getRootFolder());
-        GeneratorUtil.makeDir(model.getProjectFolder());
+        GeneratorUtil.makeDir(processDTO.getRootFolder());
+        GeneratorUtil.makeDir(processDTO.getProcessFolder());
 
-        if (model.getUseSpringBootTemplate()) {
-            deleteFile(model.getSpringBootProjectFolder());
-            File springBootZipFile = copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
-                    model.getSpringBootTemplateZipFile());
+        if (processDTO.getUseSpringBootTemplate()) {
+            deleteFile(processDTO.getSpringBootProjectFolder());
+            File springBootZipFile = copyUrlToTempFolder(processDTO.getSpringBootTemplateZipUrl(),
+                    processDTO.getSpringBootTemplateZipFile());
             unzipFile(springBootZipFile, tempFolder);
-            createMavenArchetype(model.getSpringBootTemplateFolder());
-            createFromArchetype(model.getProjectFolder(), model.getSpringBootProjectArtifactId(),
-                    model.getSpringBootProjectGroupId(), model.getSpringBootArchetypeArtifactId(),
-                    model.getSpringBootGroupId());
+            createMavenArchetype(processDTO.getSpringBootTemplateFolder());
+            createFromArchetype(processDTO.getProcessFolder(), processDTO.getSpringBootProjectArtifactId(),
+                    processDTO.getSpringBootProjectGroupId(), processDTO.getSpringBootArchetypeArtifactId(),
+                    processDTO.getSpringBootGroupId());
 
-            if (!model.getAddSpringBootMailRestController()) {
-                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
+            if (!processDTO.getAddSpringBootMailRestController()) {
+                deleteFile(new File(processDTO.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
             }
 
-            if (!model.getAddSpringBootSecurityModule()) {
-                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
-                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
-                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
+            if (!processDTO.getAddSpringBootSecurityModule()) {
+                deleteFile(new File(processDTO.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
+                deleteFile(new File(processDTO.getSpringBootProjectResourceFolder(), "public/login.html"));
+                deleteFile(new File(processDTO.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
             }
 
-            if (!model.getAddSpringBootStorageModule()) {
-                deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
-                deleteFile(new File(model.getSpringBootProjectTestSourceBasePackageFolder(), "system/storage"));
-                deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
+            if (!processDTO.getAddSpringBootStorageModule()) {
+                deleteFile(new File(processDTO.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
+                deleteFile(new File(processDTO.getSpringBootProjectTestSourceBasePackageFolder(), "system/storage"));
+                deleteFile(new File(processDTO.getSpringBootProjectResourceFolder(), "upload.properties"));
             }
 
         }
 
-        if (model.getUseNidocaClient()) {
-            deleteFile(model.getNidocaProjectFolder());
-            File nidocaTemplateZipFile = copyUrlToTempFolder(model.getNidocaTemplateZipUrl(),
-                    model.getNidocaTemplateZipFile());
-            unzipFile(nidocaTemplateZipFile, model.getProjectFolder());
-            FileUtils.moveDirectory(new File(model.getProjectFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
+        if (processDTO.getUseNidocaClient()) {
+            deleteFile(processDTO.getNidocaProjectFolder());
+            File nidocaTemplateZipFile = copyUrlToTempFolder(processDTO.getNidocaTemplateZipUrl(),
+                    processDTO.getNidocaTemplateZipFile());
+            unzipFile(nidocaTemplateZipFile, processDTO.getProcessFolder());
+            FileUtils.moveDirectory(new File(processDTO.getProcessFolder(), processDTO.getNidocaTemplateFilename()), processDTO.getNidocaProjectFolder());
         }
 
 
-        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
+        for (ItemMergerDTO itemMergerDTO : processDTO.getItemMergerDTOS()) {
             ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
         }
 
