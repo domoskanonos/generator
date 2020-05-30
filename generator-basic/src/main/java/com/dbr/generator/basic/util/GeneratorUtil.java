@@ -304,10 +304,10 @@ public class GeneratorUtil {
     }
 
     public static String getJavaSimpleClazzName(String javaClazzName) {
-        return javaClazzName.substring(0, javaClazzName.lastIndexOf("."));
+        return javaClazzName.substring(javaClazzName.lastIndexOf(".") + 1);
     }
 
     public static String getJavaPackageName(String javaClazzName) {
-        return javaClazzName.substring(javaClazzName.lastIndexOf("."));
+        return javaClazzName.substring(0, javaClazzName.lastIndexOf("."));
     }
 }
