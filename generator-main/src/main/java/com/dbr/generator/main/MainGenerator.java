@@ -2,10 +2,8 @@ package com.dbr.generator.main;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.ItemMergerFactory;
 import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.EntityItemMergerDTO;
-import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
 import com.dbr.generator.basic.project.ProjectFactory;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
@@ -77,10 +75,6 @@ public class MainGenerator {
             ProjectGeneratorInterface projectGeneratorInterface = ProjectFactory.create(projectDTO);
             projectGeneratorInterface.validate(projectDTO);
             projectGeneratorInterface.execute(projectDTO);
-
-            for (ItemMergerDTO itemMergerDTO : projectDTO.getItemMergerDTOS()) {
-                ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
-            }
         }
 
         logger.info("generate project end...");

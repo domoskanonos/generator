@@ -1,5 +1,7 @@
 package com.dbr.generator.basic.project.generator;
 
+import com.dbr.generator.basic.item.merger.ItemMergerFactory;
+import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -11,30 +13,34 @@ import java.io.IOException;
 public class SpringBootProjectGenerator implements ProjectGeneratorInterface<SpringBootProjectDTO> {
 
     @Override
-    public void execute(SpringBootProjectDTO springBootProjectDTO) throws IOException, InterruptedException {
-        GeneratorUtil.deleteFile(springBootProjectDTO.getSpringBootProjectFolder());
-        File springBootZipFile = GeneratorUtil.copyUrlToTempFolder(springBootProjectDTO.getSpringBootTemplateZipUrl(),
-                springBootProjectDTO.getSpringBootTemplateZipFile());
-        GeneratorUtil.unzipFile(springBootZipFile, springBootProjectDTO.getProcessTempFolder());
-        GeneratorUtil.createMavenArchetype(springBootProjectDTO.getSpringBootTemplateFolder());
-        GeneratorUtil.createFromArchetype(springBootProjectDTO.getProcessFolder(), springBootProjectDTO.getSpringBootProjectArtifactId(),
-                springBootProjectDTO.getProjectGroupId(), springBootProjectDTO.getSpringBootArchetypeArtifactId(),
-                springBootProjectDTO.getSpringBootGroupId());
+    public void execute(SpringBootProjectDTO model) throws IOException, InterruptedException {
+        GeneratorUtil.deleteFile(model.getSpringBootProjectFolder());
+        File springBootZipFile = GeneratorUtil.copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
+                model.getSpringBootTemplateZipFile());
+        GeneratorUtil.unzipFile(springBootZipFile, model.getProcessTempFolder());
+        GeneratorUtil.createMavenArchetype(model.getSpringBootTemplateFolder());
+        GeneratorUtil.createFromArchetype(model.getProcessFolder(), model.getSpringBootProjectArtifactId(),
+                model.getProjectGroupId(), model.getSpringBootArchetypeArtifactId(),
+                model.getSpringBootGroupId());
 
-        if (!springBootProjectDTO.getAddSpringBootMailRestController()) {
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
+        if (!model.getAddSpringBootMailRestController()) {
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
         }
 
-        if (!springBootProjectDTO.getAddSpringBootSecurityModule()) {
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectResourceFolder(), "public/login.html"));
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
+        if (!model.getAddSpringBootSecurityModule()) {
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
         }
 
-        if (!springBootProjectDTO.getAddSpringBootStorageModule()) {
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectTestSourceBasePackageFolder(), "system/storage"));
-            GeneratorUtil.deleteFile(new File(springBootProjectDTO.getSpringBootProjectResourceFolder(), "upload.properties"));
+        if (!model.getAddSpringBootStorageModule()) {
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/storage"));
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectTestSourceBasePackageFolder(), "system/storage"));
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
+        }
+
+        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
+            ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
         }
 
     }
