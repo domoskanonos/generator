@@ -7,6 +7,8 @@ import com.dbr.generator.basic.item.merger.ItemMergerFactory;
 import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
 import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
+import com.dbr.generator.basic.project.ProjectFactory;
+import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -58,6 +60,9 @@ public class MainGenerator {
 
         for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
 
+            ProjectGeneratorInterface projectGeneratorInterface = ProjectFactory.create(projectDTO);
+            projectGeneratorInterface.validate(projectDTO);
+            projectGeneratorInterface.execute(projectDTO);
 
             for (ItemMergerDTO itemMergerDTO : projectDTO.getItemMergerDTOS()) {
                 ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
