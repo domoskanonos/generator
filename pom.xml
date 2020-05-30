@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-                
+                  
+  
   
   
   
@@ -8,7 +9,8 @@
   
   
   <modelVersion>4.0.0</modelVersion>
-                
+                  
+  
   
   
   
@@ -16,7 +18,8 @@
   
   
   <groupId>com.dbr.generator</groupId>
-                
+                  
+  
   
   
   
@@ -24,7 +27,8 @@
   
   
   <artifactId>generator</artifactId>
-                
+                  
+  
   
   
   
@@ -32,7 +36,8 @@
   
   
   <version>1.0.0</version>
-                
+                  
+  
   
   
   
@@ -40,7 +45,8 @@
   
   
   <packaging>pom</packaging>
-                
+                  
+  
   
   
   
@@ -48,7 +54,8 @@
   
   
   <properties>
-                                
+                                    
+    
     
     
     
@@ -56,7 +63,8 @@
     
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-                                
+                                    
+    
     
     
     
@@ -64,7 +72,8 @@
     
     
     <java.version>12</java.version>
-                                
+                                    
+    
     
     
     
@@ -72,7 +81,8 @@
     
     
     <project.build.java.source>12</project.build.java.source>
-                                
+                                    
+    
     
     
     
@@ -80,7 +90,8 @@
     
     
     <project.build.java.target>12</project.build.java.target>
-                                
+                                    
+    
     
     
     
@@ -88,7 +99,8 @@
     
     
     <maven.compiler.target>12</maven.compiler.target>
-                                
+                                    
+    
     
     
     
@@ -96,7 +108,8 @@
     
     
     <maven.compiler.source>12</maven.compiler.source>
-                                
+                                    
+    
     
     
     
@@ -104,7 +117,8 @@
     
     
     <spring.boot.version>2.2.5.RELEASE</spring.boot.version>
-                              
+                                  
+  
   
   
   
@@ -112,7 +126,8 @@
   
   
   </properties>
-                
+                  
+  
   
   
   
@@ -120,7 +135,8 @@
   
   
   <repositories>
-                                
+                                    
+    
     
     
     
@@ -128,7 +144,8 @@
     
     
     <repository>
-                                                
+                                                      
+      
       
       
       
@@ -136,7 +153,8 @@
       
       
       <id>mvnrepository</id>
-                                                
+                                                      
+      
       
       
       
@@ -144,7 +162,8 @@
       
       
       <url>http://repo1.maven.org/maven2</url>
-                                                
+                                                      
+      
       
       
       
@@ -152,7 +171,8 @@
       
       
       <snapshots>
-                                                                
+                                                                        
+        
         
         
         
@@ -160,7 +180,8 @@
         
         
         <enabled>false</enabled>
-                                                              
+                                                                      
+      
       
       
       
@@ -168,7 +189,8 @@
       
       
       </snapshots>
-                                                
+                                                      
+      
       
       
       
@@ -177,7 +199,8 @@
       
       <releases>
       </releases>
-                                              
+                                                    
+    
     
     
     
@@ -185,7 +208,8 @@
     
     
     </repository>
-                              
+                                  
+  
   
   
   
@@ -193,7 +217,8 @@
   
   
   </repositories>
-                
+                  
+  
   
   
   
@@ -201,7 +226,8 @@
   
   
   <dependencies>
-                                
+                                    
+    
     
     
     
@@ -209,7 +235,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -217,7 +244,8 @@
       
       
       <groupId>org.reflections</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -225,7 +253,8 @@
       
       
       <artifactId>reflections</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -233,7 +262,8 @@
       
       
       <version>0.9.11</version>
-                                              
+                                                    
+    
     
     
     
@@ -241,7 +271,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -249,7 +280,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -257,7 +289,8 @@
       
       
       <groupId>org.projectlombok</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -265,7 +298,8 @@
       
       
       <artifactId>lombok</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -273,7 +307,8 @@
       
       
       <version>1.18.2</version>
-                                                
+                                                      
+      
       
       
       
@@ -281,7 +316,8 @@
       
       
       <scope>provided</scope>
-                                              
+                                                    
+    
     
     
     
@@ -289,7 +325,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -297,7 +334,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -305,7 +343,8 @@
       
       
       <groupId>com.dbr.util</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -313,7 +352,8 @@
       
       
       <artifactId>java-util-box</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -321,7 +361,8 @@
       
       
       <version>1.0.0</version>
-                                                
+                                                      
+      
       
       
       
@@ -329,7 +370,8 @@
       
       
       <scope>compile</scope>
-                                              
+                                                    
+    
     
     
     
@@ -337,7 +379,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -345,7 +388,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -353,7 +397,8 @@
       
       
       <groupId>org.apache.velocity</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -361,7 +406,8 @@
       
       
       <artifactId>velocity-engine-core</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -369,7 +415,8 @@
       
       
       <version>2.0</version>
-                                              
+                                                    
+    
     
     
     
@@ -377,7 +424,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -385,7 +433,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -393,7 +442,8 @@
       
       
       <groupId>com.h2database</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -401,7 +451,8 @@
       
       
       <artifactId>h2</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -409,7 +460,8 @@
       
       
       <scope>runtime</scope>
-                                                
+                                                      
+      
       
       
       
@@ -417,7 +469,8 @@
       
       
       <version>1.4.199</version>
-                                              
+                                                    
+    
     
     
     
@@ -425,7 +478,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -433,7 +487,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -441,7 +496,8 @@
       
       
       <groupId>mysql</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -449,7 +505,8 @@
       
       
       <artifactId>mysql-connector-java</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -457,7 +514,8 @@
       
       
       <version>5.1.48</version>
-                                              
+                                                    
+    
     
     
     
@@ -465,7 +523,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -473,7 +532,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -481,7 +541,8 @@
       
       
       <groupId>junit</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -489,7 +550,8 @@
       
       
       <artifactId>junit</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -497,7 +559,8 @@
       
       
       <version>4.12</version>
-                                                
+                                                      
+      
       
       
       
@@ -505,7 +568,8 @@
       
       
       <scope>test</scope>
-                                              
+                                                    
+    
     
     
     
@@ -513,7 +577,8 @@
     
     
     </dependency>
-                                   
+                                       
+    
     
     
     
@@ -521,7 +586,8 @@
     
     
     <dependency>
-                                              
+                                                    
+      
       
       
       
@@ -529,7 +595,8 @@
       
       
       <groupId>javax.persistence</groupId>
-                                              
+                                                    
+      
       
       
       
@@ -537,7 +604,8 @@
       
       
       <artifactId>javax.persistence-api</artifactId>
-                                              
+                                                    
+      
       
       
       
@@ -545,7 +613,8 @@
       
       
       <version>2.2</version>
-                                            
+                                                  
+    
     
     
     
@@ -553,7 +622,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -561,7 +631,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -569,7 +640,8 @@
       
       
       <groupId>javax.validation</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -577,7 +649,8 @@
       
       
       <artifactId>validation-api</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -585,7 +658,8 @@
       
       
       <version>2.0.0.Final</version>
-                                              
+                                                    
+    
     
     
     
@@ -593,7 +667,8 @@
     
     
     </dependency>
-                                
+                                    
+    
     
     
     
@@ -601,7 +676,8 @@
     
     
     <dependency>
-                                                
+                                                      
+      
       
       
       
@@ -609,7 +685,8 @@
       
       
       <groupId>org.springframework.boot</groupId>
-                                                
+                                                      
+      
       
       
       
@@ -617,7 +694,8 @@
       
       
       <artifactId>spring-boot-starter-data-jpa</artifactId>
-                                                
+                                                      
+      
       
       
       
@@ -625,7 +703,8 @@
       
       
       <version>${spring.boot.version}</version>
-                                                
+                                                      
+      
       
       
       
@@ -633,7 +712,8 @@
       
       
       <scope>compile</scope>
-                                              
+                                                    
+    
     
     
     
@@ -641,7 +721,8 @@
     
     
     </dependency>
-                              
+                                  
+  
   
   
   
@@ -649,7 +730,8 @@
   
   
   </dependencies>
-                
+                  
+  
   
   
   
@@ -657,7 +739,8 @@
   
   
   <build>
-                                  
+                                      
+    
     
     
     
@@ -665,7 +748,8 @@
     
     
     <resources>
-                                                  
+                                                        
+      
       
       
       
@@ -673,7 +757,8 @@
       
       
       <resource>
-                                                                  
+                                                                          
+        
         
         
         
@@ -681,7 +766,8 @@
         
         
         <directory>src/main/resources</directory>
-                                                                  
+                                                                          
+        
         
         
         
@@ -689,7 +775,8 @@
         
         
         <filtering>true</filtering>
-                                                                  
+                                                                          
+        
         
         
         
@@ -697,7 +784,8 @@
         
         
         <includes>
-                                                                                  
+                                                                                            
+          
           
           
           
@@ -705,7 +793,8 @@
           
           
           <include>**/*.vm</include>
-                                                                                  
+                                                                                            
+          
           
           
           
@@ -713,7 +802,8 @@
           
           
           <include>**/*.txt</include>
-                                                                                  
+                                                                                            
+          
           
           
           
@@ -721,7 +811,8 @@
           
           
           <include>**/*.csv</include>
-                                                                                
+                                                                                          
+        
         
         
         
@@ -729,7 +820,8 @@
         
         
         </includes>
-                                                                
+                                                                        
+      
       
       
       
@@ -737,7 +829,8 @@
       
       
       </resource>
-                                                
+                                                      
+    
     
     
     
@@ -745,7 +838,8 @@
     
     
     </resources>
-                                
+                                    
+    
     
     
     
@@ -753,13 +847,15 @@
     
     
     <plugins>
-                                    
+                                          
+      
       
       
       
       
       <plugin>
-                                                                
+                                                                        
+        
         
         
         
@@ -767,7 +863,8 @@
         
         
         <groupId>org.apache.maven.plugins</groupId>
-                                                                
+                                                                        
+        
         
         
         
@@ -775,7 +872,8 @@
         
         
         <artifactId>maven-compiler-plugin</artifactId>
-                                                                
+                                                                        
+        
         
         
         
@@ -783,7 +881,8 @@
         
         
         <version>3.8.1</version>
-                                                                
+                                                                        
+        
         
         
         
@@ -791,7 +890,8 @@
         
         
         <configuration>
-                                                                                
+                                                                                          
+          
           
           
           
@@ -799,7 +899,8 @@
           
           
           <source>${project.build.java.source}</source>
-                                                                                
+                                                                                          
+          
           
           
           
@@ -807,7 +908,8 @@
           
           
           <target>${project.build.java.target}</target>
-                                                                              
+                                                                                        
+        
         
         
         
@@ -815,7 +917,8 @@
         
         
         </configuration>
-                                                              
+                                                                      
+      
       
       
       
@@ -823,13 +926,15 @@
       
       
       </plugin>
-                                    
+                                          
+      
       
       
       
       
       <plugin>
-                                                                
+                                                                        
+        
         
         
         
@@ -837,7 +942,8 @@
         
         
         <artifactId>maven-resources-plugin</artifactId>
-                                                                
+                                                                        
+        
         
         
         
@@ -845,7 +951,8 @@
         
         
         <version>3.1.0</version>
-                                                              
+                                                                      
+      
       
       
       
@@ -853,7 +960,8 @@
       
       
       </plugin>
-                                                
+                                                      
+      
       
       
       
@@ -861,7 +969,8 @@
       
       
       <!-- mvn formatter:format -->
-                                                
+                                                      
+      
       
       
       
@@ -869,7 +978,8 @@
       
       
       <plugin>
-                                                                
+                                                                        
+        
         
         
         
@@ -877,7 +987,8 @@
         
         
         <groupId>net.revelc.code.formatter</groupId>
-                                                                
+                                                                        
+        
         
         
         
@@ -885,7 +996,8 @@
         
         
         <artifactId>formatter-maven-plugin</artifactId>
-                                                                
+                                                                        
+        
         
         
         
@@ -893,7 +1005,8 @@
         
         
         <version>2.11.0</version>
-                                                                
+                                                                        
+        
         
         
         
@@ -901,7 +1014,8 @@
         
         
         <configuration>
-                                                                                
+                                                                                          
+          
           
           
           
@@ -909,7 +1023,8 @@
           
           
           <encoding>${project.build.sourceEncoding}</encoding>
-                                                                              
+                                                                                        
+        
         
         
         
@@ -917,7 +1032,8 @@
         
         
         </configuration>
-                                                              
+                                                                      
+      
       
       
       
@@ -925,7 +1041,8 @@
       
       
       </plugin>
-                                              
+                                                    
+    
     
     
     
@@ -933,7 +1050,8 @@
     
     
     </plugins>
-                              
+                                  
+  
   
   
   
@@ -941,7 +1059,8 @@
   
   
   </build>
-                
+                  
+  
   
   
   
@@ -949,7 +1068,8 @@
   
   
   <modules>
-                                
+                                    
+    
     
     
     
@@ -957,18 +1077,23 @@
     
     
     <module>generator-basic</module>
-                        
+                            
+    
     
     
     
     
     <module>generator-main</module>
-                      
+                          
 
 
       
+    
+    <module>generator-springboot</module>
+      
   </modules>
-              
+                
+
 
 
 

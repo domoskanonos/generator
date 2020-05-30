@@ -1,7 +1,6 @@
 package com.dbr.generator.basic.item.merger.dto;
 
 import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.enumeration.ItemMergerEnum;
 import lombok.Data;
 
 @Data
@@ -10,7 +9,7 @@ public class ItemMergerDTO {
     private String path;
     private ItemDTO[] objects;
 
-    public ItemMergerDTO(String path, ItemMergerEnum itemMergerEnum, ItemDTO... objects) {
+    public ItemMergerDTO(String path, ItemDTO... objects) {
         this.path = path;
         this.objects = objects;
     }

@@ -17,6 +17,7 @@ public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(Class<?> clazz) {
         ItemDTO itemDTO = ItemDTO.builder().build();
+        itemDTO.setProjectPath(clazz.getResource("/").getPath());
         itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
         for (Field field : clazz.getDeclaredFields()) {
