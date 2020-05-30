@@ -1,7 +1,6 @@
 package com.dbr.generator.basic.property.dto;
 
 import com.dbr.generator.basic.property.enumeration.PropertyTypeEnum;
-import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ public class PropertyDTO {
     private boolean idProperty;
     private boolean searchable;
     private boolean nullable;
-    private ItemDTO itemDTO;
+    private boolean useJPAIdClazz;
     private Integer length;
 
     public PropertyDTO(String name, String javaTypeSimpleName) {
@@ -31,7 +30,7 @@ public class PropertyDTO {
         String id = "";
         if (idProperty) {
             id = "\n    @Id";
-            if (!itemDTO.useJPAIdClazz()) {
+            if (!useJPAIdClazz) {
                 id += "\n    @GeneratedValue(strategy = GenerationType.IDENTITY)";
             }
         }
