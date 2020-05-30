@@ -17,15 +17,12 @@ public class ProjectDTO {
 
     private List<String> downloadUrls = new ArrayList<>();
 
-    public ProjectDTO(ProcessDTO processDTO,String technicalDescriptor, String javaBasePackage) {
+    public ProjectDTO(ProcessDTO processDTO,String technicalDescriptor) {
         this.processDTO = processDTO;
         this.technicalDescriptor = technicalDescriptor;
-        this.javaBasePackage = javaBasePackage;
     }
 
     private String technicalDescriptor;
-
-    private String javaBasePackage;
 
     public File getProjectFolder() {
         return new File(processDTO.getProcessFolder(), technicalDescriptor);

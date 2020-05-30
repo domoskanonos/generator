@@ -24,7 +24,7 @@ public class JavaClass2ItemDTOConverter {
         itemDTO.setProjectDTO(projectDTO);
         itemDTO.setJavaPackageName(itemConverterDTO.getJavaPackageName());
         itemDTO.setJavaClazzSimpleName(getClazzSimpleName(itemConverterDTO.getClazz()));
-        itemDTO.setJavaClazzName(String.format("%s.%s", projectDTO.getJavaBasePackage(), itemDTO.getJavaClazzSimpleName()));
+        itemDTO.setJavaClazzName(String.format("%s.%s", itemConverterDTO.getJavaPackageName(), itemDTO.getJavaClazzSimpleName()));
         for (Field field : itemConverterDTO.getClazz().getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new PropertyConverterDTO(itemDTO, field));
             itemDTO.getProperties().add(propertyDTO);

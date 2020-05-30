@@ -9,7 +9,7 @@ import java.io.File;
 public class NidocaProjectDTO extends ProjectDTO {
 
     public NidocaProjectDTO(ProcessDTO processDTO, String technicalDescriptor, String javaBasePackage) {
-        super(processDTO, technicalDescriptor, javaBasePackage);
+        super(processDTO, technicalDescriptor);
     }
 
     private Boolean useNidocaClient = false;

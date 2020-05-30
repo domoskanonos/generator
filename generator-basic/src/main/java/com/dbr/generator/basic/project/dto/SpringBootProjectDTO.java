@@ -6,19 +6,16 @@ import lombok.Data;
 import java.io.File;
 
 @Data
-public class SpringBootProjectDTO extends ProjectDTO {
+public class SpringBootProjectDTO extends JavaProjectDTO {
 
     public SpringBootProjectDTO(ProcessDTO processDTO, String technicalDescriptor, String javaBasePackage) {
         super(processDTO, technicalDescriptor, javaBasePackage);
     }
 
-    private Boolean useSpringBootTemplate = false;
     private String springBootTemplateZipUrl = "https://github.com/domoskanonos/spring-boot-template/archive/master.zip";
     private String springBootTemplateFilename = "spring-boot-template-master";
     private String springBootTemplateZipFilename = new StringBuilder().append(springBootTemplateFilename).append(".zip")
             .toString();
-    private String springBootArchetypeArtifactId = "springboottemplate-archetype";
-    private String springBootGroupId = "com.dbr.springboot.template";
     private Boolean addSpringBootMailRestController = false;
     private Boolean addSpringBootSecurityModule = false;
     private Boolean addSpringBootStorageModule = false;

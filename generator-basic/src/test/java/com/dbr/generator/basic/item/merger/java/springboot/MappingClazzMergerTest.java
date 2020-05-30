@@ -18,7 +18,7 @@ public class MappingClazzMergerTest {
 
     @Test
     public void create() {
-        MappingClazzMerger mappingClazzMerger = new MappingClazzMerger(new MappingClazzItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, BasicTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class)), new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, BasicTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class))));
+        MappingClazzMerger mappingClazzMerger = new MappingClazzMerger(new MappingClazzItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, "com.dbr.generator.project", ItemDTO.class)), new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, "com.dbr.generator.project", ItemDTO.class))));
         String content = mappingClazzMerger.create();
         log.info(content);
         assertNotNull(content);

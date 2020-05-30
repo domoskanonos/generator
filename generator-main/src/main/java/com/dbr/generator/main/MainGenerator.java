@@ -25,7 +25,6 @@ public class MainGenerator {
 
         SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "");
         springBootProjectDTO.setJavaBasePackage("com.dbr.generator");
-        springBootProjectDTO.setUseSpringBootTemplate(true);
         springBootProjectDTO.setAddSpringBootSecurityModule(false);
 
         ItemConverterDTO projectDTO2itemDTOConverterDTO = new ItemConverterDTO(springBootProjectDTO, springBootProjectDTO.getJavaDTOPackageName(), ProjectDTO.class);

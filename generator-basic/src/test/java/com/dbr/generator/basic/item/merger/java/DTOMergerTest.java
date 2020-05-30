@@ -19,7 +19,7 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        DTOMerger dtoMerger = new DTOMerger(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, BasicTestUtil.projectDTO.getJavaBasePackage(), ItemDTO.class))));
+        DTOMerger dtoMerger = new DTOMerger(new DTOItemMergerDTO(new JavaClass2ItemDTOConverter().convert(new ItemConverterDTO(BasicTestUtil.projectDTO, "com.dbr.generator.project", ItemDTO.class))));
         String content = dtoMerger.create();
         log.info(content);
         assertNotNull(content);

@@ -28,7 +28,7 @@ public class ItemMergerDTO {
         if (this.objects.length < 1) {
             throw new RuntimeException("not enough objects for mapping class, minimum is 1 item.");
         }
-        return this.objects[0].getProjectDTO().getJavaBasePackage();
+        return this.objects[0].getJavaPackageName();
     }
 
 }

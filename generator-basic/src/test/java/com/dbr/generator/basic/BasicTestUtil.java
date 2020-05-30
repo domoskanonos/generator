@@ -6,9 +6,18 @@ import com.dbr.generator.basic.project.dto.ProjectDTO;
 import java.io.File;
 
 public class BasicTestUtil {
-    public static ProjectDTO projectDTO = new ProjectDTO(new ProcessDTO(new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath(), new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath(), "HUhu"), "sdsd", "com.dbr.generator");
+    public static ProcessDTO processDTO;
 
     static {
-        projectDTO.setJavaBasePackage("com.dbr.generator.test");
+        String tempDirPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
+        processDTO = new ProcessDTO(tempDirPath, tempDirPath, "process");
+    }
+
+    public static ProjectDTO projectDTO = new ProjectDTO(processDTO, "project");
+
+    static {
+        ;
+
+        //"com.dbr.generator"
     }
 }
