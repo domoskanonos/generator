@@ -8,7 +8,7 @@ import java.io.File;
 @Data
 public class NidocaProjectDTO extends ProjectDTO {
 
-    public NidocaProjectDTO(ProcessDTO processDTO, String technicalDescriptor, String javaBasePackage) {
+    public NidocaProjectDTO(ProcessDTO processDTO, String technicalDescriptor) {
         super(processDTO, technicalDescriptor);
     }
 
@@ -17,10 +17,6 @@ public class NidocaProjectDTO extends ProjectDTO {
     private String nidocaTemplateFilename = "nidoca-template-dashboard-master";
     private String nidocaTemplateZipFilename = new StringBuilder().append(nidocaTemplateFilename).append(".zip")
             .toString();
-
-    public File getNidocaTemplateFolder() {
-        return new File(getProcessDTO().getProcessTempPath(), this.nidocaTemplateFilename);
-    }
 
     public File getNidocaTemplateZipFile() {
         return new File(getProcessDTO().getProcessTempPath(), nidocaTemplateZipFilename);
