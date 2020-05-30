@@ -31,8 +31,8 @@ public class MainGenerator {
         springBootProjectDTO.setAddSpringBootSecurityModule(true);
 
 
-        ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(ItemDTO.class);
-        ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(ItemDTO.class);
+        ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
+        ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
         itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append("Item").toString());
 
 

@@ -9,15 +9,15 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(Class<?> clazz) {
+    public ItemDTO convert(String projectPath, Class<?> clazz) {
         ItemDTO itemDTO = ItemDTO.builder().build();
-        itemDTO.setProjectPath(clazz.getResource("/").getPath());
+        itemDTO.setProjectPath(projectPath);
         itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
         for (Field field : clazz.getDeclaredFields()) {
@@ -27,13 +27,12 @@ public class JavaClass2ItemDTOConverter {
         return itemDTO;
     }
 
-    public List<ItemDTO> convert(Collection<Class<?>> clazzes) {
-        return clazzes.stream().map(this::convert).collect(Collectors.toList());
-    }
-
-    private String getClazzSimpleName(Class<?> source) {
-        return source.getSimpleName();
-        //return source.getSimpleName().replace("DTO", "").replace("Model", "").replace("Entity", "");
+    public List<ItemDTO> convert(String projectPath, Collection<Class<?>> clazzes) {
+        List<ItemDTO> retval = new ArrayList<>();
+        for (Class<?> clazz : clazzes) {
+            retval.add(convert(projectPath, clazz));
+        }
+        return retval;
     }
 
     public static String getIDClazzSimpleName(Class<?> clazz) {
