@@ -13,6 +13,10 @@ public class ProjectDTO {
 
     private ProcessDTO processDTO;
 
+    private List<ItemMergerDTO> itemMergerDTOS = new ArrayList<>();
+
+    private List<String> downloadUrls = new ArrayList<>();
+
     public ProjectDTO(ProcessDTO processDTO,String technicalDescriptor, String javaBasePackage) {
         this.processDTO = processDTO;
         this.technicalDescriptor = technicalDescriptor;
@@ -22,8 +26,6 @@ public class ProjectDTO {
     private String technicalDescriptor;
 
     private String javaBasePackage;
-
-    private List<ItemMergerDTO> itemMergerDTOS = new ArrayList<>();
 
     public File getProjectFolder() {
         return new File(processDTO.getProcessFolder(), technicalDescriptor);

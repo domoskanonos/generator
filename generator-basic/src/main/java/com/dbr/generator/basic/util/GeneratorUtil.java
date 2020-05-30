@@ -2,6 +2,9 @@ package com.dbr.generator.basic.util;
 
 import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.util.DataTypes;
+import com.dbr.util.SystemUtil;
+import com.dbr.util.ZipUtil;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +13,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -250,4 +255,52 @@ public class GeneratorUtil {
     public static String getPackagePath(String packageName) {
         return new StringBuilder().append(packageName.replace(".", "/")).append("/").toString();
     }
+
+    public static void deleteFile(File file) throws IOException {
+        String absolutePath = file.getAbsolutePath();
+        if (file.exists()) {
+
+            if (file.isDirectory()) {
+                _log.info("delete directory recursive: {}", absolutePath);
+                FileUtils.deleteDirectory(file);
+                return;
+            }
+
+            _log.info("delete file: {}", absolutePath);
+            if (file.delete()) {
+                _log.info("file deleted: {}", absolutePath);
+            }
+        } else {
+            _log.info("file not exist: {}", absolutePath);
+        }
+    }
+
+    public static void createFromArchetype(File folder, String artifactId, String groupId, String archetypeArtifactId,
+                                     String archetypeGroupId) throws IOException, InterruptedException {
+        _log.info("execute create from maven archetype command, path: {}", folder.getAbsolutePath());
+        String createFromArchetypeCommand = new StringBuilder().append("mvn -DgroupId=").append(groupId).append(" -DartifactId=").append(artifactId)
+                .append(" -Dversion=1.0.0 archetype:generate -B -DarchetypeGroupId=").append(archetypeGroupId)
+                .append(" -DarchetypeArtifactId=").append(archetypeArtifactId)
+                .append(" -DarchetypeVersion=1.0.0 -DarchetypeRepository=local").toString();
+        _log.info("execute create from maven archetype command, command: {}", createFromArchetypeCommand);
+        SystemUtil.executeCommand(folder, "cmd.exe", "/C",
+                createFromArchetypeCommand);
+    }
+
+    public static void createMavenArchetype(File folder) throws IOException, InterruptedException {
+        _log.info("execute create maven archetype command, path: {}", folder.getAbsolutePath());
+        SystemUtil.executeCommand(folder, "cmd.exe", "/C", "create-maven-archetype.bat");
+    }
+
+    public static void unzipFile(File file, File destination) throws IOException {
+        _log.info("unzip file, file: {}", file.getAbsolutePath());
+        ZipUtil.unzipFile(file, destination);
+    }
+
+    public static File copyUrlToTempFolder(String url, File destination) throws IOException {
+        _log.info("copy url to temp folder, url: {}", url);
+        FileUtils.copyURLToFile(new URL(url), destination, 3000, 3000);
+        return destination;
+    }
+
 }
