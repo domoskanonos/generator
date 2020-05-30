@@ -9,7 +9,6 @@ import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
 import com.dbr.generator.basic.project.ProjectFactory;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
-import com.dbr.generator.basic.project.dto.NidocaProjectDTO;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -40,8 +39,8 @@ public class MainGenerator {
         processDTO.getProjectDTOS().add(springBootProjectDTO);
 
 
-        NidocaProjectDTO nidocaProjectDTO = new NidocaProjectDTO(processDTO, "nidoca");
-        processDTO.getProjectDTOS().add(nidocaProjectDTO);
+        //NidocaProjectDTO nidocaProjectDTO = new NidocaProjectDTO(processDTO, "nidoca");
+        //processDTO.getProjectDTOS().add(nidocaProjectDTO);
 
         MainGenerator mainGenerator = new MainGenerator();
         mainGenerator.generate(processDTO);
