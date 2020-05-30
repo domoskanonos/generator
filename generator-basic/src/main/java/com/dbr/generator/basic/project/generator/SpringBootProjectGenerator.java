@@ -18,7 +18,7 @@ public class SpringBootProjectGenerator implements ProjectGeneratorInterface<Spr
         GeneratorUtil.unzipFile(springBootZipFile, springBootProjectDTO.getProcessTempFolder());
         GeneratorUtil.createMavenArchetype(springBootProjectDTO.getSpringBootTemplateFolder());
         GeneratorUtil.createFromArchetype(springBootProjectDTO.getProcessFolder(), springBootProjectDTO.getSpringBootProjectArtifactId(),
-                springBootProjectDTO.getSpringBootProjectGroupId(), springBootProjectDTO.getSpringBootArchetypeArtifactId(),
+                springBootProjectDTO.getProjectGroupId(), springBootProjectDTO.getSpringBootArchetypeArtifactId(),
                 springBootProjectDTO.getSpringBootGroupId());
 
         if (!springBootProjectDTO.getAddSpringBootMailRestController()) {

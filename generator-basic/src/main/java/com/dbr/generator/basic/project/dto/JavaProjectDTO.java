@@ -15,4 +15,8 @@ public class JavaProjectDTO extends ProjectDTO {
         this.javaBasePackage = javaBasePackage;
     }
 
+    public String getProjectGroupId() {
+        return getJavaBasePackage();
+    }
+
 }
