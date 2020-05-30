@@ -3,7 +3,9 @@ package com.dbr.generator.main;
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.converter.dto.ItemConverterDTO;
 import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.item.merger.ItemMergerFactory;
 import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
@@ -21,10 +23,11 @@ public class MainGenerator {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        ProcessDTO processDTO = new ProcessDTO(new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath(), new File("C:\\_dev\\vhs\\1").getAbsolutePath(), "generator");
+        String processParentPath = new File("C:\\_dev\\vhs\\1").getAbsolutePath();
+        String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
+        ProcessDTO processDTO = new ProcessDTO(processTempPath, processParentPath, "generator");
 
-        SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "");
-        springBootProjectDTO.setJavaBasePackage("com.dbr.generator");
+        SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "com.dbr.generator");
         springBootProjectDTO.setAddSpringBootSecurityModule(false);
 
         ItemConverterDTO projectDTO2itemDTOConverterDTO = new ItemConverterDTO(springBootProjectDTO, springBootProjectDTO.getJavaDTOPackageName(), ProjectDTO.class);
@@ -53,10 +56,11 @@ public class MainGenerator {
         GeneratorUtil.makeDir(processDTO.getProcessParentFolder());
         GeneratorUtil.makeDir(processDTO.getProcessFolder());
 
-
-
-
-
+        for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
+            for (ItemMergerDTO itemMergerDTO : projectDTO.getItemMergerDTOS()) {
+                ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
+            }
+        }
 
 
         logger.info("generate project end...");

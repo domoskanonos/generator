@@ -3,6 +3,7 @@ package com.dbr.generator.basic.process.dto;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.util.ValidationUtil;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -48,4 +49,7 @@ public class ProcessDTO {
         ValidationUtil.validateDirectoryPathNotEqual(getProcessParentFolder(), getProcessFolder());
     }
 
+    public String getProjectFolderPrefix() {
+        return StringUtils.isNotBlank(technicalDescriptor) ? new StringBuilder().append(technicalDescriptor).append("-").toString() : "";
+    }
 }

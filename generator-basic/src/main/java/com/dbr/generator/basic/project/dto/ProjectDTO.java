@@ -25,7 +25,7 @@ public class ProjectDTO {
     private String technicalDescriptor;
 
     public File getProjectFolder() {
-        return new File(processDTO.getProcessFolder(), technicalDescriptor);
+        return new File(processDTO.getProcessFolder(), new StringBuilder().append(processDTO.getProjectFolderPrefix()).append(technicalDescriptor).toString());
     }
 
 }
