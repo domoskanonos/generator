@@ -18,7 +18,7 @@ public class TypescriptModelMergerTest {
 
     @Test
     public void create() {
-        TypescriptModelMerger typescriptModelMerger = new TypescriptModelMerger(new TypescriptModelItemMergerDTO(new JavaClass2ItemDTOConverter().convert(ItemDTO.class)));
+        TypescriptModelMerger typescriptModelMerger = new TypescriptModelMerger(new TypescriptModelItemMergerDTO(new JavaClass2ItemDTOConverter().convert("", ItemDTO.class)));
         String content = typescriptModelMerger.create();
         log.info(content);
         assertNotNull(content);

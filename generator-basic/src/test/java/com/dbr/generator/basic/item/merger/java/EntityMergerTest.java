@@ -18,7 +18,7 @@ public class EntityMergerTest {
 
     @Test
     public void create() {
-        EntityMerger entityMerger = new EntityMerger(new EntityItemMergerDTO(new JavaClass2ItemDTOConverter().convert(ItemDTO.class)));
+        EntityMerger entityMerger = new EntityMerger(new EntityItemMergerDTO(new JavaClass2ItemDTOConverter().convert("", ItemDTO.class)));
         String content = entityMerger.create();
         log.info(content);
         assertNotNull(content);
