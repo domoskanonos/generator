@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.module.springboot;
+package com.dbr.generator.basic.project.generator;
 
-import com.dbr.generator.basic.module.ModuleGeneratorInterface;
+import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.util.ValidationUtil;
@@ -8,7 +8,7 @@ import com.dbr.generator.basic.util.ValidationUtil;
 import java.io.File;
 import java.io.IOException;
 
-public class SpringBootModuleGenerator implements ModuleGeneratorInterface<SpringBootProjectDTO> {
+public class SpringBootProjectGenerator implements ProjectGeneratorInterface<SpringBootProjectDTO> {
 
     @Override
     public void execute(SpringBootProjectDTO springBootProjectDTO) throws IOException, InterruptedException {

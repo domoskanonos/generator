@@ -1,8 +1,8 @@
-package com.dbr.generator.basic.module;
+package com.dbr.generator.basic.project;
 
 import java.io.IOException;
 
-public interface ModuleGeneratorInterface<T> {
+public interface ProjectGeneratorInterface<T> {
     void execute(T model) throws IOException, InterruptedException;
     void validate(T model);
 }

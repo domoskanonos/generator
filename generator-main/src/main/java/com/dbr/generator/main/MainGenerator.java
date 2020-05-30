@@ -57,6 +57,8 @@ public class MainGenerator {
         GeneratorUtil.makeDir(processDTO.getProcessFolder());
 
         for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
+
+
             for (ItemMergerDTO itemMergerDTO : projectDTO.getItemMergerDTOS()) {
                 ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
             }

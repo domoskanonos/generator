@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.module.nidoca;
+package com.dbr.generator.basic.project.generator;
 
-import com.dbr.generator.basic.module.ModuleGeneratorInterface;
+import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.NidocaProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import org.apache.commons.io.FileUtils;
@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class NidocaModuleGenerator implements ModuleGeneratorInterface<NidocaProjectDTO> {
+public class NidocaProjectGenerator implements ProjectGeneratorInterface<NidocaProjectDTO> {
 
     @Override
     public void execute(NidocaProjectDTO nidocaProjectDTO) throws IOException {
