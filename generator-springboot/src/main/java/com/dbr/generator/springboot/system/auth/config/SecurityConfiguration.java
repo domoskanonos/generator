@@ -5,16 +5,20 @@ import com.dbr.generator.springboot.system.auth.handler.OAuth2AuthenticationSucc
 import com.dbr.generator.springboot.system.auth.handler.SpringBootBasicAuthenticationFailureHandler;
 import com.dbr.generator.springboot.system.auth.handler.SpringBootBasicAuthenticationSuccessHandler;
 import com.dbr.generator.springboot.system.auth.service.AuthenticationService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//@Configuration
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@ConditionalOnProperty(name = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+@ConditionalOnProperty(name = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String KEY_JSESSION = "JSESSIONID";
