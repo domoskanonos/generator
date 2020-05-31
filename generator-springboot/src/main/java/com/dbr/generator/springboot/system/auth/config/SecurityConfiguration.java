@@ -5,21 +5,16 @@ import com.dbr.generator.springboot.system.auth.handler.OAuth2AuthenticationSucc
 import com.dbr.generator.springboot.system.auth.handler.SpringBootBasicAuthenticationFailureHandler;
 import com.dbr.generator.springboot.system.auth.handler.SpringBootBasicAuthenticationSuccessHandler;
 import com.dbr.generator.springboot.system.auth.service.AuthenticationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-@ConditionalOnProperty(name = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
+//@Configuration
+//@EnableWebSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@ConditionalOnProperty(name = "spring.security.enabled", havingValue = "true", matchIfMissing = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     public static final String KEY_JSESSION = "JSESSIONID";
@@ -32,23 +27,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public static final String LOGOUT_SUCCESS_URL = "/login.html";
     public static final String ACCESS_DENIED_PAGE = "/403";
 
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    AuthenticationService authenticationService;
+    final AuthenticationService authenticationService;
 
-    @Autowired
-    SpringBootBasicAuthenticationSuccessHandler authenticationSuccessHandler;
+    final SpringBootBasicAuthenticationSuccessHandler authenticationSuccessHandler;
 
-    @Autowired
-    SpringBootBasicAuthenticationFailureHandler authenticationFailureHandler;
+    final SpringBootBasicAuthenticationFailureHandler authenticationFailureHandler;
 
-    @Autowired
-    OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
+    final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 
-    @Autowired
-    OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+
+    public SecurityConfiguration(BCryptPasswordEncoder bCryptPasswordEncoder, AuthenticationService authenticationService, SpringBootBasicAuthenticationSuccessHandler authenticationSuccessHandler, SpringBootBasicAuthenticationFailureHandler authenticationFailureHandler, OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler, OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.authenticationService = authenticationService;
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+        this.authenticationFailureHandler = authenticationFailureHandler;
+        this.oAuth2AuthenticationSuccessHandler = oAuth2AuthenticationSuccessHandler;
+        this.oAuth2AuthenticationFailureHandler = oAuth2AuthenticationFailureHandler;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
