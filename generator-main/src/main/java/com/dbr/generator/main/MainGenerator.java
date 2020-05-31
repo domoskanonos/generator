@@ -10,6 +10,7 @@ import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.JavaProjectDTO;
 import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
+import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;

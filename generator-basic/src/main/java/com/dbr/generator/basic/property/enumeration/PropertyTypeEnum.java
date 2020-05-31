@@ -22,6 +22,7 @@ public enum PropertyTypeEnum {
     TYPE_DATE_ISO8601(Date.class),
     TYPE_ARRAY_STRING(String[].class),
     LIST(List.class),
+    ENUMERATION(Enum.class),
     OBJECT(Object.class);
 
     private Class<?> type;
@@ -72,6 +73,9 @@ public enum PropertyTypeEnum {
             case TYPE_DATE:
             case TYPE_DATE_ISO8601:
                 return true;
+            case LIST:
+            case ENUMERATION:
+            case OBJECT:
             case BYTE_ARRAY:
             case TYPE_ARRAY_STRING:default:return false;
 
@@ -101,6 +105,9 @@ public enum PropertyTypeEnum {
             case BYTE_ARRAY:
             case LIST:
                 return "array";
+            case ENUMERATION:
+                return "enum ";
+            case OBJECT:
             default:
                 return "any";
         }
@@ -130,6 +137,8 @@ public enum PropertyTypeEnum {
             case TYPE_ARRAY_STRING:
             case LIST:
                 return "[]";
+            case ENUMERATION:
+            case OBJECT:
             default:
                 return "{}";
         }
@@ -156,9 +165,12 @@ public enum PropertyTypeEnum {
     }
 
     public static PropertyTypeEnum byField(Field source) {
+        if (source.getType().isEnum()) {
+            return PropertyTypeEnum.ENUMERATION;
+        }
         for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
             Class<?> type = propertyTypeEnum.getType();
-            if (Objects.equals(type.getSimpleName(), source.getType().getSimpleName())) {
+            if (Objects.equals(type.getSimpleName().toLowerCase(), source.getType().getSimpleName().toLowerCase())) {
                 return propertyTypeEnum;
             }
         }
