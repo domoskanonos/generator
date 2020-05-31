@@ -1,18 +1,13 @@
-package com.dbr.generator.main;
+package com.dbr.generator.springboot.util;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.dto.DTOItemMergerDTO;
-import com.dbr.generator.basic.item.merger.dto.EntityItemMergerDTO;
+import com.dbr.generator.basic.item.merger.dto.MappingClazzItemMergerDTO;
+import com.dbr.generator.basic.process.ProcessGenerator;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
-import com.dbr.generator.basic.project.ProjectFactory;
-import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.JavaProjectDTO;
-import com.dbr.generator.basic.project.dto.ProjectDTO;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.property.dto.PropertyDTO;
-import com.dbr.generator.basic.util.GeneratorUtil;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,10 +35,13 @@ public class MainGenerator {
         ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
         itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
 
+        ItemDTO itemDTOMappingClazz = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), PropertyDTO.class);
+        itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
 
-        javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemEntity));
-        javaProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
-        //javaProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOItemDTO));
+
+        //javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemEntity));
+        //javaProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
+        javaProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOMappingClazz));
         processDTO.getProjectDTOS().add(javaProjectDTO);
 
 
@@ -51,36 +49,11 @@ public class MainGenerator {
         //NidocaProjectDTO nidocaProjectDTO = new NidocaProjectDTO(processDTO, "nidoca");
         //processDTO.getProjectDTOS().add(nidocaProjectDTO);
 
-        MainGenerator mainGenerator = new MainGenerator();
-        mainGenerator.generate(processDTO);
+        ProcessGenerator.generate(processDTO);
 
     }
 
-    public void generate(ProcessDTO processDTO) throws Exception {
 
-        processDTO.validate();
-
-        logger.info("generate project start...");
-
-        File tempFolder = processDTO.getProcessTempFolder();
-        if (tempFolder.exists()) {
-            FileUtils.deleteDirectory(tempFolder);
-        }
-        GeneratorUtil.makeDir(tempFolder);
-        GeneratorUtil.makeDir(processDTO.getProcessParentFolder());
-        GeneratorUtil.makeDir(processDTO.getProcessFolder());
-
-        for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
-            logger.info("generate project, technical descriptor: {}", projectDTO.getTechnicalDescriptor());
-
-            ProjectGeneratorInterface projectGeneratorInterface = ProjectFactory.create(projectDTO);
-            projectGeneratorInterface.validate(projectDTO);
-            projectGeneratorInterface.execute(projectDTO);
-        }
-
-        logger.info("generate project end...");
-
-    }
 
 
 
