@@ -17,14 +17,18 @@ public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(String projectPath, Class<?> clazz) {
         ItemDTO itemDTO = ItemDTO.builder().build();
-        itemDTO.setProjectPath(projectPath);
         itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
+        itemDTO.setFilePath(this.getJavaFilePathSuffix(projectPath, itemDTO));
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new PropertyConverterDTO(itemDTO, field));
             itemDTO.addProperty(propertyDTO);
         }
         return itemDTO;
+    }
+
+    public String getJavaFilePathSuffix(String projectPath, ItemDTO itemDTO) {
+        return new StringBuilder().append(projectPath).append("/").append("src/main/java/").append(itemDTO.getPackagePath()).append(itemDTO.getJavaClazzSimpleName()).append(".java").toString();
     }
 
     public List<ItemDTO> convert(String projectPath, Collection<Class<?>> clazzes) {

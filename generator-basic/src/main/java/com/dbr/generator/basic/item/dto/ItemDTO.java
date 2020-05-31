@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class ItemDTO {
 
-    private String projectPath;
+    private String filePath;
     private String javaClazzName;
     private String javaIdClazzSimpleName;
     private List<PropertyDTO> properties;
@@ -42,17 +42,8 @@ public class ItemDTO {
         return String.format("%s.ts", getTypescriptModelFilename().toLowerCase());
     }
 
-
-    public String getJavaFileName() {
-        return this.getJavaClazzSimpleName() + ".java";
-    }
-
     public String getPackagePath() {
         return GeneratorUtil.getPackagePath(GeneratorUtil.getJavaPackageName(javaClazzName));
-    }
-
-    public String getJavaFilePathSuffix() {
-        return new StringBuilder().append(projectPath).append("/").append("src/main/java/").append(getPackagePath()).append(getJavaFileName()).toString();
     }
 
     public void addProperty(PropertyDTO propertyDTO) {
