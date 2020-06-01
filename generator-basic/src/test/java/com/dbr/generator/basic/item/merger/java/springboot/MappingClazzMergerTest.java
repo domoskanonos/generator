@@ -3,6 +3,7 @@ package com.dbr.generator.basic.item.merger.java.springboot;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.entity.Property;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.merger.ItemTemplates;
 import org.junit.Test;
@@ -19,11 +20,10 @@ public class MappingClazzMergerTest {
     @Test
     public void create() {
         ItemDTO clazzMappingItemDTO;
-        ItemDTO subitemDTO1;
         clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.CLAZZ_MAPPING_TEMPLATE, ItemDTO.class);
         clazzMappingItemDTO.setJavaClazzName("com.dbr.generator.PropertyRepository");
-        subitemDTO1 = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class);
-        clazzMappingItemDTO.addItemDTO(subitemDTO1);
+        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert("", ItemTemplates.ENTITY_TEMPLATE, Property.class));
+        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class));
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(clazzMappingItemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);

@@ -2,7 +2,6 @@ package com.dbr.generator.springboot.repository;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.merger.ItemTemplates;
 import com.dbr.generator.springboot.app.repository.ItemJPARepository;
 import com.dbr.generator.springboot.app.repository.PropertyJPARepository;
@@ -27,9 +26,9 @@ public class PropertyJPARepositoryTest {
 
     @Test
     public void pdfApplicationProperties() {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, ItemDTO.class);
 
-        
+
 
     }
 

@@ -16,8 +16,8 @@ public class ${model.javaClazzSimpleName} {
     public ${model.subItems[0].javaClazzSimpleName} toEntity(${model.subItems[1].javaClazzSimpleName} source)
     {
         ${model.subItems[0].javaClazzSimpleName} dest = new ${model.subItems[0].javaClazzSimpleName}();
-        #foreach( $mappingDTOEntityEntrie in $mappingSecondFirstEntries )
-        ${mappingDTOEntityEntrie}
+        #foreach( $property in $model.subItems[0].properties )
+        ${property.name}
         #end
         return dest;
     }
