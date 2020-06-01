@@ -17,11 +17,11 @@ public class PropertyDTO {
     private boolean useJPAIdClazz;
     private Integer length;
 
-    public PropertyDTO(String name, String javaTypeSimpleName) {
+    public PropertyDTO(String name) {
         this.name = name;
     }
 
-    public PropertyDTO(String name, String javaTypeSimpleName, Integer length) {
+    public PropertyDTO(String name, Integer length) {
         this.name = name;
         this.length = length;
     }

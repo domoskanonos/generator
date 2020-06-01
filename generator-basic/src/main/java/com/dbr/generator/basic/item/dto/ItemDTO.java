@@ -16,7 +16,7 @@ public class ItemDTO {
     private String javaClazzName;
     private String javaIdClazzSimpleName;
 
-    private List<ItemDTO> referencedItems;
+    private List<ItemDTO> subItems;
     private List<PropertyDTO> properties;
 
     public Boolean useJPAIdClazz() {
@@ -54,11 +54,12 @@ public class ItemDTO {
         properties.add(propertyDTO);
     }
 
+
     public void addItemDTO(ItemDTO itemDTO) {
-        if (referencedItems == null) {
-            referencedItems = new ArrayList<>();
+        if (subItems == null) {
+            subItems = new ArrayList<>();
         }
-        referencedItems.add(itemDTO);
+        subItems.add(itemDTO);
     }
 
 }

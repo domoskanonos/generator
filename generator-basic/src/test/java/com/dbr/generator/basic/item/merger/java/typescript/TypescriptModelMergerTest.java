@@ -16,7 +16,7 @@ public class TypescriptModelMergerTest {
 
     @Test
     public void create() {
-        ItemMerger itemMerger = new ItemMerger(BasicTestUtil.subitemDTO1);
+        ItemMerger itemMerger = new ItemMerger(BasicTestUtil.subitemTypescript);
         String content = itemMerger.create();
         log.info(content);
         assertNotNull(content);

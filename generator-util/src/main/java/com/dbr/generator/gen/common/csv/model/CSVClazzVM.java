@@ -50,7 +50,7 @@ public class CSVClazzVM {
         if (withHeaderRow) {
             headers = new ArrayList<>();
 
-            String rowOne = rowsContent.get(0);
+            String rowOne = rowsContent[0];
             Splitter.on(columnSplit).split(rowOne).forEach(header -> {
                 headers.add(header.trim());
             });

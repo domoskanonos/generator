@@ -90,7 +90,7 @@ public class ${clazzSimpleName} {
 
         List<${dtoClazzSimpleName}> all = service.findAll();
 
-        ${idClazzSimpleName} id = all.get(0).getId();
+        ${idClazzSimpleName} id = all[0].getId();
 
         String urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, id);
         ResponseEntity<${dtoClazzSimpleName}> responseFindById = restTemplate.exchange(
@@ -141,7 +141,7 @@ public class ${clazzSimpleName} {
 
         List<${dtoClazzSimpleName}> all = service.findAll();
 
-        String url = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, all.get(0).getId());
+        String url = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, all[0].getId());
         ResponseEntity response = restTemplate.exchange(
                 url,
                 HttpMethod.DELETE,

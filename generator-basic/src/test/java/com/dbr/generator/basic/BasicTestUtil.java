@@ -18,6 +18,8 @@ public class BasicTestUtil {
     public static ItemDTO subitemDTO1;
     public static ItemDTO subitemDTO2;
 
+    public static ItemDTO subitemTypescript;
+
     static {
         String tempDirPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         processDTO = new ProcessDTO(tempDirPath, tempDirPath, "process");
@@ -25,9 +27,9 @@ public class BasicTestUtil {
 
         subitemDTO1 = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.DTO_TEMPLATE, PropertyDTO.class);
         subitemDTO2 = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.DTO_TEMPLATE, ItemDTO.class);
+        subitemTypescript = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.TYPESCRIPT_MODEL_TEMPLATE, ItemDTO.class);
 
         clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.CLAZZ_MAPPING_TEMPLATE, ItemDTO.class);
-
         clazzMappingItemDTO.addItemDTO(subitemDTO1);
         clazzMappingItemDTO.addItemDTO(subitemDTO2);
 
