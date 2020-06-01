@@ -1,8 +1,6 @@
-package com.dbr.generator.basic.item.converter;
+package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.property.converter.JavaField2PropertyDTOConverter;
-import com.dbr.generator.basic.property.dto.PropertyConverterDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
 
 import javax.persistence.EmbeddedId;
@@ -22,7 +20,7 @@ public class JavaClass2ItemDTOConverter {
         itemDTO.setFilePath(filePath);
         itemDTO.setTemplatePath(templatePath);
         for (Field field : clazz.getDeclaredFields()) {
-            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new PropertyConverterDTO(itemDTO, field));
+            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
             itemDTO.addProperty(propertyDTO);
         }
         return itemDTO;

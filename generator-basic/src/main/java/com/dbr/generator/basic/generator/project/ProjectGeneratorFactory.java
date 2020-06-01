@@ -1,13 +1,10 @@
-package com.dbr.generator.basic.project;
+package com.dbr.generator.basic.generator.project;
 
 import com.dbr.generator.basic.dto.project.NidocaProjectDTO;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
-import com.dbr.generator.basic.project.generator.NidocaProjectGenerator;
-import com.dbr.generator.basic.project.generator.ProjectGenerator;
-import com.dbr.generator.basic.project.generator.SpringBootProjectGenerator;
 
-public class ProjectFactory {
+public class ProjectGeneratorFactory {
 
     public static ProjectGeneratorInterface create(ProjectDTO projectDTO) {
         if (projectDTO instanceof SpringBootProjectDTO) {

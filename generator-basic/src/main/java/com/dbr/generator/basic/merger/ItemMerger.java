@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.item.merger;
+package com.dbr.generator.basic.merger;
 
 import com.dbr.generator.basic.AbstractMerger;
 import com.dbr.generator.basic.dto.ItemDTO;

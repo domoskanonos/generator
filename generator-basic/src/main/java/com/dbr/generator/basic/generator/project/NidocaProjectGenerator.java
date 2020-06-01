@@ -1,8 +1,8 @@
-package com.dbr.generator.basic.project.generator;
+package com.dbr.generator.basic.generator.project;
 
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.ItemMerger;
-import com.dbr.generator.basic.project.ProjectGeneratorInterface;
+import com.dbr.generator.basic.merger.ItemMerger;
+import com.dbr.generator.basic.generator.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.dto.project.NidocaProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import org.apache.commons.io.FileUtils;

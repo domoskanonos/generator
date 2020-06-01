@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.util;
 
-import com.dbr.generator.basic.process.ProcessGenerator;
+import com.dbr.generator.basic.generator.process.ProcessGenerator;
 import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.dto.project.JavaProjectDTO;
 import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;

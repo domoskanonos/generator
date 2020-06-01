@@ -1,8 +1,8 @@
 package com.dbr.generator.basic;
 
-import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
+import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.MergerTemplates;
+import com.dbr.generator.basic.merger.MergerTemplates;
 import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;

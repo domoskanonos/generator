@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.item.merger;
+package com.dbr.generator.basic.merger;
 
 public class MergerTemplates {
     public static String DTO_TEMPLATE = "java/dto.vm";
