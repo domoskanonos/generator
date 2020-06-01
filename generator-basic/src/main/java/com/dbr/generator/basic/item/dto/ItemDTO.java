@@ -3,7 +3,6 @@ package com.dbr.generator.basic.item.dto;
 import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
-import lombok.Builder;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -54,5 +53,12 @@ public class ItemDTO {
         }
         properties.add(propertyDTO);
     }
-    
+
+    public void addItemDTO(ItemDTO itemDTO) {
+        if (referencedItems == null) {
+            referencedItems = new ArrayList<>();
+        }
+        referencedItems.add(itemDTO);
+    }
+
 }

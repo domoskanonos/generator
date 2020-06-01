@@ -28,8 +28,8 @@ public class BasicTestUtil {
 
         clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.CLAZZ_MAPPING_TEMPLATE, ItemDTO.class);
 
-        clazzMappingItemDTO.getReferencedItems().add(subitemDTO1);
-        clazzMappingItemDTO.getReferencedItems().add(subitemDTO2);
+        clazzMappingItemDTO.addItemDTO(subitemDTO1);
+        clazzMappingItemDTO.addItemDTO(subitemDTO2);
 
         projectDTO.getItemDTOS().add(clazzMappingItemDTO);
 
