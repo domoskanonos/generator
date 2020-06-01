@@ -1,4 +1,4 @@
-package com.dbr.generator.basic;
+package com.dbr.generator.basic.merger;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
-public abstract class AbstractMerger {
+public abstract class AbstractTemplateMerger {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

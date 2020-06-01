@@ -1,7 +1,6 @@
 package com.dbr.generator.springboot.system.admin.rest;
 
-import com.dbr.generator.springboot.SpringBootTemplateApplication;
-import com.dbr.generator.springboot.system.admin.rest.AdministrationRestController;
+import com.dbr.generator.springboot.SpringBootGeneratorApplication;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.LoggerContext;
@@ -27,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {
-        SpringBootTemplateApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+        SpringBootGeneratorApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ActiveProfiles({ "dev", "disable-security" })
 public class AdministrationRestControllerTest {

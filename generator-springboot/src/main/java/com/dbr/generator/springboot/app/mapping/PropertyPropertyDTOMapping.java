@@ -1,4 +1,4 @@
-package com.dbr.generator.springboot.mapping;
+package com.dbr.generator.springboot.app.mapping;
 
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.entity.Property;

@@ -1,6 +1,5 @@
 package com.dbr.generator.springboot;
 
-import com.dbr.generator.springboot.SpringBootTemplateApplication;
 import com.dbr.generator.springboot.system.enumeration.BuildEnvironment;
 import com.dbr.generator.springboot.system.ApplicationProperties;
 import org.junit.FixMethodOrder;
@@ -45,7 +44,7 @@ public class BasicApplicationTests {
     @Test
     public void checkBasePackage() {
         assertThat(ApplicationProperties.BASE_PACKAGE)
-                .isEqualTo(SpringBootTemplateApplication.class.getPackage().getName());
+                .isEqualTo(SpringBootGeneratorApplication.class.getPackage().getName());
     }
 
 }

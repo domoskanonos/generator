@@ -15,7 +15,7 @@ public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(String filePath, String templatePath, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
+        itemDTO.setJavaIdClazzName(getIDClazzName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
         itemDTO.setFilePath(filePath);
         itemDTO.setTemplatePath(templatePath);
@@ -38,15 +38,15 @@ public class JavaClass2ItemDTOConverter {
         return retval;
     }
 
-    public static String getIDClazzSimpleName(Class<?> clazz) {
+    public static String getIDClazzName(Class<?> clazz) {
         String javaIdClazzSimpleName = null;
         IdClass idClassAnnotation = clazz.getAnnotation(IdClass.class);
         if (idClassAnnotation != null) {
-            javaIdClazzSimpleName = idClassAnnotation.value().getSimpleName();
+            javaIdClazzSimpleName = idClassAnnotation.value().getName();
         } else {
             for (Field field : clazz.getDeclaredFields()) {
                 if (field.getAnnotation(Id.class) != null) {
-                    javaIdClazzSimpleName = field.getType().getSimpleName();
+                    javaIdClazzSimpleName = field.getType().getName();
                     break;
                 }
                 if (field.getAnnotation(EmbeddedId.class) != null) {

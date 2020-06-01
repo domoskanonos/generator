@@ -1,6 +1,5 @@
 package com.dbr.generator.basic.merger;
 
-import com.dbr.generator.basic.AbstractMerger;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.velocity.Template;
@@ -10,11 +9,11 @@ import org.apache.velocity.app.VelocityEngine;
 import java.io.IOException;
 import java.io.StringWriter;
 
-public class ItemMerger extends AbstractMerger {
+public class ItemTemplateTemplateMerger extends AbstractTemplateMerger {
 
     protected ItemDTO dto;
 
-    public ItemMerger(ItemDTO dto) {
+    public ItemTemplateTemplateMerger(ItemDTO dto) {
         this.dto = dto;
     }
 

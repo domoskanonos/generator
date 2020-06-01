@@ -6,7 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "PROPERTY_ITEM")
+@Table(name = "PROPERTY")
 @Data
 @ToString
 @Builder(toBuilder = true)

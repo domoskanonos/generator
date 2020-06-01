@@ -2,7 +2,7 @@ package com.dbr.generator.basic.generator.project;
 
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
-import com.dbr.generator.basic.merger.ItemMerger;
+import com.dbr.generator.basic.merger.ItemTemplateTemplateMerger;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.util.ValidationUtil;
 
@@ -39,7 +39,7 @@ public class SpringBootProjectGenerator implements ProjectGeneratorInterface<Spr
         }
 
         for (ItemDTO itemDTO : model.getItemDTOS()) {
-            new ItemMerger(itemDTO).writeDown();
+            new ItemTemplateTemplateMerger(itemDTO).writeDown();
         }
 
     }

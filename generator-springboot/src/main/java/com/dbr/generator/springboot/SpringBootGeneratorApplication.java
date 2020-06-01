@@ -1,7 +1,6 @@
 package com.dbr.generator.springboot;
 
 import com.dbr.generator.springboot.system.ApplicationProperties;
-
 import com.dbr.generator.springboot.util.SecurityUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,15 +13,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication(scanBasePackages = { ApplicationProperties.BASE_PACKAGE })
-@EnableJpaRepositories(basePackages = { ApplicationProperties.SYSTEM_BASE_PACKAGE,
-        ApplicationProperties.APP_BASE_PACKAGE + ".repository" })
-@EntityScan(basePackages = { ApplicationProperties.SYSTEM_BASE_PACKAGE, ApplicationProperties.APP_ENTITY_PACKAGE })
+@SpringBootApplication(scanBasePackages = {ApplicationProperties.BASE_PACKAGE})
+@EnableJpaRepositories(basePackages = {ApplicationProperties.SYSTEM_BASE_PACKAGE,
+        ApplicationProperties.APP_BASE_PACKAGE + ".repository"})
+@EntityScan(basePackages = {"com.dbr.generator.basic.entity", ApplicationProperties.SYSTEM_BASE_PACKAGE, ApplicationProperties.APP_ENTITY_PACKAGE})
 @EnableScheduling
 @EnableAsync
-public class SpringBootTemplateApplication extends SpringBootServletInitializer {
+public class SpringBootGeneratorApplication extends SpringBootServletInitializer {
 
-    private static final Logger LOGGER = LogManager.getLogger(SpringBootTemplateApplication.class);
+    private static final Logger LOGGER = LogManager.getLogger(SpringBootGeneratorApplication.class);
 
     public static void main(String[] args) {
 
@@ -40,7 +39,7 @@ public class SpringBootTemplateApplication extends SpringBootServletInitializer 
             }
         }
 
-        SpringApplication application = new SpringApplicationBuilder(SpringBootTemplateApplication.class).build();
+        SpringApplication application = new SpringApplicationBuilder(SpringBootGeneratorApplication.class).build();
         application.run(args);
     }
 

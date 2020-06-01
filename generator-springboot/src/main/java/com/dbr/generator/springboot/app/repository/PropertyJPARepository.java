@@ -1,4 +1,4 @@
-package com.dbr.generator.springboot.repository;
+package com.dbr.generator.springboot.app.repository;
 
 import com.dbr.generator.basic.entity.Property;
 

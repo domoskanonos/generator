@@ -2,8 +2,8 @@ package com.dbr.generator.basic.item.merger.java;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.merger.ItemMerger;
-import com.dbr.generator.basic.merger.MergerTemplates;
+import com.dbr.generator.basic.merger.ItemTemplateTemplateMerger;
+import com.dbr.generator.basic.merger.ItemTemplates;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -18,9 +18,9 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.DTO_TEMPLATE, PropertyDTO.class);
-        ItemMerger itemMerger = new ItemMerger(itemDTO);
-        String content = itemMerger.create();
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class);
+        ItemTemplateTemplateMerger itemTemplateMerger = new ItemTemplateTemplateMerger(itemDTO);
+        String content = itemTemplateMerger.create();
         log.info(content);
         assertNotNull(content);
         assertFalse(content.contains("${"));

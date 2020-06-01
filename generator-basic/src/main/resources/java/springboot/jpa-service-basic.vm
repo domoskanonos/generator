@@ -1,12 +1,12 @@
-package ${packageName};
+package ${model.packageName};
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import ${basePackageName}.dto.${dtoClazzSimpleName};
-import ${basePackageName}.entity.${jpaClazzSimpleName};
-import ${basePackageName}.mapping.${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping;
-import ${basePackageName}.repository.${repositoryClazzSimpleName};
+import ${model.subItems[0].javaClazzName};
+import ${model.subItems[1].javaClazzName};
+import ${model.subItems[2].javaClazzName};
+import ${model.subItems[3].javaClazzName};
 
 import javax.persistence.*;
 
@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * This service class provides basic functionality for the hibernate entity <code>${jpaClazzSimpleName}</code>.
- * The return value of each function always returns a mapped <code>${dtoClazzSimpleName}</code> object,
+ * This service class provides basic functionality for the hibernate entity <code>${model.subItems[0].javaClazzSimpleName}</code>.
+ * The return value of each function always returns a mapped <code>${model.subItems[1].javaClazzSimpleName}</code> object,
  * instead of the original hibernate entity.
  *
  */
@@ -30,40 +30,40 @@ public class ${serviceClazzName} {
 
     private final EntityManager em;
 
-    private final ${repositoryClazzSimpleName} repository;
+    private final ${model.subItems[3].javaClazzSimpleName} repository;
 
-    private final ${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+    private final ${model.subItems[2].javaClazzSimpleName} mapping;
 
     /**
-     * get a list of all available database <code>${jpaClazzSimpleName}</code> object's, mapped to <code>${dtoClazzSimpleName}</code> objects.
+     * get a list of all available database <code>${model.subItems[0].javaClazzSimpleName}</code> object's, mapped to <code>${model.subItems[1].javaClazzSimpleName}</code> objects.
      *
-     * @return a list of <code>${dtoClazzSimpleName}'s</code>
+     * @return a list of <code>${model.subItems[1].javaClazzSimpleName}'s</code>
      *
      */
-    public List<${dtoClazzSimpleName}> findAll() {
+    public List<${model.subItems[1].javaClazzSimpleName}> findAll() {
         log.debug("findAll");
         return mapping.toDTOs(repository.findAll());
     }
 
     /**
-     * Find hibernate entity of type <code>${jpaClazzSimpleName}</code> by id, mapped to <code>${dtoClazzSimpleName}</code>.
+     * Find hibernate entity of type <code>${model.subItems[0].javaClazzSimpleName}</code> by id, mapped to <code>${model.subItems[1].javaClazzSimpleName}</code>.
      *
      * @param id of hibernate entity
-     * @return optional object of type <code>Optional<${dtoClazzSimpleName}></code>
+     * @return optional object of type <code>Optional<${model.subItems[1].javaClazzSimpleName}></code>
      */
-    public Optional<${dtoClazzSimpleName}> findById(${idClazz} id) {
+    public Optional<${model.subItems[1].javaClazzSimpleName}> findById(${idClazz} id) {
         log.debug("findById: {}", id);
-        Optional<${jpaClazzSimpleName}> entityOptional = repository.findById(id);
+        Optional<${model.subItems[0].javaClazzSimpleName}> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
     }
 
     /**
-     * save or update an <code>${jpaClazzSimpleName}</code> object, mapped from <code>${dtoClazzSimpleName}</code> object.
+     * save or update an <code>${model.subItems[0].javaClazzSimpleName}</code> object, mapped from <code>${model.subItems[1].javaClazzSimpleName}</code> object.
      *
      * @param dto to save or update
-     * @return new saved or updated object as <code>${dtoClazzSimpleName}</code>
+     * @return new saved or updated object as <code>${model.subItems[1].javaClazzSimpleName}</code>
      */
-    public ${dtoClazzSimpleName} save(${dtoClazzSimpleName} dto) {
+    public ${model.subItems[1].javaClazzSimpleName} save(${model.subItems[1].javaClazzSimpleName} dto) {
         log.debug("save or update object: {}", dto);
         return mapping.toDTO(repository.save(mapping.toEntity(dto)));
     }
@@ -73,7 +73,7 @@ public class ${serviceClazzName} {
      *
      * @param id
      */
-    public void deleteById(${idClazz} id) {
+    public void deleteById(${model.javaIdClazzSimpleName} id) {
         log.debug("delete by id: {}", id);
         repository.deleteById(id);
     }

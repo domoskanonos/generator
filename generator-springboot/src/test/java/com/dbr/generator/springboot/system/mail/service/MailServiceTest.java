@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.system.mail.service;
 
-import com.dbr.generator.springboot.SpringBootTemplateApplication;
+import com.dbr.generator.springboot.SpringBootGeneratorApplication;
 import com.dbr.generator.springboot.system.mail.SmtpServerRule;
 import org.apache.commons.io.IOUtils;
 import org.junit.FixMethodOrder;
@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @ActiveProfiles({ "green-mail" })
 @SpringBootTest(classes = {
-        SpringBootTemplateApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+        SpringBootGeneratorApplication.class }, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MailServiceTest {
 

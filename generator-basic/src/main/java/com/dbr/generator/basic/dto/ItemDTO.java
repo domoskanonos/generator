@@ -13,13 +13,13 @@ public class ItemDTO {
     private String templatePath;
     private String filePath;
     private String javaClazzName;
-    private String javaIdClazzSimpleName;
+    private String javaIdClazzName;
 
     private List<ItemDTO> subItems;
     private List<PropertyDTO> properties;
 
     public Boolean useJPAIdClazz() {
-        return this.javaIdClazzSimpleName != null;
+        return this.javaIdClazzName != null;
     }
 
     public String getTableName() {
