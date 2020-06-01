@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.project.dto;
+package com.dbr.generator.basic.dto.project;
 
-import com.dbr.generator.basic.process.dto.ProcessDTO;
+import com.dbr.generator.basic.dto.ProcessDTO;
 import lombok.Data;
 
 @Data

@@ -1,6 +1,6 @@
-package com.dbr.generator.springboot.entity;
+package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.property.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import lombok.*;
 
 import javax.persistence.*;

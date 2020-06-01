@@ -1,6 +1,5 @@
-package com.dbr.generator.basic.item.dto;
+package com.dbr.generator.basic.dto;
 
-import com.dbr.generator.basic.property.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;

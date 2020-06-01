@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.entity.model;
 
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.*;

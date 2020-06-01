@@ -1,14 +1,9 @@
 package com.dbr.generator.springboot.util;
 
-import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.dto.MappingClazzItemMergerDTO;
 import com.dbr.generator.basic.process.ProcessGenerator;
-import com.dbr.generator.basic.process.dto.ProcessDTO;
-import com.dbr.generator.basic.project.dto.JavaProjectDTO;
-import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
-import com.dbr.generator.basic.property.dto.PropertyDTO;
-import com.dbr.generator.springboot.entity.Property;
+import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.dto.project.JavaProjectDTO;
+import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,19 +25,6 @@ public class MainGenerator {
 
 
         JavaProjectDTO javaProjectDTO = new JavaProjectDTO(processDTO, "springboot", "com.dbr.generator");
-        ItemDTO itemDTOItemDTO = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
-        itemDTOItemDTO.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaDTOPackageName()).append(".ItemDTO").toString());
-        ItemDTO itemDTOItemEntity = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), ItemDTO.class);
-        itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
-
-        ItemDTO itemDTOMappingClazz1 = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), Property.class);
-        ItemDTO itemDTOMappingClazz2 = new JavaClass2ItemDTOConverter().convert(springBootProjectDTO.getProjectFolder().getAbsolutePath(), PropertyDTO.class);
-        //itemDTOItemEntity.setJavaClazzName(new StringBuilder().append(springBootProjectDTO.getJavaEntityPackageName()).append(".Item").toString());
-
-
-        //javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemEntity));
-        //javaProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
-        javaProjectDTO.getItemDTOS().add(new MappingClazzItemMergerDTO(itemDTOMappingClazz1, itemDTOMappingClazz2));
         processDTO.getProjectDTOS().add(javaProjectDTO);
 
 

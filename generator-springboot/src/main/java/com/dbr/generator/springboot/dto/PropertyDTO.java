@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.dto;
 
-import com.dbr.generator.basic.property.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import lombok.*;
 
 @Data

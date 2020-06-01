@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.item.merger.java.typescript;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMerger;
 import com.dbr.generator.basic.item.merger.MergerTemplates;
 import org.junit.Test;

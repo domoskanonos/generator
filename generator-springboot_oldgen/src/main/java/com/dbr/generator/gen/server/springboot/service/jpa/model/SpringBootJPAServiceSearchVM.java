@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.service.jpa.model;
 
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.springboot.repository.model.SpringBootJPARepositoryVM;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.AllArgsConstructor;

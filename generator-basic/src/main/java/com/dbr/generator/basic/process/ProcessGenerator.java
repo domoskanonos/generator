@@ -1,9 +1,9 @@
 package com.dbr.generator.basic.process;
 
-import com.dbr.generator.basic.process.dto.ProcessDTO;
+import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.project.ProjectFactory;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
-import com.dbr.generator.basic.project.dto.ProjectDTO;
+import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;

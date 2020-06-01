@@ -1,9 +1,9 @@
 package com.dbr.generator.basic.project.generator;
 
-import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMerger;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
-import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
+import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.util.ValidationUtil;
 

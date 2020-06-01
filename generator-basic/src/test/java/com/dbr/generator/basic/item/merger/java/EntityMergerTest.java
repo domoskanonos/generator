@@ -1,10 +1,10 @@
 package com.dbr.generator.basic.item.merger.java;
 
 import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMerger;
 import com.dbr.generator.basic.item.merger.MergerTemplates;
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,9 +1,9 @@
 package com.dbr.generator.basic.property.converter;
 
-import com.dbr.generator.basic.property.enumeration.PropertyTypeEnum;
-import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.property.dto.PropertyConverterDTO;
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;

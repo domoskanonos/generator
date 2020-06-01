@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.test.base.model;
 
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.server.dto.model.DTOVM;
 import com.dbr.generator.gen.server.springboot.rest.model.SpringBootRestControllerBasicVM;
 import com.dbr.generator.gen.server.springboot.service.jpa.model.SpringBootJPAServiceBasicVM;

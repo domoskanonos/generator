@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.util;
 
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.util.DataTypes;
 import com.dbr.util.SystemUtil;
 import com.dbr.util.ZipUtil;

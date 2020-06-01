@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript.model;
 
-import com.dbr.generator.basic.property.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
 import com.dbr.generator.basic.model.KeyValue;
 import com.dbr.util.StringUtil;

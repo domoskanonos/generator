@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.property.dto;
 
-import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.dto.ItemDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

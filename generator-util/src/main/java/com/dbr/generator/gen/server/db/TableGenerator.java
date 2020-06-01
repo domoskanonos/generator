@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.db;
 
-import com.dbr.generator.basic.property.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import com.dbr.generator.gen.server.db.model.Column;
 import com.dbr.generator.gen.server.db.model.PrimaryKey;
 import com.dbr.generator.gen.server.db.model.TableVM;

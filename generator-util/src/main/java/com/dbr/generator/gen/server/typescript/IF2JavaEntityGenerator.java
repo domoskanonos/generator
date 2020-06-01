@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.typescript;
 
-import com.dbr.generator.basic.property.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import com.dbr.generator.gen.AbstractGeneratorJava;
 import com.dbr.generator.gen.server.entity.EntityGenerator;
 import com.dbr.generator.gen.server.entity.model.EntityVM;

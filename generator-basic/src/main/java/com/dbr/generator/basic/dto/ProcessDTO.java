@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.process.dto;
+package com.dbr.generator.basic.dto;
 
-import com.dbr.generator.basic.project.dto.ProjectDTO;
+import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.util.ValidationUtil;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
