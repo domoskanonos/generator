@@ -1,12 +1,12 @@
-package ${packageName};
+package ${model.javaPackageName};
 
-import ${entityClazzPackageName}.${jpaClazzSimpleName};
+import ${model.subItems[0].javaPackageName}.${model.subItems[0].javaClazzSimpleName};
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ${javaClazzSimpleName} extends JpaRepository<${jpaClazzSimpleName}, ${idClazz}> {
+public interface ${model.javaClazzSimpleName} extends JpaRepository<.${model.subItems[0].javaClazzSimpleName}, ${${model.subItems[0].idClazz}> {
 
 }
 
