@@ -9,11 +9,11 @@ import org.apache.velocity.app.VelocityEngine;
 import java.io.IOException;
 import java.io.StringWriter;
 
-public class ItemTemplateTemplateMerger extends AbstractTemplateMerger {
+public class ItemTemplateMerger extends AbstractTemplateMerger {
 
     protected ItemDTO dto;
 
-    public ItemTemplateTemplateMerger(ItemDTO dto) {
+    public ItemTemplateMerger(ItemDTO dto) {
         this.dto = dto;
     }
 

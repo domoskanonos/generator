@@ -2,7 +2,7 @@ package com.dbr.generator.basic.item.merger.java.typescript;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.merger.ItemTemplateTemplateMerger;
+import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.merger.ItemTemplates;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class TypescriptModelMergerTest {
         ItemDTO subitemTypescript = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.TYPESCRIPT_MODEL_TEMPLATE, ItemDTO.class);
 
 
-        ItemTemplateTemplateMerger itemTemplateMerger = new ItemTemplateTemplateMerger(subitemTypescript);
+        ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(subitemTypescript);
         String content = itemTemplateMerger.create();
         log.info(content);
         assertNotNull(content);

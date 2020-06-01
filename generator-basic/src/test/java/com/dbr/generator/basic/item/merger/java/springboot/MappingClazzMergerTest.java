@@ -3,7 +3,7 @@ package com.dbr.generator.basic.item.merger.java.springboot;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.basic.merger.ItemTemplateTemplateMerger;
+import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.merger.ItemTemplates;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -24,7 +24,7 @@ public class MappingClazzMergerTest {
         clazzMappingItemDTO.setJavaClazzName("com.dbr.generator.PropertyRepository");
         subitemDTO1 = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class);
         clazzMappingItemDTO.addItemDTO(subitemDTO1);
-        ItemTemplateTemplateMerger itemTemplateMerger = new ItemTemplateTemplateMerger(clazzMappingItemDTO);
+        ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(clazzMappingItemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);
         assertNotNull(content);

@@ -2,7 +2,7 @@ package com.dbr.generator.basic.item.merger.java;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.merger.ItemTemplateTemplateMerger;
+import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.merger.ItemTemplates;
 import com.dbr.generator.basic.dto.PropertyDTO;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class DTOMergerTest {
     @Test
     public void create() {
         ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class);
-        ItemTemplateTemplateMerger itemTemplateMerger = new ItemTemplateTemplateMerger(itemDTO);
+        ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(itemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);
         assertNotNull(content);
