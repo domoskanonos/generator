@@ -1,4 +1,4 @@
-package ${model.subItems[0].javaPackageName};
+package ${model.javaPackageName};
 
 import lombok.*;
 
@@ -11,9 +11,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder=true)
-public class ${model.subItems[0].javaClazzSimpleName} {
+public class ${model.javaClazzSimpleName} {
 
-#foreach( $property in $model.subItems[0].properties )
+#foreach( $property in $model.properties )
     private ${property.propertyType.javaTypeSimpleName} ${property.name};
 #end
 

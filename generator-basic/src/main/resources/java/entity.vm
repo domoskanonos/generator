@@ -1,4 +1,4 @@
-package ${model.subItems[0].javaPackageName};
+package ${model.javaPackageName};
 
 import lombok.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.math.BigDecimal;
 
-#if($model.subItems[0].useJPAIdClazz)@IdClass(${model.subItems[0].javaIdClazzSimpleName}.class)#end
+#if($model.useJPAIdClazz)@IdClass(${model.javaIdClazzSimpleName}.class)#end
 @Entity
 @Table(name = "${model.subItems[0].tableName}")
 @Data
@@ -15,8 +15,8 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ${model.subItems[0].javaClazzSimpleName} {
-#foreach( $property in $model.subItems[0].properties )
+public class ${model.javaClazzSimpleName} {
+#foreach( $property in $model.properties )
     ${property.jpaPropertyAnnotations}
     private #if(${property.propertyType.javaTypeSimpleName}=='TYPE_DATE_ISO8601')Date#else${property.propertyType.javaTypeSimpleName}#end ${property.name};
 #end

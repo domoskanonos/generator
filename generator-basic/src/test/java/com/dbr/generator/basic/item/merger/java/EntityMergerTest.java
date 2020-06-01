@@ -1,7 +1,10 @@
 package com.dbr.generator.basic.item.merger.java;
 
-import com.dbr.generator.basic.BasicTestUtil;
+import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.item.merger.ItemMerger;
+import com.dbr.generator.basic.item.merger.MergerTemplates;
+import com.dbr.generator.basic.property.dto.PropertyDTO;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +19,8 @@ public class EntityMergerTest {
 
     @Test
     public void create() {
-        ItemMerger itemMerger = new ItemMerger(BasicTestUtil.subitemDTO2);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", MergerTemplates.DTO_TEMPLATE, PropertyDTO.class);
+        ItemMerger itemMerger = new ItemMerger(itemDTO);
         String content = itemMerger.create();
         log.info(content);
         assertNotNull(content);
