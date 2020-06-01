@@ -16,7 +16,7 @@ import java.util.List;
 public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(String filePath, String templatePath, Class<?> clazz) {
-        ItemDTO itemDTO = ItemDTO.builder().build();
+        ItemDTO itemDTO = new ItemDTO();
         itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
         itemDTO.setFilePath(filePath);
