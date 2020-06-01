@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.project.generator;
 
-import com.dbr.generator.basic.item.merger.ItemMergerFactory;
-import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.item.merger.ItemMerger;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.SpringBootProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -39,8 +39,8 @@ public class SpringBootProjectGenerator implements ProjectGeneratorInterface<Spr
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
         }
 
-        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
-            ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
+        for (ItemDTO itemDTO : model.getItemDTOS()) {
+            new ItemMerger(itemDTO).writeDown();
         }
 
     }

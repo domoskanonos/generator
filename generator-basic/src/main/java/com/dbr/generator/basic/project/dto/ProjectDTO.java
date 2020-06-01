@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.project.dto;
 
-import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.dto.ItemDTO;
 import com.dbr.generator.basic.process.dto.ProcessDTO;
 import lombok.Data;
 
@@ -11,18 +11,16 @@ import java.util.List;
 @Data
 public class ProjectDTO {
 
+    private String technicalDescriptor;
+
     private ProcessDTO processDTO;
 
-    private List<ItemMergerDTO> itemMergerDTOS = new ArrayList<>();
-
-    private List<String> downloadUrls = new ArrayList<>();
+    private List<ItemDTO> itemDTOS = new ArrayList<>();
 
     public ProjectDTO(ProcessDTO processDTO,String technicalDescriptor) {
         this.processDTO = processDTO;
         this.technicalDescriptor = technicalDescriptor;
     }
-
-    private String technicalDescriptor;
 
     public File getProjectFolder() {
         return new File(processDTO.getProcessFolder(), new StringBuilder().append(processDTO.getProjectFolderPrefix()).append(technicalDescriptor).toString());

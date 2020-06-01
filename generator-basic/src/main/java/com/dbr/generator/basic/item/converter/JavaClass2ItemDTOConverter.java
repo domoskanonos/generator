@@ -15,11 +15,12 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(String projectPath, Class<?> clazz) {
+    public ItemDTO convert(String filePath, String templatePath, Class<?> clazz) {
         ItemDTO itemDTO = ItemDTO.builder().build();
         itemDTO.setJavaIdClazzSimpleName(getIDClazzSimpleName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
-        itemDTO.setFilePath(this.getJavaFilePathSuffix(projectPath, itemDTO));
+        itemDTO.setFilePath(filePath);
+        itemDTO.setTemplatePath(templatePath);
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(new PropertyConverterDTO(itemDTO, field));
             itemDTO.addProperty(propertyDTO);
@@ -27,14 +28,14 @@ public class JavaClass2ItemDTOConverter {
         return itemDTO;
     }
 
-    public String getJavaFilePathSuffix(String projectPath, ItemDTO itemDTO) {
+    public static String getJavaFilePathSuffix(String projectPath, ItemDTO itemDTO) {
         return new StringBuilder().append(projectPath).append("/").append("src/main/java/").append(itemDTO.getPackagePath()).append(itemDTO.getJavaClazzSimpleName()).append(".java").toString();
     }
 
-    public List<ItemDTO> convert(String projectPath, Collection<Class<?>> clazzes) {
+    public List<ItemDTO> convert(String filePath, String templatePath, Collection<Class<?>> clazzes) {
         List<ItemDTO> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
-            retval.add(convert(projectPath, clazz));
+            retval.add(convert(filePath, templatePath, clazz));
         }
         return retval;
     }

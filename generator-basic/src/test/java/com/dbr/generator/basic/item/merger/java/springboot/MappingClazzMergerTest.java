@@ -1,8 +1,7 @@
 package com.dbr.generator.basic.item.merger.java.springboot;
 
-import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.dto.MappingClazzItemMergerDTO;
+import com.dbr.generator.basic.BasicTestUtil;
+import com.dbr.generator.basic.item.merger.ItemMerger;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +15,8 @@ public class MappingClazzMergerTest {
 
     @Test
     public void create() {
-        MappingClazzMerger mappingClazzMerger = new MappingClazzMerger(new MappingClazzItemMergerDTO(new JavaClass2ItemDTOConverter().convert("", ItemDTO.class), new JavaClass2ItemDTOConverter().convert("", ItemDTO.class)));
-        String content = mappingClazzMerger.create();
+        ItemMerger itemMerger = new ItemMerger(BasicTestUtil.clazzMappingItemDTO);
+        String content = itemMerger.create();
         log.info(content);
         assertNotNull(content);
         assertFalse(content.contains("${"));

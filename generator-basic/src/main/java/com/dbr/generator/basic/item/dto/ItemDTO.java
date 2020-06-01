@@ -9,13 +9,15 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder(toBuilder = true)
 @Data
 public class ItemDTO {
 
+    private String templatePath;
     private String filePath;
     private String javaClazzName;
     private String javaIdClazzSimpleName;
+
+    private List<ItemDTO> referencedItems;
     private List<PropertyDTO> properties;
 
     public Boolean useJPAIdClazz() {

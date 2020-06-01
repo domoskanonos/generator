@@ -1,9 +1,7 @@
 package com.dbr.generator.basic.item.merger.java.typescript;
 
-import com.dbr.generator.basic.item.converter.JavaClass2ItemDTOConverter;
-import com.dbr.generator.basic.item.dto.ItemDTO;
-import com.dbr.generator.basic.item.merger.dto.TypescriptModelItemMergerDTO;
-import com.dbr.generator.basic.item.merger.typescript.TypescriptModelMerger;
+import com.dbr.generator.basic.BasicTestUtil;
+import com.dbr.generator.basic.item.merger.ItemMerger;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +16,8 @@ public class TypescriptModelMergerTest {
 
     @Test
     public void create() {
-        TypescriptModelMerger typescriptModelMerger = new TypescriptModelMerger(new TypescriptModelItemMergerDTO(new JavaClass2ItemDTOConverter().convert("", ItemDTO.class)));
-        String content = typescriptModelMerger.create();
+        ItemMerger itemMerger = new ItemMerger(BasicTestUtil.subitemDTO1);
+        String content = itemMerger.create();
         log.info(content);
         assertNotNull(content);
         assertFalse(content.contains("${"));

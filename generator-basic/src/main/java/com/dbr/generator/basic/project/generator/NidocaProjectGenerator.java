@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.project.generator;
 
-import com.dbr.generator.basic.item.merger.ItemMergerFactory;
-import com.dbr.generator.basic.item.merger.dto.ItemMergerDTO;
+import com.dbr.generator.basic.item.dto.ItemDTO;
+import com.dbr.generator.basic.item.merger.ItemMerger;
 import com.dbr.generator.basic.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.project.dto.NidocaProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -19,8 +19,8 @@ public class NidocaProjectGenerator implements ProjectGeneratorInterface<NidocaP
                 model.getNidocaTemplateZipFile());
         GeneratorUtil.unzipFile(nidocaTemplateZipFile, model.getProcessFolder());
         FileUtils.moveDirectory(new File(model.getProcessFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
-        for (ItemMergerDTO itemMergerDTO : model.getItemMergerDTOS()) {
-            ItemMergerFactory.createMerger(itemMergerDTO).writeDown();
+        for (ItemDTO itemDTO : model.getItemDTOS()) {
+            new ItemMerger(itemDTO).writeDown();
         }
     }
 

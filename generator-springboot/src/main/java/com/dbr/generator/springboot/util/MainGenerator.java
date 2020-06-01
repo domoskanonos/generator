@@ -42,7 +42,7 @@ public class MainGenerator {
 
         //javaProjectDTO.getItemMergerDTOS().add(new EntityItemMergerDTO(itemDTOItemEntity));
         //javaProjectDTO.getItemMergerDTOS().add(new DTOItemMergerDTO(itemDTOItemDTO));
-        javaProjectDTO.getItemMergerDTOS().add(new MappingClazzItemMergerDTO(itemDTOMappingClazz1, itemDTOMappingClazz2));
+        javaProjectDTO.getItemDTOS().add(new MappingClazzItemMergerDTO(itemDTOMappingClazz1, itemDTOMappingClazz2));
         processDTO.getProjectDTOS().add(javaProjectDTO);
 
 
