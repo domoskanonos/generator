@@ -33,7 +33,7 @@ public class Item {
     @Column(name = "JAVA_ID_CLAZZ_NAME")
     private String javaIdClazzName;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_PROPERTIES", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
     private Set<Property> properties = new HashSet<>();
 

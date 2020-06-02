@@ -27,19 +27,19 @@ public class Property {
     @Enumerated
     private PropertyTypeEnum propertyType;
 
-    @Column(name = "ID_PROPERTY", nullable = false)
-    private Boolean idProperty;
+    @Column(name = "ID_PROPERTY")
+    private Boolean idProperty = false;
 
-    @Column(name = "SEARCHABLE", nullable = false)
-    private Boolean searchable;
+    @Column(name = "SEARCHABLE")
+    private Boolean searchable = false;
 
-    @Column(name = "NULLABLE", nullable = false)
-    private Boolean nullable;
+    @Column(name = "NULLABLE")
+    private Boolean nullable = true;
 
-    @Column(name = "USE_J_P_A_ID_CLAZZ", nullable = false)
-    private Boolean useJPAIdClazz;
+    @Column(name = "USE_JPA_ID_CLAZZ")
+    private Boolean useJPAIdClazz = false;
 
-    @Column(name = "LENGTH", nullable = false)
-    private Integer length;
+    @Column(name = "LENGTH")
+    private Integer length = 0;
 
 }
