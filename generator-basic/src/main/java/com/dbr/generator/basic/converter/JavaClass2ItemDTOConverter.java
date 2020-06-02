@@ -13,11 +13,11 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(String filePath, String templatePath, Class<?> clazz) {
+    public ItemDTO convert(String projectPath, String templatePath, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setJavaIdClazzName(getIDClazzName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
-        itemDTO.setFilePath(filePath);
+        itemDTO.setFilePath(getJavaFilePathSuffix(projectPath, itemDTO));
         itemDTO.setTemplatePath(templatePath);
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
@@ -26,7 +26,7 @@ public class JavaClass2ItemDTOConverter {
         return itemDTO;
     }
 
-    public static String getJavaFilePathSuffix(String projectPath, ItemDTO itemDTO) {
+    private String getJavaFilePathSuffix(String projectPath, ItemDTO itemDTO) {
         return new StringBuilder().append(projectPath).append("/").append("src/main/java/").append(itemDTO.getPackagePath()).append(itemDTO.getJavaClazzSimpleName()).append(".java").toString();
     }
 
