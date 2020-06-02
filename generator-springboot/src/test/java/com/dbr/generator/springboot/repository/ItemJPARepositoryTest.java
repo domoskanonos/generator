@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class PropertyJPARepositoryTest {
+public class ItemJPARepositoryTest {
 
     @Autowired
     private PropertyJPARepository propertyJPARepository;
