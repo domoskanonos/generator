@@ -2,6 +2,7 @@ package com.dbr.generator.springboot.app.mapping;
 
 import com.dbr.generator.basic.dto.PropertyDTO;
 import com.dbr.generator.basic.entity.Property;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -11,21 +12,23 @@ import java.util.stream.Collectors;
 @Component
 public class PropertyPropertyDTOMapping {
 
-    public PropertyDTO toEntity(Property source) {
-        PropertyDTO dest = new PropertyDTO();
-        return dest;
-    }
-
-    public Property toDTO(PropertyDTO source) {
+    public Property toEntity(PropertyDTO source) {
         Property dest = new Property();
+        BeanUtils.copyProperties(source, dest);
         return dest;
     }
 
-    public List<Property> toDTOs(Collection<PropertyDTO> sources) {
+    public PropertyDTO toDTO(Property source) {
+        PropertyDTO dest = new PropertyDTO();
+        BeanUtils.copyProperties(source, dest);
+        return dest;
+    }
+
+    public List<PropertyDTO> toDTOs(Collection<Property> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<PropertyDTO> toEntities(Collection<Property> sources) {
+    public List<Property> toEntities(Collection<PropertyDTO> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

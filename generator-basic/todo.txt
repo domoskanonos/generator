@@ -1,0 +1,3 @@
+        #foreach( $property in $model.subItems[0].properties )
+        ${property.name}
+        #end

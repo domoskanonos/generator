@@ -4,8 +4,8 @@ import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class ItemDTO {
@@ -15,8 +15,8 @@ public class ItemDTO {
     private String javaClazzName;
     private String javaIdClazzName;
 
-    private List<ItemDTO> subItems;
-    private List<PropertyDTO> properties;
+    private Set<ItemDTO> subItems;
+    private Set<PropertyDTO> properties;
 
     public Boolean useJPAIdClazz() {
         return this.javaIdClazzName != null;
@@ -48,7 +48,7 @@ public class ItemDTO {
 
     public void addProperty(PropertyDTO propertyDTO) {
         if (properties == null) {
-            properties = new ArrayList<>();
+            properties = new HashSet<>();
         }
         properties.add(propertyDTO);
     }
@@ -56,7 +56,7 @@ public class ItemDTO {
 
     public void addItemDTO(ItemDTO itemDTO) {
         if (subItems == null) {
-            subItems = new ArrayList<>();
+            subItems = new HashSet<>();
         }
         subItems.add(itemDTO);
     }
