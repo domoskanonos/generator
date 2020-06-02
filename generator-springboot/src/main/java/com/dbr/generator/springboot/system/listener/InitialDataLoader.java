@@ -2,7 +2,9 @@ package com.dbr.generator.springboot.system.listener;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.entity.Item;
 import com.dbr.generator.basic.merger.ItemTemplates;
 import com.dbr.generator.springboot.app.mapping.ItemItemDTOMapping;
@@ -30,9 +32,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("_dev/vhs/git/generator/generator-springboot", ItemTemplates.DTO_TEMPLATE, PropertyDTO.class);
-        Item item = itemItemDTOMapping.toEntity(itemDTO);
-        item = itemJPARepository.save(item);
+        //ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("_dev/vhs/git/generator/generator-springboot", ItemTemplates.DTO_TEMPLATE, ProcessDTO.class);
+        //Item item = itemItemDTOMapping.toEntity(itemDTO);
+        //item = itemJPARepository.save(item);
 
 
     }
