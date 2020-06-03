@@ -33,7 +33,7 @@ public class ItemTemplateMerger extends AbstractTemplateMerger {
         return writer.toString();
     }
 
-    public void writeDown(File projectFolder) throws IOException {
-        super.writeDown(new File(projectFolder, dto.getFilePath()));
+    public void writeDown() throws IOException {
+        super.writeDown(dto.getFilePath());
     }
 }

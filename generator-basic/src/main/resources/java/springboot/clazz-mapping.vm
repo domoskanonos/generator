@@ -5,33 +5,33 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 
-import ${model.subItems[0].javaClazzName};
-import ${model.subItems[1].javaClazzName};
+import ${model.jpaJavaClazzName};
+import ${model.javaJPAClazzName};
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ${model.javaClazzSimpleName} {
+public class ${model.javaJPAClazzName} {
 
-    public ${model.subItems[0].javaClazzSimpleName} toEntity(${model.subItems[1].javaClazzSimpleName} source)
+    public ${model.javaDTOClazzSimpleName} toEntity(${model.javaJPAClazzSimpleName} source)
     {
-        ${model.subItems[0].javaClazzSimpleName} dest = new ${model.subItems[0].javaClazzSimpleName}();
+        ${model.javaDTOClazzSimpleName} dest = new ${model.javaDTOClazzSimpleName}();
         BeanUtils.copyProperties(source, dest);
         return dest;
     }
 
-    public ${model.subItems[1].javaClazzSimpleName} toDTO(${model.subItems[0].javaClazzSimpleName} source)
+    public ${model.javaJPAClazzSimpleName} toDTO(${model.javaDTOClazzSimpleName} source)
     {
-        ${model.subItems[1].javaClazzSimpleName} dest = new ${model.subItems[1].javaClazzSimpleName}();
+        ${model.javaJPAClazzSimpleName} dest = new ${model.javaJPAClazzSimpleName}();
         BeanUtils.copyProperties(source, dest);
         return dest;
     }
 
-    public List<${model.subItems[1].javaClazzSimpleName}> toDTOs(Collection<${model.subItems[0].javaClazzSimpleName}> sources) {
+    public List<${model.javaJPAClazzSimpleName}> toDTOs(Collection<${model.javaDTOClazzSimpleName}> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<${model.subItems[0].javaClazzSimpleName}> toEntities(Collection<${model.subItems[1].javaClazzSimpleName}> sources) {
+    public List<${model.javaDTOClazzSimpleName}> toEntities(Collection<${model.javaJPAClazzSimpleName}> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

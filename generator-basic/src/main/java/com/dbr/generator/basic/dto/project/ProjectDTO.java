@@ -15,6 +15,8 @@ public class ProjectDTO {
 
     private String technicalDescriptor;
 
+    protected String javaBasePackage;
+
     private ProcessDTO processDTO;
 
     private List<ItemDTO> items = new ArrayList<>();

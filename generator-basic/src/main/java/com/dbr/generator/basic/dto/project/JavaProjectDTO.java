@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 public class JavaProjectDTO extends ProjectDTO {
 
-    private String javaBasePackage;
     private String springBootArchetypeArtifactId = "springboottemplate-archetype";
     private String springBootGroupId = "com.dbr.springboot.template";
 

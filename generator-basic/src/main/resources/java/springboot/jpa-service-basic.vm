@@ -1,12 +1,12 @@
-package ${model.packageName};
+package ${model.javaServiceClazzName};
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import ${model.subItems[0].javaClazzName};
-import ${model.subItems[1].javaClazzName};
-import ${model.subItems[2].javaClazzName};
-import ${model.subItems[3].javaClazzName};
+import ${model.javaDTOClazzName};
+import ${model.javaJPAClazzName};
+import ${model.javaJPARepositoryClazzName};
+import ${model.javaMappingClazzName};
 
 import javax.persistence.*;
 
@@ -17,53 +17,53 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * This service class provides basic functionality for the hibernate entity <code>${model.subItems[0].javaClazzSimpleName}</code>.
- * The return value of each function always returns a mapped <code>${model.subItems[1].javaClazzSimpleName}</code> object,
+ * This service class provides basic functionality for the hibernate entity <code>${model.javaDTOClazzSimpleName}</code>.
+ * The return value of each function always returns a mapped <code>${model.javaJPAClazzSimpleName}</code> object,
  * instead of the original hibernate entity.
  *
  */
 @Service
 @RequiredArgsConstructor
-public class ${serviceClazzName} {
+public class ${model.javaServiceClazzSimpleName} {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     private final EntityManager em;
 
-    private final ${model.subItems[3].javaClazzSimpleName} repository;
+    private final ${model.javaJPARepositoryClazzSimpleName} repository;
 
-    private final ${model.subItems[2].javaClazzSimpleName} mapping;
+    private final ${model.javaMappingClazzSimpleName} mapping;
 
     /**
-     * get a list of all available database <code>${model.subItems[0].javaClazzSimpleName}</code> object's, mapped to <code>${model.subItems[1].javaClazzSimpleName}</code> objects.
+     * get a list of all available database <code>${model.javaDTOClazzSimpleName}</code> object's, mapped to <code>${model.javaJPAClazzSimpleName}</code> objects.
      *
-     * @return a list of <code>${model.subItems[1].javaClazzSimpleName}'s</code>
+     * @return a list of <code>${model.javaJPAClazzSimpleName}'s</code>
      *
      */
-    public List<${model.subItems[1].javaClazzSimpleName}> findAll() {
+    public List<${model.javaJPAClazzSimpleName}> findAll() {
         log.debug("findAll");
         return mapping.toDTOs(repository.findAll());
     }
 
     /**
-     * Find hibernate entity of type <code>${model.subItems[0].javaClazzSimpleName}</code> by id, mapped to <code>${model.subItems[1].javaClazzSimpleName}</code>.
+     * Find hibernate entity of type <code>${model.javaDTOClazzSimpleName}</code> by id, mapped to <code>${model.javaJPAClazzSimpleName}</code>.
      *
      * @param id of hibernate entity
-     * @return optional object of type <code>Optional<${model.subItems[1].javaClazzSimpleName}></code>
+     * @return optional object of type <code>Optional<${model.javaJPAClazzSimpleName}></code>
      */
-    public Optional<${model.subItems[1].javaClazzSimpleName}> findById(${idClazz} id) {
+    public Optional<${model.javaJPAClazzSimpleName}> findById(${model.javaIdClazzSimpleName} id) {
         log.debug("findById: {}", id);
-        Optional<${model.subItems[0].javaClazzSimpleName}> entityOptional = repository.findById(id);
+        Optional<${model.javaDTOClazzSimpleName}> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
     }
 
     /**
-     * save or update an <code>${model.subItems[0].javaClazzSimpleName}</code> object, mapped from <code>${model.subItems[1].javaClazzSimpleName}</code> object.
+     * save or update an <code>${model.javaDTOClazzSimpleName}</code> object, mapped from <code>${model.javaJPAClazzSimpleName}</code> object.
      *
      * @param dto to save or update
-     * @return new saved or updated object as <code>${model.subItems[1].javaClazzSimpleName}</code>
+     * @return new saved or updated object as <code>${model.javaJPAClazzSimpleName}</code>
      */
-    public ${model.subItems[1].javaClazzSimpleName} save(${model.subItems[1].javaClazzSimpleName} dto) {
+    public ${model.javaJPAClazzSimpleName} save(${model.javaJPAClazzSimpleName} dto) {
         log.debug("save or update object: {}", dto);
         return mapping.toDTO(repository.save(mapping.toEntity(dto)));
     }

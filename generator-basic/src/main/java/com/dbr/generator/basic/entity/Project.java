@@ -28,5 +28,8 @@ public class Project {
     @Column(name = "NAME")
     private String technicalDescriptor;
 
+    @Column(name = "JAVA_BASE_PACKAGE")
+    private String javaBasePackage;
+
 
 }

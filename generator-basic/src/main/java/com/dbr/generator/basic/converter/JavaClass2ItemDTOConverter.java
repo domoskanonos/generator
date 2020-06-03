@@ -17,9 +17,8 @@ import java.util.List;
 public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(ProjectDTO projectDTO, TemplateEnum templateEnum, Class<?> clazz) {
-        ItemDTO itemDTO = new ItemDTO();
+        ItemDTO itemDTO = new ItemDTO(clazz.getName(), templateEnum, TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), projectDTO);
         itemDTO.setProject(projectDTO);
-        itemDTO.setIdTypeEnum(TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)));
         itemDTO.setName(clazz.getName());
         itemDTO.setTemplate(templateEnum);
         for (Field field : clazz.getDeclaredFields()) {

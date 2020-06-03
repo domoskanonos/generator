@@ -27,7 +27,7 @@ public class GeneratorProjectMetaData {
         PROCESS_DTO = new ProcessDTO(processTempPath, processParentPath, "generator");
         List<ProjectDTO> projectDTOS = PROCESS_DTO.getProjects();
 
-        String javaBasePackage = "com.dbr.generator";
+        String javaBasePackage = "com.dbr.generator.springboot";
 
         SPRING_BOOT_PROJECT_DTO = new SpringBootProjectDTO(PROCESS_DTO, "springboot", javaBasePackage);
         SPRING_BOOT_PROJECT_DTO.setAddSpringBootSecurityModule(true);
@@ -37,7 +37,7 @@ public class GeneratorProjectMetaData {
         projectDTOS.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
 
-        SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO("Property", TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, SPRING_BOOT_JAVA_PROJECT_DTO));
+        SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO("Property", TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TypeEnum.TYPE_LONG, SPRING_BOOT_JAVA_PROJECT_DTO));
 
 
     }

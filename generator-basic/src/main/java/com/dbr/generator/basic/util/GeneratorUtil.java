@@ -253,7 +253,7 @@ public class GeneratorUtil {
     }
 
     public static String getPackagePath(String packageName) {
-        return new StringBuilder().append(packageName.replace(".", "/")).append("/").toString();
+        return new StringBuilder().append(packageName.replace(".", "/")).toString();
     }
 
     public static void deleteFile(File file) throws IOException {
