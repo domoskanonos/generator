@@ -6,6 +6,7 @@ import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -32,7 +33,7 @@ public class ItemTemplateMerger extends AbstractTemplateMerger {
         return writer.toString();
     }
 
-    public void writeDown() throws IOException {
-        super.writeDown(dto.getFilePath());
+    public void writeDown(File projectFolder) throws IOException {
+        super.writeDown(new File(projectFolder, dto.getFilePath()));
     }
 }

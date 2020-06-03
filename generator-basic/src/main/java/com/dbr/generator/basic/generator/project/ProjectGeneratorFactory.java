@@ -6,7 +6,7 @@ import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
 
 public class ProjectGeneratorFactory {
 
-    public static ProjectGeneratorInterface create(ProjectDTO projectDTO) {
+    public static ProjectGenerator create(ProjectDTO projectDTO) {
         if (projectDTO instanceof SpringBootProjectDTO) {
             return new SpringBootProjectGenerator();
         }

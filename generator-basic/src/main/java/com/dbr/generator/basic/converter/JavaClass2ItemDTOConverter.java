@@ -26,7 +26,7 @@ public class JavaClass2ItemDTOConverter {
         return itemDTO;
     }
 
-    public List<ItemDTO> convert(TemplateEnum templateEnum, String filePath, Collection<Class<?>> clazzes) {
+    public List<ItemDTO> convert(TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
         List<ItemDTO> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
             retval.add(convert(templateEnum, clazz));

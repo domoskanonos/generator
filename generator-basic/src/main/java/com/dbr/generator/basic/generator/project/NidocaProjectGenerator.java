@@ -1,6 +1,7 @@
 package com.dbr.generator.basic.generator.project;
 
 import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.dto.project.NidocaProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -9,22 +10,20 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class NidocaProjectGenerator implements ProjectGeneratorInterface<NidocaProjectDTO> {
+public class NidocaProjectGenerator extends ProjectGenerator<NidocaProjectDTO> {
 
     @Override
-    public void execute(NidocaProjectDTO model) throws IOException {
+    public void execute(NidocaProjectDTO model) throws Exception {
         GeneratorUtil.deleteFile(model.getNidocaProjectFolder());
         File nidocaTemplateZipFile = GeneratorUtil.copyUrlToTempFolder(model.getNidocaTemplateZipUrl(),
                 model.getNidocaTemplateZipFile());
         GeneratorUtil.unzipFile(nidocaTemplateZipFile, model.getProcessFolder());
         FileUtils.moveDirectory(new File(model.getProcessFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
-        for (ItemDTO itemDTO : model.getItemDTOS()) {
-            new ItemTemplateMerger(itemDTO).writeDown();
-        }
+        super.execute(model);
     }
 
     @Override
     public void validate(NidocaProjectDTO model) {
-
+        super.validate(model);
     }
 }

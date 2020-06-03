@@ -2,7 +2,6 @@ package com.dbr.generator.basic.generator.process;
 
 import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.generator.project.ProjectGeneratorFactory;
-import com.dbr.generator.basic.generator.project.ProjectGeneratorInterface;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import org.apache.commons.io.FileUtils;

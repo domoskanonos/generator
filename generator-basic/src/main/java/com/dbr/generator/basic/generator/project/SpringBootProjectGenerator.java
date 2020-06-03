@@ -9,10 +9,10 @@ import com.dbr.generator.basic.util.ValidationUtil;
 import java.io.File;
 import java.io.IOException;
 
-public class SpringBootProjectGenerator implements ProjectGeneratorInterface<SpringBootProjectDTO> {
+public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProjectDTO> {
 
     @Override
-    public void execute(SpringBootProjectDTO model) throws IOException, InterruptedException {
+    public void execute(SpringBootProjectDTO model) throws Exception {
         GeneratorUtil.deleteFile(model.getSpringBootProjectFolder());
         File springBootZipFile = GeneratorUtil.copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
                 model.getSpringBootTemplateZipFile());
@@ -37,20 +37,13 @@ public class SpringBootProjectGenerator implements ProjectGeneratorInterface<Spr
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectTestSourceBasePackageFolder(), "system/storage"));
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
         }
-
-        for (ItemDTO itemDTO : model.getItemDTOS()) {
-            new ItemTemplateMerger(itemDTO).writeDown();
-        }
-
+        super.execute(model);
     }
 
     @Override
     public void validate(SpringBootProjectDTO model) {
-
-
+        super.validate(model);
         ValidationUtil.validateNotHDDBaseDirectory(model.getSpringBootProjectFolder());
-
-
     }
 
 }
