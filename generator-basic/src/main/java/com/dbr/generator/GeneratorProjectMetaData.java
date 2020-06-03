@@ -1,10 +1,13 @@
 package com.dbr.generator;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
+import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.dto.project.JavaProjectDTO;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
+import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.generator.process.ProcessGenerator;
 import com.dbr.generator.basic.merger.TemplateEnum;
 
 import java.io.File;
@@ -19,7 +22,7 @@ public class GeneratorProjectMetaData {
     public static JavaProjectDTO SPRING_BOOT_JAVA_PROJECT_DTO;
 
     static {
-        String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
+        String processParentPath = new File("C:\\_dev\\vhs\\1").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         PROCESS_DTO = new ProcessDTO(processTempPath, processParentPath, "generator");
         List<ProjectDTO> projectDTOS = PROCESS_DTO.getProjects();
@@ -33,8 +36,14 @@ public class GeneratorProjectMetaData {
         SPRING_BOOT_JAVA_PROJECT_DTO = new JavaProjectDTO(PROCESS_DTO, "springboot", javaBasePackage);
         projectDTOS.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
-        SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new JavaClass2ItemDTOConverter().convert(SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.DTO_TEMPLATE, ProcessDTO.class));
 
+        SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO("Property", TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, SPRING_BOOT_JAVA_PROJECT_DTO));
+
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        ProcessGenerator.generate(PROCESS_DTO);
     }
 
 }

@@ -14,13 +14,19 @@ import java.util.List;
 public class ItemDTO {
 
     private String name;
+    private TemplateEnum template;
     private TypeEnum idTypeEnum;
 
     private ProjectDTO project;
 
-    private List<ItemDTO> subItems;
-    private List<PropertyDTO> properties;
-    private TemplateEnum template;
+    private List<ItemDTO> subItems = new ArrayList<>();
+    private List<PropertyDTO> properties = new ArrayList<>();
+
+    public ItemDTO(String name, TemplateEnum template, ProjectDTO project) {
+        this.name = name;
+        this.template = template;
+        this.project = project;
+    }
 
     public Boolean useJPAIdClazz() {
         return this.idTypeEnum != null;
