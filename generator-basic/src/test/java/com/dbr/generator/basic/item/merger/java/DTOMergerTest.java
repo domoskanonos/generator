@@ -18,7 +18,7 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, "", PropertyDTO.class);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, PropertyDTO.class);
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(itemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);

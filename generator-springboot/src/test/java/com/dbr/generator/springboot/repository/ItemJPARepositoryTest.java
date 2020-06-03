@@ -33,7 +33,7 @@ public class ItemJPARepositoryTest {
 
     @Test
     public void pdfApplicationProperties() {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, "", ItemDTO.class);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, ItemDTO.class);
         Item item = itemItemDTOMapping.toEntity(itemDTO);
         item = itemJPARepository.save(item);
         assertThat(item.getId()).isNotNull();

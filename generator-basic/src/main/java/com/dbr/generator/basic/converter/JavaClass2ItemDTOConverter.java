@@ -14,11 +14,10 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(TemplateEnum templateEnum, String projectPath, Class<?> clazz) {
+    public ItemDTO convert(TemplateEnum templateEnum, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setJavaIdClazzName(getIDClazzName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
-        itemDTO.setFilePath(getJavaFilePathSuffix(projectPath, itemDTO));
         itemDTO.setTemplate(templateEnum);
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
@@ -27,14 +26,10 @@ public class JavaClass2ItemDTOConverter {
         return itemDTO;
     }
 
-    private String getJavaFilePathSuffix(String projectPath, ItemDTO itemDTO) {
-        return new StringBuilder().append(projectPath).append("/").append("src/main/java/").append(itemDTO.getPackagePath()).append(itemDTO.getJavaClazzSimpleName()).append(".java").toString();
-    }
-
     public List<ItemDTO> convert(TemplateEnum templateEnum, String filePath, Collection<Class<?>> clazzes) {
         List<ItemDTO> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
-            retval.add(convert(templateEnum, filePath, clazz));
+            retval.add(convert(templateEnum, clazz));
         }
         return retval;
     }

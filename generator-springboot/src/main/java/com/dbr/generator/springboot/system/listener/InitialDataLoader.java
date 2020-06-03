@@ -9,7 +9,6 @@ import com.dbr.generator.springboot.app.mapping.ItemItemDTOMapping;
 import com.dbr.generator.springboot.app.repository.ItemJPARepository;
 import com.dbr.generator.springboot.app.repository.PropertyJPARepository;
 import com.dbr.generator.springboot.system.ApplicationProperties;
-import com.dbr.generator.springboot.system.enumeration.BuildEnvironment;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -34,14 +33,14 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        if (applicationProperties.getBuildEnvironments().contains(BuildEnvironment.DEV)) {
+        //if (applicationProperties.getBuildEnvironments().contains(BuildEnvironment.DEV)) {
 
 
-            ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, "_dev/vhs/git/generator/generator-springboot", ProcessDTO.class);
+            ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, ProcessDTO.class);
             Item item = itemItemDTOMapping.toEntity(itemDTO);
             item = itemJPARepository.save(item);
 
-        }
+        //}
 
     }
 

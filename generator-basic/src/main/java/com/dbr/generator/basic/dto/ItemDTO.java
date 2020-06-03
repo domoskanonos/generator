@@ -13,7 +13,6 @@ import java.util.Set;
 @Data
 public class ItemDTO {
 
-    private String filePath;
     private String javaClazzName;
     private String javaIdClazzName;
 
@@ -41,7 +40,7 @@ public class ItemDTO {
         return new StringBuilder().append(getJavaClazzSimpleName()).append("Model").toString();
     }
 
-    public String getJavaIdClazzSimpleName(){
+    public String getJavaIdClazzSimpleName() {
         return GeneratorUtil.getJavaSimpleClazzName(this.javaClazzName);
     }
 
@@ -60,7 +59,6 @@ public class ItemDTO {
         properties.add(propertyDTO);
     }
 
-
     public void addItemDTO(ItemDTO itemDTO) {
         if (subItems == null) {
             subItems = new ArrayList<>();
@@ -68,4 +66,8 @@ public class ItemDTO {
         subItems.add(itemDTO);
     }
 
+    public String getFilePath() {
+        return new StringBuilder().append("src/main/java/").append(getPackagePath()).append(getJavaClazzSimpleName()).append(".java").toString();
+
+    }
 }

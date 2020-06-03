@@ -20,10 +20,10 @@ public class MappingClazzMergerTest {
     @Test
     public void create() {
         ItemDTO clazzMappingItemDTO;
-        clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.CLAZZ_MAPPING_TEMPLATE, "", ItemDTO.class);
+        clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.CLAZZ_MAPPING_TEMPLATE, ItemDTO.class);
         clazzMappingItemDTO.setJavaClazzName("com.dbr.generator.PropertyRepository");
-        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(TemplateEnum.ENTITY_TEMPLATE, "", Property.class));
-        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, "", PropertyDTO.class));
+        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(TemplateEnum.ENTITY_TEMPLATE, Property.class));
+        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, PropertyDTO.class));
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(clazzMappingItemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);

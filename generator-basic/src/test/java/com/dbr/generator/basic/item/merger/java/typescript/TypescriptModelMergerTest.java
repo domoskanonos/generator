@@ -18,7 +18,7 @@ public class TypescriptModelMergerTest {
 
     @Test
     public void create() {
-        ItemDTO subitemTypescript = new JavaClass2ItemDTOConverter().convert(TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE, "", ItemDTO.class);
+        ItemDTO subitemTypescript = new JavaClass2ItemDTOConverter().convert(TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE, ItemDTO.class);
 
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(subitemTypescript);
         String content = itemTemplateMerger.create();
