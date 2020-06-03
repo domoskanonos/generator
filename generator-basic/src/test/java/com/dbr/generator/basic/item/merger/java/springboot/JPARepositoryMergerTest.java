@@ -21,7 +21,7 @@ public class JPARepositoryMergerTest {
         ItemDTO repositoryItemDTO;
         ItemDTO entityItemDTO;
         repositoryItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, Property.class);
-        repositoryItemDTO.setJavaClazzName("com.dbr.generator.springboot.repository.PropertyJPARepository");
+        repositoryItemDTO.setName("com.dbr.generator.springboot.repository.PropertyJPARepository");
         entityItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.ENTITY_TEMPLATE, Property.class);
         repositoryItemDTO.addItemDTO(entityItemDTO);
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(repositoryItemDTO);

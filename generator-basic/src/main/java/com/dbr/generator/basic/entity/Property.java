@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,7 +25,7 @@ public class Property {
 
     @Column(name = "PROPERTY_TYPE", nullable = false)
     @Enumerated
-    private PropertyTypeEnum propertyType;
+    private TypeEnum propertyType;
 
     @Column(name = "ID_PROPERTY")
     private Boolean idProperty = false;

@@ -2,6 +2,7 @@ package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 
 import javax.persistence.EmbeddedId;
@@ -16,8 +17,8 @@ public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(TemplateEnum templateEnum, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setJavaIdClazzName(getIDClazzName(clazz));
-        itemDTO.setJavaClazzName(clazz.getName());
+        itemDTO.setIdTypeEnum(TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)));
+        itemDTO.setName(clazz.getName());
         itemDTO.setTemplate(templateEnum);
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
@@ -34,7 +35,7 @@ public class JavaClass2ItemDTOConverter {
         return retval;
     }
 
-    public static String getIDClazzName(Class<?> clazz) {
+    public static String getIDClazzSimpleName(Class<?> clazz) {
         String javaIdClazzSimpleName = null;
         IdClass idClassAnnotation = clazz.getAnnotation(IdClass.class);
         if (idClassAnnotation != null) {

@@ -21,7 +21,7 @@ public class JPAServiceBasicMergerTest {
         ItemDTO repositoryItemDTO;
         ItemDTO entityItemDTO;
         repositoryItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, Property.class);
-        repositoryItemDTO.setJavaClazzName("com.dbr.generator.springboot.repository.PropertyJPAServiceBasic");
+        repositoryItemDTO.setName("com.dbr.generator.springboot.repository.PropertyJPAServiceBasic");
         entityItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.ENTITY_TEMPLATE, Property.class);
         repositoryItemDTO.addItemDTO(entityItemDTO);
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(repositoryItemDTO);

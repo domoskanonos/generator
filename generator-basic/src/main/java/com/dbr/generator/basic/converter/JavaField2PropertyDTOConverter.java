@@ -2,7 +2,7 @@ package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.TypeEnum;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
@@ -15,9 +15,9 @@ public class JavaField2PropertyDTOConverter {
 
     public PropertyDTO convert(ItemDTO itemDTO, Field field) {
         PropertyDTO propertyDTO = new PropertyDTO();
-        propertyDTO.setUseJPAIdClazz(itemDTO.getJavaIdClazzName() != null);
+        propertyDTO.setUseJPAIdClazz(itemDTO.getIdTypeEnum() != null);
         propertyDTO.setName(field.getName());
-        propertyDTO.setPropertyType(PropertyTypeEnum.byField(field));
+        propertyDTO.setPropertyType(TypeEnum.byField(field));
         propertyDTO.setIdProperty(isIDField(field));
         return propertyDTO;
     }

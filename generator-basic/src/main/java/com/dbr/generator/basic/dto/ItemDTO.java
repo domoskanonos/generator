@@ -1,27 +1,26 @@
 package com.dbr.generator.basic.dto;
 
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 public class ItemDTO {
 
-    private String javaClazzName;
-    private String javaIdClazzName;
+    private String name;
+    private TypeEnum idTypeEnum;
 
     private List<ItemDTO> subItems;
     private List<PropertyDTO> properties;
     private TemplateEnum template;
 
     public Boolean useJPAIdClazz() {
-        return this.javaIdClazzName != null;
+        return this.idTypeEnum != null;
     }
 
     public String getTableName() {
@@ -29,11 +28,15 @@ public class ItemDTO {
     }
 
     public String getJavaClazzSimpleName() {
-        return GeneratorUtil.getJavaSimpleClazzName(javaClazzName);
+        return GeneratorUtil.getJavaSimpleClazzName(name);
+    }
+
+    public String getJavaClazzName() {
+        return name;
     }
 
     public String getJavaPackageName() {
-        return GeneratorUtil.getJavaPackageName(javaClazzName);
+        return GeneratorUtil.getJavaPackageName(name);
     }
 
     public String getTypescriptModelName() {
@@ -41,7 +44,7 @@ public class ItemDTO {
     }
 
     public String getJavaIdClazzSimpleName() {
-        return GeneratorUtil.getJavaSimpleClazzName(this.javaClazzName);
+        return GeneratorUtil.getJavaSimpleClazzName(this.name);
     }
 
     public String getTypescriptModelFilename() {
@@ -49,7 +52,7 @@ public class ItemDTO {
     }
 
     public String getPackagePath() {
-        return GeneratorUtil.getPackagePath(GeneratorUtil.getJavaPackageName(javaClazzName));
+        return GeneratorUtil.getPackagePath(GeneratorUtil.getJavaPackageName(name));
     }
 
     public void addProperty(PropertyDTO propertyDTO) {

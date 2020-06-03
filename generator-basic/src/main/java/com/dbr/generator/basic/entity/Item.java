@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.entity;
 
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import lombok.*;
 
@@ -22,14 +23,18 @@ public class Item {
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "FILE_PATH", nullable = false)
-    private String filePath;
+    @Column(name = "NAME")
+    private String name;
 
-    @Column(name = "JAVA_CLAZZ_NAME", nullable = false)
-    private String javaClazzName;
+    //@Column(name = "JAVA_CLAZZ_NAME", nullable = false)
+    //private String javaClazzName;
 
-    @Column(name = "JAVA_ID_CLAZZ_NAME")
-    private String javaIdClazzName;
+    //@Column(name = "JAVA_ID_CLAZZ_NAME")
+    //private String javaIdClazzName;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ID_TYPE")
+    private TypeEnum idTypeEnum = TypeEnum.TYPE_LONG;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "TEMPLATE")

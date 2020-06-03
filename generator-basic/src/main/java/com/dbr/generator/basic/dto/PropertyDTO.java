@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.dto;
 
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class PropertyDTO {
 
     private String name;
-    private PropertyTypeEnum propertyType;
+    private TypeEnum propertyType;
     private boolean idProperty;
     private boolean searchable;
     private boolean nullable;
