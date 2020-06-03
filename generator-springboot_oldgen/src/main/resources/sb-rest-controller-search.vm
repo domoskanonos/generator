@@ -1,7 +1,7 @@
 package ${packageName};
 
 import ${model.javaDTOClazzName};
-import ${model.javaServiceClazzName};
+import ${model.javaServiceBasicClazzName};
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +24,7 @@ public class ${clazzSimpleName} {
 
     public static final String PATH_PREFIX = "/${prefixPath}";
 
-    private final ${model.javaServiceClazzSimpleName} service;
+    private final ${model.javaServiceBasicClazzSimpleName} service;
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

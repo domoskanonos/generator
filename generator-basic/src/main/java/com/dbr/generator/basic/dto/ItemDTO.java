@@ -95,16 +95,16 @@ public class ItemDTO {
         return new StringBuilder().append(name).append("Entity").toString();
     }
 
-    public String getJavaServiceClazzName() {
-        return new StringBuilder().append(getJavaServicePackageName()).append(".").append(getJavaServiceClazzSimpleName()).toString();
+    public String getJavaServiceBasicClazzName() {
+        return new StringBuilder().append(getJavaServiceBasicPackageName()).append(".").append(getJavaServiceBasicClazzSimpleName()).toString();
     }
 
-    public String getJavaServicePackageName() {
+    public String getJavaServiceBasicPackageName() {
         return new StringBuilder().append(getJavaPackageName()).append(".service").toString();
     }
 
-    public String getJavaServiceClazzSimpleName() {
-        return new StringBuilder().append(name).append("Service").toString();
+    public String getJavaServiceBasicClazzSimpleName() {
+        return new StringBuilder().append(name).append("BasicService").toString();
     }
 
     public String getJavaRestControllerBasicClazzName() {
@@ -116,7 +116,7 @@ public class ItemDTO {
     }
 
     public String getJavaRestControllerBasicClazzSimpleName() {
-        return new StringBuilder().append(name).append("RestController").toString();
+        return new StringBuilder().append(name).append("RestBasicController").toString();
     }
 
     public String getJavaRestControllerPrefix() {
@@ -161,7 +161,7 @@ public class ItemDTO {
             case SPRINGBOOT_JPA_REPOSITORY_TEMPLATE:
                 return sb.append(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName())).append(".java").toString();
             case SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaServiceClazzName())).append(".java").toString();
+                return sb.append(GeneratorUtil.getPackagePath(getJavaServiceBasicClazzName())).append(".java").toString();
             case SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE:
                 return sb.append(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName())).append(".java").toString();
             case TYPESCRIPT_MODEL_TEMPLATE:

@@ -2,7 +2,7 @@ package ${packageName};
 
 import ${model.javaDTOClazzName};
 import ${restControllerClazzName};
-import ${model.javaServiceClazzName};
+import ${model.javaServiceBasicClazzName};
 
 
 import org.junit.FixMethodOrder;
@@ -34,7 +34,7 @@ public class ${clazzSimpleName} {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    ${model.javaServiceClazzSimpleName} service;
+    ${model.javaServiceBasicClazzSimpleName} service;
 
      /**
      * save a <code>{@link ${model.javaDTOClazzSimpleName}}</code> object to database via restController call.

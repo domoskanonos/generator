@@ -1,7 +1,7 @@
 package ${packageName};
 
 import ${model.javaDTOClazzName};
-import ${model.javaServiceClazzName};
+import ${model.javaServiceBasicClazzName};
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ${clazzSimpleName} {
 
     @Autowired
-    private ${model.javaServiceClazzSimpleName} service;
+    private ${model.javaServiceBasicClazzSimpleName} service;
 
     @Autowired
     private ${entityClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping mapping;

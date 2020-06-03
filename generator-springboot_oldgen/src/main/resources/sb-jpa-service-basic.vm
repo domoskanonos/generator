@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 @Service
 @RequiredArgsConstructor
-public class ${model.javaServiceClazzName} {
+public class ${model.javaServiceBasicClazzName} {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

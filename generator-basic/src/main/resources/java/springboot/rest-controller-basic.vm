@@ -1,7 +1,7 @@
 package ${model.javaRestControllerBasicPackageName};
 
 import ${model.javaDTOClazzName};
-import ${model.javaServiceClazzName};
+import ${model.javaServiceBasicClazzName};
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +24,7 @@ public class ${model.javaRestControllerBasicClazzSimpleName} {
 
     public static final String PATH_PREFIX = "/${model.javaRestControllerPrefix}";
 
-    private final ${model.javaServiceClazzSimpleName} service;
+    private final ${model.javaServiceBasicClazzSimpleName} service;
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

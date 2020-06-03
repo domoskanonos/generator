@@ -1,4 +1,4 @@
-package ${model.javaServicePackageName};
+package ${model.javaServiceBasicPackageName};
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
  */
 @Service
 @RequiredArgsConstructor
-public class ${model.javaServiceClazzSimpleName} {
+public class ${model.javaServiceBasicClazzSimpleName} {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
