@@ -8,10 +8,9 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "Project")
+@Table(name = "PROJECT")
 @Data
 @ToString
-@Builder(toBuilder = true)
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
