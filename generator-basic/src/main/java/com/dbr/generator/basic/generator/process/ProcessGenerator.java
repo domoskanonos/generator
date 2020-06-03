@@ -1,6 +1,7 @@
 package com.dbr.generator.basic.generator.process;
 
 import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.generator.project.ProjectGenerator;
 import com.dbr.generator.basic.generator.project.ProjectGeneratorFactory;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -31,7 +32,7 @@ public class ProcessGenerator {
         for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
             logger.info("generate project, technical descriptor: {}", projectDTO.getTechnicalDescriptor());
 
-            ProjectGeneratorInterface projectGeneratorInterface = ProjectGeneratorFactory.create(projectDTO);
+            ProjectGenerator projectGeneratorInterface = ProjectGeneratorFactory.create(projectDTO);
             projectGeneratorInterface.validate(projectDTO);
             projectGeneratorInterface.execute(projectDTO);
         }
