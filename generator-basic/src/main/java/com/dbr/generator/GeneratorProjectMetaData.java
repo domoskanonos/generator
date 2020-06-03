@@ -22,7 +22,7 @@ public class GeneratorProjectMetaData {
     public static JavaProjectDTO SPRING_BOOT_JAVA_PROJECT_DTO;
 
     static {
-        String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
+        String processParentPath = new File("C:\\_dev\\vhs\\git").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         PROCESS_DTO = new ProcessDTO(processTempPath, processParentPath, "generator");
         List<ProjectDTO> projectDTOS = PROCESS_DTO.getProjects();
