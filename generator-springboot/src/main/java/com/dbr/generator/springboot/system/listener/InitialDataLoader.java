@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.system.listener;
 
 import com.dbr.generator.GeneratorProjectMetaData;
-import com.dbr.generator.springboot.app.mapping.ProcessProcessDTOMapping;
+import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
 import com.dbr.generator.springboot.system.ApplicationProperties;
 import com.dbr.generator.springboot.system.enumeration.BuildEnvironment;
@@ -14,18 +14,18 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
     private final ApplicationProperties applicationProperties;
     private final ProcessJPARepository processJPARepository;
-    private final ProcessProcessDTOMapping processProcessDTOMapping;
+    private final ProcessEntityProcessDTOMapping processEntityProcessDTOMapping;
 
-    public InitialDataLoader(ApplicationProperties applicationProperties, ProcessJPARepository processJPARepository, ProcessProcessDTOMapping processProcessDTOMapping) {
+    public InitialDataLoader(ApplicationProperties applicationProperties, ProcessJPARepository processJPARepository, ProcessEntityProcessDTOMapping processEntityProcessDTOMapping) {
         this.applicationProperties = applicationProperties;
         this.processJPARepository = processJPARepository;
-        this.processProcessDTOMapping = processProcessDTOMapping;
+        this.processEntityProcessDTOMapping = processEntityProcessDTOMapping;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (applicationProperties.getBuildEnvironments().contains(BuildEnvironment.DEV)) {
-            processJPARepository.save(processProcessDTOMapping.toEntity(GeneratorProjectMetaData.PROCESS_DTO));
+            processJPARepository.save(processEntityProcessDTOMapping.toEntity(GeneratorProjectMetaData.PROCESS_DTO));
         }
     }
 

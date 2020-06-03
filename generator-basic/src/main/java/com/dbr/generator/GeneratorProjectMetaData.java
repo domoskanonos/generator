@@ -1,6 +1,5 @@
 package com.dbr.generator;
 
-import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.dto.project.JavaProjectDTO;
@@ -27,7 +26,7 @@ public class GeneratorProjectMetaData {
         PROCESS_DTO = new ProcessDTO(processTempPath, processParentPath, "generator");
         List<ProjectDTO> projectDTOS = PROCESS_DTO.getProjects();
 
-        String javaBasePackage = "com.dbr.generator.springboot";
+        String javaBasePackage = "com.dbr.generator.springboot.app";
 
         SPRING_BOOT_PROJECT_DTO = new SpringBootProjectDTO(PROCESS_DTO, "springboot", javaBasePackage);
         SPRING_BOOT_PROJECT_DTO.setAddSpringBootSecurityModule(true);
@@ -36,8 +35,8 @@ public class GeneratorProjectMetaData {
         SPRING_BOOT_JAVA_PROJECT_DTO = new JavaProjectDTO(PROCESS_DTO, "springboot", javaBasePackage);
         projectDTOS.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
-
         SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO("Property", TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TypeEnum.TYPE_LONG, SPRING_BOOT_JAVA_PROJECT_DTO));
+        SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO("Property", TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, TypeEnum.TYPE_LONG, SPRING_BOOT_JAVA_PROJECT_DTO));
 
 
     }

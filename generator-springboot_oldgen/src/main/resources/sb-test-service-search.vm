@@ -1,7 +1,7 @@
 package ${packageName};
 
-import ${dtoClazzName};
-import ${serviceClazzName};
+import ${model.javaDTOClazzName};
+import ${model.javaServiceClazzName};
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,10 +22,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ${clazzSimpleName} {
 
     @Autowired
-    private ${serviceClazzSimpleName} service;
+    private ${model.javaServiceClazzSimpleName} service;
 
     @Autowired
-    private ${entityClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+    private ${entityClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping mapping;
 
     @Test
     public void baseCheckEntity() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -45,14 +45,14 @@ public class ${clazzSimpleName} {
 
     @Test
     public void baseCheckDTO() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        ${dtoClazzSimpleName} dto = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, true);
-        ${dtoClazzSimpleName} dtoClone = dto.toBuilder().build();
+        ${model.javaDTOClazzSimpleName} dto = GeneratorUtil.createTestObject(${model.javaDTOClazzSimpleName}.class, true);
+        ${model.javaDTOClazzSimpleName} dtoClone = dto.toBuilder().build();
         assertThat(dto).isSameAs(dto);
         assertThat(dto).isEqualTo(dtoClone);
         assertThat(dto.hashCode()).isEqualTo(dto.hashCode());
         assertThat(dto.toString()).isEqualTo(dtoClone.toString());
 
-        ${dtoClazzSimpleName} notEqualDTO = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, false);
+        ${model.javaDTOClazzSimpleName} notEqualDTO = GeneratorUtil.createTestObject(${model.javaDTOClazzSimpleName}.class, false);
 
         assertThat(dto).isNotEqualTo(notEqualDTO);
         assertThat(dto.hashCode()).isNotEqualTo(notEqualDTO.hashCode());
@@ -63,7 +63,7 @@ public class ${clazzSimpleName} {
     @Test
     public void checkMapping() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         List<${entityClazzSimpleName}> entities = GeneratorUtil.createTestObjects(${entityClazzSimpleName}.class, true, 10);
-        List<${dtoClazzSimpleName}> dtos = mapping.toDTOs(entities);
+        List<${model.javaDTOClazzSimpleName}> dtos = mapping.toDTOs(entities);
         assertThat(dtos).isNotEmpty();
         assertThat(dtos.size()).isEqualTo(entities.size());
         List<${entityClazzSimpleName}> entitiesFromDTOs = mapping.toEntities(dtos);
@@ -72,13 +72,13 @@ public class ${clazzSimpleName} {
     }
 
     /**
-     * get current count of <code>{@link ${dtoClazzSimpleName}}</code> objects.
-     * compare count after save one new <code>{@link ${dtoClazzSimpleName}}</code> object to database.
+     * get current count of <code>{@link ${model.javaDTOClazzSimpleName}}</code> objects.
+     * compare count after save one new <code>{@link ${model.javaDTOClazzSimpleName}}</code> object to database.
      */
     @Test
     public void test1save() {
 
-        List<${dtoClazzSimpleName}> all = service.findAll();
+        List<${model.javaDTOClazzSimpleName}> all = service.findAll();
         int sizeBeforeSave = all.size();
 
         #foreach( $property in $properties )
@@ -87,14 +87,14 @@ public class ${clazzSimpleName} {
         #end
         #end
 
-        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        ${model.javaDTOClazzSimpleName} dto = new ${model.javaDTOClazzSimpleName}();
         #foreach( $property in $properties )
         #if( !${generatorUtil.isIdField($property.field)})
         dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
         #end
         #end
 
-        ${dtoClazzSimpleName} savedDTO = service.save(dto);
+        ${model.javaDTOClazzSimpleName} savedDTO = service.save(dto);
 
         assertThat(savedDTO).isNotNull();
         assertThat(savedDTO.getId()).isNotNull();
@@ -109,16 +109,16 @@ public class ${clazzSimpleName} {
     }
 
     /**
-     * get last available <code>{@link ${dtoClazzSimpleName}}</code> object from list.
+     * get last available <code>{@link ${model.javaDTOClazzSimpleName}}</code> object from list.
      * object values are changed and the update method of service is called.
      * check, if the response object has the same values as the input data entered before.
      */
     @Test
     public void test2update() {
 
-        List<${dtoClazzSimpleName}> all = service.findAll();
+        List<${model.javaDTOClazzSimpleName}> all = service.findAll();
 
-        ${dtoClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
+        ${model.javaDTOClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
 
         #foreach( $property in $properties )
         #if( !${generatorUtil.isIdField($property.field)})
@@ -132,7 +132,7 @@ public class ${clazzSimpleName} {
         #end
         #end
 
-        ${dtoClazzSimpleName} savedDTO = service.save(dto);
+        ${model.javaDTOClazzSimpleName} savedDTO = service.save(dto);
 
         #foreach( $property in $properties )
         #if( !${generatorUtil.isIdField($property.field)})
@@ -143,14 +143,14 @@ public class ${clazzSimpleName} {
     }
 
    /**
-     * get last available <code>{@link ${dtoClazzSimpleName}}</code> object from list.
+     * get last available <code>{@link ${model.javaDTOClazzSimpleName}}</code> object from list.
      * delete the object via service method <code>delete</code>.
-     * compare new <code>{@link ${dtoClazzSimpleName}}</code> count after object removed from database.
+     * compare new <code>{@link ${model.javaDTOClazzSimpleName}}</code> count after object removed from database.
      */
     @Test
     public void test3delete() {
-        List<${dtoClazzSimpleName}> all = service.findAll();
-        ${dtoClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
+        List<${model.javaDTOClazzSimpleName}> all = service.findAll();
+        ${model.javaDTOClazzSimpleName} dto = service.findById(all.get(all.size() - 1).getId()).get();
         service.deleteById(dto.getId());
         assertThat(service.findById(dto.getId())).isEmpty();
     }
@@ -158,14 +158,14 @@ public class ${clazzSimpleName} {
     @Test
     public void findByAllCriteriaQueryArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int currentObjectCount = prepareSearchTest();
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        Page<${model.javaDTOClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
     }
 
     @Test
     public void findByAllCriteriaQueryPageZeroSizeZeroOtherArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int currentObjectCount = prepareSearchTest();
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(0, 0, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        Page<${model.javaDTOClazzSimpleName}> page = service.findByAllCriteriaQuery(0, 0, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
         page = service.findByAll(0, 0, null, null);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
@@ -174,7 +174,7 @@ public class ${clazzSimpleName} {
     @Test
     public void findByAllCriteriaQueryPageNegativSizeNegativOtherArgumentsEmpty() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         int currentObjectCount = prepareSearchTest();
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(-1, -1, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        Page<${model.javaDTOClazzSimpleName}> page = service.findByAllCriteriaQuery(-1, -1, null#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
         page = service.findByAll(-1, -1, null, null);
         checkPagingResultDefault(page, 1, currentObjectCount, currentObjectCount);
@@ -182,7 +182,7 @@ public class ${clazzSimpleName} {
 
     @Test
     public void findByAllCriteriaQueryNegativTestWrongSorting() {
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, "id:x"#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        Page<${model.javaDTOClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, "id:x"#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.unsorted());
         page = service.findByAll(null, null, "id:x", null);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.unsorted());
@@ -191,7 +191,7 @@ public class ${clazzSimpleName} {
     @Test
     public void findByAllCriteriaQuerySortingAscDesc() {
         String sortingField = "${properties[0].name}";
-        Page<${dtoClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, String.format("%s:asc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
+        Page<${model.javaDTOClazzSimpleName}> page = service.findByAllCriteriaQuery(null, null, String.format("%s:asc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.asc(sortingField)));
         page = service.findByAllCriteriaQuery(null, null, String.format("%s:desc", sortingField)#foreach( $property in $properties )#if($property.isSearchable()),null#end#end);
         assertThat(page.getPageable().getSort()).isEqualTo(Sort.by(Sort.Order.desc(sortingField)));
@@ -202,13 +202,13 @@ public class ${clazzSimpleName} {
     }
 
     private int prepareSearchTest() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        GeneratorUtil.createTestObjects(${dtoClazzSimpleName}.class, true, 5).forEach(dto -> {
+        GeneratorUtil.createTestObjects(${model.javaDTOClazzSimpleName}.class, true, 5).forEach(dto -> {
         service.save(dto);
         });
         return service.findAll().size();
     }
 
-    private void checkPagingResultDefault(Page<${dtoClazzSimpleName}> productPage, int totalPages, int pageSizeCompare, int totalElementsCompare) {
+    private void checkPagingResultDefault(Page<${model.javaDTOClazzSimpleName}> productPage, int totalPages, int pageSizeCompare, int totalElementsCompare) {
         assertThat(productPage).isNotNull();
         assertThat(productPage.getTotalPages()).isEqualTo(totalPages);
         assertThat(productPage.getTotalElements()).isEqualTo(totalElementsCompare);

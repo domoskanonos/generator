@@ -13,25 +13,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class ${model.javaJPAClazzName} {
 
-    public ${model.javaDTOClazzSimpleName} toEntity(${model.javaJPAClazzSimpleName} source)
-    {
-        ${model.javaDTOClazzSimpleName} dest = new ${model.javaDTOClazzSimpleName}();
-        BeanUtils.copyProperties(source, dest);
-        return dest;
-    }
-
-    public ${model.javaJPAClazzSimpleName} toDTO(${model.javaDTOClazzSimpleName} source)
+    public ${model.javaJPAClazzSimpleName} toEntity(${model.javaDTOClazzSimpleName} source)
     {
         ${model.javaJPAClazzSimpleName} dest = new ${model.javaJPAClazzSimpleName}();
         BeanUtils.copyProperties(source, dest);
         return dest;
     }
 
-    public List<${model.javaJPAClazzSimpleName}> toDTOs(Collection<${model.javaDTOClazzSimpleName}> sources) {
+    public ${model.javaDTOClazzSimpleName} toDTO(${model.javaJPAClazzSimpleName} source)
+    {
+        ${model.javaDTOClazzSimpleName} dest = new ${model.javaDTOClazzSimpleName}();
+        BeanUtils.copyProperties(source, dest);
+        return dest;
+    }
+
+    public List<${model.javaDTOClazzSimpleName}> toDTOs(Collection<${model.javaJPAClazzSimpleName}> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<${model.javaDTOClazzSimpleName}> toEntities(Collection<${model.javaJPAClazzSimpleName}> sources) {
+    public List<${model.javaJPAClazzSimpleName}> toEntities(Collection<${model.javaDTOClazzSimpleName}> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

@@ -1,12 +1,12 @@
 package ${model.javaPackageName};
 
-import ${model.subItems[0].javaPackageName}.${model.javaDTOClazzSimpleName};
+import ${model.subItems[0].javaPackageName}.${model.javaJPAClazzSimpleName};
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ${model.javaClazzSimpleName} extends JpaRepository<${model.javaDTOClazzSimpleName}, ${model.subItems[0].javaIdClazzSimpleName}> {
+public interface ${model.javaClazzSimpleName} extends JpaRepository<${model.javaJPAClazzSimpleName}, ${model.subItems[0].javaIdClazzSimpleName}> {
 
 }
 

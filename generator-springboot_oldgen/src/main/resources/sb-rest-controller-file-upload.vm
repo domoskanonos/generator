@@ -2,12 +2,12 @@
     @PostMapping("/uploadFile${fieldNameFirstLetterUpperCase}/{id}")
     public ResponseEntity uploadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${idClazz} id, @RequestParam("file") MultipartFile file) throws IOException {
 
-        Optional<${dtoClazzSimpleName}> dtoOptional = service.findById(id);
+        Optional<${model.javaDTOClazzSimpleName}> dtoOptional = service.findById(id);
         if (!dtoOptional.isPresent()) {
             log.error(String.format("id %d is not existed", id));
             ResponseEntity.badRequest().build();
         }
-        ${dtoClazzSimpleName} dto = dtoOptional.get();
+        ${model.javaDTOClazzSimpleName} dto = dtoOptional.get();
         dto.set${fieldNameFirstLetterUpperCase}(file.getBytes());
         service.save(dto);
 
@@ -17,8 +17,8 @@
     @CrossOrigin
     @GetMapping("/downloadFile${fieldNameFirstLetterUpperCase}/{id}")
     public ResponseEntity<InputStreamResource> downloadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${idClazz} id) {
-        Optional<${dtoClazzSimpleName}> dtoOptional = service.findById(id);
-        ${dtoClazzSimpleName} dto = dtoOptional.get();
+        Optional<${model.javaDTOClazzSimpleName}> dtoOptional = service.findById(id);
+        ${model.javaDTOClazzSimpleName} dto = dtoOptional.get();
         boolean imageExist = dtoOptional.isPresent() && dto.get${fieldNameFirstLetterUpperCase}() != null;
         if (!imageExist) {
             log.error(String.format("image not exist, id=", id));

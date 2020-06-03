@@ -15,7 +15,7 @@ import java.util.Set;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class Item {
+public class ItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,7 @@ public class Item {
     private Long id;
 
     @ManyToOne
-    private Project project;
-
+    private ProjectEntity projectEntity;
 
     @Column(name = "NAME")
     private String name;
@@ -39,7 +38,7 @@ public class Item {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private Set<Property> properties = new HashSet<>();
+    private Set<PropertyEntity> properties = new HashSet<>();
 
 
 }

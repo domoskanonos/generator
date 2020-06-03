@@ -16,7 +16,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class Process {
+public class ProcessEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Process {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROCESS_PROJECT", joinColumns = @JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private List<Project> projects = new ArrayList<>();
+    private List<ProjectEntity> projectEntities = new ArrayList<>();
 
     private String processTempPath;
 
@@ -33,7 +33,7 @@ public class Process {
 
     private String technicalDescriptor;
 
-    public Process(String processTempPath, String processParentPath, String technicalDescriptor) {
+    public ProcessEntity(String processTempPath, String processParentPath, String technicalDescriptor) {
         this.processTempPath = processTempPath;
         this.processParentPath = processParentPath;
         this.technicalDescriptor = technicalDescriptor;

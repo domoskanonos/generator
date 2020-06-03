@@ -10,6 +10,7 @@ public enum TemplateEnum {
     CLAZZ_MAPPING_TEMPLATE("java/springboot/clazz-mapping.vm"),
     SPRINGBOOT_JPA_REPOSITORY_TEMPLATE("java/springboot/jpa-repository.vm"),
     SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE("java/springboot/jpa-service-basic.vm"),
+    SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE("java/springboot/rest-controller-basic.vm"),
     TYPESCRIPT_MODEL_TEMPLATE("typescript/model.vm");
 
     private String templatePath;

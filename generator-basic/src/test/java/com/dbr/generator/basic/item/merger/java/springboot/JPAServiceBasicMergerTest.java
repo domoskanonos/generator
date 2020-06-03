@@ -3,7 +3,7 @@ package com.dbr.generator.basic.item.merger.java.springboot;
 import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.entity.Property;
+import com.dbr.generator.basic.entity.PropertyEntity;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class JPAServiceBasicMergerTest {
     public void create() {
         ItemDTO repositoryItemDTO;
         ItemDTO entityItemDTO;
-        repositoryItemDTO = new JavaClass2ItemDTOConverter().convert(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, Property.class);
+        repositoryItemDTO = new JavaClass2ItemDTOConverter().convert(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, PropertyEntity.class);
         repositoryItemDTO.setName("com.dbr.generator.springboot.repository.PropertyJPAServiceBasic");
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(repositoryItemDTO);
         String content = itemTemplateMerger.create();

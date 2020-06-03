@@ -1,8 +1,8 @@
 package ${packageName};
 
-import ${dtoClazzName};
+import ${model.javaDTOClazzName};
 import ${restControllerClazzName};
-import ${serviceClazzName};
+import ${model.javaServiceClazzName};
 
 
 import org.junit.FixMethodOrder;
@@ -34,11 +34,11 @@ public class ${clazzSimpleName} {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    ${serviceClazzSimpleName} service;
+    ${model.javaServiceClazzSimpleName} service;
 
      /**
-     * save a <code>{@link ${dtoClazzSimpleName}}</code> object to database via restController call.
-     * check, if result size of <code>{@link ${dtoClazzSimpleName}}</code> objects increased by 1.
+     * save a <code>{@link ${model.javaDTOClazzSimpleName}}</code> object to database via restController call.
+     * check, if result size of <code>{@link ${model.javaDTOClazzSimpleName}}</code> objects increased by 1.
      */
     @Test
     public void test1saveAndCheckCount() {
@@ -49,15 +49,15 @@ public class ${clazzSimpleName} {
         #end
         #end
 
-        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        ${model.javaDTOClazzSimpleName} dto = new ${model.javaDTOClazzSimpleName}();
         #foreach( $property in $properties )
         #if( !${generatorUtil.isIdField($property.field)})
         dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
         #end
         #end
 
-        ResponseEntity<${dtoClazzSimpleName}> responseEntity = restTemplate
-                .postForEntity(${restControllerClazzSimpleName}.PATH_PREFIX, dto, ${dtoClazzSimpleName}.class);
+        ResponseEntity<${model.javaDTOClazzSimpleName}> responseEntity = restTemplate
+                .postForEntity(${restControllerClazzSimpleName}.PATH_PREFIX, dto, ${model.javaDTOClazzSimpleName}.class);
 
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
         dto = responseEntity.getBody();
@@ -69,38 +69,38 @@ public class ${clazzSimpleName} {
         #end
         #end
 
-        ResponseEntity<List<${dtoClazzSimpleName}>> response = restTemplate.exchange(
+        ResponseEntity<List<${model.javaDTOClazzSimpleName}>> response = restTemplate.exchange(
                 ${restControllerClazzSimpleName}.PATH_PREFIX,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<${dtoClazzSimpleName}>>() {
+                new ParameterizedTypeReference<List<${model.javaDTOClazzSimpleName}>>() {
                 });
-        List<${dtoClazzSimpleName}> dtos = response.getBody();
+        List<${model.javaDTOClazzSimpleName}> dtos = response.getBody();
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
     }
 
     /**
-     * get the first <code>{@link ${dtoClazzSimpleName}}</code> object found in list <code>service.findAll()</code>.
+     * get the first <code>{@link ${model.javaDTOClazzSimpleName}}</code> object found in list <code>service.findAll()</code>.
      * object values are changed and the update method of restController service is called.
      * check, if the response object has the same values as the input data entered before.
      */
     @Test
     public void test2findAndUpdate() {
 
-        List<${dtoClazzSimpleName}> all = service.findAll();
+        List<${model.javaDTOClazzSimpleName}> all = service.findAll();
 
         ${idClazzSimpleName} id = all[0].getId();
 
         String urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, id);
-        ResponseEntity<${dtoClazzSimpleName}> responseFindById = restTemplate.exchange(
+        ResponseEntity<${model.javaDTOClazzSimpleName}> responseFindById = restTemplate.exchange(
                 urlFindById,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                new ParameterizedTypeReference<${model.javaDTOClazzSimpleName}>() {
                 });
         assertThat(responseFindById.getStatusCode()).isEqualTo(HttpStatus.OK);
-        ${dtoClazzSimpleName} dto = responseFindById.getBody();
+        ${model.javaDTOClazzSimpleName} dto = responseFindById.getBody();
 
 
         #foreach( $property in $properties )
@@ -116,11 +116,11 @@ public class ${clazzSimpleName} {
         #end
 
         urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, dto.getId());
-        ResponseEntity<${dtoClazzSimpleName}> response = restTemplate.exchange(
+        ResponseEntity<${model.javaDTOClazzSimpleName}> response = restTemplate.exchange(
                 urlFindById,
                 HttpMethod.PUT,
                 new HttpEntity<>(dto),
-                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                new ParameterizedTypeReference<${model.javaDTOClazzSimpleName}>() {
                 });
         dto = response.getBody();
         assertThat(dto).isNotNull();
@@ -132,31 +132,31 @@ public class ${clazzSimpleName} {
     }
 
     /**
-     * get the first <code>{@link ${dtoClazzSimpleName}}</code> object found in list <code>service.findAll()</code>.
+     * get the first <code>{@link ${model.javaDTOClazzSimpleName}}</code> object found in list <code>service.findAll()</code>.
      * delete the object via restController method <code>delete</code>.
      * check, if the response code is 200 and list size of <code>service.findAll()</code> decreased by 1.
      */
     @Test
     public void test3deleteAndCheckCount() {
 
-        List<${dtoClazzSimpleName}> all = service.findAll();
+        List<${model.javaDTOClazzSimpleName}> all = service.findAll();
 
         String url = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, all[0].getId());
         ResponseEntity response = restTemplate.exchange(
                 url,
                 HttpMethod.DELETE,
                 null,
-                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                new ParameterizedTypeReference<${model.javaDTOClazzSimpleName}>() {
                 });
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
-        ResponseEntity<List<${dtoClazzSimpleName}>> responseFindAll = restTemplate.exchange(
+        ResponseEntity<List<${model.javaDTOClazzSimpleName}>> responseFindAll = restTemplate.exchange(
                 ${restControllerClazzSimpleName}.PATH_PREFIX,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<${dtoClazzSimpleName}>>() {
+                new ParameterizedTypeReference<List<${model.javaDTOClazzSimpleName}>>() {
                 });
-        List<${dtoClazzSimpleName}> dtos = responseFindAll.getBody();
+        List<${model.javaDTOClazzSimpleName}> dtos = responseFindAll.getBody();
         assertThat(responseFindAll.getStatusCode()).isEqualTo(HttpStatus.OK);
 
     }
@@ -169,23 +169,23 @@ public class ${clazzSimpleName} {
     @Test
     public void test4NegativTestObjectNotFound() {
 
-        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        ${model.javaDTOClazzSimpleName} dto = new ${model.javaDTOClazzSimpleName}();
 
         String urlUpdate = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, -1);
         ResponseEntity responseUpdate = restTemplate.exchange(
                 urlUpdate,
                 HttpMethod.PUT,
                 new HttpEntity<>(dto),
-                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                new ParameterizedTypeReference<${model.javaDTOClazzSimpleName}>() {
                 });
         assertThat(responseUpdate.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
 
         String urlFindById = String.format("%s/%d", ${restControllerClazzSimpleName}.PATH_PREFIX, -1);
-        ResponseEntity<${dtoClazzSimpleName}> responseFindById = restTemplate.exchange(
+        ResponseEntity<${model.javaDTOClazzSimpleName}> responseFindById = restTemplate.exchange(
                 urlFindById,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<${dtoClazzSimpleName}>() {
+                new ParameterizedTypeReference<${model.javaDTOClazzSimpleName}>() {
                 });
         assertThat(responseFindById.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
 

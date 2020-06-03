@@ -6,12 +6,14 @@ import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class ItemDTO {
 
     private String name;
@@ -54,19 +56,19 @@ public class ItemDTO {
     }
 
     public String getJavaMappingClazzSimpleName() {
-        return new StringBuilder().append(name).append("Mapping").toString();
+        return new StringBuilder().append(getjavaJPAClazzSimpleName()).append(getjavaDTOClazzSimpleName()).append("Mapping").toString();
     }
 
     public String getJavaJPAClazzName() {
-        return new StringBuilder().append(getJavaJPAPackageName()).append(".").append(getJavaJPAClazzSimpleName()).toString();
+        return new StringBuilder().append(getJavaJPAPackageName()).append(".").append(getjavaJPAClazzSimpleName()).toString();
     }
 
     public String getJavaJPAPackageName() {
         return new StringBuilder().append(getJavaPackageName()).append(".entity").toString();
     }
 
-    public String getJavaJPAClazzSimpleName() {
-        return new StringBuilder().append(name).append("Entity").toString();
+    public String getjavaDTOClazzSimpleName() {
+        return new StringBuilder().append(name).append("DTO").toString();
     }
 
     public String getJavaJPARepositoryClazzName() {
@@ -78,19 +80,19 @@ public class ItemDTO {
     }
 
     public String getJavaJPARepositoryClazzSimpleName() {
-        return new StringBuilder().append(name).append("Repository").toString();
+        return new StringBuilder().append(name).append("JPARepository").toString();
     }
 
     public String getJavaDTOClazzName() {
-        return new StringBuilder().append(getJavaDTOPackageName()).append(".").append(getJavaDTOClazzSimpleName()).toString();
+        return new StringBuilder().append(getJavaDTOPackageName()).append(".").append(getjavaDTOClazzSimpleName()).toString();
     }
 
     public String getJavaDTOPackageName() {
         return new StringBuilder().append(getJavaPackageName()).append(".dto").toString();
     }
 
-    public String getJavaDTOClazzSimpleName() {
-        return new StringBuilder().append(name).append("DTO").toString();
+    public String getjavaJPAClazzSimpleName() {
+        return new StringBuilder().append(name).append("Entity").toString();
     }
 
     public String getJavaServiceClazzName() {
@@ -103,6 +105,22 @@ public class ItemDTO {
 
     public String getJavaServiceClazzSimpleName() {
         return new StringBuilder().append(name).append("Service").toString();
+    }
+
+    public String getJavaRestControllerBasicClazzName() {
+        return new StringBuilder().append(getJavaRestControllerBasicPackageName()).append(".").append(getJavaRestControllerBasicClazzSimpleName()).toString();
+    }
+
+    public String getJavaRestControllerBasicPackageName() {
+        return new StringBuilder().append(getJavaPackageName()).append(".rest").toString();
+    }
+
+    public String getJavaRestControllerBasicClazzSimpleName() {
+        return new StringBuilder().append(name).append("RestController").toString();
+    }
+
+    public String getJavaRestControllerPrefix() {
+        return new StringBuilder().append(name.toUpperCase()).toString();
     }
 
     public String getTypescriptModelName() {
@@ -135,17 +153,19 @@ public class ItemDTO {
         }
         switch (this.template) {
             case DTO_TEMPLATE:
-                return new StringBuilder().append(GeneratorUtil.getPackagePath(getJavaDTOClazzName())).append(".java").toString();
+                return sb.append(GeneratorUtil.getPackagePath(getJavaDTOClazzName())).append(".java").toString();
             case ENTITY_TEMPLATE:
-                return new StringBuilder().append(GeneratorUtil.getPackagePath(getJavaJPAClazzName())).append(".java").toString();
+                return sb.append(GeneratorUtil.getPackagePath(getJavaJPAClazzName())).append(".java").toString();
             case CLAZZ_MAPPING_TEMPLATE:
-                return new StringBuilder().append(GeneratorUtil.getPackagePath(getJavaMappingClazzName())).append(".java").toString();
+                return sb.append(GeneratorUtil.getPackagePath(getJavaMappingClazzName())).append(".java").toString();
             case SPRINGBOOT_JPA_REPOSITORY_TEMPLATE:
-                return new StringBuilder().append(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName())).append(".java").toString();
+                return sb.append(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName())).append(".java").toString();
             case SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE:
-                return new StringBuilder().append(GeneratorUtil.getPackagePath(getJavaServiceClazzName())).append(".java").toString();
+                return sb.append(GeneratorUtil.getPackagePath(getJavaServiceClazzName())).append(".java").toString();
+            case SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE:
+                return sb.append(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName())).append(".java").toString();
             case TYPESCRIPT_MODEL_TEMPLATE:
-                return new StringBuilder().append(GeneratorUtil.getPackagePath(getTypescriptModelFilename())).toString();
+                return sb.append(GeneratorUtil.getPackagePath(getTypescriptModelFilename())).toString();
             default:
                 throw new RuntimeException("error determinate file path...");
         }

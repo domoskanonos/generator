@@ -12,7 +12,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class Property {
+public class PropertyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,7 @@
 package ${packageName};
 
-import ${dtoClazzName};
-import ${serviceClazzName};
+import ${model.javaDTOClazzName};
+import ${model.javaServiceClazzName};
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,10 +22,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ${javaClazzSimpleName} {
 
     @Autowired
-    private ${serviceClazzSimpleName} service;
+    private ${model.javaServiceClazzSimpleName} service;
 
     @Autowired
-    private ${entityClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+    private ${entityClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping mapping;
 
     @Test
     public void baseCheckEntity() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
@@ -45,14 +45,14 @@ public class ${javaClazzSimpleName} {
 
     @Test
     public void baseCheckDTO() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        ${dtoClazzSimpleName} dto = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, true);
-        ${dtoClazzSimpleName} dtoClone = dto.toBuilder().build();
+        ${model.javaDTOClazzSimpleName} dto = GeneratorUtil.createTestObject(${model.javaDTOClazzSimpleName}.class, true);
+        ${model.javaDTOClazzSimpleName} dtoClone = dto.toBuilder().build();
         assertThat(dto).isSameAs(dto);
         assertThat(dto).isEqualTo(dtoClone);
         assertThat(dto.hashCode()).isEqualTo(dto.hashCode());
         assertThat(dto.toString()).isEqualTo(dtoClone.toString());
 
-        ${dtoClazzSimpleName} notEqualDTO = GeneratorUtil.createTestObject(${dtoClazzSimpleName}.class, false);
+        ${model.javaDTOClazzSimpleName} notEqualDTO = GeneratorUtil.createTestObject(${model.javaDTOClazzSimpleName}.class, false);
 
         assertThat(dto).isNotEqualTo(notEqualDTO);
         assertThat(dto.hashCode()).isNotEqualTo(notEqualDTO.hashCode());
@@ -63,7 +63,7 @@ public class ${javaClazzSimpleName} {
     @Test
     public void checkMapping() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         List<${entityClazzSimpleName}> entities = GeneratorUtil.createTestObjects(${entityClazzSimpleName}.class, true, 10);
-        List<${dtoClazzSimpleName}> dtos = mapping.toDTOs(entities);
+        List<${model.javaDTOClazzSimpleName}> dtos = mapping.toDTOs(entities);
         assertThat(dtos).isNotEmpty();
         assertThat(dtos.size()).isEqualTo(entities.size());
         List<${entityClazzSimpleName}> entitiesFromDTOs = mapping.toEntities(dtos);
@@ -72,7 +72,7 @@ public class ${javaClazzSimpleName} {
     }
 
     /**
-     * save a <code>{@link ${dtoClazzSimpleName}}</code> object as entity to database and check if all values are saved and mapped correctly.
+     * save a <code>{@link ${model.javaDTOClazzSimpleName}}</code> object as entity to database and check if all values are saved and mapped correctly.
      */
     @Test
     public void test1save() {
@@ -83,14 +83,14 @@ public class ${javaClazzSimpleName} {
         #end
         #end
 
-        ${dtoClazzSimpleName} dto = new ${dtoClazzSimpleName}();
+        ${model.javaDTOClazzSimpleName} dto = new ${model.javaDTOClazzSimpleName}();
         #foreach( $property in $properties )
         #if( !${generatorUtil.isIdField($property.field)})
         dto.${stringUtil.toSetterMethodPrefix($property.name)}(${property.name});
         #end
         #end
 
-        ${dtoClazzSimpleName} savedDTO = service.save(dto);
+        ${model.javaDTOClazzSimpleName} savedDTO = service.save(dto);
 
         assertThat(savedDTO).isNotNull();
         assertThat(savedDTO.getId()).isNotNull();

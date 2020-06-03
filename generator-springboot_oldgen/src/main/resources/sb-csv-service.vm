@@ -1,7 +1,7 @@
 package ${packageName};
 
 import ${csvImporterPackageName}.${csvImporterClazzSimpleName};
-import ${dtoPackageName}.${dtoClazzSimpleName};
+import ${dtoPackageName}.${model.javaDTOClazzSimpleName};
 import ${mappingPackageName}.${mapperClazzSimpleName};
 import ${jpaRepositoryPackageName}.${jpaRepositoryClazzSimpleName};
 
@@ -59,8 +59,8 @@ public class ${clazzSimpleName} {
     public int save(String content) {
         log.debug("import csv content: {}", content);
         ${csvImporterClazzSimpleName} csvImporter = new ${csvImporterClazzSimpleName}();
-        List<${dtoClazzSimpleName}> dtos = csvImporter.getDTOs(content);
-        for (${dtoClazzSimpleName} dto : dtos) {
+        List<${model.javaDTOClazzSimpleName}> dtos = csvImporter.getDTOs(content);
+        for (${model.javaDTOClazzSimpleName} dto : dtos) {
             log.debug("import dto: {}", dto.toString());
             repository.save(mapper.to${jpaClazzSimpleName}(dto));
         }

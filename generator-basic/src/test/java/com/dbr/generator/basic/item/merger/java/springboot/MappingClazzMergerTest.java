@@ -3,8 +3,6 @@ package com.dbr.generator.basic.item.merger.java.springboot;
 import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.basic.entity.Property;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import org.junit.Test;

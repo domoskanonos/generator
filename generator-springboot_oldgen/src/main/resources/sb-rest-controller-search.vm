@@ -1,7 +1,7 @@
 package ${packageName};
 
-import ${dtoClazzName};
-import ${serviceClazzName};
+import ${model.javaDTOClazzName};
+import ${model.javaServiceClazzName};
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,14 +24,14 @@ public class ${clazzSimpleName} {
 
     public static final String PATH_PREFIX = "/${prefixPath}";
 
-    private final ${serviceClazzSimpleName} service;
+    private final ${model.javaServiceClazzSimpleName} service;
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @CrossOrigin
-    @ApiOperation(value = "Search by different fields. Paging and sorting is possible. Result is a object of type Page<${dtoClazzSimpleName}>", response = ${dtoClazzSimpleName}.class, responseContainer = "ResponseEntity<Page<${dtoClazzSimpleName}>>", notes = "<b>Property Info:</b><br/><br/><i>property page:</i> insert null, return page 0, insert negative page (f.e. -1) return 0<br/><br/><i>property size:</i> insert null, return size of 1, insert negative size (f.e. -1) return size of 1<br/><br/><i>property sort:</i> insert fieldName:direction pairs as string, f.e. fieldName=id and direction=desc is written as: 'id:desc;' . multiple field sorting is seperated with ';'")
+    @ApiOperation(value = "Search by different fields. Paging and sorting is possible. Result is a object of type Page<${model.javaDTOClazzSimpleName}>", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "ResponseEntity<Page<${model.javaDTOClazzSimpleName}>>", notes = "<b>Property Info:</b><br/><br/><i>property page:</i> insert null, return page 0, insert negative page (f.e. -1) return 0<br/><br/><i>property size:</i> insert null, return size of 1, insert negative size (f.e. -1) return size of 1<br/><br/><i>property sort:</i> insert fieldName:direction pairs as string, f.e. fieldName=id and direction=desc is written as: 'id:desc;' . multiple field sorting is seperated with ';'")
     @GetMapping("ALL")
-    public ResponseEntity<Page<${dtoClazzSimpleName}>> findByAllCriteriaQuery(
+    public ResponseEntity<Page<${model.javaDTOClazzSimpleName}>> findByAllCriteriaQuery(
         @ApiParam(defaultValue = "0", example = "0") @RequestParam(required = false) Integer page,
         @ApiParam(defaultValue = "10", example = "10") @RequestParam(required = false) Integer size,
         @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end){

@@ -1,7 +1,7 @@
 package ${packageName};
 
-import ${dtoClazzName};
-import ${serviceClazzName};
+import ${model.javaDTOClazzName};
+import ${model.javaServiceClazzName};
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,31 +24,31 @@ public class ${clazzSimpleName} {
 
     public static final String PATH_PREFIX = "/${prefixPath}";
 
-    private final ${serviceClazzSimpleName} service;
+    private final ${model.javaServiceClazzSimpleName} service;
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @CrossOrigin
-    @ApiOperation(value = "get a list of all ${dtoClazzSimpleName}", response = ${dtoClazzSimpleName}.class, responseContainer = "List")
+    @ApiOperation(value = "get a list of all ${model.javaDTOClazzSimpleName}", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "List")
     @GetMapping("ALL")
-    public ResponseEntity<List<${dtoClazzSimpleName}>> findAll() {
+    public ResponseEntity<List<${model.javaDTOClazzSimpleName}>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @CrossOrigin
-    @ApiOperation(value = "create a new object of ${dtoClazzSimpleName} and save it to database. return the saved object.", response = ${dtoClazzSimpleName}.class, responseContainer = "${dtoClazzSimpleName}")
+    @ApiOperation(value = "create a new object of ${model.javaDTOClazzSimpleName} and save it to database. return the saved object.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @PostMapping("CREATE")
-    public ResponseEntity<${dtoClazzSimpleName}> create(@Valid @RequestBody ${dtoClazzSimpleName} dto) {
+    public ResponseEntity<${model.javaDTOClazzSimpleName}> create(@Valid @RequestBody ${model.javaDTOClazzSimpleName} dto) {
         return ResponseEntity.ok(service.save(dto));
     }
 
     #if(${idPrimitive})
 
     @CrossOrigin
-    @ApiOperation(value = "search object by id, method return BadRequest if object not exist, otherwise return the object of type ${dtoClazzSimpleName}.", response = ${dtoClazzSimpleName}.class, responseContainer = "${dtoClazzSimpleName}")
+    @ApiOperation(value = "search object by id, method return BadRequest if object not exist, otherwise return the object of type ${model.javaDTOClazzSimpleName}.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @GetMapping("FIND_BY_ID/{id}")
-    public ResponseEntity<${dtoClazzSimpleName}> findById(@PathVariable ${idClazz} id) {
-        Optional<${dtoClazzSimpleName}> dtoOptional = service.findById(id);
+    public ResponseEntity<${model.javaDTOClazzSimpleName}> findById(@PathVariable ${idClazz} id) {
+        Optional<${model.javaDTOClazzSimpleName}> dtoOptional = service.findById(id);
         if (dtoOptional.isPresent()) {
             return ResponseEntity.ok(dtoOptional.get());
         } else {
@@ -58,9 +58,9 @@ public class ${clazzSimpleName} {
     }
 
     @CrossOrigin
-    @ApiOperation(value = "update an existing object with new values, object is from type ${dtoClazzSimpleName}. if object not found, BadRequest will be returned.", response = ${dtoClazzSimpleName}.class, responseContainer = "${dtoClazzSimpleName}")
+    @ApiOperation(value = "update an existing object with new values, object is from type ${model.javaDTOClazzSimpleName}. if object not found, BadRequest will be returned.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @PutMapping("UPDATE/{id}")
-    public ResponseEntity<${dtoClazzSimpleName}> update(@PathVariable ${idClazz} id, @Valid @RequestBody ${dtoClazzSimpleName} dto) {
+    public ResponseEntity<${model.javaDTOClazzSimpleName}> update(@PathVariable ${idClazz} id, @Valid @RequestBody ${model.javaDTOClazzSimpleName} dto) {
         if (!service.findById(id).isPresent()) {
             log.error("object not updated, id not found, id= {}, please check id", id);
             return ResponseEntity.badRequest().build();
@@ -71,7 +71,7 @@ public class ${clazzSimpleName} {
     }
 
     @CrossOrigin
-    @ApiOperation(value = "delete a object of type ${dtoClazzSimpleName} by identifier (id). if object not found, BadRequest will be returned.", response = ${dtoClazzSimpleName}.class, responseContainer = "${dtoClazzSimpleName}")
+    @ApiOperation(value = "delete a object of type ${model.javaDTOClazzSimpleName} by identifier (id). if object not found, BadRequest will be returned.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @DeleteMapping("DELETE/{id}")
     public ResponseEntity delete(@PathVariable ${idClazz} id) {
         if (!service.findById(id).isPresent()) {

@@ -1,4 +1,4 @@
-package ${model.javaServiceClazzName};
+package ${model.javaServicePackageName};
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,8 +17,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * This service class provides basic functionality for the hibernate entity <code>${model.javaDTOClazzSimpleName}</code>.
- * The return value of each function always returns a mapped <code>${model.javaJPAClazzSimpleName}</code> object,
+ * This service class provides basic functionality for the hibernate entity <code>${model.javaJPAClazzSimpleName}</code>.
+ * The return value of each function always returns a mapped <code>${model.javaDTOClazzSimpleName}</code> object,
  * instead of the original hibernate entity.
  *
  */
@@ -35,35 +35,35 @@ public class ${model.javaServiceClazzSimpleName} {
     private final ${model.javaMappingClazzSimpleName} mapping;
 
     /**
-     * get a list of all available database <code>${model.javaDTOClazzSimpleName}</code> object's, mapped to <code>${model.javaJPAClazzSimpleName}</code> objects.
+     * get a list of all available database <code>${model.javaJPAClazzSimpleName}</code> object's, mapped to <code>${model.javaDTOClazzSimpleName}</code> objects.
      *
-     * @return a list of <code>${model.javaJPAClazzSimpleName}'s</code>
+     * @return a list of <code>${model.javaDTOClazzSimpleName}'s</code>
      *
      */
-    public List<${model.javaJPAClazzSimpleName}> findAll() {
+    public List<${model.javaDTOClazzSimpleName}> findAll() {
         log.debug("findAll");
         return mapping.toDTOs(repository.findAll());
     }
 
     /**
-     * Find hibernate entity of type <code>${model.javaDTOClazzSimpleName}</code> by id, mapped to <code>${model.javaJPAClazzSimpleName}</code>.
+     * Find hibernate entity of type <code>${model.javaJPAClazzSimpleName}</code> by id, mapped to <code>${model.javaDTOClazzSimpleName}</code>.
      *
      * @param id of hibernate entity
-     * @return optional object of type <code>Optional<${model.javaJPAClazzSimpleName}></code>
+     * @return optional object of type <code>Optional<${model.javaDTOClazzSimpleName}></code>
      */
-    public Optional<${model.javaJPAClazzSimpleName}> findById(${model.javaIdClazzSimpleName} id) {
+    public Optional<${model.javaDTOClazzSimpleName}> findById(${model.javaIdClazzSimpleName} id) {
         log.debug("findById: {}", id);
-        Optional<${model.javaDTOClazzSimpleName}> entityOptional = repository.findById(id);
+        Optional<${model.javaJPAClazzSimpleName}> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
     }
 
     /**
-     * save or update an <code>${model.javaDTOClazzSimpleName}</code> object, mapped from <code>${model.javaJPAClazzSimpleName}</code> object.
+     * save or update an <code>${model.javaJPAClazzSimpleName}</code> object, mapped from <code>${model.javaDTOClazzSimpleName}</code> object.
      *
      * @param dto to save or update
-     * @return new saved or updated object as <code>${model.javaJPAClazzSimpleName}</code>
+     * @return new saved or updated object as <code>${model.javaDTOClazzSimpleName}</code>
      */
-    public ${model.javaJPAClazzSimpleName} save(${model.javaJPAClazzSimpleName} dto) {
+    public ${model.javaDTOClazzSimpleName} save(${model.javaDTOClazzSimpleName} dto) {
         log.debug("save or update object: {}", dto);
         return mapping.toDTO(repository.save(mapping.toEntity(dto)));
     }

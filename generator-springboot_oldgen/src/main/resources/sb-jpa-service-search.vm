@@ -8,9 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import ${systemPackageName}.general.builder.PageBuilder;
 
-import ${basePackageName}.dto.${dtoClazzSimpleName};
+import ${basePackageName}.dto.${model.javaDTOClazzSimpleName};
 import ${basePackageName}.entity.${jpaClazzSimpleName};
-import ${basePackageName}.mapping.${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping;
+import ${basePackageName}.mapping.${jpaClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping;
 
 import javax.persistence.*;
 import javax.persistence.criteria.*;
@@ -25,22 +25,22 @@ import org.slf4j.LoggerFactory;
 /**
  *
  * This service class provides basic functionality for the hibernate entity <code>${jpaClazzSimpleName}</code>.
- * The return value of each function always returns a mapped <code>${dtoClazzSimpleName}</code> object,
+ * The return value of each function always returns a mapped <code>${model.javaDTOClazzSimpleName}</code> object,
  * instead of the original hibernate entity.
  *
  */
 @Service
 @RequiredArgsConstructor
-public class ${serviceClazzName} {
+public class ${model.javaServiceClazzName} {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     private final EntityManager em;
 
-    private final ${jpaClazzSimpleName}${dtoClazzSimpleName}Mapping mapping;
+    private final ${jpaClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping mapping;
 
     /**
-     * Returns a pagination object with a list of <code>${dtoClazzSimpleName}</code> objects restricted to the search criteria.
+     * Returns a pagination object with a list of <code>${model.javaDTOClazzSimpleName}</code> objects restricted to the search criteria.
      * This list corresponds to the list of <code>${jpaClazzSimpleName}</code> entities from the database.
      * Result will be sorted according to the given sorting string.
      * Result is restricted according to the paging criteria passed (page, size).
@@ -50,16 +50,16 @@ public class ${serviceClazzName} {
      * @param sort current sorting string for sorting
      * #foreach( $property in $properties )#if($property.isSearchable())@param ${property.name} search criteria #end#end
      *
-     * @return a <code>Page<${dtoClazzSimpleName}></code> object, containing a list of <code>${dtoClazzSimpleName}</code> objects and additional paging information.
+     * @return a <code>Page<${model.javaDTOClazzSimpleName}></code> object, containing a list of <code>${model.javaDTOClazzSimpleName}</code> objects and additional paging information.
      *
      */
     @Transactional
-    public Page<${dtoClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end) {
+    public Page<${model.javaDTOClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end) {
         log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $property in $properties )#if($property.isSearchable()){} #end#end", page, size, sort #foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end);
-        return new PageBuilder<${jpaClazzSimpleName}, ${dtoClazzSimpleName}>(page, size, sort) {
+        return new PageBuilder<${jpaClazzSimpleName}, ${model.javaDTOClazzSimpleName}>(page, size, sort) {
 
             @Override
-            protected List<${dtoClazzSimpleName}> toDTOs(List<${jpaClazzSimpleName}> resultList) {
+            protected List<${model.javaDTOClazzSimpleName}> toDTOs(List<${jpaClazzSimpleName}> resultList) {
                 return mapping.toDTOs(resultList);
             }
 
