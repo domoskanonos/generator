@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "PROPERTY")
 @Data
 @ToString
-@Builder(toBuilder = true)
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

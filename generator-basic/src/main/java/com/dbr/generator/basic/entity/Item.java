@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "ITEM")
 @Data
 @ToString
-@Builder(toBuilder = true)
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

@@ -3,6 +3,7 @@ package com.dbr.generator.basic.dto;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.util.ValidationUtil;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class ProcessDTO {
 
     private String processTempPath;
@@ -18,7 +20,7 @@ public class ProcessDTO {
 
     private String technicalDescriptor;
 
-    private List<ProjectDTO> projectDTOS = new ArrayList<>();
+    private List<ProjectDTO> projects = new ArrayList<>();
 
     public ProcessDTO(String processTempPath, String processParentPath, String technicalDescriptor) {
         this.processTempPath = processTempPath;

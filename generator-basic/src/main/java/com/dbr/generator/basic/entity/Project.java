@@ -3,8 +3,8 @@ package com.dbr.generator.basic.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,15 +23,10 @@ public class Project {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROJECT_ITEM", joinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private Set<Item> items = new HashSet<>();
+    private List<Item> items = new ArrayList<>();
 
     @Column(name = "NAME")
     private String technicalDescriptor;
-
-    private Process process;
-
-
-
 
 
 }

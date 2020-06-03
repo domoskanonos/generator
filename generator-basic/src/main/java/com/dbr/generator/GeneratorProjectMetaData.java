@@ -22,7 +22,7 @@ public class GeneratorProjectMetaData {
         String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         PROCESS_DTO = new ProcessDTO(processTempPath, processParentPath, "generator");
-        List<ProjectDTO> projectDTOS = PROCESS_DTO.getProjectDTOS();
+        List<ProjectDTO> projectDTOS = PROCESS_DTO.getProjects();
 
         String javaBasePackage = "com.dbr.generator";
 
@@ -33,7 +33,7 @@ public class GeneratorProjectMetaData {
         SPRING_BOOT_JAVA_PROJECT_DTO = new JavaProjectDTO(PROCESS_DTO, "springboot", javaBasePackage);
         projectDTOS.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
-        SPRING_BOOT_JAVA_PROJECT_DTO.getItemDTOS().add(new JavaClass2ItemDTOConverter().convert(SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.DTO_TEMPLATE, ProcessDTO.class));
+        SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new JavaClass2ItemDTOConverter().convert(SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.DTO_TEMPLATE, ProcessDTO.class));
 
     }
 

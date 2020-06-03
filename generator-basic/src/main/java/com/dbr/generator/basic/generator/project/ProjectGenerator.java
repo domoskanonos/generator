@@ -7,7 +7,7 @@ import com.dbr.generator.basic.dto.project.ProjectDTO;
 public class ProjectGenerator<T extends ProjectDTO> {
 
     public void execute(T model) throws Exception {
-        for (ItemDTO itemDTO : model.getItemDTOS()) {
+        for (ItemDTO itemDTO : model.getItems()) {
             new ItemTemplateMerger(itemDTO).writeDown(model.getProjectFolder());
         }
     }

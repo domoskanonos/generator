@@ -29,7 +29,7 @@ public class ProcessGenerator {
         GeneratorUtil.makeDir(processDTO.getProcessParentFolder());
         GeneratorUtil.makeDir(processDTO.getProcessFolder());
 
-        for (ProjectDTO projectDTO : processDTO.getProjectDTOS()) {
+        for (ProjectDTO projectDTO : processDTO.getProjects()) {
             logger.info("generate project, technical descriptor: {}", projectDTO.getTechnicalDescriptor());
 
             ProjectGenerator projectGeneratorInterface = ProjectGeneratorFactory.create(projectDTO);

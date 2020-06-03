@@ -16,7 +16,7 @@ public class ItemDTO {
     private String name;
     private TypeEnum idTypeEnum;
 
-    private ProjectDTO projectDTO;
+    private ProjectDTO project;
 
     private List<ItemDTO> subItems;
     private List<PropertyDTO> properties;

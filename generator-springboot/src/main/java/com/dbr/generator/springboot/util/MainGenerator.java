@@ -25,7 +25,7 @@ public class MainGenerator {
 
 
         JavaProjectDTO javaProjectDTO = new JavaProjectDTO(processDTO, "springboot", "com.dbr.generator");
-        processDTO.getProjectDTOS().add(javaProjectDTO);
+        processDTO.getProjects().add(javaProjectDTO);
 
 
         //NidocaProjectDTO nidocaProjectDTO = new NidocaProjectDTO(processDTO, "nidoca");

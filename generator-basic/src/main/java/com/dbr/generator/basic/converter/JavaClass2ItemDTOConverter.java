@@ -18,7 +18,7 @@ public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(ProjectDTO projectDTO, TemplateEnum templateEnum, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
-        itemDTO.setProjectDTO(projectDTO);
+        itemDTO.setProject(projectDTO);
         itemDTO.setIdTypeEnum(TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)));
         itemDTO.setName(clazz.getName());
         itemDTO.setTemplate(templateEnum);

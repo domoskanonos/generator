@@ -12,22 +12,23 @@ import java.util.stream.Collectors;
 @Component
 public class ProcessProcessDTOMapping {
 
-    final PropertyPropertyDTOMapping propertyPropertyDTOMapping;
+    final ProjectProjectDTOMapping projectProjectDTOMapping;
 
-    public ProcessProcessDTOMapping(PropertyPropertyDTOMapping propertyPropertyDTOMapping) {
-        this.propertyPropertyDTOMapping = propertyPropertyDTOMapping;
+    public ProcessProcessDTOMapping(ProjectProjectDTOMapping projectProjectDTOMapping) {
+        this.projectProjectDTOMapping = projectProjectDTOMapping;
     }
 
     public Process toEntity(ProcessDTO source) {
         Process dest = new Process();
-        BeanUtils.copyProperties(source, dest);
-
+        BeanUtils.copyProperties(source, dest, "projects");
+        dest.setProjects(projectProjectDTOMapping.toEntities(source.getProjects()));
         return dest;
     }
 
     public ProcessDTO toDTO(Process source) {
         ProcessDTO dest = new ProcessDTO();
-        BeanUtils.copyProperties(source, dest);
+        BeanUtils.copyProperties(source, dest, "projects");
+        dest.setProjects(projectProjectDTOMapping.toDTOs(source.getProjects()));
         return dest;
     }
 

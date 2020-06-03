@@ -1,18 +1,21 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.util.ValidationUtil;
-import lombok.Data;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+@Entity
+@Table(name = "PROCESS")
 @Data
+@ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Process {
 
     @Id
@@ -22,15 +25,13 @@ public class Process {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROCESS_PROJECT", joinColumns = @JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private Set<Item> projects = new HashSet<>();
+    private List<Project> projects = new ArrayList<>();
 
     private String processTempPath;
 
     private String processParentPath;
 
     private String technicalDescriptor;
-
-    private List<ProjectDTO> projectDTOS = new ArrayList<>();
 
     public Process(String processTempPath, String processParentPath, String technicalDescriptor) {
         this.processTempPath = processTempPath;
