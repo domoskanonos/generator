@@ -2,7 +2,7 @@ package com.dbr.generator.springboot.app.rest;
 
 
 import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.springboot.app.service.PropertyService;
+import com.dbr.generator.springboot.app.service.PropertyBasicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +17,12 @@ import java.util.List;
 @Api(tags = "PROPERTY")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(PropertyRestController.PATH_PREFIX)
-public class PropertyRestController {
+@RequestMapping(PropertyRestBasicController.PATH_PREFIX)
+public class PropertyRestBasicController {
 
     public static final String PATH_PREFIX = "/PROPERTY";
 
-    private final PropertyService service;
+    private final PropertyBasicService service;
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 

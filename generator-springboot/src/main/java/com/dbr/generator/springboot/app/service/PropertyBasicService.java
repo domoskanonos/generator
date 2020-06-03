@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 @Service
 @RequiredArgsConstructor
-public class PropertyService {
+public class PropertyBasicService {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
