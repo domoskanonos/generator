@@ -9,24 +9,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
 public class ItemDTO {
 
     private String name;
-    private TemplateEnum template;
+
+    private Set<TemplateEnum> template = new HashSet<>();
+
     private TypeEnum idTypeEnum;
 
     private ProjectDTO project;
 
     private List<PropertyDTO> properties = new ArrayList<>();
 
-    public ItemDTO(String name, TemplateEnum template, TypeEnum idTypeEnum, ProjectDTO project) {
+    public ItemDTO(String name, TypeEnum idTypeEnum, ProjectDTO project, TemplateEnum... template) {
         this.name = name;
-        this.template = template;
+        this.template.addAll(Arrays.asList(template));
         this.idTypeEnum = idTypeEnum;
         this.project = project;
     }
@@ -142,16 +143,16 @@ public class ItemDTO {
         properties.add(propertyDTO);
     }
 
-    public File getFilePath() {
-        return new File(this.project.getProjectFolder(), getFileSuffix());
+    public File getFilePath(TemplateEnum templateEnum) {
+        return new File(this.project.getProjectFolder(), getFileSuffix(templateEnum));
     }
 
-    private String getFileSuffix() {
+    private String getFileSuffix(TemplateEnum templateEnum) {
         StringBuilder sb = new StringBuilder();
         if (this.project.getJavaBasePackage() != null) {
             sb = sb.append("src/main/java/");
         }
-        switch (this.template) {
+        switch (templateEnum) {
             case DTO_TEMPLATE:
                 return sb.append(GeneratorUtil.getPackagePath(getJavaDTOClazzName())).append(".java").toString();
             case ENTITY_TEMPLATE:

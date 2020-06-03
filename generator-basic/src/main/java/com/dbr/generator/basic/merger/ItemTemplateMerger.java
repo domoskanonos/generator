@@ -2,38 +2,41 @@ package com.dbr.generator.basic.merger;
 
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.util.VelocityUtil;
+import org.apache.commons.io.FileUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.nio.charset.Charset;
 
-public class ItemTemplateMerger extends AbstractTemplateMerger {
+public class ItemTemplateMerger {
 
-    protected ItemDTO dto;
+    private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
-    public ItemTemplateMerger(ItemDTO dto) {
-        this.dto = dto;
-    }
-
-    @Override
-    public String create() {
+    public String create(TemplateEnum templateEnum, ItemDTO dto) {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
 
-        Template t = velocityEngine.getTemplate(this.dto.getTemplate().getTemplatePath());
+        Template t = velocityEngine.getTemplate(templateEnum.getTemplatePath());
         VelocityContext context = new VelocityContext();
-        context.put("model", this.dto);
+        context.put("model", dto);
         StringWriter writer = new StringWriter();
         t.merge(context, writer);
 
         return writer.toString();
     }
 
-    public void writeDown() throws IOException {
-        super.writeDown(dto.getFilePath());
+    public void writeDown(TemplateEnum templateEnum, ItemDTO dto) throws IOException {
+        File file = dto.getFilePath(templateEnum);
+        log.info("merger, write down content to file: {}", file.getAbsolutePath());
+        String content = create(templateEnum, dto);
+        FileUtils.writeStringToFile(file, content, Charset.defaultCharset());
     }
+
 }

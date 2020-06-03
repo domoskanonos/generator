@@ -32,9 +32,11 @@ public class ItemEntity {
     @Column(name = "ID_TYPE")
     private TypeEnum idTypeEnum = TypeEnum.TYPE_LONG;
 
+
+    @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "ITEM_TEMPLATE", joinColumns = @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID"))
     @Enumerated(EnumType.STRING)
-    @Column(name = "TEMPLATE")
-    private TemplateEnum template;
+    private Set<TemplateEnum> template = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))

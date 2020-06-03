@@ -11,16 +11,17 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
     public ItemDTO convert(ProjectDTO projectDTO, TemplateEnum templateEnum, Class<?> clazz) {
-        ItemDTO itemDTO = new ItemDTO(clazz.getName(), templateEnum, TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), projectDTO);
+        ItemDTO itemDTO = new ItemDTO(clazz.getName(), TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), projectDTO, templateEnum);
         itemDTO.setProject(projectDTO);
         itemDTO.setName(clazz.getName());
-        itemDTO.setTemplate(templateEnum);
+        itemDTO.getTemplate().addAll(Arrays.asList(templateEnum));
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
             itemDTO.addProperty(propertyDTO);

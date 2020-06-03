@@ -1,14 +1,17 @@
 package com.dbr.generator.basic.generator.project;
 
 import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.merger.ItemTemplateMerger;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
+import com.dbr.generator.basic.merger.ItemTemplateMerger;
+import com.dbr.generator.basic.merger.TemplateEnum;
 
 public class ProjectGenerator<T extends ProjectDTO> {
 
     public void execute(T model) throws Exception {
         for (ItemDTO itemDTO : model.getItems()) {
-            new ItemTemplateMerger(itemDTO).writeDown();
+            for (TemplateEnum templateEnum : itemDTO.getTemplate()) {
+                new ItemTemplateMerger().writeDown(templateEnum, itemDTO);
+            }
         }
     }
 
