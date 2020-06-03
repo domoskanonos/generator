@@ -1,2 +1,2 @@
 ###create docker image
-    docker run -v /_store/mysql:/var/lib/mysql  --restart=always -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysql-root-123 -e MYSQL_ROOT_HOST=% -d mysql/mysql-server mysqld --default-authentication-plugin=mysql_native_password
+    docker run -v C:/_store/mysql:/var/lib/mysql  --restart=always -p 3306:3306 -e MYSQL_ROOT_PASSWORD=mysql-root-123 -e MYSQL_ROOT_HOST=% -d mysql/mysql-server mysqld --default-authentication-plugin=mysql_native_password

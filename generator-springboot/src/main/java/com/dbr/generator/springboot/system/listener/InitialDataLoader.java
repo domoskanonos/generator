@@ -32,9 +32,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        //ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("_dev/vhs/git/generator/generator-springboot", ItemTemplates.DTO_TEMPLATE, ProcessDTO.class);
-        //Item item = itemItemDTOMapping.toEntity(itemDTO);
-        //item = itemJPARepository.save(item);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("_dev/vhs/git/generator/generator-springboot", ItemTemplates.DTO_TEMPLATE, ProcessDTO.class);
+        Item item = itemItemDTOMapping.toEntity(itemDTO);
+        item = itemJPARepository.save(item);
 
 
     }
