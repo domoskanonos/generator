@@ -37,7 +37,9 @@ public class GeneratorProjectMetaData {
         projectDTOS.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
         for (String name : new String[]{"Property", "Item", "Project", "Process"}) {
-            SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO(name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE));
+            ItemDTO itemDTO = new ItemDTO(name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
+            itemDTO.setNamespace(SPRING_BOOT_JAVA_PROJECT_DTO.getJavaBasePackage());
+            SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(itemDTO);
         }
 
 

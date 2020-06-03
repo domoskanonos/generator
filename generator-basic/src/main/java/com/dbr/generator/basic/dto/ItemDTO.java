@@ -136,7 +136,7 @@ public class ItemDTO {
     }
 
     public String getTypescriptModelFilename() {
-        return String.format("%s.ts", getTypescriptModelFilename().toLowerCase());
+        return String.format("%s.ts", getTypescriptModelName().toLowerCase());
     }
 
     public void addProperty(PropertyDTO propertyDTO) {
