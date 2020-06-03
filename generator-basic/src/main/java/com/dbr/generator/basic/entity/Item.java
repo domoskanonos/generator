@@ -22,9 +22,6 @@ public class Item {
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "TEMPLATE_PATH", nullable = false)
-    private String templatePath;
-
     @Column(name = "FILE_PATH", nullable = false)
     private String filePath;
 
@@ -34,7 +31,7 @@ public class Item {
     @Column(name = "JAVA_ID_CLAZZ_NAME")
     private String javaIdClazzName;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(name = "TEMPLATE")
     private TemplateEnum template;
 
