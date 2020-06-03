@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.dto;
 
-import com.dbr.generator.basic.dto.project.ProjectDTO;
+import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -15,21 +15,24 @@ import java.util.*;
 @NoArgsConstructor
 public class ItemDTO {
 
+
     private String name;
 
     private Set<TemplateEnum> template = new HashSet<>();
 
     private TypeEnum idTypeEnum;
 
-    private ProjectDTO project;
+    private ItemType itemType;
+
+    private String namespace;
 
     private List<PropertyDTO> properties = new ArrayList<>();
 
-    public ItemDTO(String name, TypeEnum idTypeEnum, ProjectDTO project, TemplateEnum... template) {
+    public ItemDTO(String name, ItemType itemType, TypeEnum idTypeEnum, TemplateEnum... template) {
         this.name = name;
         this.template.addAll(Arrays.asList(template));
+        this.itemType = itemType;
         this.idTypeEnum = idTypeEnum;
-        this.project = project;
     }
 
     public Boolean useJPAIdClazz() {
@@ -45,7 +48,7 @@ public class ItemDTO {
     }
 
     public String getJavaPackageName() {
-        return project.getJavaBasePackage();
+        return namespace;
     }
 
     public String getJavaMappingClazzName() {
@@ -143,14 +146,19 @@ public class ItemDTO {
         properties.add(propertyDTO);
     }
 
-    public File getFilePath(TemplateEnum templateEnum) {
-        return new File(this.project.getProjectFolder(), getFileSuffix(templateEnum));
+    public File getFilePath(File projectFolder, TemplateEnum templateEnum) {
+        return new File(projectFolder, getFileSuffix(templateEnum));
     }
 
     private String getFileSuffix(TemplateEnum templateEnum) {
         StringBuilder sb = new StringBuilder();
-        if (this.project.getJavaBasePackage() != null) {
-            sb = sb.append("src/main/java/");
+        switch (this.itemType) {
+            case JAVA:
+                sb = sb.append("src/main/java/");
+                break;
+            case TYPESCRIPT:
+                sb = sb.append("source/");
+                break;
         }
         switch (templateEnum) {
             case DTO_TEMPLATE:

@@ -5,6 +5,7 @@ import com.dbr.generator.basic.dto.ProcessDTO;
 import com.dbr.generator.basic.dto.project.JavaProjectDTO;
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
+import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.generator.process.ProcessGenerator;
 import com.dbr.generator.basic.merger.TemplateEnum;
@@ -36,7 +37,7 @@ public class GeneratorProjectMetaData {
         projectDTOS.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
         for (String name : new String[]{"Property", "Item", "Project", "Process"}) {
-            SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO(name, TypeEnum.TYPE_LONG, SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE));
+            SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(new ItemDTO(name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE));
         }
 
 

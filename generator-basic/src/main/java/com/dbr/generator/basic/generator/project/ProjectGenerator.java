@@ -10,7 +10,7 @@ public class ProjectGenerator<T extends ProjectDTO> {
     public void execute(T model) throws Exception {
         for (ItemDTO itemDTO : model.getItems()) {
             for (TemplateEnum templateEnum : itemDTO.getTemplate()) {
-                new ItemTemplateMerger().writeDown(templateEnum, itemDTO);
+                new ItemTemplateMerger().writeDown(model.getProjectFolder(), templateEnum, itemDTO);
             }
         }
     }

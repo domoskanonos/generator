@@ -1,3 +1,5 @@
+package com.dbr.generator.springboot.app.rest;
+
 import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.springboot.app.service.ProjectBasicService;
 import io.swagger.annotations.Api;

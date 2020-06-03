@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.entity;
 
+import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import lombok.*;
@@ -32,6 +33,11 @@ public class ItemEntity {
     @Column(name = "ID_TYPE")
     private TypeEnum idTypeEnum = TypeEnum.TYPE_LONG;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ITEM_TYPE")
+    private ItemType itemType;
+
+    private String namespace;
 
     @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "ITEM_TEMPLATE", joinColumns = @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID"))
