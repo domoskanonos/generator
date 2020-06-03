@@ -5,7 +5,9 @@ import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -15,8 +17,8 @@ public class ItemDTO {
     private String javaClazzName;
     private String javaIdClazzName;
 
-    private Set<ItemDTO> subItems;
-    private Set<PropertyDTO> properties;
+    private List<ItemDTO> subItems;
+    private List<PropertyDTO> properties;
     private TemplateEnum template;
 
     public Boolean useJPAIdClazz() {
@@ -39,6 +41,10 @@ public class ItemDTO {
         return new StringBuilder().append(getJavaClazzSimpleName()).append("Model").toString();
     }
 
+    public String getJavaIdClazzSimpleName(){
+        return GeneratorUtil.getJavaSimpleClazzName(this.javaClazzName);
+    }
+
     public String getTypescriptModelFilename() {
         return String.format("%s.ts", getTypescriptModelFilename().toLowerCase());
     }
@@ -49,7 +55,7 @@ public class ItemDTO {
 
     public void addProperty(PropertyDTO propertyDTO) {
         if (properties == null) {
-            properties = new HashSet<>();
+            properties = new ArrayList<>();
         }
         properties.add(propertyDTO);
     }
@@ -57,7 +63,7 @@ public class ItemDTO {
 
     public void addItemDTO(ItemDTO itemDTO) {
         if (subItems == null) {
-            subItems = new HashSet<>();
+            subItems = new ArrayList<>();
         }
         subItems.add(itemDTO);
     }

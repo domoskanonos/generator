@@ -5,6 +5,7 @@ import com.dbr.generator.basic.entity.Item;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +32,7 @@ public class ItemItemDTOMapping {
         ItemDTO dest = new ItemDTO();
         BeanUtils.copyProperties(source, dest);
         dest.setTemplate(source.getTemplate());
-        dest.setProperties(new HashSet<>(propertyPropertyDTOMapping.toDTOs(source.getProperties())));
+        dest.setProperties(propertyPropertyDTOMapping.toDTOs(source.getProperties()));
         return dest;
     }
 

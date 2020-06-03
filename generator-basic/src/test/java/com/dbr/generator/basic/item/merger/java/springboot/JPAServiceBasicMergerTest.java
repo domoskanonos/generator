@@ -4,6 +4,7 @@ import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.entity.Property;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
+import com.dbr.generator.basic.merger.TemplateEnum;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,19 +15,19 @@ import static org.junit.Assert.assertNotNull;
 public class JPAServiceBasicMergerTest {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
-/**
+
     @Test
     public void create() {
         ItemDTO repositoryItemDTO;
         ItemDTO entityItemDTO;
-        repositoryItemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, Property.class);
+        repositoryItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, "", Property.class);
         repositoryItemDTO.setJavaClazzName("com.dbr.generator.springboot.repository.PropertyJPAServiceBasic");
-        entityItemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.ENTITY_TEMPLATE, Property.class);
+        entityItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.ENTITY_TEMPLATE, "", Property.class);
         repositoryItemDTO.addItemDTO(entityItemDTO);
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(repositoryItemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);
         assertNotNull(content);
         assertFalse(content.contains("${"));
-    }*/
+    }
 }
