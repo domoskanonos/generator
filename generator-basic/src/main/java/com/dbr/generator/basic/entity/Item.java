@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.entity;
 
+import com.dbr.generator.basic.merger.TemplateEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,8 +34,12 @@ public class Item {
     @Column(name = "JAVA_ID_CLAZZ_NAME")
     private String javaIdClazzName;
 
+    @Enumerated
+    @Column(name = "TEMPLATE")
+    private TemplateEnum template;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "ITEM_PROPERTIES", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
+    @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
     private Set<Property> properties = new HashSet<>();
 
 

@@ -2,8 +2,8 @@ package com.dbr.generator.springboot.repository;
 
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.entity.Item;
-import com.dbr.generator.basic.merger.ItemTemplates;
 import com.dbr.generator.springboot.app.mapping.ItemItemDTOMapping;
 import com.dbr.generator.springboot.app.repository.ItemJPARepository;
 import com.dbr.generator.springboot.app.repository.PropertyJPARepository;
@@ -33,7 +33,7 @@ public class ItemJPARepositoryTest {
 
     @Test
     public void pdfApplicationProperties() {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("", ItemTemplates.DTO_TEMPLATE, ItemDTO.class);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, "", ItemDTO.class);
         Item item = itemItemDTOMapping.toEntity(itemDTO);
         item = itemJPARepository.save(item);
         assertThat(item.getId()).isNotNull();

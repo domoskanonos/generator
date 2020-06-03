@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.dto;
 
+import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
@@ -10,13 +11,13 @@ import java.util.Set;
 @Data
 public class ItemDTO {
 
-    private String templatePath;
     private String filePath;
     private String javaClazzName;
     private String javaIdClazzName;
 
     private Set<ItemDTO> subItems;
     private Set<PropertyDTO> properties;
+    private TemplateEnum template;
 
     public Boolean useJPAIdClazz() {
         return this.javaIdClazzName != null;

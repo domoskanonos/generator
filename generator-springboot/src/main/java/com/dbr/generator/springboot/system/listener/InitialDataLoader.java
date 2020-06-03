@@ -3,15 +3,13 @@ package com.dbr.generator.springboot.system.listener;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.ProcessDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
-import com.dbr.generator.basic.dto.project.ProjectDTO;
+import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.entity.Item;
-import com.dbr.generator.basic.merger.ItemTemplates;
 import com.dbr.generator.springboot.app.mapping.ItemItemDTOMapping;
 import com.dbr.generator.springboot.app.repository.ItemJPARepository;
 import com.dbr.generator.springboot.app.repository.PropertyJPARepository;
 import com.dbr.generator.springboot.system.ApplicationProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dbr.generator.springboot.system.enumeration.BuildEnvironment;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -19,23 +17,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class InitialDataLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    @Autowired
-    private ApplicationProperties applicationProperties;
-    @Autowired
-    private PropertyJPARepository propertyJPARepository;
+    private final ApplicationProperties applicationProperties;
+    private final PropertyJPARepository propertyJPARepository;
+    private final ItemJPARepository itemJPARepository;
 
-    @Autowired
-    private ItemJPARepository itemJPARepository;
-
-    @Autowired
+    final
     ItemItemDTOMapping itemItemDTOMapping;
+
+    public InitialDataLoader(ApplicationProperties applicationProperties, PropertyJPARepository propertyJPARepository, ItemJPARepository itemJPARepository, ItemItemDTOMapping itemItemDTOMapping) {
+        this.applicationProperties = applicationProperties;
+        this.propertyJPARepository = propertyJPARepository;
+        this.itemJPARepository = itemJPARepository;
+        this.itemItemDTOMapping = itemItemDTOMapping;
+    }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert("_dev/vhs/git/generator/generator-springboot", ItemTemplates.DTO_TEMPLATE, ProcessDTO.class);
-        Item item = itemItemDTOMapping.toEntity(itemDTO);
-        item = itemJPARepository.save(item);
 
+        if (applicationProperties.getBuildEnvironments().contains(BuildEnvironment.DEV)) {
+
+
+            ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, "_dev/vhs/git/generator/generator-springboot", ProcessDTO.class);
+            Item item = itemItemDTOMapping.toEntity(itemDTO);
+            item = itemJPARepository.save(item);
+
+        }
 
     }
 

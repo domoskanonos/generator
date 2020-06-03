@@ -2,6 +2,7 @@ package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.merger.TemplateEnum;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
@@ -13,12 +14,12 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(String projectPath, String templatePath, Class<?> clazz) {
+    public ItemDTO convert(TemplateEnum templateEnum, String projectPath, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
         itemDTO.setJavaIdClazzName(getIDClazzName(clazz));
         itemDTO.setJavaClazzName(clazz.getName());
         itemDTO.setFilePath(getJavaFilePathSuffix(projectPath, itemDTO));
-        itemDTO.setTemplatePath(templatePath);
+        itemDTO.setTemplate(templateEnum);
         for (Field field : clazz.getDeclaredFields()) {
             PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
             itemDTO.addProperty(propertyDTO);
@@ -30,10 +31,10 @@ public class JavaClass2ItemDTOConverter {
         return new StringBuilder().append(projectPath).append("/").append("src/main/java/").append(itemDTO.getPackagePath()).append(itemDTO.getJavaClazzSimpleName()).append(".java").toString();
     }
 
-    public List<ItemDTO> convert(String filePath, String templatePath, Collection<Class<?>> clazzes) {
+    public List<ItemDTO> convert(TemplateEnum templateEnum, String filePath, Collection<Class<?>> clazzes) {
         List<ItemDTO> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
-            retval.add(convert(filePath, templatePath, clazz));
+            retval.add(convert(templateEnum, filePath, clazz));
         }
         return retval;
     }

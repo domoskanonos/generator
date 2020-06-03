@@ -22,8 +22,8 @@ public class ItemTemplateMerger extends AbstractTemplateMerger {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
-        Template t = velocityEngine.getTemplate(this.dto.getTemplatePath());
 
+        Template t = velocityEngine.getTemplate(this.dto.getTemplate().getTemplatePath());
         VelocityContext context = new VelocityContext();
         context.put("model", this.dto);
         StringWriter writer = new StringWriter();
