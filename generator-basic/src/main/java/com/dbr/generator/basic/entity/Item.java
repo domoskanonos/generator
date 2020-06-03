@@ -23,14 +23,12 @@ public class Item {
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
+    @ManyToOne
+    private Project project;
+
+
     @Column(name = "NAME")
     private String name;
-
-    //@Column(name = "JAVA_CLAZZ_NAME", nullable = false)
-    //private String javaClazzName;
-
-    //@Column(name = "JAVA_ID_CLAZZ_NAME")
-    //private String javaIdClazzName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ID_TYPE")

@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.item.merger.java;
 
+import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
@@ -18,7 +19,7 @@ public class DTOMergerTest {
 
     @Test
     public void create() {
-        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, PropertyDTO.class);
+        ItemDTO itemDTO = new JavaClass2ItemDTOConverter().convert(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.DTO_TEMPLATE, PropertyDTO.class);
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(itemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);

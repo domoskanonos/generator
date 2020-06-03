@@ -2,6 +2,7 @@ package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 
@@ -15,8 +16,9 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(TemplateEnum templateEnum, Class<?> clazz) {
+    public ItemDTO convert(ProjectDTO projectDTO, TemplateEnum templateEnum, Class<?> clazz) {
         ItemDTO itemDTO = new ItemDTO();
+        itemDTO.setProjectDTO(projectDTO);
         itemDTO.setIdTypeEnum(TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)));
         itemDTO.setName(clazz.getName());
         itemDTO.setTemplate(templateEnum);
@@ -27,10 +29,10 @@ public class JavaClass2ItemDTOConverter {
         return itemDTO;
     }
 
-    public List<ItemDTO> convert(TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
+    public List<ItemDTO> convert(ProjectDTO projectDTO, TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
         List<ItemDTO> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
-            retval.add(convert(templateEnum, clazz));
+            retval.add(convert(projectDTO, templateEnum, clazz));
         }
         return retval;
     }

@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.item.merger.java.springboot;
 
+import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.converter.JavaClass2ItemDTOConverter;
 import com.dbr.generator.basic.dto.ItemDTO;
 import com.dbr.generator.basic.dto.PropertyDTO;
@@ -20,10 +21,10 @@ public class MappingClazzMergerTest {
     @Test
     public void create() {
         ItemDTO clazzMappingItemDTO;
-        clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert(TemplateEnum.CLAZZ_MAPPING_TEMPLATE, ItemDTO.class);
+        clazzMappingItemDTO = new JavaClass2ItemDTOConverter().convert(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, ItemDTO.class);
         clazzMappingItemDTO.setName("com.dbr.generator.PropertyRepository");
-        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(TemplateEnum.ENTITY_TEMPLATE, Property.class));
-        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(TemplateEnum.DTO_TEMPLATE, PropertyDTO.class));
+        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.ENTITY_TEMPLATE, Property.class));
+        clazzMappingItemDTO.addItemDTO(new JavaClass2ItemDTOConverter().convert(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, TemplateEnum.DTO_TEMPLATE, PropertyDTO.class));
         ItemTemplateMerger itemTemplateMerger = new ItemTemplateMerger(clazzMappingItemDTO);
         String content = itemTemplateMerger.create();
         log.info(content);

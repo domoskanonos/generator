@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.dto;
 
+import com.dbr.generator.basic.dto.project.ProjectDTO;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -14,6 +15,8 @@ public class ItemDTO {
 
     private String name;
     private TypeEnum idTypeEnum;
+
+    private ProjectDTO projectDTO;
 
     private List<ItemDTO> subItems;
     private List<PropertyDTO> properties;
