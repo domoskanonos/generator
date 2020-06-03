@@ -1,5 +1,5 @@
 export class ${model.typescriptModelName} {
-#foreach( $property in $properties )
+#foreach( $property in $model.properties )
     ${property.name} : ${property.propertyType.typescriptType} = ${property.propertyType.typescriptInitValue};
 #end
 }
