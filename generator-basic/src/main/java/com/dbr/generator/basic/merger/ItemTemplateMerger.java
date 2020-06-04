@@ -34,9 +34,9 @@ public class ItemTemplateMerger {
     }
 
     public void writeDown(File projectFolder, TemplateEnum templateEnum, ItemModel dto) throws IOException {
+        String content = create(templateEnum, dto);
         File file = dto.getFilePath(projectFolder, templateEnum);
         log.info("merger, write down content to file: {}", file.getAbsolutePath());
-        String content = create(templateEnum, dto);
         FileUtils.writeStringToFile(file, content, Charset.defaultCharset());
     }
 

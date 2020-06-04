@@ -1,15 +1,13 @@
 #set( $escapeDollar = '$' )
-import { I18nService } from "@domoskanonos/frontend-basis";
-import { InputfieldType } from "@domoskanonos/nidoca-core";
-import {
-NidocaAbstractComponentEdit
-} from '@domoskanonos/nidoca-app';
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import {${model.getModelName()}} from '../../model/${model.getModelNameLowerCase()}-model';
-import {${model.getModelName()}RemoteRepository} from "../../repo/${model.getModelNameLowerCase()}-remote-repository";
+import { I18nService } from "@domoskanonos/frontend-basis";
+import {InputfieldType} from "@domoskanonos/nidoca-core";
+import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
+import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
+import {${model.typescriptRemoteRepositoryName}} from "../repo/${model.typescriptRemoteRepositoryFilename}";
 
 @customElement('${model.getEditComponentTagName()}')
-export class ${model.getModelName()}EditComponent extends NidocaAbstractComponentEdit<${model.getModelName()}> {
+export class ${model.typescriptModelName}EditComponent extends NidocaAbstractComponentEdit<${model.typescriptModelName}> {
 
     getDialogDeleteTitle(): string {
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
@@ -19,37 +17,37 @@ export class ${model.getModelName()}EditComponent extends NidocaAbstractComponen
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
     }
 
-    async getItemById(identifier: any): Promise<${model.getModelName()}> {
-        return ${model.getModelName()}RemoteRepository.getUniqueInstance().findById(identifier);
+    async getItemById(identifier: any): Promise<${model.typescriptModelName}> {
+        return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: ${model.getModelName()}): Promise<${model.getModelName()}> {
-        return ${model.getModelName()}RemoteRepository.getUniqueInstance().persist(item);
+    async executeSave(item: ${model.typescriptModelName}): Promise<${model.typescriptModelName}> {
+        return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: ${model.getModelName()}): Promise<${model.getModelName()}> {
-        return ${model.getModelName()}RemoteRepository.getUniqueInstance().update(identifier, item);
+    async executeUpdate(identifier:any, item: ${model.typescriptModelName}): Promise<${model.typescriptModelName}> {
+        return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().update(identifier, item);
     }
 
     async executeDelete(identifier: any): Promise<void> {
-        return ${model.getModelName()}RemoteRepository.getUniqueInstance().delete(identifier);
+        return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().delete(identifier);
     }
 
-    #foreach( $property in $clazzTypescriptWrapper.properties )
-    #if(!${property.idField})
+    #foreach( $property in $model.properties )
+    #if(!${property.idProperty})
     @property()
-    ${property.fieldName} : ${property.typeName} = ${property.defaultValue};
+    ${property.name} : ${property.propertyType.typescriptType} = ${property.propertyType.typescriptInitValue};
     #end
     #end
 
     renderFormFields(): TemplateResult {
         return html`
-            #foreach( $property in $clazzTypescriptWrapper.properties )
-            #if(!${property.idField})
+            #foreach( $property in $model.properties )
+            #if(!${property.idProperty})
             <nidoca-inputfield
-                    ${property.wcAtomicInputfieldValueProperty}="$escapeDollar{this.${property.fieldName}}"
-                    name="${property.fieldName}"
-                    inputfieldType="${property.wcAtomicInputfieldType}"
+                    .value="$escapeDollar{this.${property.name}}"
+                    name="${property.name}"
+                    inputfieldType="${property.propertyType.typescriptNidocaInputfieldType}"
                     label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
             ></nidoca-inputfield>
             #end
@@ -57,16 +55,16 @@ export class ${model.getModelName()}EditComponent extends NidocaAbstractComponen
         `;
     }
 
-    itemToProperties(${model.getModelNameLowerCase()}: ${model.getModelName()}): void {
-        #foreach( $property in $clazzTypescriptWrapper.properties )
-        #if(!${property.idField})
-        this.${property.fieldName} = ${model.getModelNameLowerCase()}.${property.fieldName};
+    itemToProperties(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}): void {
+        #foreach( $property in $model.properties )
+        #if(!${property.idProperty})
+        this.${property.name} = ${model.typescriptModelNameToLowerCase}.${property.name};
         #end
         #end
     }
 
-    getIdentifier(${model.getModelNameLowerCase()}: ${model.getModelName()}): any {
-        return ${model.getModelNameLowerCase()}.${model.getIdFieldName()};
+    getIdentifier(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}): any {
+        return ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()};
     }
 
 

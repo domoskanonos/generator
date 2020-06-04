@@ -52,7 +52,7 @@ public class GeneratorProjectMetaData {
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
             ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
-            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.TYPESCRIPT_REMOTE_REPOSITORY);
+            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.TYPESCRIPT_NIDOCA_COMPONENT_EDIT);
             for (Field field : clazz.getDeclaredFields()) {
                 PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
                 itemModel.addProperty(propertyModel);

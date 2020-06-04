@@ -8,10 +8,10 @@ import {
 import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
-import {${model.getModelName()}} from "../../model/${model.getModelNameLowerCase()}-model";
+import {${model.typescriptModelName}} from "${model.typescriptModelPath}";
 
 @customElement('${model.getEditPageTagName()}')
-export class ${model.getModelName()}EditPage extends DefaultPage {
+export class ${model.typescriptModelName}EditPage extends DefaultPage {
 
    constructor() {
       super();
@@ -21,7 +21,7 @@ export class ${model.getModelName()}EditPage extends DefaultPage {
    }
 
    @query('#editComponent')
-   editComponent: NidocaAbstractComponentEdit<${model.getModelName()}> | undefined;
+   editComponent: NidocaAbstractComponentEdit<${model.typescriptModelName}> | undefined;
 
    getTopRightComponent(): TemplateResult {
       return html`

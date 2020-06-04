@@ -136,6 +136,10 @@ public class ItemModel {
         return new StringBuilder().append(name).append("Model").toString();
     }
 
+    public String getTypescriptModelNameToLowerCase() {
+        return getTypescriptModelName().toLowerCase();
+    }
+
     public String getNameToLowerCase() {
         return name.toLowerCase();
     }
@@ -153,8 +157,12 @@ public class ItemModel {
     }
 
 
+    public String getTypescriptRemoteRepositoryFilenameWithSuffix() {
+        return new StringBuilder().append(getTypescriptRemoteRepositoryFilename()).append(".ts").toString();
+    }
+
     public String getTypescriptRemoteRepositoryFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).append("-repository.ts").toString();
+        return new StringBuilder().append(getNameToLowerCase()).append("-repository").toString();
     }
 
     public String getTypescriptRemoteRepositoryName() {
@@ -234,7 +242,7 @@ public class ItemModel {
             case TYPESCRIPT_MODEL_TEMPLATE:
                 return sb.append(filePathPrefix).append(getTypescriptModelFilenameWithSuffix()).toString();
             case TYPESCRIPT_REMOTE_REPOSITORY:
-                return sb.append(filePathPrefix).append(getTypescriptRemoteRepositoryFilename()).toString();
+                return sb.append(filePathPrefix).append(getTypescriptRemoteRepositoryFilenameWithSuffix()).toString();
             case TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
                 return sb.append(filePathPrefix).append(getTypescriptNidocaComponentEditFilename()).toString();
             default:

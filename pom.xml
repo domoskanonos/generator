@@ -1317,17 +1317,20 @@
     
     
     <module>generator-basic</module>
-                                    
-    
-    
-    
-    
-    
 
-          
-    
+
+
+
+
+
+
+
+
     <module>generator-springboot</module>
-      
+
+    <module>generator-nidoca</module>
+
+
   </modules>
                     
 

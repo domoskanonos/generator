@@ -35,20 +35,20 @@ export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends Nidoc
         return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().delete(identifier);
     }
 
-    #foreach( $property in $clazzTypescriptWrapper.properties )
-    #if(!${property.idField})
+    #foreach( $property in $model.properties )
+    #if(!${property.idProperty})
     @property()
-    ${property.fieldName} : ${property.typeName} = ${property.defaultValue};
+    ${property.name} : ${property.propertyType.typescriptType} = ${property.propertyType.typescriptInitValue};
     #end
     #end
 
     renderFormFields(): TemplateResult {
         return html`
-            #foreach( $property in $clazzTypescriptWrapper.properties )
-            #if(!${property.idField})
+            #foreach( $property in $model.properties )
+            #if(!${property.idProperty})
             <nidoca-inputfield
-                    ${property.wcAtomicInputfieldValueProperty}="$escapeDollar{this.${property.fieldName}}"
-                    name="${property.fieldName}"
+                    .value="$escapeDollar{this.${property.name}}"
+                    name="${property.name}"
                     inputfieldType="${property.wcAtomicInputfieldType}"
                     label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
             ></nidoca-inputfield>
@@ -58,9 +58,9 @@ export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends Nidoc
     }
 
     itemToProperties(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}): void {
-        #foreach( $property in $clazzTypescriptWrapper.properties )
-        #if(!${property.idField})
-        this.${property.fieldName} = ${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.fieldName};
+        #foreach( $property in $model.properties )
+        #if(!${property.idProperty})
+        this.${property.name} = ${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.name};
         #end
         #end
     }

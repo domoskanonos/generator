@@ -23,11 +23,11 @@ export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends Ni
             0,
             this.resultSize,
             '', ''
-            #foreach( $property in $clazzTypescriptWrapper.properties )
-                #set( $isNotIdField = !${property.idField} )
-                #set( $isString = ${property.typeName} == "string" )
+            #foreach( $property in $model.properties )
+                #set( $isNotIdField = !${property.idProperty} )
+                #set( $isString = ${property.propertyType.typescriptType} == "string" )
                 #if($isNotIdField && $isString)
-                .concat('&${property.fieldName}=')
+                .concat('&${property.name}=')
                 .concat(search)
                 #end
             #end
@@ -51,8 +51,8 @@ export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends Ni
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            #foreach( $property in $clazzTypescriptWrapper.properties )
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.fieldName}}"></nidoca-typography>
+            #foreach( $property in $model.properties )
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.name}}"></nidoca-typography>
             #end
         </nidoca-flex-container>
     </nidoca-spacer>

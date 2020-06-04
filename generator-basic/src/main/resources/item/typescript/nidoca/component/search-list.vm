@@ -12,22 +12,22 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {${model.getModelName()}RemoteRepository} from '../../repo/${model.getModelNameLowerCase()}-remote-repository';
-import {${model.getModelName()}} from '../../model/${model.getModelNameLowerCase()}-model';
+import {${model.typescriptRemoteRepositoryName}} from '../../repo/${model.typescriptRemoteRepositoryFilename}';
+import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
 
 @customElement('${model.getSearchNidocaListTagName()}')
-export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractComponentSearchList<${model.getModelName()}> {
+export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstractComponentSearchList<${model.typescriptModelName}> {
 
-    async executeSearch(search: string): Promise<${model.getModelName()}[]> {
-        let pageableContainer: PageableContainer<${model.getModelName()}> = await ${model.getModelName()}RemoteRepository.getUniqueInstance().search(
+    async executeSearch(search: string): Promise<${model.typescriptModelName}[]> {
+        let pageableContainer: PageableContainer<${model.typescriptModelName}> = await ${model.typescriptRemoteRepositoryName}.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
-            #foreach( $property in $clazzTypescriptWrapper.properties )
-                #set( $isNotIdField = !${property.idField} )
-                #set( $isString = ${property.typeName} == "string" )
+            #foreach( $property in $model.properties )
+                #set( $isNotIdField = !${property.idProperty} )
+                #set( $isString = ${property.propertyType.typescriptType} == "string" )
                 #if($isNotIdField && $isString)
-                .concat('&${property.fieldName}=')
+                .concat('&${property.name}=')
                 .concat(search)
                 #end
             #end
@@ -35,7 +35,7 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
         return pageableContainer.content;
     }
 
-    renderListItem(${model.getModelNameLowerCase()}: ${model.getModelName()}) : TemplateResult {
+    renderListItem(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}) : TemplateResult {
         return html`
     <nidoca-spacer
     .spacerSize="${SpacerSize.MEDIUM}"
@@ -51,8 +51,8 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            #foreach( $property in $clazzTypescriptWrapper.properties )
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${model.getModelNameLowerCase()}.${property.fieldName}}"></nidoca-typography>
+            #foreach( $property in $model.properties )
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${model.typescriptModelNameToLowerCase}.${property.name}}"></nidoca-typography>
             #end
         </nidoca-flex-container>
     </nidoca-spacer>
@@ -63,9 +63,9 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
       `;
     }
 
-    itemClicked(${model.getModelNameLowerCase()}: ${model.getModelName()}, index: number): void {
-        console.debug("${model.getModelName()} list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : ${model.getModelNameLowerCase()}.${model.getIdFieldName()}});
+    itemClicked(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}, index: number): void {
+        console.debug("${model.typescriptModelName} list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
     }
 
    renderNoRecord(): TemplateResult {
@@ -91,10 +91,10 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
       `;
    }
 
-   async deleteItems(${model.getModelNameLowerCase()}s: ${model.getModelName()}[]): Promise<void> {
+   async deleteItems(${model.getModelNameLowerCase()}s: ${model.typescriptModelName}[]): Promise<void> {
         ${model.getModelNameLowerCase()}s.forEach((${model.getModelNameLowerCase()}) => {
-             console.log('delete ${model.getModelNameLowerCase()} with id: {}', ${model.getModelNameLowerCase()}.id);
-        ${model.getModelName()}RemoteRepository.getUniqueInstance().delete(${model.getModelNameLowerCase()}.id);
+             console.log('delete ${model.getModelNameLowerCase()} with id: {}', ${model.typescriptModelNameToLowerCase}.id);
+        ${model.typescriptRemoteRepositoryName}.getUniqueInstance().delete(${model.typescriptModelNameToLowerCase}.id);
         });
    }
 

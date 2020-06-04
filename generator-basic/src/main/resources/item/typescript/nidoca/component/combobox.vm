@@ -1,13 +1,13 @@
 import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
-import {${model.getModelName()}RemoteRepository} from "../../repo/${model.getModelNameLowerCase()}-remote-repository";
+import {${model.typescriptRemoteRepositoryName}} from "../../repo/${model.typescriptRemoteRepositoryFilename}";
 
 @customElement('${model.getComboboxComponentTagName()}')
-export class ${model.getModelName()}Combobox extends NidocaInputfield {
+export class ${model.typescriptModelName}Combobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
-         ${model.getModelName()}RemoteRepository.getUniqueInstance()
+         ${model.typescriptRemoteRepositoryName}.getUniqueInstance()
          .getAll()
          .then((value) => {
             this.options = NidocaInputfield.object2KeyValueDataArray(

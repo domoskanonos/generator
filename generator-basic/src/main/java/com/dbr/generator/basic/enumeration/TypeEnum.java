@@ -145,6 +145,29 @@ public enum TypeEnum {
         }
     }
 
+    public String getTypescriptNidocaInputfieldType() {
+        switch (this) {
+            case TYPE_CHAR:
+            case BYTE_ARRAY:
+            case ENUMERATION:
+            case STRING:
+            case TYPE_BOOLEAN:
+            case INTEGER:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
+            case DATE:
+            case DATE_ISO8601:
+            case ARRAY_STRING:
+            case LIST:
+            case OBJECT:
+            default:
+                return "${InputfieldType.TEXT}";
+        }
+    }
+
 
     public static TypeEnum byJavaTypeSimpleName(String javaTypeSimpleName) {
         for (TypeEnum typeEnum : TypeEnum.values()) {
