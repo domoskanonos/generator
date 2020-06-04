@@ -1,10 +1,9 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.model.ItemModel;
-import com.dbr.generator.basic.model.PropertyModel;
-import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
+import com.dbr.generator.basic.model.ItemModel;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
 
 import javax.persistence.EmbeddedId;
@@ -18,8 +17,8 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemModel convert(ProjectModel projectModel, ItemType itemType, TemplateEnum templateEnum, Class<?> clazz) {
-        ItemModel itemModel = new ItemModel(projectModel, clazz.getName(), itemType, TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), templateEnum);
+    public ItemModel convert(ProjectModel projectModel, TemplateEnum templateEnum, Class<?> clazz) {
+        ItemModel itemModel = new ItemModel(projectModel, clazz.getName(), TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), templateEnum);
         itemModel.getTemplate().addAll(Arrays.asList(templateEnum));
         for (Field field : clazz.getDeclaredFields()) {
             PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
@@ -28,10 +27,10 @@ public class JavaClass2ItemDTOConverter {
         return itemModel;
     }
 
-    public List<ItemModel> convert(ProjectModel projectModel, ItemType itemType, TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
+    public List<ItemModel> convert(ProjectModel projectModel, TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
         List<ItemModel> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
-            retval.add(convert(projectModel, itemType, templateEnum, clazz));
+            retval.add(convert(projectModel, templateEnum, clazz));
         }
         return retval;
     }

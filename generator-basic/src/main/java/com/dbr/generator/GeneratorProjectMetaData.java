@@ -5,7 +5,6 @@ import com.dbr.generator.basic.entity.ItemEntity;
 import com.dbr.generator.basic.entity.ProcessEntity;
 import com.dbr.generator.basic.entity.ProjectEntity;
 import com.dbr.generator.basic.entity.PropertyEntity;
-import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.generator.process.ProcessGenerator;
 import com.dbr.generator.basic.merger.TemplateEnum;
@@ -46,18 +45,22 @@ public class GeneratorProjectMetaData {
         SPRING_BOOT_JAVA_PROJECT_MODEL = new JavaProjectModel(PROCESS_MODEL, "springboot", javaBasePackage);
         //projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
 
-        for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
-            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
-            for (Field field : clazz.getDeclaredFields()) {
-                PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
-                itemModel.addProperty(propertyModel);
-            }
-            SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(itemModel);
-        }
-
 
         NIDOCA_PROJECT_MODEL = new NidocaProjectModel(PROCESS_MODEL, "nidoca");
         projectModels.add(NIDOCA_PROJECT_MODEL);
+
+
+        for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
+            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
+            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.TYPE_LONG, TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE);
+            for (Field field : clazz.getDeclaredFields()) {
+                PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
+                itemModel.addProperty(propertyModel);
+                itemModelNidoca.addProperty(propertyModel);
+            }
+            SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(itemModel);
+            NIDOCA_PROJECT_MODEL.getItems().add(itemModelNidoca);
+        }
 
 
     }

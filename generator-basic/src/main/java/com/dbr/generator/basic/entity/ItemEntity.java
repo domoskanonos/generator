@@ -1,6 +1,5 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import lombok.*;
@@ -32,10 +31,6 @@ public class ItemEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "ID_TYPE")
     private TypeEnum idTypeEnum = TypeEnum.TYPE_LONG;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "ITEM_TYPE")
-    private ItemType itemType;
 
     private String namespace;
 

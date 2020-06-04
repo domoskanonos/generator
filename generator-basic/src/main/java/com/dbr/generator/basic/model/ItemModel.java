@@ -1,6 +1,5 @@
 package com.dbr.generator.basic.model;
 
-import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
 import com.dbr.generator.basic.model.project.ProjectModel;
@@ -24,15 +23,12 @@ public class ItemModel {
 
     private TypeEnum idTypeEnum;
 
-    private ItemType itemType;
-
     private List<PropertyModel> properties = new ArrayList<>();
 
-    public ItemModel(ProjectModel projectModel, String name, ItemType itemType, TypeEnum idTypeEnum, TemplateEnum... template) {
+    public ItemModel(ProjectModel projectModel, String name, TypeEnum idTypeEnum, TemplateEnum... template) {
         this.projectModel = projectModel;
         this.name = name;
         this.template.addAll(Arrays.asList(template));
-        this.itemType = itemType;
         this.idTypeEnum = idTypeEnum;
     }
 
@@ -153,7 +149,7 @@ public class ItemModel {
 
     private String getFileSuffix(TemplateEnum templateEnum) {
         StringBuilder sb = new StringBuilder();
-        switch (this.itemType) {
+        switch (templateEnum.getItemType()) {
             case JAVA:
                 sb = sb.append("src/main/java/");
                 break;

@@ -2,6 +2,7 @@ package com.dbr.generator.springboot.repository;
 
 import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.entity.ProcessEntity;
+import com.dbr.generator.springboot.app.mapping.ProcessDTOProcessModelMapping;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
 import org.junit.FixMethodOrder;
@@ -23,11 +24,14 @@ public class GeneratorProcessEntitySaveTest {
     private ProcessEntityProcessDTOMapping processEntityProcessDTOMapping;
 
     @Autowired
+    private ProcessDTOProcessModelMapping processDTOProcessModelMapping;
+
+    @Autowired
     private ProcessJPARepository processJPARepository;
 
     @Test
     public void saveProcess() {
-        ProcessEntity processEntity = processJPARepository.save(processEntityProcessDTOMapping.toEntity(GeneratorProjectMetaData.PROCESS_MODEL));
+        ProcessEntity processEntity = processJPARepository.save(processEntityProcessDTOMapping.toEntity(processDTOProcessModelMapping.toDTO(GeneratorProjectMetaData.PROCESS_MODEL)));
         assertThat(processEntity.getId()).isNotNull();
     }
 
