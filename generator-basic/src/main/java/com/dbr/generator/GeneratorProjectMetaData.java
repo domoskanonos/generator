@@ -13,6 +13,7 @@ import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.ProcessModel;
 import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.model.project.JavaProjectModel;
+import com.dbr.generator.basic.model.project.NidocaProjectModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.model.project.SpringBootProjectModel;
 
@@ -28,6 +29,8 @@ public class GeneratorProjectMetaData {
 
     public static JavaProjectModel SPRING_BOOT_JAVA_PROJECT_MODEL;
 
+    public static NidocaProjectModel NIDOCA_PROJECT_MODEL;
+
     static {
         String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
@@ -41,7 +44,7 @@ public class GeneratorProjectMetaData {
         //projectDTOS.add(SPRING_BOOT_PROJECT_DTO);
 
         SPRING_BOOT_JAVA_PROJECT_MODEL = new JavaProjectModel(PROCESS_MODEL, "springboot", javaBasePackage);
-        projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
+        //projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
             ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
@@ -51,6 +54,11 @@ public class GeneratorProjectMetaData {
             }
             SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(itemModel);
         }
+
+
+        NIDOCA_PROJECT_MODEL = new NidocaProjectModel(PROCESS_MODEL, "nidoca");
+        projectModels.add(NIDOCA_PROJECT_MODEL);
+
 
     }
 
