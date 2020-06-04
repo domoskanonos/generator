@@ -136,12 +136,16 @@ public class ItemModel {
         return new StringBuilder().append(name).append("Model").toString();
     }
 
+    public String getNameToLowerCase() {
+        return name.toLowerCase();
+    }
+
     public String getTypescriptModelFilenameWithSuffix() {
-        return new StringBuilder().append(getTypescriptModelFilename()).append(".ts").toString().toLowerCase();
+        return new StringBuilder().append(getTypescriptModelFilename()).append(".ts").toString();
     }
 
     public String getTypescriptModelFilename() {
-        return new StringBuilder().append(name).append("-model").toString().toLowerCase();
+        return new StringBuilder().append(getNameToLowerCase()).append("-model").toString();
     }
 
     public String getTypescriptModelPath() {
@@ -150,13 +154,42 @@ public class ItemModel {
 
 
     public String getTypescriptRemoteRepositoryFilename() {
-        return new StringBuilder().append(name).append("-repository.ts").toString().toLowerCase();
+        return new StringBuilder().append(getNameToLowerCase()).append("-repository.ts").toString();
     }
 
     public String getTypescriptRemoteRepositoryName() {
         return new StringBuilder().append(name).append("RemoteRepository").toString();
     }
 
+
+    public String getIdFieldName() {
+        for (PropertyModel typescriptProperty : properties) {
+            if (typescriptProperty.isIdProperty()) {
+                return typescriptProperty.getName();
+            }
+        }
+        return null;
+    }
+
+    public String getComboboxComponentTagName() {
+        return new StringBuilder().append(this.getNameToLowerCase()).append("-combobox-component").toString();
+    }
+
+    public String getEditComponentTagName() {
+        return new StringBuilder().append(this.getNameToLowerCase()).append("-edit-component").toString();
+    }
+
+    public String getSearchNidocaListTagName() {
+        return new StringBuilder().append(this.getNameToLowerCase()).append("-search-list-component").toString();
+    }
+
+    public String getEditPageTagName() {
+        return new StringBuilder().append(this.getNameToLowerCase()).append("-edit-page").toString();
+    }
+
+    public String getSearchListPageTagName() {
+        return new StringBuilder().append(this.getNameToLowerCase()).append("-search-list-page").toString();
+    }
 
     public void addProperty(PropertyModel propertyModel) {
         if (properties == null) {
