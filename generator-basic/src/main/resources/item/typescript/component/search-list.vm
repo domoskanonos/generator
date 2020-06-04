@@ -12,14 +12,14 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {${clazzTypescriptWrapper.getModelName()}RemoteRepository} from '../../repo/${clazzTypescriptWrapper.getModelNameLowerCase()}-remote-repository';
-import {${clazzTypescriptWrapper.getModelName()}} from '../../model/${clazzTypescriptWrapper.getModelNameLowerCase()}-model';
+import {${model.getModelName()}RemoteRepository} from '../../repo/${model.getModelNameLowerCase()}-remote-repository';
+import {${model.getModelName()}} from '../../model/${model.getModelNameLowerCase()}-model';
 
-@customElement('${clazzTypescriptWrapper.getSearchNidocaListTagName()}')
-export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends NidocaAbstractComponentSearchList<${clazzTypescriptWrapper.getModelName()}> {
+@customElement('${model.getSearchNidocaListTagName()}')
+export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractComponentSearchList<${model.getModelName()}> {
 
-    async executeSearch(search: string): Promise<${clazzTypescriptWrapper.getModelName()}[]> {
-        let pageableContainer: PageableContainer<${clazzTypescriptWrapper.getModelName()}> = await ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().search(
+    async executeSearch(search: string): Promise<${model.getModelName()}[]> {
+        let pageableContainer: PageableContainer<${model.getModelName()}> = await ${model.getModelName()}RemoteRepository.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
@@ -35,7 +35,7 @@ export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends Ni
         return pageableContainer.content;
     }
 
-    renderListItem(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}) : TemplateResult {
+    renderListItem(${model.getModelNameLowerCase()}: ${model.getModelName()}) : TemplateResult {
         return html`
     <nidoca-spacer
     .spacerSize="${SpacerSize.MEDIUM}"
@@ -52,7 +52,7 @@ export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends Ni
         .alignItems="${FlexAlignItems.CENTER}"
         >
             #foreach( $property in $clazzTypescriptWrapper.properties )
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.fieldName}}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${model.getModelNameLowerCase()}.${property.fieldName}}"></nidoca-typography>
             #end
         </nidoca-flex-container>
     </nidoca-spacer>
@@ -63,9 +63,9 @@ export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends Ni
       `;
     }
 
-    itemClicked(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}, index: number): void {
-        console.debug("${clazzTypescriptWrapper.getModelName()} list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${clazzTypescriptWrapper.getModelEditPageUrl()}',{ 'id' : ${clazzTypescriptWrapper.getModelNameLowerCase()}.${clazzTypescriptWrapper.getIdFieldName()}});
+    itemClicked(${model.getModelNameLowerCase()}: ${model.getModelName()}, index: number): void {
+        console.debug("${model.getModelName()} list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : ${model.getModelNameLowerCase()}.${model.getIdFieldName()}});
     }
 
    renderNoRecord(): TemplateResult {
@@ -91,10 +91,10 @@ export class ${clazzTypescriptWrapper.getModelName()}SearchNidocaList extends Ni
       `;
    }
 
-   async deleteItems(${clazzTypescriptWrapper.getModelNameLowerCase()}s: ${clazzTypescriptWrapper.getModelName()}[]): Promise<void> {
-        ${clazzTypescriptWrapper.getModelNameLowerCase()}s.forEach((${clazzTypescriptWrapper.getModelNameLowerCase()}) => {
-             console.log('delete ${clazzTypescriptWrapper.getModelNameLowerCase()} with id: {}', ${clazzTypescriptWrapper.getModelNameLowerCase()}.id);
-        ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().delete(${clazzTypescriptWrapper.getModelNameLowerCase()}.id);
+   async deleteItems(${model.getModelNameLowerCase()}s: ${model.getModelName()}[]): Promise<void> {
+        ${model.getModelNameLowerCase()}s.forEach((${model.getModelNameLowerCase()}) => {
+             console.log('delete ${model.getModelNameLowerCase()} with id: {}', ${model.getModelNameLowerCase()}.id);
+        ${model.getModelName()}RemoteRepository.getUniqueInstance().delete(${model.getModelNameLowerCase()}.id);
         });
    }
 
