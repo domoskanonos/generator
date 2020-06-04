@@ -11,7 +11,7 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {ItemRemoteRepository} from '../../repo/item-repository';
+import {ItemRemoteRepository} from '../repo/item-repository';
 import {ItemModel} from '../model/item-model';
 
 @customElement('item-search-list-component')

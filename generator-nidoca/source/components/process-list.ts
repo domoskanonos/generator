@@ -11,7 +11,7 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {ProcessRemoteRepository} from '../../repo/process-repository';
+import {ProcessRemoteRepository} from '../repo/process-repository';
 import {ProcessModel} from '../model/process-model';
 
 @customElement('process-search-list-component')

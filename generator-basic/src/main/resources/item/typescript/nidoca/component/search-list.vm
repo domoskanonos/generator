@@ -12,7 +12,7 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {${model.typescriptRemoteRepositoryName}} from '../../repo/${model.typescriptRemoteRepositoryFilename}';
+import {${model.typescriptRemoteRepositoryName}} from '../repo/${model.typescriptRemoteRepositoryFilename}';
 import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
 
 @customElement('${model.getSearchNidocaListTagName()}')

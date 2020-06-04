@@ -11,7 +11,7 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {PropertyRemoteRepository} from '../../repo/property-repository';
+import {PropertyRemoteRepository} from '../repo/property-repository';
 import {PropertyModel} from '../model/property-model';
 
 @customElement('property-search-list-component')
