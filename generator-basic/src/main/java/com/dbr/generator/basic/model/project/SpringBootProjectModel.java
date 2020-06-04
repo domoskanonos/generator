@@ -1,15 +1,15 @@
-package com.dbr.generator.basic.dto.project;
+package com.dbr.generator.basic.model.project;
 
-import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.model.ProcessModel;
 import lombok.Data;
 
 import java.io.File;
 
 @Data
-public class SpringBootProjectDTO extends JavaProjectDTO {
+public class SpringBootProjectModel extends JavaProjectModel {
 
-    public SpringBootProjectDTO(ProcessDTO processDTO, String technicalDescriptor, String javaBasePackage) {
-        super(processDTO, technicalDescriptor, javaBasePackage);
+    public SpringBootProjectModel(ProcessModel processModel, String technicalDescriptor, String javaBasePackage) {
+        super(processModel, technicalDescriptor, javaBasePackage);
     }
 
     private String springBootTemplateZipUrl = "https://github.com/domoskanonos/spring-boot-template/archive/master.zip";
@@ -26,19 +26,19 @@ public class SpringBootProjectDTO extends JavaProjectDTO {
     }
 
     public File getSpringBootTemplateFolder() {
-        return new File(getProcessDTO().getProcessTempPath(), this.springBootTemplateFilename);
+        return new File(getProcessModel().getProcessTempPath(), this.springBootTemplateFilename);
     }
 
     public File getSpringBootTemplateZipFile() {
-        return new File(getProcessDTO().getProcessTempPath(), getSpringBootTemplateZipFilename());
+        return new File(getProcessModel().getProcessTempPath(), getSpringBootTemplateZipFilename());
     }
 
     public String getSpringBootProjectArtifactId() {
-        return new StringBuilder().append(getProcessDTO().getTechnicalDescriptor()).append("-springboot").toString();
+        return new StringBuilder().append(getProcessModel().getTechnicalDescriptor()).append("-springboot").toString();
     }
 
     public File getSpringBootProjectFolder() {
-        return new File(getProcessDTO().getProcessFolder(), getSpringBootProjectArtifactId());
+        return new File(getProcessModel().getProcessFolder(), getSpringBootProjectArtifactId());
     }
 
     public File getSpringBootProjectSourceFolder() {
@@ -62,11 +62,11 @@ public class SpringBootProjectDTO extends JavaProjectDTO {
     }
 
     public File getProcessTempFolder() {
-        return getProcessDTO().getProcessTempFolder();
+        return getProcessModel().getProcessTempFolder();
     }
 
     public File getProcessFolder() {
-        return getProcessDTO().getProcessFolder();
+        return getProcessModel().getProcessFolder();
     }
 
 }

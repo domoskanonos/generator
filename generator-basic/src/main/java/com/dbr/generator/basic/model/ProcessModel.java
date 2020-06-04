@@ -1,6 +1,6 @@
-package com.dbr.generator.basic.dto;
+package com.dbr.generator.basic.model;
 
-import com.dbr.generator.basic.dto.project.ProjectDTO;
+import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.ValidationUtil;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class ProcessDTO {
+public class ProcessModel {
 
     private String processTempPath;
 
@@ -20,9 +20,9 @@ public class ProcessDTO {
 
     private String technicalDescriptor;
 
-    private List<ProjectDTO> projects = new ArrayList<>();
+    private List<ProjectModel> projects = new ArrayList<>();
 
-    public ProcessDTO(String processTempPath, String processParentPath, String technicalDescriptor) {
+    public ProcessModel(String processTempPath, String processParentPath, String technicalDescriptor) {
         this.processTempPath = processTempPath;
         this.processParentPath = processParentPath;
         this.technicalDescriptor = technicalDescriptor;

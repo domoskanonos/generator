@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.item.merger;
 
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
@@ -19,7 +19,7 @@ public class ItemTemplateMergerTest {
 
     @Test
     public void mergeAllTemplates() throws IOException {
-        ItemDTO item = new ItemDTO("Item", ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.values());
+        ItemModel item = new ItemModel("Item", ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.values());
 
         for (TemplateEnum templateEnum : item.getTemplate()) {
             String content = new ItemTemplateMerger().create(templateEnum, item);

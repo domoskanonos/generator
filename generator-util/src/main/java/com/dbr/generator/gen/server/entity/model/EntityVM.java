@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.entity.model;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.*;
@@ -39,14 +39,14 @@ public class EntityVM {
     @ToString
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class EntityProperty extends PropertyDTO {
+    public static class EntityProperty extends PropertyModel {
         private String columnName;
         private Integer size;
         private boolean primaryKey = false;
         private boolean nullable = true;
         private boolean idClazz = false;
 
-        public EntityProperty(PropertyDTO javaProperty) {
+        public EntityProperty(PropertyModel javaProperty) {
             this.setPropertyType(javaProperty.getPropertyType());
             this.setName(javaProperty.getName());
             this.columnName = StringUtil.toDatabaseName(javaProperty.getName());
@@ -74,18 +74,18 @@ public class EntityVM {
 
     }
 
-    public static List<EntityProperty> map(List<PropertyDTO> javaProperties) {
+    public static List<EntityProperty> map(List<PropertyModel> javaProperties) {
         List<EntityProperty> list = new ArrayList<>();
-        for (PropertyDTO javaProperty : javaProperties) {
+        for (PropertyModel javaProperty : javaProperties) {
             EntityProperty property = new EntityProperty(javaProperty);
             list.add(property);
         }
         return list;
     }
 
-    public static List<EntityProperty> mapCSV(List<PropertyDTO> javaProperties) {
+    public static List<EntityProperty> mapCSV(List<PropertyModel> javaProperties) {
         List<EntityProperty> list = new ArrayList<>();
-        for (PropertyDTO javaProperty : javaProperties) {
+        for (PropertyModel javaProperty : javaProperties) {
             EntityProperty property = new EntityProperty(javaProperty);
             list.add(property);
         }

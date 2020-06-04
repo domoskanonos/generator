@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.rest;
 
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.springboot.app.service.PropertyBasicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,16 +27,16 @@ public class PropertyRestBasicController {
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @CrossOrigin
-    @ApiOperation(value = "get a list of all PropertyDTO", response = PropertyDTO.class, responseContainer = "List")
+    @ApiOperation(value = "get a list of all PropertyDTO", response = PropertyModel.class, responseContainer = "List")
     @GetMapping("ALL")
-    public ResponseEntity<List<PropertyDTO>> findAll() {
+    public ResponseEntity<List<PropertyModel>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @CrossOrigin
-    @ApiOperation(value = "create a new object of PropertyDTO and save it to database. return the saved object.", response = PropertyDTO.class, responseContainer = "PropertyDTO")
+    @ApiOperation(value = "create a new object of PropertyDTO and save it to database. return the saved object.", response = PropertyModel.class, responseContainer = "PropertyDTO")
     @PostMapping("CREATE")
-    public ResponseEntity<PropertyDTO> create(@Valid @RequestBody PropertyDTO dto) {
+    public ResponseEntity<PropertyModel> create(@Valid @RequestBody PropertyModel dto) {
         return ResponseEntity.ok(service.save(dto));
     }
 

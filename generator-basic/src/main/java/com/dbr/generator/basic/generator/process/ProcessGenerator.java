@@ -1,9 +1,9 @@
 package com.dbr.generator.basic.generator.process;
 
-import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.model.ProcessModel;
 import com.dbr.generator.basic.generator.project.ProjectGenerator;
 import com.dbr.generator.basic.generator.project.ProjectGeneratorFactory;
-import com.dbr.generator.basic.dto.project.ProjectDTO;
+import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -15,26 +15,26 @@ public class ProcessGenerator {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcessGenerator.class);
 
-    public static void generate(ProcessDTO processDTO) throws Exception {
+    public static void generate(ProcessModel processModel) throws Exception {
 
-        processDTO.validate();
+        processModel.validate();
 
         logger.info("generate project start...");
 
-        File tempFolder = processDTO.getProcessTempFolder();
+        File tempFolder = processModel.getProcessTempFolder();
         if (tempFolder.exists()) {
             FileUtils.deleteDirectory(tempFolder);
         }
         GeneratorUtil.makeDir(tempFolder);
-        GeneratorUtil.makeDir(processDTO.getProcessParentFolder());
-        GeneratorUtil.makeDir(processDTO.getProcessFolder());
+        GeneratorUtil.makeDir(processModel.getProcessParentFolder());
+        GeneratorUtil.makeDir(processModel.getProcessFolder());
 
-        for (ProjectDTO projectDTO : processDTO.getProjects()) {
-            logger.info("generate project, technical descriptor: {}", projectDTO.getTechnicalDescriptor());
+        for (ProjectModel projectModel : processModel.getProjects()) {
+            logger.info("generate project, technical descriptor: {}", projectModel.getTechnicalDescriptor());
 
-            ProjectGenerator projectGeneratorInterface = ProjectGeneratorFactory.create(projectDTO);
-            projectGeneratorInterface.validate(projectDTO);
-            projectGeneratorInterface.execute(projectDTO);
+            ProjectGenerator projectGeneratorInterface = ProjectGeneratorFactory.create(projectModel);
+            projectGeneratorInterface.validate(projectModel);
+            projectGeneratorInterface.execute(projectModel);
         }
 
         logger.info("generate project end...");

@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript.model;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class TypescriptBaseVM {
     private Class modelClazz;
     private String modelName;
     private String modelPath;
-    private List<PropertyDTO> properties;
+    private List<PropertyModel> properties;
 
     public TypescriptBaseVM(Class modelClazz, String modelName) {
         this.modelClazz = modelClazz;

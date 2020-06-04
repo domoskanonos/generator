@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.ItemModel;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 
 import javax.persistence.EmbeddedId;
@@ -13,19 +13,19 @@ import java.util.List;
 
 public class JavaField2PropertyDTOConverter {
 
-    public PropertyDTO convert(ItemDTO itemDTO, Field field) {
-        PropertyDTO propertyDTO = new PropertyDTO();
-        propertyDTO.setUseJPAIdClazz(itemDTO.getIdTypeEnum() != null);
-        propertyDTO.setName(field.getName());
-        propertyDTO.setPropertyType(TypeEnum.byField(field));
-        propertyDTO.setIdProperty(isIDField(field));
-        return propertyDTO;
+    public PropertyModel convert(ItemModel itemModel, Field field) {
+        PropertyModel propertyModel = new PropertyModel();
+        propertyModel.setUseJPAIdClazz(itemModel.getIdTypeEnum() != null);
+        propertyModel.setName(field.getName());
+        propertyModel.setPropertyType(TypeEnum.byField(field));
+        propertyModel.setIdProperty(isIDField(field));
+        return propertyModel;
     }
 
-    public List<PropertyDTO> convert(ItemDTO itemDTO, Collection<Field> fields) {
-        List<PropertyDTO> retval = new ArrayList<>();
+    public List<PropertyModel> convert(ItemModel itemModel, Collection<Field> fields) {
+        List<PropertyModel> retval = new ArrayList<>();
         for (Field field : fields) {
-            retval.add(convert(itemDTO, field));
+            retval.add(convert(itemModel, field));
         }
         return retval;
     }

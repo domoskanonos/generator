@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.dto;
+package com.dbr.generator.basic.model;
 
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.util.StringUtil;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PropertyDTO {
+public class PropertyModel {
 
     private String name;
     private TypeEnum propertyType;
@@ -17,11 +17,11 @@ public class PropertyDTO {
     private boolean useJPAIdClazz;
     private Integer length;
 
-    public PropertyDTO(String name) {
+    public PropertyModel(String name) {
         this.name = name;
     }
 
-    public PropertyDTO(String name, Integer length) {
+    public PropertyModel(String name, Integer length) {
         this.name = name;
         this.length = length;
     }

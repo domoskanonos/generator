@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.mapping;
 
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.entity.ItemEntity;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -20,7 +20,7 @@ public class ItemEntityItemDTOMapping {
         this.propertyEntityPropertyDTOMapping = propertyEntityPropertyDTOMapping;
     }
 
-    public ItemEntity toEntity(ItemDTO source) {
+    public ItemEntity toEntity(ItemModel source) {
         ItemEntity dest = new ItemEntity();
         BeanUtils.copyProperties(source, dest, "properties");
         dest.setName(source.getName());
@@ -30,18 +30,18 @@ public class ItemEntityItemDTOMapping {
         return dest;
     }
 
-    public ItemDTO toDTO(ItemEntity source) {
-        ItemDTO dest = new ItemDTO();
+    public ItemModel toDTO(ItemEntity source) {
+        ItemModel dest = new ItemModel();
         BeanUtils.copyProperties(source, dest);
         dest.setProperties(propertyEntityPropertyDTOMapping.toDTOs(source.getProperties()));
         return dest;
     }
 
-    public List<ItemDTO> toDTOs(Collection<ItemEntity> sources) {
+    public List<ItemModel> toDTOs(Collection<ItemEntity> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<ItemEntity> toEntities(Collection<ItemDTO> sources) {
+    public List<ItemEntity> toEntities(Collection<ItemModel> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

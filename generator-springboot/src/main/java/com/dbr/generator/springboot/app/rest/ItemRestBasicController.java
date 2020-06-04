@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.rest;
 
 
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.springboot.app.service.ItemBasicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,16 +27,16 @@ public class ItemRestBasicController {
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @CrossOrigin
-    @ApiOperation(value = "get a list of all ItemDTO", response = ItemDTO.class, responseContainer = "List")
+    @ApiOperation(value = "get a list of all ItemDTO", response = ItemModel.class, responseContainer = "List")
     @GetMapping("ALL")
-    public ResponseEntity<List<ItemDTO>> findAll() {
+    public ResponseEntity<List<ItemModel>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @CrossOrigin
-    @ApiOperation(value = "create a new object of ItemDTO and save it to database. return the saved object.", response = ItemDTO.class, responseContainer = "ItemDTO")
+    @ApiOperation(value = "create a new object of ItemDTO and save it to database. return the saved object.", response = ItemModel.class, responseContainer = "ItemDTO")
     @PostMapping("CREATE")
-    public ResponseEntity<ItemDTO> create(@Valid @RequestBody ItemDTO dto) {
+    public ResponseEntity<ItemModel> create(@Valid @RequestBody ItemModel dto) {
         return ResponseEntity.ok(service.save(dto));
     }
 

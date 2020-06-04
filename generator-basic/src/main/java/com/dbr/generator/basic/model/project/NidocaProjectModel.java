@@ -1,15 +1,15 @@
-package com.dbr.generator.basic.dto.project;
+package com.dbr.generator.basic.model.project;
 
-import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.model.ProcessModel;
 import lombok.Data;
 
 import java.io.File;
 
 @Data
-public class NidocaProjectDTO extends ProjectDTO {
+public class NidocaProjectModel extends ProjectModel {
 
-    public NidocaProjectDTO(ProcessDTO processDTO, String technicalDescriptor) {
-        super(processDTO, technicalDescriptor);
+    public NidocaProjectModel(ProcessModel processModel, String technicalDescriptor) {
+        super(processModel, technicalDescriptor);
     }
 
     private Boolean useNidocaClient = false;
@@ -19,19 +19,19 @@ public class NidocaProjectDTO extends ProjectDTO {
             .toString();
 
     public File getNidocaTemplateZipFile() {
-        return new File(getProcessDTO().getProcessTempPath(), nidocaTemplateZipFilename);
+        return new File(getProcessModel().getProcessTempPath(), nidocaTemplateZipFilename);
     }
 
     public String getNidocaProjectArtifactId() {
-        return new StringBuilder().append(getProcessDTO().getTechnicalDescriptor()).append("-nidoca").toString();
+        return new StringBuilder().append(getProcessModel().getTechnicalDescriptor()).append("-nidoca").toString();
     }
 
     public File getNidocaProjectFolder() {
-        return new File(getProcessDTO().getProcessFolder(), getNidocaProjectArtifactId());
+        return new File(getProcessModel().getProcessFolder(), getNidocaProjectArtifactId());
     }
 
 
     public File getProcessFolder() {
-        return getProcessDTO().getProcessFolder();
+        return getProcessModel().getProcessFolder();
     }
 }

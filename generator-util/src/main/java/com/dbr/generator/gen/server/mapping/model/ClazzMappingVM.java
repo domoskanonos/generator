@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.mapping.model;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.*;
 
@@ -25,7 +25,7 @@ public class ClazzMappingVM {
     private String secondClazzPackageName;
     private String secondClazzSimpleName;
 
-    private List<PropertyDTO> properties = new ArrayList<>();
+    private List<PropertyModel> properties = new ArrayList<>();
 
     public ClazzMappingVM(String packageName, Class<?> firstClazz, Class<?> secondClazz, String template) {
         this(packageName, firstClazz, secondClazz);
@@ -40,7 +40,7 @@ public class ClazzMappingVM {
         this.secondClazzSimpleName = secondClazz.getSimpleName();
         this.clazzSimpleName = this.firstClazzSimpleName + this.secondClazzSimpleName + MAPPING_NAME_SUFFIX;
         GeneratorUtil.getPrimitivesOnly(firstClazz).forEach(field -> {
-            properties.add(new PropertyDTO(field.getName(), field.getType().getName()));
+            properties.add(new PropertyModel(field.getName(), field.getType().getName()));
         });
     }
 

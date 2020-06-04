@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.springboot.service.jpa.model;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.gen.server.springboot.repository.model.SpringBootJPARepositoryVM;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class SpringBootJPAServiceSearchVM {
     private String jpaClazzSimpleName;
     private String idClazz;
 
-    private List<PropertyDTO> properties;
+    private List<PropertyModel> properties;
 
     public SpringBootJPAServiceSearchVM(String systemPackageName, String basePackageName, String dtoClazzSimpleName,
             Class<?> entityClazz) {

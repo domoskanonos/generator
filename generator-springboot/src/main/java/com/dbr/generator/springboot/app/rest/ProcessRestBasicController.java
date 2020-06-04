@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.rest;
 
 
-import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.model.ProcessModel;
 import com.dbr.generator.springboot.app.service.ProcessBasicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,16 +27,16 @@ public class ProcessRestBasicController {
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @CrossOrigin
-    @ApiOperation(value = "get a list of all ProcessDTO", response = ProcessDTO.class, responseContainer = "List")
+    @ApiOperation(value = "get a list of all ProcessDTO", response = ProcessModel.class, responseContainer = "List")
     @GetMapping("ALL")
-    public ResponseEntity<List<ProcessDTO>> findAll() {
+    public ResponseEntity<List<ProcessModel>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @CrossOrigin
-    @ApiOperation(value = "create a new object of ProcessDTO and save it to database. return the saved object.", response = ProcessDTO.class, responseContainer = "ProcessDTO")
+    @ApiOperation(value = "create a new object of ProcessDTO and save it to database. return the saved object.", response = ProcessModel.class, responseContainer = "ProcessDTO")
     @PostMapping("CREATE")
-    public ResponseEntity<ProcessDTO> create(@Valid @RequestBody ProcessDTO dto) {
+    public ResponseEntity<ProcessModel> create(@Valid @RequestBody ProcessModel dto) {
         return ResponseEntity.ok(service.save(dto));
     }
 

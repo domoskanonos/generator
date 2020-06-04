@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.util;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.util.DataTypes;
 import com.dbr.util.SystemUtil;
 import com.dbr.util.ZipUtil;
@@ -148,12 +148,12 @@ public class GeneratorUtil {
         return fields.toArray(new Field[fields.size()]);
     }
 
-    public static List<PropertyDTO> getJavaProperties(Class<?> clazz) {
+    public static List<PropertyModel> getJavaProperties(Class<?> clazz) {
         return getJavaProperties(clazz, false);
     }
 
-    public static List<PropertyDTO> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
-        List<PropertyDTO> javaProperties = new ArrayList<>();
+    public static List<PropertyModel> getJavaProperties(Class<?> clazz, boolean withSuperClasses) {
+        List<PropertyModel> javaProperties = new ArrayList<>();
         for (Field field : getPrimitivesOnly(clazz, withSuperClasses)) {
             //javaProperties.add(new JavaField2PropertyDTOConverter().convert(new ConverterDTO<>(new JavaClass2ItemDTOConverter().convert(new ConverterDTO<>(new ProjectDTO(), clazz)), field)));
         }

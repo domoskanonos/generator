@@ -1,9 +1,9 @@
 package com.dbr.generator.springboot.util;
 
 import com.dbr.generator.basic.generator.process.ProcessGenerator;
-import com.dbr.generator.basic.dto.ProcessDTO;
-import com.dbr.generator.basic.dto.project.JavaProjectDTO;
-import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
+import com.dbr.generator.basic.model.ProcessModel;
+import com.dbr.generator.basic.model.project.JavaProjectModel;
+import com.dbr.generator.basic.model.project.SpringBootProjectModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,21 +17,21 @@ public class MainGenerator {
 
         String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
-        ProcessDTO processDTO = new ProcessDTO(processTempPath, processParentPath, "generator");
+        ProcessModel processModel = new ProcessModel(processTempPath, processParentPath, "generator");
 
-        SpringBootProjectDTO springBootProjectDTO = new SpringBootProjectDTO(processDTO, "springboot", "com.dbr.generator");
-        springBootProjectDTO.setAddSpringBootSecurityModule(true);
+        SpringBootProjectModel springBootProjectModel = new SpringBootProjectModel(processModel, "springboot", "com.dbr.generator");
+        springBootProjectModel.setAddSpringBootSecurityModule(true);
         //processDTO.getProjectDTOS().add(springBootProjectDTO);
 
 
-        JavaProjectDTO javaProjectDTO = new JavaProjectDTO(processDTO, "springboot", "com.dbr.generator");
-        processDTO.getProjects().add(javaProjectDTO);
+        JavaProjectModel javaProjectDTO = new JavaProjectModel(processModel, "springboot", "com.dbr.generator");
+        processModel.getProjects().add(javaProjectDTO);
 
 
         //NidocaProjectDTO nidocaProjectDTO = new NidocaProjectDTO(processDTO, "nidoca");
         //processDTO.getProjectDTOS().add(nidocaProjectDTO);
 
-        ProcessGenerator.generate(processDTO);
+        ProcessGenerator.generate(processModel);
 
     }
 

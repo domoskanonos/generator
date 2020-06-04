@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.merger;
 
-import com.dbr.generator.basic.dto.ItemDTO;
+import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.velocity.Template;
@@ -18,7 +18,7 @@ public class ItemTemplateMerger {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
-    public String create(TemplateEnum templateEnum, ItemDTO dto) {
+    public String create(TemplateEnum templateEnum, ItemModel dto) {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
 
         velocityEngine.init();
@@ -32,7 +32,7 @@ public class ItemTemplateMerger {
         return writer.toString();
     }
 
-    public void writeDown(File projectFolder, TemplateEnum templateEnum, ItemDTO dto) throws IOException {
+    public void writeDown(File projectFolder, TemplateEnum templateEnum, ItemModel dto) throws IOException {
         File file = dto.getFilePath(projectFolder, templateEnum);
         log.info("merger, write down content to file: {}", file.getAbsolutePath());
         String content = create(templateEnum, dto);

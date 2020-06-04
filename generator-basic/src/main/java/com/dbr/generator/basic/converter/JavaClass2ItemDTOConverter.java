@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.ItemModel;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
@@ -17,19 +17,19 @@ import java.util.List;
 
 public class JavaClass2ItemDTOConverter {
 
-    public ItemDTO convert(ItemType itemType, TemplateEnum templateEnum, Class<?> clazz) {
-        ItemDTO itemDTO = new ItemDTO(clazz.getName(), itemType, TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), templateEnum);
-        itemDTO.setName(clazz.getName());
-        itemDTO.getTemplate().addAll(Arrays.asList(templateEnum));
+    public ItemModel convert(ItemType itemType, TemplateEnum templateEnum, Class<?> clazz) {
+        ItemModel itemModel = new ItemModel(clazz.getName(), itemType, TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), templateEnum);
+        itemModel.setName(clazz.getName());
+        itemModel.getTemplate().addAll(Arrays.asList(templateEnum));
         for (Field field : clazz.getDeclaredFields()) {
-            PropertyDTO propertyDTO = new JavaField2PropertyDTOConverter().convert(itemDTO, field);
-            itemDTO.addProperty(propertyDTO);
+            PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
+            itemModel.addProperty(propertyModel);
         }
-        return itemDTO;
+        return itemModel;
     }
 
-    public List<ItemDTO> convert(ItemType itemType, TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
-        List<ItemDTO> retval = new ArrayList<>();
+    public List<ItemModel> convert(ItemType itemType, TemplateEnum templateEnum, Collection<Class<?>> clazzes) {
+        List<ItemModel> retval = new ArrayList<>();
         for (Class<?> clazz : clazzes) {
             retval.add(convert(itemType, templateEnum, clazz));
         }

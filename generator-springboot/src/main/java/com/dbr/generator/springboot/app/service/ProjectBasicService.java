@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.dto.project.ProjectDTO;
+import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.entity.ProjectEntity;
 import com.dbr.generator.springboot.app.mapping.ProjectEntityProjectDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProjectJPARepository;
@@ -38,7 +38,7 @@ public class ProjectBasicService {
      * @return a list of <code>ProjectDTO's</code>
      *
      */
-    public List<ProjectDTO> findAll() {
+    public List<ProjectModel> findAll() {
         log.debug("findAll");
         return mapping.toDTOs(repository.findAll());
     }
@@ -49,7 +49,7 @@ public class ProjectBasicService {
      * @param id of hibernate entity
      * @return optional object of type <code>Optional<ProjectDTO></code>
      */
-    public Optional<ProjectDTO> findById(Long id) {
+    public Optional<ProjectModel> findById(Long id) {
         log.debug("findById: {}", id);
         Optional<ProjectEntity> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
@@ -61,7 +61,7 @@ public class ProjectBasicService {
      * @param dto to save or update
      * @return new saved or updated object as <code>ProjectDTO</code>
      */
-    public ProjectDTO save(ProjectDTO dto) {
+    public ProjectModel save(ProjectModel dto) {
         log.debug("save or update object: {}", dto);
         return mapping.toDTO(repository.save(mapping.toEntity(dto)));
     }

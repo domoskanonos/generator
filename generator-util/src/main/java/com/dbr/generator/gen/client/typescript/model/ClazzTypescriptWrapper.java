@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.client.typescript.model;
 
-import com.dbr.generator.basic.dto.PropertyDTO;
+import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.gen.client.i18n.model.I18nVM;
 import com.dbr.generator.basic.model.KeyValue;
 import com.dbr.util.StringUtil;
@@ -16,7 +16,7 @@ public class ClazzTypescriptWrapper {
     private Class clazz;
     private String modelNameReplaceKey;
     private String modelNameReplaceValue;
-    private List<PropertyDTO> properties;
+    private List<PropertyModel> properties;
 
     public ClazzTypescriptWrapper(Class clazz, String modelNameReplaceKey, String modelNameReplaceValue) {
         this.clazz = clazz;
@@ -38,7 +38,7 @@ public class ClazzTypescriptWrapper {
     }
 
     public String getIdFieldName() {
-        for (PropertyDTO typescriptProperty : properties) {
+        for (PropertyModel typescriptProperty : properties) {
             if (typescriptProperty.isIdProperty()) {
                 return typescriptProperty.getName();
             }
@@ -165,7 +165,7 @@ public class ClazzTypescriptWrapper {
         return keyValues;
     }
 
-    private KeyValue addI18nKeyValueProperty(PropertyDTO typescriptProperty) {
+    private KeyValue addI18nKeyValueProperty(PropertyModel typescriptProperty) {
         String key = getModelNameLowerCase() + I18nVM.I18N_PROPERTY_SEPERATOR + typescriptProperty.getName();
         KeyValue i18nKeyValue = new KeyValue(key, StringUtil.firstLetterToUpperCase(typescriptProperty.getName()));
         //typescriptProperty.setI18nKeyValue(i18nKeyValue);

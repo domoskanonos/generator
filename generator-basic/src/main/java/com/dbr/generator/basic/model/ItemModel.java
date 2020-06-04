@@ -1,4 +1,4 @@
-package com.dbr.generator.basic.dto;
+package com.dbr.generator.basic.model;
 
 import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
@@ -13,7 +13,7 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
-public class ItemDTO {
+public class ItemModel {
 
 
     private String name;
@@ -26,9 +26,9 @@ public class ItemDTO {
 
     private String namespace;
 
-    private List<PropertyDTO> properties = new ArrayList<>();
+    private List<PropertyModel> properties = new ArrayList<>();
 
-    public ItemDTO(String name, ItemType itemType, TypeEnum idTypeEnum, TemplateEnum... template) {
+    public ItemModel(String name, ItemType itemType, TypeEnum idTypeEnum, TemplateEnum... template) {
         this.name = name;
         this.template.addAll(Arrays.asList(template));
         this.itemType = itemType;
@@ -139,11 +139,11 @@ public class ItemDTO {
         return String.format("%s.ts", getTypescriptModelName().toLowerCase());
     }
 
-    public void addProperty(PropertyDTO propertyDTO) {
+    public void addProperty(PropertyModel propertyModel) {
         if (properties == null) {
             properties = new ArrayList<>();
         }
-        properties.add(propertyDTO);
+        properties.add(propertyModel);
     }
 
     public File getFilePath(File projectFolder, TemplateEnum templateEnum) {

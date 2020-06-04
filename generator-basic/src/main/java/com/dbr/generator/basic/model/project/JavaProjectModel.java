@@ -1,16 +1,16 @@
-package com.dbr.generator.basic.dto.project;
+package com.dbr.generator.basic.model.project;
 
-import com.dbr.generator.basic.dto.ProcessDTO;
+import com.dbr.generator.basic.model.ProcessModel;
 import lombok.Data;
 
 @Data
-public class JavaProjectDTO extends ProjectDTO {
+public class JavaProjectModel extends ProjectModel {
 
     private String springBootArchetypeArtifactId = "springboottemplate-archetype";
     private String springBootGroupId = "com.dbr.springboot.template";
 
-    public JavaProjectDTO(ProcessDTO processDTO, String technicalDescriptor, String javaBasePackage) {
-        super(processDTO, technicalDescriptor);
+    public JavaProjectModel(ProcessModel processModel, String technicalDescriptor, String javaBasePackage) {
+        super(processModel, technicalDescriptor);
         this.javaBasePackage = javaBasePackage;
     }
 

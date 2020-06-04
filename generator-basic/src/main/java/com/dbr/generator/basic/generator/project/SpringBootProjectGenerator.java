@@ -1,18 +1,15 @@
 package com.dbr.generator.basic.generator.project;
 
-import com.dbr.generator.basic.dto.ItemDTO;
-import com.dbr.generator.basic.dto.project.SpringBootProjectDTO;
-import com.dbr.generator.basic.merger.ItemTemplateMerger;
+import com.dbr.generator.basic.model.project.SpringBootProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.util.ValidationUtil;
 
 import java.io.File;
-import java.io.IOException;
 
-public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProjectDTO> {
+public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProjectModel> {
 
     @Override
-    public void execute(SpringBootProjectDTO model) throws Exception {
+    public void execute(SpringBootProjectModel model) throws Exception {
         GeneratorUtil.deleteFile(model.getSpringBootProjectFolder());
         File springBootZipFile = GeneratorUtil.copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
                 model.getSpringBootTemplateZipFile());
@@ -41,7 +38,7 @@ public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProje
     }
 
     @Override
-    public void validate(SpringBootProjectDTO model) {
+    public void validate(SpringBootProjectModel model) {
         super.validate(model);
         ValidationUtil.validateNotHDDBaseDirectory(model.getSpringBootProjectFolder());
     }
