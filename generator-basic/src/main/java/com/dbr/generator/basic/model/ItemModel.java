@@ -171,6 +171,11 @@ public class ItemModel {
         return null;
     }
 
+    private String getTypescriptNidocaComponentEditFilename() {
+        return new StringBuilder().append(getNameToLowerCase()).append("-edit.ts").toString();
+    }
+
+
     public String getComboboxComponentTagName() {
         return new StringBuilder().append(this.getNameToLowerCase()).append("-combobox-component").toString();
     }
@@ -230,6 +235,8 @@ public class ItemModel {
                 return sb.append(filePathPrefix).append(getTypescriptModelFilenameWithSuffix()).toString();
             case TYPESCRIPT_REMOTE_REPOSITORY:
                 return sb.append(filePathPrefix).append(getTypescriptRemoteRepositoryFilename()).toString();
+            case TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
+                return sb.append(filePathPrefix).append(getTypescriptNidocaComponentEditFilename()).toString();
             default:
                 throw new RuntimeException("error determinate file path...");
         }
