@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.entity.ItemEntity;
+import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.mapping.ItemEntityItemDTOMapping;
 import com.dbr.generator.springboot.app.repository.ItemJPARepository;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class ItemBasicService {
      * @return a list of <code>ItemDTO's</code>
      *
      */
-    public List<ItemModel> findAll() {
+    public List<ItemDTO> findAll() {
         log.debug("findAll");
         return mapping.toDTOs(repository.findAll());
     }
@@ -49,7 +49,7 @@ public class ItemBasicService {
      * @param id of hibernate entity
      * @return optional object of type <code>Optional<ItemDTO></code>
      */
-    public Optional<ItemModel> findById(Long id) {
+    public Optional<ItemDTO> findById(Long id) {
         log.debug("findById: {}", id);
         Optional<ItemEntity> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
@@ -61,7 +61,7 @@ public class ItemBasicService {
      * @param dto to save or update
      * @return new saved or updated object as <code>ItemDTO</code>
      */
-    public ItemModel save(ItemModel dto) {
+    public ItemDTO save(ItemDTO dto) {
         log.debug("save or update object: {}", dto);
         return mapping.toDTO(repository.save(mapping.toEntity(dto)));
     }

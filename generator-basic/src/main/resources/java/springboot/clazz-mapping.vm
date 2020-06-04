@@ -1,17 +1,17 @@
-package ${model.javaPackageName};
+package ${model.javaMappingPackageName};
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 
-import ${model.jpaJavaClazzName};
+import ${model.javaDTOClazzName};
 import ${model.javaJPAClazzName};
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class ${model.javaJPAClazzName} {
+public class ${model.javaMappingClazzSimpleName} {
 
     public ${model.javaJPAClazzSimpleName} toEntity(${model.javaDTOClazzSimpleName} source)
     {

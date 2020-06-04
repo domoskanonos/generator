@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.model.ProcessModel;
 import com.dbr.generator.basic.entity.ProcessEntity;
+import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,7 @@ public class ProcessBasicService {
      * @return a list of <code>ProcessDTO's</code>
      *
      */
-    public List<ProcessModel> findAll() {
+    public List<ProcessDTO> findAll() {
         log.debug("findAll");
         return mapping.toDTOs(repository.findAll());
     }
@@ -49,7 +49,7 @@ public class ProcessBasicService {
      * @param id of hibernate entity
      * @return optional object of type <code>Optional<ProcessDTO></code>
      */
-    public Optional<ProcessModel> findById(Long id) {
+    public Optional<ProcessDTO> findById(Long id) {
         log.debug("findById: {}", id);
         Optional<ProcessEntity> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
@@ -61,7 +61,7 @@ public class ProcessBasicService {
      * @param dto to save or update
      * @return new saved or updated object as <code>ProcessDTO</code>
      */
-    public ProcessModel save(ProcessModel dto) {
+    public ProcessDTO save(ProcessDTO dto) {
         log.debug("save or update object: {}", dto);
         return mapping.toDTO(repository.save(mapping.toEntity(dto)));
     }

@@ -22,7 +22,7 @@ public class GeneratorProjectMetaData {
     public static JavaProjectModel SPRING_BOOT_JAVA_PROJECT_DTO;
 
     static {
-        String processParentPath = new File("C:\\_dev\\vhs\\git").getAbsolutePath();
+        String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         PROCESS_DTO = new ProcessModel(processTempPath, processParentPath, "generator");
         List<ProjectModel> projectModels = PROCESS_DTO.getProjects();
@@ -37,7 +37,7 @@ public class GeneratorProjectMetaData {
         projectModels.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
         for (String name : new String[]{"Property", "Item", "Project", "Process"}) {
-            ItemModel itemModel = new ItemModel(name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
+            ItemModel itemModel = new ItemModel(name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
             itemModel.setNamespace(SPRING_BOOT_JAVA_PROJECT_DTO.getJavaBasePackage());
             SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(itemModel);
         }

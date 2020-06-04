@@ -1,18 +1,20 @@
 package com.dbr.generator.springboot.app.rest;
 
-
-import com.dbr.generator.basic.model.ItemModel;
+import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.service.ItemBasicService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.*;
+import io.swagger.annotations.*;
 
-import javax.validation.Valid;
-import java.util.List;
+import javax.validation.*;
+import java.util.*;
 
 @Api(tags = "ITEM")
 @RestController
@@ -27,16 +29,16 @@ public class ItemRestBasicController {
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     @CrossOrigin
-    @ApiOperation(value = "get a list of all ItemDTO", response = ItemModel.class, responseContainer = "List")
+    @ApiOperation(value = "get a list of all ItemDTO", response = ItemDTO.class, responseContainer = "List")
     @GetMapping("ALL")
-    public ResponseEntity<List<ItemModel>> findAll() {
+    public ResponseEntity<List<ItemDTO>> findAll() {
         return ResponseEntity.ok(service.findAll());
     }
 
     @CrossOrigin
-    @ApiOperation(value = "create a new object of ItemDTO and save it to database. return the saved object.", response = ItemModel.class, responseContainer = "ItemDTO")
+    @ApiOperation(value = "create a new object of ItemDTO and save it to database. return the saved object.", response = ItemDTO.class, responseContainer = "ItemDTO")
     @PostMapping("CREATE")
-    public ResponseEntity<ItemModel> create(@Valid @RequestBody ItemModel dto) {
+    public ResponseEntity<ItemDTO> create(@Valid @RequestBody ItemDTO dto) {
         return ResponseEntity.ok(service.save(dto));
     }
 

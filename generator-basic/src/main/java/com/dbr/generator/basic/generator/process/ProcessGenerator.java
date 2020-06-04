@@ -32,9 +32,9 @@ public class ProcessGenerator {
         for (ProjectModel projectModel : processModel.getProjects()) {
             logger.info("generate project, technical descriptor: {}", projectModel.getTechnicalDescriptor());
 
-            ProjectGenerator projectGeneratorInterface = ProjectGeneratorFactory.create(projectModel);
-            projectGeneratorInterface.validate(projectModel);
-            projectGeneratorInterface.execute(projectModel);
+            ProjectGenerator projectGenerator = ProjectGeneratorFactory.create(projectModel);
+            projectGenerator.validate(projectModel);
+            projectGenerator.execute(projectModel);
         }
 
         logger.info("generate project end...");

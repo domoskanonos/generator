@@ -60,7 +60,7 @@ public class ItemModel {
     }
 
     public String getJavaMappingClazzSimpleName() {
-        return new StringBuilder().append(getjavaJPAClazzSimpleName()).append(getjavaDTOClazzSimpleName()).append("Mapping").toString();
+        return new StringBuilder().append(getjavaJPAClazzSimpleName()).append(getJavaDTOClazzSimpleName()).append("Mapping").toString();
     }
 
     public String getJavaJPAClazzName() {
@@ -71,7 +71,7 @@ public class ItemModel {
         return new StringBuilder().append(getJavaPackageName()).append(".entity").toString();
     }
 
-    public String getjavaDTOClazzSimpleName() {
+    public String getJavaDTOClazzSimpleName() {
         return new StringBuilder().append(name).append("DTO").toString();
     }
 
@@ -88,7 +88,7 @@ public class ItemModel {
     }
 
     public String getJavaDTOClazzName() {
-        return new StringBuilder().append(getJavaDTOPackageName()).append(".").append(getjavaDTOClazzSimpleName()).toString();
+        return new StringBuilder().append(getJavaDTOPackageName()).append(".").append(getJavaDTOClazzSimpleName()).toString();
     }
 
     public String getJavaDTOPackageName() {
