@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.merger;
 
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.util.VelocityUtil;
 import org.apache.commons.io.FileUtils;

@@ -1,19 +1,19 @@
 import {HttpClientService, BasicRemoteRepository} from "@domoskanonos/frontend-basis";
-import {${modelName}} from "${modelPath}";
+import {${model.typescriptModelName}} from "${model.typescriptModelPath}";
 
-export class ${remoteRepositoryName} extends BasicRemoteRepository<${modelName}, ${idClazz}> {
+export class ${model.typescriptRemoteRepositoryName} extends BasicRemoteRepository<${model.typescriptModelName}, ${model.typescriptType}> {
 
-    private static uniqueInstance: ${remoteRepositoryName};
+    private static uniqueInstance: ${model.typescriptRemoteRepositoryName};
 
     constructor() {
-        super(HttpClientService.getUniqueInstance(),"${restPath}");
+        super(HttpClientService.getUniqueInstance(),"${model.javaRestControllerPrefix}");
     }
 
     static getUniqueInstance() {
-        if (!${remoteRepositoryName}.uniqueInstance) {
-            ${remoteRepositoryName}.uniqueInstance = new ${remoteRepositoryName}();
+        if (!${model.typescriptRemoteRepositoryName}.uniqueInstance) {
+            ${model.typescriptRemoteRepositoryName}.uniqueInstance = new ${model.typescriptRemoteRepositoryName}();
         }
-        return ${remoteRepositoryName}.uniqueInstance;
+        return ${model.typescriptRemoteRepositoryName}.uniqueInstance;
     }
 
 }

@@ -1,4 +1,4 @@
-export class ${modelName} {
+export class ${model.typescriptModelName} {
 #foreach( $property in $properties )
     ${property.fieldName} : ${property.typeName} = ${property.defaultValue};
 #end

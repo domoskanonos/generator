@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.model;
 
 import com.dbr.generator.basic.enumeration.TypeEnum;
-import com.dbr.generator.basic.merger.TemplateEnum;
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
@@ -124,17 +124,39 @@ public class ItemModel {
         return new StringBuilder().append(name.toUpperCase()).toString();
     }
 
-    public String getTypescriptModelName() {
-        return new StringBuilder().append(getJavaClazzSimpleName()).append("Model").toString();
-    }
-
     public String getJavaIdClazzSimpleName() {
         return this.idTypeEnum.getJavaTypeSimpleName();
     }
 
-    public String getTypescriptModelFilename() {
-        return String.format("%s.ts", getTypescriptModelName().toLowerCase());
+    public String getTypescriptType() {
+        return this.idTypeEnum.getTypescriptType();
     }
+
+    public String getTypescriptModelName() {
+        return new StringBuilder().append(name).append("Model").toString();
+    }
+
+    public String getTypescriptModelFilenameWithSuffix() {
+        return new StringBuilder().append(getTypescriptModelFilename()).append(".ts").toString().toLowerCase();
+    }
+
+    public String getTypescriptModelFilename() {
+        return new StringBuilder().append(name).append("-model").toString().toLowerCase();
+    }
+
+    public String getTypescriptModelPath() {
+        return "../" + TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE.getFilePathPrefix() + getTypescriptModelFilename();
+    }
+
+
+    public String getTypescriptRemoteRepositoryFilename() {
+        return new StringBuilder().append(name).append("-repository.ts").toString().toLowerCase();
+    }
+
+    public String getTypescriptRemoteRepositoryName() {
+        return new StringBuilder().append(name).append("RemoteRepository").toString();
+    }
+
 
     public void addProperty(PropertyModel propertyModel) {
         if (properties == null) {
@@ -157,6 +179,7 @@ public class ItemModel {
                 sb = sb.append("source/");
                 break;
         }
+        String filePathPrefix = templateEnum.getFilePathPrefix();
         switch (templateEnum) {
             case DTO_TEMPLATE:
                 return sb.append(GeneratorUtil.getPackagePath(getJavaDTOClazzName())).append(".java").toString();
@@ -171,7 +194,9 @@ public class ItemModel {
             case SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE:
                 return sb.append(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName())).append(".java").toString();
             case TYPESCRIPT_MODEL_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getTypescriptModelFilename())).toString();
+                return sb.append(filePathPrefix).append(getTypescriptModelFilenameWithSuffix()).toString();
+            case TYPESCRIPT_REMOTE_REPOSITORY:
+                return sb.append(filePathPrefix).append(getTypescriptRemoteRepositoryFilename()).toString();
             default:
                 throw new RuntimeException("error determinate file path...");
         }

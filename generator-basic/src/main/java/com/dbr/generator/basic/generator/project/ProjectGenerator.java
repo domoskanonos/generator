@@ -3,7 +3,7 @@ package com.dbr.generator.basic.generator.project;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.merger.ItemTemplateMerger;
-import com.dbr.generator.basic.merger.TemplateEnum;
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 
 public class ProjectGenerator<T extends ProjectModel> {
 

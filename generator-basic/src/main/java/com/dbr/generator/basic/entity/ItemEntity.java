@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.entity;
 
 import com.dbr.generator.basic.enumeration.TypeEnum;
-import com.dbr.generator.basic.merger.TemplateEnum;
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,7 +30,7 @@ public class ItemEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ID_TYPE")
-    private TypeEnum idTypeEnum = TypeEnum.TYPE_LONG;
+    private TypeEnum idTypeEnum = TypeEnum.LONG;
 
     private String namespace;
 

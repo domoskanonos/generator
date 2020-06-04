@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
 import com.dbr.generator.basic.enumeration.TypeEnum;
-import com.dbr.generator.basic.merger.TemplateEnum;
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.model.project.ProjectModel;

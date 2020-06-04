@@ -12,15 +12,15 @@ public enum TypeEnum {
     STRING(String.class),
     INTEGER(Integer.class),
     TYPE_BOOLEAN(Boolean.class),
-    TYPE_BIG_DECIMAL(BigDecimal.class),
-    TYPE_LONG(Long.class),
-    TYPE_FLOAT(Float.class),
-    TYPE_SHORT(Short.class),
-    TYPE_DOUBLE(Double.class),
+    BIG_DECIMAL(BigDecimal.class),
+    LONG(Long.class),
+    FLOAT(Float.class),
+    SHORT(Short.class),
+    DOUBLE(Double.class),
     TYPE_CHAR(char.class),
-    TYPE_DATE(Date.class),
-    TYPE_DATE_ISO8601(Date.class),
-    TYPE_ARRAY_STRING(String[].class),
+    DATE(Date.class),
+    DATE_ISO8601(Date.class),
+    ARRAY_STRING(String[].class),
     LIST(List.class),
     ENUMERATION(Enum.class),
     OBJECT(Object.class);
@@ -64,20 +64,22 @@ public enum TypeEnum {
             case STRING:
             case INTEGER:
             case TYPE_BOOLEAN:
-            case TYPE_BIG_DECIMAL:
-            case TYPE_LONG:
-            case TYPE_FLOAT:
-            case TYPE_SHORT:
-            case TYPE_DOUBLE:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
             case TYPE_CHAR:
-            case TYPE_DATE:
-            case TYPE_DATE_ISO8601:
+            case DATE:
+            case DATE_ISO8601:
                 return true;
             case LIST:
             case ENUMERATION:
             case OBJECT:
             case BYTE_ARRAY:
-            case TYPE_ARRAY_STRING:default:return false;
+            case ARRAY_STRING:
+            default:
+                return false;
 
         }
     }
@@ -89,24 +91,24 @@ public enum TypeEnum {
             case TYPE_CHAR:
                 return "string";
             case INTEGER:
-            case TYPE_BIG_DECIMAL:
-            case TYPE_LONG:
-            case TYPE_FLOAT:
-            case TYPE_SHORT:
-            case TYPE_DOUBLE:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
                 return "number";
             case TYPE_BOOLEAN:
                 return "boolean";
-            case TYPE_DATE:
-            case TYPE_DATE_ISO8601:
+            case DATE:
+            case DATE_ISO8601:
                 return "Date";
-            case TYPE_ARRAY_STRING:
+            case ARRAY_STRING:
                 return "string[]";
             case BYTE_ARRAY:
             case LIST:
-                return "array";
+                return "any[]";
             case ENUMERATION:
-                return "enum ";
+                return "string ";
             case OBJECT:
             default:
                 return "any";
@@ -119,30 +121,28 @@ public enum TypeEnum {
         switch (this) {
             case TYPE_CHAR:
             case BYTE_ARRAY:
+            case ENUMERATION:
             case STRING:
                 return "''";
-            case INTEGER:
-                break;
             case TYPE_BOOLEAN:
                 return "false";
-            case TYPE_BIG_DECIMAL:
-            case TYPE_LONG:
-            case TYPE_FLOAT:
-            case TYPE_SHORT:
-            case TYPE_DOUBLE:
+            case INTEGER:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
                 return "0";
-            case TYPE_DATE:
-            case TYPE_DATE_ISO8601:
+            case DATE:
+            case DATE_ISO8601:
                 return "new Date()";
-            case TYPE_ARRAY_STRING:
+            case ARRAY_STRING:
             case LIST:
                 return "[]";
-            case ENUMERATION:
             case OBJECT:
             default:
                 return "{}";
         }
-        return null;
     }
 
 
