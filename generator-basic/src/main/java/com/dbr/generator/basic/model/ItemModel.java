@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.model;
 
 import com.dbr.generator.basic.enumeration.TypeEnum;
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.ItemTemplateEnum;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
@@ -19,13 +19,13 @@ public class ItemModel {
 
     private String name;
 
-    private Set<TemplateEnum> template = new HashSet<>();
+    private Set<ItemTemplateEnum> template = new HashSet<>();
 
     private TypeEnum idTypeEnum;
 
     private List<PropertyModel> properties = new ArrayList<>();
 
-    public ItemModel(ProjectModel projectModel, String name, TypeEnum idTypeEnum, TemplateEnum... template) {
+    public ItemModel(ProjectModel projectModel, String name, TypeEnum idTypeEnum, ItemTemplateEnum... template) {
         this.projectModel = projectModel;
         this.name = name;
         this.template.addAll(Arrays.asList(template));
@@ -153,7 +153,7 @@ public class ItemModel {
     }
 
     public String getTypescriptModelPath() {
-        return "../" + TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE.getFilePathPrefix() + getTypescriptModelFilename();
+        return "../" + ItemTemplateEnum.TYPESCRIPT_MODEL_TEMPLATE.getFilePathPrefix() + getTypescriptModelFilename();
     }
 
 
@@ -216,13 +216,13 @@ public class ItemModel {
         properties.add(propertyModel);
     }
 
-    public File getFilePath(File projectFolder, TemplateEnum templateEnum) {
-        return new File(projectFolder, getFileSuffix(templateEnum));
+    public File getFilePath(File projectFolder, ItemTemplateEnum itemTemplateEnum) {
+        return new File(projectFolder, getFileSuffix(itemTemplateEnum));
     }
 
-    private String getFileSuffix(TemplateEnum templateEnum) {
+    private String getFileSuffix(ItemTemplateEnum itemTemplateEnum) {
         StringBuilder sb = new StringBuilder();
-        switch (templateEnum.getItemType()) {
+        switch (itemTemplateEnum.getItemType()) {
             case JAVA:
                 sb = sb.append("src/main/java/");
                 break;
@@ -230,8 +230,8 @@ public class ItemModel {
                 sb = sb.append("source/");
                 break;
         }
-        String filePathPrefix = templateEnum.getFilePathPrefix();
-        switch (templateEnum) {
+        String filePathPrefix = itemTemplateEnum.getFilePathPrefix();
+        switch (itemTemplateEnum) {
             case DTO_TEMPLATE:
                 return sb.append(GeneratorUtil.getPackagePath(getJavaDTOClazzName())).append(".java").toString();
             case ENTITY_TEMPLATE:

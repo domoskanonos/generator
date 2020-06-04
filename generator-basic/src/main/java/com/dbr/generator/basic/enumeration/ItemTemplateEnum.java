@@ -3,7 +3,7 @@ package com.dbr.generator.basic.enumeration;
 import lombok.Getter;
 
 @Getter
-public enum TemplateEnum {
+public enum ItemTemplateEnum {
 
     DTO_TEMPLATE("item/java/dto.vm", "", ItemType.JAVA),
     ENTITY_TEMPLATE("item/java/entity.vm", "", ItemType.JAVA),
@@ -22,7 +22,7 @@ public enum TemplateEnum {
 
     private ItemType itemType;
 
-    TemplateEnum(String templatePath, String filePathPrefix, ItemType itemType) {
+    ItemTemplateEnum(String templatePath, String filePathPrefix, ItemType itemType) {
         this.templatePath = templatePath;
         this.filePathPrefix = filePathPrefix;
         this.itemType = itemType;

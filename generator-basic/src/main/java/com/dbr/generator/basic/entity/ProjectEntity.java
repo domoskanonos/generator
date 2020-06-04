@@ -1,10 +1,13 @@
 package com.dbr.generator.basic.entity;
 
+import com.dbr.generator.basic.enumeration.ProjectTemplateEnum;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -24,6 +27,11 @@ public class ProjectEntity {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROJECT_ITEM", joinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
     private List<ItemEntity> itemEntities = new ArrayList<>();
+
+    @ElementCollection(targetClass = ProjectTemplateEnum.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "PROJECT_TEMPLATE", joinColumns = @JoinColumn(name = "PROJECT_ID", referencedColumnName = "ID"))
+    @Enumerated(EnumType.STRING)
+    private Set<ProjectTemplateEnum> template = new HashSet<>();
 
     @Column(name = "NAME")
     private String technicalDescriptor;

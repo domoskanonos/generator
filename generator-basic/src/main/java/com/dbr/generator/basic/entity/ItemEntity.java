@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.entity;
 
 import com.dbr.generator.basic.enumeration.TypeEnum;
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.ItemTemplateEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,12 +32,10 @@ public class ItemEntity {
     @Column(name = "ID_TYPE")
     private TypeEnum idTypeEnum = TypeEnum.LONG;
 
-    private String namespace;
-
-    @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = ItemTemplateEnum.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "ITEM_TEMPLATE", joinColumns = @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID"))
     @Enumerated(EnumType.STRING)
-    private Set<TemplateEnum> template = new HashSet<>();
+    private Set<ItemTemplateEnum> template = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
