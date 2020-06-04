@@ -27,7 +27,7 @@ public class GeneratorProcessEntitySaveTest {
 
     @Test
     public void saveProcess() {
-        ProcessEntity processEntity = processJPARepository.save(processEntityProcessDTOMapping.toEntity(GeneratorProjectMetaData.PROCESS_DTO));
+        ProcessEntity processEntity = processJPARepository.save(processEntityProcessDTOMapping.toEntity(GeneratorProjectMetaData.PROCESS_MODEL));
         assertThat(processEntity.getId()).isNotNull();
     }
 

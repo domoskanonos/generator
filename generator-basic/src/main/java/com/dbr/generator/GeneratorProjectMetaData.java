@@ -22,40 +22,40 @@ import java.util.List;
 
 public class GeneratorProjectMetaData {
 
-    public static ProcessModel PROCESS_DTO;
+    public static ProcessModel PROCESS_MODEL;
 
-    public static SpringBootProjectModel SPRING_BOOT_PROJECT_DTO;
+    public static SpringBootProjectModel SPRING_BOOT_PROJECT_MODEL;
 
-    public static JavaProjectModel SPRING_BOOT_JAVA_PROJECT_DTO;
+    public static JavaProjectModel SPRING_BOOT_JAVA_PROJECT_MODEL;
 
     static {
         String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
-        PROCESS_DTO = new ProcessModel(processTempPath, processParentPath, "generator");
-        List<ProjectModel> projectModels = PROCESS_DTO.getProjects();
+        PROCESS_MODEL = new ProcessModel(processTempPath, processParentPath, "generator");
+        List<ProjectModel> projectModels = PROCESS_MODEL.getProjects();
 
         String javaBasePackage = "com.dbr.generator.springboot.app";
 
-        SPRING_BOOT_PROJECT_DTO = new SpringBootProjectModel(PROCESS_DTO, "springboot", javaBasePackage);
-        SPRING_BOOT_PROJECT_DTO.setAddSpringBootSecurityModule(true);
+        SPRING_BOOT_PROJECT_MODEL = new SpringBootProjectModel(PROCESS_MODEL, "springboot", javaBasePackage);
+        SPRING_BOOT_PROJECT_MODEL.setAddSpringBootSecurityModule(true);
         //projectDTOS.add(SPRING_BOOT_PROJECT_DTO);
 
-        SPRING_BOOT_JAVA_PROJECT_DTO = new JavaProjectModel(PROCESS_DTO, "springboot", javaBasePackage);
-        projectModels.add(SPRING_BOOT_JAVA_PROJECT_DTO);
+        SPRING_BOOT_JAVA_PROJECT_MODEL = new JavaProjectModel(PROCESS_MODEL, "springboot", javaBasePackage);
+        projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
-            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_DTO, clazz.getSimpleName().replace("Entity", ""), ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
+            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
             for (Field field : clazz.getDeclaredFields()) {
                 PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
                 itemModel.addProperty(propertyModel);
             }
-            SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(itemModel);
+            SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(itemModel);
         }
 
     }
 
     public static void main(String[] args) throws Exception {
-        ProcessGenerator.generate(PROCESS_DTO);
+        ProcessGenerator.generate(PROCESS_MODEL);
     }
 
 }
