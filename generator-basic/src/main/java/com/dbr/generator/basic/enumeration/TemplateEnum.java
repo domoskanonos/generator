@@ -5,14 +5,14 @@ import lombok.Getter;
 @Getter
 public enum TemplateEnum {
 
-    DTO_TEMPLATE("java/dto.vm", "", ItemType.JAVA),
-    ENTITY_TEMPLATE("java/entity.vm", "", ItemType.JAVA),
-    CLAZZ_MAPPING_TEMPLATE("java/springboot/clazz-mapping.vm", "", ItemType.JAVA),
-    SPRINGBOOT_JPA_REPOSITORY_TEMPLATE("java/springboot/jpa-repository.vm", "", ItemType.JAVA),
-    SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE("java/springboot/jpa-service-basic.vm", "", ItemType.JAVA),
-    SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE("java/springboot/rest-controller-basic.vm", "", ItemType.JAVA),
-    TYPESCRIPT_MODEL_TEMPLATE("typescript/model.vm", "model/", ItemType.TYPESCRIPT),
-    TYPESCRIPT_REMOTE_REPOSITORY("typescript/remote-repository.vm", "repo/", ItemType.TYPESCRIPT);
+    DTO_TEMPLATE("item/java/dto.vm", "", ItemType.JAVA),
+    ENTITY_TEMPLATE("item/java/entity.vm", "", ItemType.JAVA),
+    CLAZZ_MAPPING_TEMPLATE("item/java/springboot/clazz-mapping.vm", "", ItemType.JAVA),
+    SPRINGBOOT_JPA_REPOSITORY_TEMPLATE("item/java/springboot/jpa-repository.vm", "", ItemType.JAVA),
+    SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE("item/java/springboot/jpa-service-basic.vm", "", ItemType.JAVA),
+    SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE("item/java/springboot/rest-controller-basic.vm", "", ItemType.JAVA),
+    TYPESCRIPT_MODEL_TEMPLATE("item/typescript/model.vm", "model/", ItemType.TYPESCRIPT),
+    TYPESCRIPT_REMOTE_REPOSITORY("item/typescript/remote-repository.vm", "repo/", ItemType.TYPESCRIPT);
 
     private String templatePath;
 
