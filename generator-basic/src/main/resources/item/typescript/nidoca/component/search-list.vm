@@ -91,9 +91,9 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
       `;
    }
 
-   async deleteItems(${model.getModelNameLowerCase()}s: ${model.typescriptModelName}[]): Promise<void> {
-        ${model.getModelNameLowerCase()}s.forEach((${model.getModelNameLowerCase()}) => {
-             console.log('delete ${model.getModelNameLowerCase()} with id: {}', ${model.typescriptModelNameToLowerCase}.id);
+   async deleteItems(${model.typescriptModelNameToLowerCase}s: ${model.typescriptModelName}[]): Promise<void> {
+        ${model.typescriptModelNameToLowerCase}s.forEach((${model.typescriptModelNameToLowerCase}) => {
+             console.log('delete ${model.typescriptModelNameToLowerCase} with id: {}', ${model.typescriptModelNameToLowerCase}.id);
         ${model.typescriptRemoteRepositoryName}.getUniqueInstance().delete(${model.typescriptModelNameToLowerCase}.id);
         });
    }

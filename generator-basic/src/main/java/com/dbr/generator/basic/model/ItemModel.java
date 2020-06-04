@@ -179,6 +179,11 @@ public class ItemModel {
         return null;
     }
 
+
+    private String getTypescriptNidocaComponentListFilename() {
+        return new StringBuilder().append(getNameToLowerCase()).append("-list.ts").toString();
+    }
+
     private String getTypescriptNidocaComponentEditFilename() {
         return new StringBuilder().append(getNameToLowerCase()).append("-edit.ts").toString();
     }
@@ -245,6 +250,8 @@ public class ItemModel {
                 return sb.append(filePathPrefix).append(getTypescriptRemoteRepositoryFilenameWithSuffix()).toString();
             case TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
                 return sb.append(filePathPrefix).append(getTypescriptNidocaComponentEditFilename()).toString();
+            case TYPESCRIPT_NIDOCA_COMPONENT_LIST:
+                return sb.append(filePathPrefix).append(getTypescriptNidocaComponentListFilename()).toString();
             default:
                 throw new RuntimeException("error determinate file path...");
         }

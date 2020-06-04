@@ -31,7 +31,7 @@ public class GeneratorProjectMetaData {
     public static NidocaProjectModel NIDOCA_PROJECT_MODEL;
 
     static {
-        String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
+        String processParentPath = new File("C:\\_dev\\vhs\\git").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         PROCESS_MODEL = new ProcessModel(processTempPath, processParentPath, "generator");
         List<ProjectModel> projectModels = PROCESS_MODEL.getProjects();
@@ -52,7 +52,7 @@ public class GeneratorProjectMetaData {
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
             ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
-            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.TYPESCRIPT_NIDOCA_COMPONENT_EDIT);
+            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.TYPESCRIPT_NIDOCA_COMPONENT_EDIT, TemplateEnum.TYPESCRIPT_NIDOCA_COMPONENT_LIST);
             for (Field field : clazz.getDeclaredFields()) {
                 PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
                 itemModel.addProperty(propertyModel);
