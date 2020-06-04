@@ -3,6 +3,7 @@ package com.dbr.generator.basic.model;
 import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.merger.TemplateEnum;
+import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
@@ -15,6 +16,7 @@ import java.util.*;
 @NoArgsConstructor
 public class ItemModel {
 
+    private ProjectModel projectModel;
 
     private String name;
 
@@ -24,11 +26,10 @@ public class ItemModel {
 
     private ItemType itemType;
 
-    private String namespace;
-
     private List<PropertyModel> properties = new ArrayList<>();
 
-    public ItemModel(String name, ItemType itemType, TypeEnum idTypeEnum, TemplateEnum... template) {
+    public ItemModel(ProjectModel projectModel, String name, ItemType itemType, TypeEnum idTypeEnum, TemplateEnum... template) {
+        this.projectModel = projectModel;
         this.name = name;
         this.template.addAll(Arrays.asList(template));
         this.itemType = itemType;
@@ -48,7 +49,7 @@ public class ItemModel {
     }
 
     public String getJavaPackageName() {
-        return namespace;
+        return projectModel.getNamespase();
     }
 
     public String getJavaMappingClazzName() {

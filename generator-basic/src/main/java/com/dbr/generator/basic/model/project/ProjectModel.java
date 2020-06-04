@@ -15,7 +15,7 @@ public class ProjectModel {
 
     private String technicalDescriptor;
 
-    protected String javaBasePackage;
+    protected String namespase;
 
     private ProcessModel processModel;
 

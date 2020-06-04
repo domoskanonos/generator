@@ -37,8 +37,7 @@ public class GeneratorProjectMetaData {
         projectModels.add(SPRING_BOOT_JAVA_PROJECT_DTO);
 
         for (String name : new String[]{"Property", "Item", "Project", "Process"}) {
-            ItemModel itemModel = new ItemModel(name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
-            itemModel.setNamespace(SPRING_BOOT_JAVA_PROJECT_DTO.getJavaBasePackage());
+            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_DTO, name, ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.DTO_TEMPLATE, TemplateEnum.CLAZZ_MAPPING_TEMPLATE, TemplateEnum.SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE);
             SPRING_BOOT_JAVA_PROJECT_DTO.getItems().add(itemModel);
         }
 

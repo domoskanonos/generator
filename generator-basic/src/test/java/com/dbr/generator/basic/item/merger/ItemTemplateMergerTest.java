@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.item.merger;
 
+import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.enumeration.ItemType;
 import com.dbr.generator.basic.enumeration.TypeEnum;
@@ -19,7 +20,7 @@ public class ItemTemplateMergerTest {
 
     @Test
     public void mergeAllTemplates() throws IOException {
-        ItemModel item = new ItemModel("Item", ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.values());
+        ItemModel item = new ItemModel(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_DTO, "Item", ItemType.JAVA, TypeEnum.TYPE_LONG, TemplateEnum.values());
 
         for (TemplateEnum templateEnum : item.getTemplate()) {
             String content = new ItemTemplateMerger().create(templateEnum, item);
