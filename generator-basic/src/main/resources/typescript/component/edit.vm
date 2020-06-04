@@ -1,0 +1,73 @@
+#set( $escapeDollar = '$' )
+import { I18nService } from "@domoskanonos/frontend-basis";
+import { InputfieldType } from "@domoskanonos/nidoca-core";
+import {
+NidocaAbstractComponentEdit
+} from '@domoskanonos/nidoca-app';
+import {customElement, html, property, TemplateResult} from 'lit-element';
+import {${clazzTypescriptWrapper.getModelName()}} from '../../model/${clazzTypescriptWrapper.getModelNameLowerCase()}-model';
+import {${clazzTypescriptWrapper.getModelName()}RemoteRepository} from "../../repo/${clazzTypescriptWrapper.getModelNameLowerCase()}-remote-repository";
+
+@customElement('${clazzTypescriptWrapper.getEditComponentTagName()}')
+export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends NidocaAbstractComponentEdit<${clazzTypescriptWrapper.getModelName()}> {
+
+    getDialogDeleteTitle(): string {
+        return I18nService.getUniqueInstance().getValue("${clazzTypescriptWrapper.getI18nEditDialogDeleteTitleKey()}");
+    }
+
+    getDialogDeleteDescription(): string {
+        return I18nService.getUniqueInstance().getValue("${clazzTypescriptWrapper.getI18nEditDialogDeleteDescriptionKey()}");
+    }
+
+    async getItemById(identifier: any): Promise<${clazzTypescriptWrapper.getModelName()}> {
+        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().findById(identifier);
+    }
+
+    async executeSave(item: ${clazzTypescriptWrapper.getModelName()}): Promise<${clazzTypescriptWrapper.getModelName()}> {
+        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().persist(item);
+    }
+
+    async executeUpdate(identifier:any, item: ${clazzTypescriptWrapper.getModelName()}): Promise<${clazzTypescriptWrapper.getModelName()}> {
+        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().update(identifier, item);
+    }
+
+    async executeDelete(identifier: any): Promise<void> {
+        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().delete(identifier);
+    }
+
+    #foreach( $property in $clazzTypescriptWrapper.properties )
+    #if(!${property.idField})
+    @property()
+    ${property.fieldName} : ${property.typeName} = ${property.defaultValue};
+    #end
+    #end
+
+    renderFormFields(): TemplateResult {
+        return html`
+            #foreach( $property in $clazzTypescriptWrapper.properties )
+            #if(!${property.idField})
+            <nidoca-inputfield
+                    ${property.wcAtomicInputfieldValueProperty}="$escapeDollar{this.${property.fieldName}}"
+                    name="${property.fieldName}"
+                    inputfieldType="${property.wcAtomicInputfieldType}"
+                    label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+            ></nidoca-inputfield>
+            #end
+            #end
+        `;
+    }
+
+    itemToProperties(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}): void {
+        #foreach( $property in $clazzTypescriptWrapper.properties )
+        #if(!${property.idField})
+        this.${property.fieldName} = ${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.fieldName};
+        #end
+        #end
+    }
+
+    getIdentifier(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}): any {
+        return ${clazzTypescriptWrapper.getModelNameLowerCase()}.${clazzTypescriptWrapper.getIdFieldName()};
+    }
+
+
+}

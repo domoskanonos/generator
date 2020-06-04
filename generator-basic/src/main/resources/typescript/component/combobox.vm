@@ -1,0 +1,21 @@
+import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
+import { customElement } from 'lit-element';
+import {${clazzTypescriptWrapper.getModelName()}RemoteRepository} from "../../repo/${clazzTypescriptWrapper.getModelNameLowerCase()}-remote-repository";
+
+@customElement('${clazzTypescriptWrapper.getComboboxComponentTagName()}')
+export class ${clazzTypescriptWrapper.getModelName()}Combobox extends NidocaInputfield {
+   constructor() {
+      super();
+      this.inputfieldType = InputfieldType.COMBOBOX;
+         ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance()
+         .getAll()
+         .then((value) => {
+            this.options = NidocaInputfield.object2KeyValueDataArray(
+               value,
+               'id',
+               'id',
+               true
+            );
+         });
+   }
+}
