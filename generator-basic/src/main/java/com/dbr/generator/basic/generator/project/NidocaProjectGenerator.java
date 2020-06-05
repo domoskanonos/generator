@@ -12,8 +12,8 @@ public class NidocaProjectGenerator extends ProjectGenerator<NidocaProjectModel>
     public void execute(NidocaProjectModel model) throws Exception {
         GeneratorUtil.deleteFile(model.getNidocaProjectFolder());
         File nidocaTemplateZipFile = GeneratorUtil.copyUrlToTempFolder(model.getNidocaTemplateZipUrl(), model.getNidocaTemplateZipFile());
-        GeneratorUtil.unzipFile(nidocaTemplateZipFile, model.getProcessFolder());
-        FileUtils.moveDirectory(new File(model.getProcessFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
+        GeneratorUtil.unzipFile(nidocaTemplateZipFile, model.getProcessTempFolder());
+        FileUtils.moveDirectory(new File(model.getProcessTempFolder(), model.getNidocaTemplateFilename()), model.getNidocaProjectFolder());
         super.execute(model);
     }
 

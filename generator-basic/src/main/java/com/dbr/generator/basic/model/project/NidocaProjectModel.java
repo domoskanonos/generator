@@ -31,6 +31,9 @@ public class NidocaProjectModel extends ProjectModel {
         return new File(getProcessModel().getProcessFolder(), getNidocaProjectArtifactId());
     }
 
+    public File getProcessTempFolder() {
+        return getProcessModel().getProcessTempFolder();
+    }
 
     public File getProcessFolder() {
         return getProcessModel().getProcessFolder();
