@@ -45,7 +45,7 @@ public class GeneratorProjectMetaData {
         SPRING_BOOT_JAVA_PROJECT_MODEL = new JavaProjectModel(PROCESS_MODEL, "springboot", javaBasePackage);
         //projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
 
-        NIDOCA_PROJECT_MODEL = new NidocaProjectModel(PROCESS_MODEL, "nidoca", TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_INDEX, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT);
+        NIDOCA_PROJECT_MODEL = new NidocaProjectModel(PROCESS_MODEL, "nidoca", TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_INDEX, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_I18N);
         projectModels.add(NIDOCA_PROJECT_MODEL);
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {

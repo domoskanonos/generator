@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum TemplateEnum {
 
+    PROJECT_TYPESCRIPT_NIDOCA_I18N("project/typescript/nidoca/i18n.vm", "i18n/", "message-de", LanguageType.JSON),
     PROJECT_TYPESCRIPT_NIDOCA_INDEX("project/typescript/nidoca/index.vm", "", "index", LanguageType.TYPESCRIPT),
     PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE("project/typescript/nidoca/page-service.vm", "service/", "page-service", LanguageType.TYPESCRIPT),
     PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT("project/typescript/nidoca/page-default.vm", "pages/", "page-default", LanguageType.TYPESCRIPT),

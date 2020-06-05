@@ -8,14 +8,6 @@ import {PropertyRemoteRepository} from "../repo/property-repository";
 @customElement('property-edit-component')
 export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property> {
 
-    getDialogDeleteTitle(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
-    }
-
-    getDialogDeleteDescription(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
-    }
-
     async getItemById(identifier: any): Promise<Property> {
         return PropertyRemoteRepository.getUniqueInstance().findById(identifier);
     }
@@ -53,43 +45,43 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
                     .value="${this.name}"
                     name="name"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_name')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.propertyType}"
                     name="propertyType"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_propertyType')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.idProperty}"
                     name="idProperty"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_idProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.searchable}"
                     name="searchable"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_searchable')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.nullable}"
                     name="nullable"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_nullable')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.useJPAIdClazz}"
                     name="useJPAIdClazz"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_useJPAIdClazz')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.length}"
                     name="length"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_length')}"
             ></nidoca-inputfield>
         `;
     }

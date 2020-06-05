@@ -9,14 +9,6 @@ import {${model.typescriptRemoteRepositoryName}} from "${model.typescriptRemoteR
 @customElement('${model.getNidocaComponentEditTagName()}')
 export class ${model.typescriptModelName}EditComponent extends NidocaAbstractComponentEdit<${model.typescriptModelName}> {
 
-    getDialogDeleteTitle(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
-    }
-
-    getDialogDeleteDescription(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
-    }
-
     async getItemById(identifier: any): Promise<${model.typescriptModelName}> {
         return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().findById(identifier);
     }
@@ -48,7 +40,7 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
                     .value="$escapeDollar{this.${property.name}}"
                     name="${property.name}"
                     inputfieldType="${property.propertyType.typescriptNidocaInputfieldType}"
-                    label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.i18nEditName}')}"
             ></nidoca-inputfield>
             #end
             #end

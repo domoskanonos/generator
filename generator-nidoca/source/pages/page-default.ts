@@ -62,28 +62,28 @@ export abstract class DefaultPage extends NidocaTemplate {
             <nidoca-navigation-link
                slot="links"
                icon="search"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nSearchListKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("property_nav_list")}"
                href="propertylist"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
             <nidoca-navigation-link
                slot="links"
                icon="search"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nSearchListKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("item_nav_list")}"
                href="itemlist"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
             <nidoca-navigation-link
                slot="links"
                icon="search"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nSearchListKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("project_nav_list")}"
                href="projectlist"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
             <nidoca-navigation-link
                slot="links"
                icon="search"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nSearchListKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("process_nav_list")}"
                href="processlist"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
@@ -95,28 +95,28 @@ export abstract class DefaultPage extends NidocaTemplate {
              <nidoca-navigation-link
                slot="links"
                icon="add"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nAddKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("property_nav_edit")}"
                href="propertyedit"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
              <nidoca-navigation-link
                slot="links"
                icon="add"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nAddKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("item_nav_edit")}"
                href="itemedit"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
              <nidoca-navigation-link
                slot="links"
                icon="add"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nAddKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("project_nav_edit")}"
                href="projectedit"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
              <nidoca-navigation-link
                slot="links"
                icon="add"
-               text="${I18nService.getUniqueInstance().getValue("${model.getI18nAddKey()}")}"
+               text="${I18nService.getUniqueInstance().getValue("process_nav_edit")}"
                href="processedit"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>

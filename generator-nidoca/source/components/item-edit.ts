@@ -8,14 +8,6 @@ import {ItemRemoteRepository} from "../repo/item-repository";
 @customElement('item-edit-component')
 export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
 
-    getDialogDeleteTitle(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
-    }
-
-    getDialogDeleteDescription(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
-    }
-
     async getItemById(identifier: any): Promise<Item> {
         return ItemRemoteRepository.getUniqueInstance().findById(identifier);
     }
@@ -49,31 +41,31 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     .value="${this.projectEntity}"
                     name="projectEntity"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_projectEntity')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.name}"
                     name="name"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_name')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.idTypeEnum}"
                     name="idTypeEnum"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_idTypeEnum')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.properties}"
                     name="properties"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
             ></nidoca-inputfield>
         `;
     }

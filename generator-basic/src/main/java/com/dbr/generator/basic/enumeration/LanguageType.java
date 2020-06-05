@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum LanguageType {
 
-    JAVA("java", "src/main/java/"), TYPESCRIPT("ts", "source/");
+    JAVA("java", "src/main/java/"), TYPESCRIPT("ts", "source/"), JSON("json", "source/");
 
     private String fileEnding;
     private String sourceFolderPath;

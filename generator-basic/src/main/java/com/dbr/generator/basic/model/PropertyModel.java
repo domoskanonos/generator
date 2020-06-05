@@ -3,11 +3,11 @@ package com.dbr.generator.basic.model;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.util.StringUtil;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class PropertyModel {
+
+    private ItemModel itemModel;
 
     private String name;
     private TypeEnum propertyType;
@@ -17,12 +17,13 @@ public class PropertyModel {
     private boolean useJPAIdClazz;
     private Integer length;
 
-    public PropertyModel(String name) {
+    public PropertyModel(ItemModel itemModel, String name) {
+        this.itemModel = itemModel;
         this.name = name;
     }
 
-    public PropertyModel(String name, Integer length) {
-        this.name = name;
+    public PropertyModel(ItemModel itemModel, String name, Integer length) {
+        this(itemModel, name);
         this.length = length;
     }
 
@@ -47,6 +48,14 @@ public class PropertyModel {
 
     private String getColumnName() {
         return StringUtil.toDatabaseName(name);
+    }
+
+    public String getI18nEditName() {
+        return new StringBuilder().append(getI18nPropertyPrefix()).append(this.name).toString();
+    }
+
+    private String getI18nPropertyPrefix() {
+        return new StringBuilder().append(this.itemModel.getNameToLowerCase()).append("_property_").toString();
     }
 
 }

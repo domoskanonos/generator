@@ -8,14 +8,6 @@ import {ProcessRemoteRepository} from "../repo/process-repository";
 @customElement('process-edit-component')
 export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
 
-    getDialogDeleteTitle(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
-    }
-
-    getDialogDeleteDescription(): string {
-        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
-    }
-
     async getItemById(identifier: any): Promise<Process> {
         return ProcessRemoteRepository.getUniqueInstance().findById(identifier);
     }
@@ -47,25 +39,25 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
                     .value="${this.projectEntities}"
                     name="projectEntities"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_projectEntities')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.processTempPath}"
                     name="processTempPath"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_processTempPath')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.processParentPath}"
                     name="processParentPath"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_processParentPath')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_technicalDescriptor')}"
             ></nidoca-inputfield>
         `;
     }

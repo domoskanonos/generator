@@ -103,7 +103,7 @@ export abstract class DefaultPage extends NidocaTemplate {
             <nidoca-navigation-link
                slot="links"
                icon="search"
-               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${model.getI18nSearchListKey()}")}"
+               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${model.i18nNavigationListName}")}"
                href="${model.nidocaPageListUrl}"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
@@ -119,7 +119,7 @@ export abstract class DefaultPage extends NidocaTemplate {
              <nidoca-navigation-link
                slot="links"
                icon="add"
-               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${model.getI18nAddKey()}")}"
+               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${model.i18nNavigationEditName}")}"
                href="${model.nidocaPageEditUrl}"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>

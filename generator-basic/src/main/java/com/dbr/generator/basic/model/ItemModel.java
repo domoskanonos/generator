@@ -221,6 +221,26 @@ public class ItemModel {
         return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST.getFilename(getNameToLowerCase());
     }
 
+    public String getI18nEditName() {
+        return new StringBuilder().append(getI18nPrefix()).append("edit").toString();
+    }
+
+    public String getI18nListName() {
+        return new StringBuilder().append(getI18nPrefix()).append("list").toString();
+    }
+
+    public String getI18nNavigationListName() {
+        return new StringBuilder().append(getI18nPrefix()).append("nav_list").toString();
+    }
+
+    public String getI18nNavigationEditName() {
+        return new StringBuilder().append(getI18nPrefix()).append("nav_edit").toString();
+    }
+
+    private String getI18nPrefix() {
+        return new StringBuilder().append(getNameToLowerCase()).append("_").toString();
+    }
+
     public String getFileSuffix(TemplateEnum templateEnum) {
         switch (templateEnum) {
             case ITEM_JAVA_DTO_TEMPLATE:
