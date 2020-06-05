@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.model;
 
-import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
@@ -144,25 +144,12 @@ public class ItemModel {
         return name.toLowerCase();
     }
 
-    public String getTypescriptModelFilenameWithSuffix() {
-        return new StringBuilder().append(getTypescriptModelFilename()).append(".ts").toString();
-    }
-
     public String getTypescriptModelFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).append("-model").toString();
+        return TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFileSuffix(getNameToLowerCase());
     }
 
     public String getTypescriptModelPath() {
-        return "../" + TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilePathPrefix() + getTypescriptModelFilename();
-    }
-
-
-    public String getTypescriptRemoteRepositoryFilenameWithSuffix() {
-        return new StringBuilder().append(getTypescriptRemoteRepositoryFilename()).append(".ts").toString();
-    }
-
-    public String getTypescriptRemoteRepositoryFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).append("-repository").toString();
+        return "../" + TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilePrefix() + getTypescriptModelFilename();
     }
 
     public String getTypescriptRemoteRepositoryName() {
@@ -179,13 +166,12 @@ public class ItemModel {
         return null;
     }
 
-
     private String getTypescriptNidocaComponentListFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).append("-list.ts").toString();
+        return new StringBuilder().append(getNameToLowerCase()).toString();
     }
 
     private String getTypescriptNidocaComponentEditFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).append("-edit.ts").toString();
+        return new StringBuilder().append(getNameToLowerCase()).toString();
     }
 
 
@@ -221,30 +207,27 @@ public class ItemModel {
     }
 
     private String getFileSuffix(TemplateEnum templateEnum) {
-        StringBuilder sb = new StringBuilder();
-        sb = sb.append(templateEnum.getLanguageType().getSourceFolderPath());
-        String filePathPrefix = templateEnum.getFilePathPrefix();
         switch (templateEnum) {
             case ITEM_JAVA_DTO_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaDTOClazzName())).append(".java").toString();
+                return templateEnum.getFileSuffix(GeneratorUtil.getPackagePath(getJavaDTOClazzName()));
             case ITEM_JAVA_ENTITY_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaJPAClazzName())).append(".java").toString();
+                return templateEnum.getFileSuffix(GeneratorUtil.getPackagePath(getJavaJPAClazzName()));
             case ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaMappingClazzName())).append(".java").toString();
+                return templateEnum.getFileSuffix(GeneratorUtil.getPackagePath(getJavaMappingClazzName()));
             case ITEM_JAVA_SPRINGBOOT_JPA_REPOSITORY_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName())).append(".java").toString();
+                return templateEnum.getFileSuffix(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName()));
             case ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaServiceBasicClazzName())).append(".java").toString();
+                return templateEnum.getFileSuffix(GeneratorUtil.getPackagePath(getJavaServiceBasicClazzName()));
             case ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE:
-                return sb.append(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName())).append(".java").toString();
+                return templateEnum.getFileSuffix(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
-                return sb.append(filePathPrefix).append(getTypescriptModelFilenameWithSuffix()).toString();
+                return templateEnum.getFileSuffix(getNameToLowerCase());
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
-                return sb.append(filePathPrefix).append(getTypescriptRemoteRepositoryFilenameWithSuffix()).toString();
+                return templateEnum.getFileSuffix(getTypescriptRemoteRepositoryName());
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
-                return sb.append(filePathPrefix).append(getTypescriptNidocaComponentEditFilename()).toString();
+                return templateEnum.getFileSuffix(getTypescriptNidocaComponentEditFilename());
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
-                return sb.append(filePathPrefix).append(getTypescriptNidocaComponentListFilename()).toString();
+                return templateEnum.getFileSuffix(getTypescriptNidocaComponentListFilename());
             default:
                 throw new RuntimeException("error determinate file path...");
         }

@@ -4,7 +4,7 @@ import { I18nService } from "@domoskanonos/frontend-basis";
 import {InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
-import {${model.typescriptRemoteRepositoryName}} from "../repo/${model.typescriptRemoteRepositoryFilename}";
+import {${model.typescriptRemoteRepositoryName}} from "../repo/${model.filename}";
 
 @customElement('${model.getEditComponentTagName()}')
 export class ${model.typescriptModelName}EditComponent extends NidocaAbstractComponentEdit<${model.typescriptModelName}> {

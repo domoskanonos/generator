@@ -1,16 +1,18 @@
 package com.dbr.generator.basic.enumeration;
 
-public enum LanguageType {
-    JAVA, TYPESCRIPT;
+import lombok.Getter;
 
-    public String getSourceFolderPath() {
-        switch (this) {
-            case JAVA:
-                return "src/main/java/";
-            case TYPESCRIPT:
-                return "source/";
-            default:
-                return "";
-        }
+@Getter
+public enum LanguageType {
+
+    JAVA("java", "src/main/java/"), TYPESCRIPT("ts", "source/");
+
+    private String fileEnding;
+    private String sourceFolderPath;
+
+    LanguageType(String fileEnding, String sourceFolderPath) {
+        this.fileEnding = fileEnding;
+        this.sourceFolderPath = sourceFolderPath;
     }
+
 }

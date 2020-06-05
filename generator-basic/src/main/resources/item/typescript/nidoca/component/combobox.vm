@@ -1,6 +1,6 @@
 import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
-import {${model.typescriptRemoteRepositoryName}} from "../../repo/${model.typescriptRemoteRepositoryFilename}";
+import {${model.typescriptRemoteRepositoryName}} from "../../repo/${model.filename}";
 
 @customElement('${model.getComboboxComponentTagName()}')
 export class ${model.typescriptModelName}Combobox extends NidocaInputfield {

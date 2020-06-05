@@ -37,17 +37,13 @@ public class ProjectModel {
         return new File(getProjectFolder(), getFileSuffix(projectTemplateEnum));
     }
 
-    private String getFileSuffix(TemplateEnum projectTemplateEnum) {
-        StringBuilder sb = new StringBuilder();
-        sb = sb.append(projectTemplateEnum.getLanguageType().getSourceFolderPath());
-        String filePathPrefix = projectTemplateEnum.getFilePathPrefix();
-        switch (projectTemplateEnum) {
+    private String getFileSuffix(TemplateEnum templateEnum) {
+        switch (templateEnum) {
             case PROJECT_TYPESCRIPT_NIDOCA_PAGE_SERVICE:
-                break;
+                return templateEnum.getFileSuffix("ddd.ts");
             default:
-                throw new RuntimeException("error determinate file suffix path for template...");
+                throw new RuntimeException("error determinate file path...");
         }
-        return sb.toString();
 
     }
 }
