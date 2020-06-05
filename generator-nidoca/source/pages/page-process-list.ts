@@ -13,7 +13,7 @@ export class ProcessSearchListPage extends NidocaAbstractPageSearchList {
    }
 
    getNavigationTitle(): string {
-      return I18nService.getUniqueInstance().getValue('${model.getI18nSearchListPageTitleKey()}');
+      return I18nService.getUniqueInstance().getValue('process_nav_edit');
    }
 
    getAddTitle(): string {

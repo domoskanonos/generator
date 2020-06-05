@@ -6,7 +6,7 @@ export class ProcessRemoteRepository extends BasicRemoteRepository<Process, numb
     private static uniqueInstance: ProcessRemoteRepository;
 
     constructor() {
-        super(HttpClientService.getUniqueInstance(),"PROCESS");
+        super(HttpClientService.getUniqueInstance(),"/PROCESS");
     }
 
     static getUniqueInstance() {

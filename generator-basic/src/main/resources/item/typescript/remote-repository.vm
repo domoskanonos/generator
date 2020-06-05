@@ -6,7 +6,7 @@ export class ${model.typescriptRemoteRepositoryName} extends BasicRemoteReposito
     private static uniqueInstance: ${model.typescriptRemoteRepositoryName};
 
     constructor() {
-        super(HttpClientService.getUniqueInstance(),"${model.javaRestControllerPrefix}");
+        super(HttpClientService.getUniqueInstance(),"/${model.javaRestControllerPrefix}");
     }
 
     static getUniqueInstance() {

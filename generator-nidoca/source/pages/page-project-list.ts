@@ -13,7 +13,7 @@ export class ProjectSearchListPage extends NidocaAbstractPageSearchList {
    }
 
    getNavigationTitle(): string {
-      return I18nService.getUniqueInstance().getValue('${model.getI18nSearchListPageTitleKey()}');
+      return I18nService.getUniqueInstance().getValue('project_nav_edit');
    }
 
    getAddTitle(): string {

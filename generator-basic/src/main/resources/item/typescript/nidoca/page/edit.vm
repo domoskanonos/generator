@@ -16,7 +16,7 @@ export class ${model.typescriptModelName}EditPage extends DefaultPage {
    constructor() {
       super();
       this.navigationTitle = I18nService.getUniqueInstance().getValue(
-         '${model.getI18nEditPageTitleKey()}'
+         '${model.i18nNavigationEditName}'
       );
    }
 

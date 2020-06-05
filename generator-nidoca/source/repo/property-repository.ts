@@ -6,7 +6,7 @@ export class PropertyRemoteRepository extends BasicRemoteRepository<Property, nu
     private static uniqueInstance: PropertyRemoteRepository;
 
     constructor() {
-        super(HttpClientService.getUniqueInstance(),"PROPERTY");
+        super(HttpClientService.getUniqueInstance(),"/PROPERTY");
     }
 
     static getUniqueInstance() {

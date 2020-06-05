@@ -6,7 +6,7 @@ export class ProjectRemoteRepository extends BasicRemoteRepository<Project, numb
     private static uniqueInstance: ProjectRemoteRepository;
 
     constructor() {
-        super(HttpClientService.getUniqueInstance(),"PROJECT");
+        super(HttpClientService.getUniqueInstance(),"/PROJECT");
     }
 
     static getUniqueInstance() {

@@ -15,7 +15,7 @@ export class ProcessEditPage extends DefaultPage {
    constructor() {
       super();
       this.navigationTitle = I18nService.getUniqueInstance().getValue(
-         '${model.getI18nEditPageTitleKey()}'
+         'process_nav_edit'
       );
    }
 

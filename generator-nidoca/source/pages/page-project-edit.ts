@@ -15,7 +15,7 @@ export class ProjectEditPage extends DefaultPage {
    constructor() {
       super();
       this.navigationTitle = I18nService.getUniqueInstance().getValue(
-         '${model.getI18nEditPageTitleKey()}'
+         'project_nav_edit'
       );
    }
 

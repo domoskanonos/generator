@@ -6,7 +6,7 @@ export class ItemRemoteRepository extends BasicRemoteRepository<Item, number> {
     private static uniqueInstance: ItemRemoteRepository;
 
     constructor() {
-        super(HttpClientService.getUniqueInstance(),"ITEM");
+        super(HttpClientService.getUniqueInstance(),"/ITEM");
     }
 
     static getUniqueInstance() {

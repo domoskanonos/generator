@@ -15,7 +15,7 @@ export class ItemEditPage extends DefaultPage {
    constructor() {
       super();
       this.navigationTitle = I18nService.getUniqueInstance().getValue(
-         '${model.getI18nEditPageTitleKey()}'
+         'item_nav_edit'
       );
    }
 
