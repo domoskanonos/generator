@@ -1,16 +1,21 @@
 package com.dbr.generator.basic.generator.project;
 
+import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.merger.ItemTemplateMerger;
+import com.dbr.generator.basic.merger.ProjectTemplateMerger;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
-import com.dbr.generator.basic.merger.ItemTemplateMerger;
-import com.dbr.generator.basic.enumeration.ItemTemplateEnum;
 
 public class ProjectGenerator<T extends ProjectModel> {
 
     public void execute(T model) throws Exception {
+        for (TemplateEnum projectTemplateEnum : model.getTemplate()) {
+            new ProjectTemplateMerger().writeDown(projectTemplateEnum, model);
+        }
+
         for (ItemModel itemModel : model.getItems()) {
-            for (ItemTemplateEnum itemTemplateEnum : itemModel.getTemplate()) {
-                new ItemTemplateMerger().writeDown(model.getProjectFolder(), itemTemplateEnum, itemModel);
+            for (TemplateEnum templateEnum : itemModel.getTemplate()) {
+                new ItemTemplateMerger().writeDown(model.getProjectFolder(), templateEnum, itemModel);
             }
         }
     }

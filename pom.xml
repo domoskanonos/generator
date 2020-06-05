@@ -1328,7 +1328,6 @@
 
     <module>generator-springboot</module>
 
-    <module>generator-nidoca</module>
 
 
   </modules>

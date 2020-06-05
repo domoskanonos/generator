@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.enumeration.ProjectTemplateEnum;
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,10 +28,10 @@ public class ProjectEntity {
     @JoinTable(name = "PROJECT_ITEM", joinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
     private List<ItemEntity> itemEntities = new ArrayList<>();
 
-    @ElementCollection(targetClass = ProjectTemplateEnum.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "PROJECT_TEMPLATE", joinColumns = @JoinColumn(name = "PROJECT_ID", referencedColumnName = "ID"))
     @Enumerated(EnumType.STRING)
-    private Set<ProjectTemplateEnum> template = new HashSet<>();
+    private Set<TemplateEnum> template = new HashSet<>();
 
     @Column(name = "NAME")
     private String technicalDescriptor;
