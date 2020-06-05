@@ -16,24 +16,24 @@ import './components/process-edit';
 import './components/process-list';
 
 import './pages/page-dashboard';
-import './page-settings';
-import './page-register';
-import './page-register-ok';
-import './page-login';
-import './page-logout';
-import './page-change-password';
-import './page-reset-password';
-import './page-terms-of-use';
-import './page-default';
+import './pages/page-settings';
+import './pages/page-register';
+import './pages/page-register-ok';
+import './pages/page-login';
+import './pages/page-logout';
+import './pages/page-change-password';
+import './pages/page-reset-password';
+import './pages/page-terms-of-use';
+import './pages/page-default';
 
-import './pages/property-edit';
-import './pages/property-list';
-import './pages/item-edit';
-import './pages/item-list';
-import './pages/project-edit';
-import './pages/project-list';
-import './pages/process-edit';
-import './pages/process-list';
+import './pages/page-property-edit';
+import './pages/page-property-list';
+import './pages/page-item-edit';
+import './pages/page-item-list';
+import './pages/page-project-edit';
+import './pages/page-project-list';
+import './pages/page-process-edit';
+import './pages/page-process-list';
 
 
 import './app';
