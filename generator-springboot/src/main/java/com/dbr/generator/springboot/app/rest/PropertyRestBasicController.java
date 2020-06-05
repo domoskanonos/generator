@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.rest;
 
 import com.dbr.generator.springboot.app.dto.PropertyDTO;
-import com.dbr.generator.springboot.app.service.PropertyBasicService;
+import com.dbr.generator.springboot.app.service.PropertySearchService;
 
 import lombok.RequiredArgsConstructor;
 

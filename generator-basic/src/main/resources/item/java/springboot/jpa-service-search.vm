@@ -1,4 +1,4 @@
-package ${packageName};
+package ${model.javaServiceBasicPackageName};
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -6,11 +6,12 @@ import org.springframework.stereotype.Service;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ${systemPackageName}.general.builder.PageBuilder;
+import ${model.javaPackageName}.system.jpa.entities.builder.PageBuilder;
 
-import ${basePackageName}.dto.${model.javaDTOClazzSimpleName};
-import ${basePackageName}.entity.${jpaClazzSimpleName};
-import ${basePackageName}.mapping.${jpaClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping;
+import ${model.javaDTOClazzName};
+import ${model.javaJPAClazzName};
+import ${model.javaJPARepositoryClazzName};
+import ${model.javaMappingClazzName};
 
 import javax.persistence.*;
 import javax.persistence.criteria.*;
@@ -24,24 +25,24 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * This service class provides basic functionality for the hibernate entity <code>${jpaClazzSimpleName}</code>.
+ * This service class provides basic functionality for the hibernate entity <code>${model.javaJPAClazzSimpleName}</code>.
  * The return value of each function always returns a mapped <code>${model.javaDTOClazzSimpleName}</code> object,
  * instead of the original hibernate entity.
  *
  */
 @Service
 @RequiredArgsConstructor
-public class ${model.javaServiceBasicClazzName} {
+public class ${model.javaServiceSearchClazzSimpleName} {
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
     private final EntityManager em;
 
-    private final ${jpaClazzSimpleName}${model.javaDTOClazzSimpleName}Mapping mapping;
+    private final ${model.javaMappingClazzSimpleName} mapping;
 
     /**
      * Returns a pagination object with a list of <code>${model.javaDTOClazzSimpleName}</code> objects restricted to the search criteria.
-     * This list corresponds to the list of <code>${jpaClazzSimpleName}</code> entities from the database.
+     * This list corresponds to the list of <code>${model.javaJPAClazzSimpleName}</code> entities from the database.
      * Result will be sorted according to the given sorting string.
      * Result is restricted according to the paging criteria passed (page, size).
      *
@@ -56,15 +57,15 @@ public class ${model.javaServiceBasicClazzName} {
     @Transactional
     public Page<${model.javaDTOClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end) {
         log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $property in $properties )#if($property.isSearchable()){} #end#end", page, size, sort #foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end);
-        return new PageBuilder<${jpaClazzSimpleName}, ${model.javaDTOClazzSimpleName}>(page, size, sort) {
+        return new PageBuilder<${model.javaJPAClazzSimpleName}, ${model.javaDTOClazzSimpleName}>(page, size, sort) {
 
             @Override
-            protected List<${model.javaDTOClazzSimpleName}> toDTOs(List<${jpaClazzSimpleName}> resultList) {
+            protected List<${model.javaDTOClazzSimpleName}> toDTOs(List<${model.javaJPAClazzSimpleName}> resultList) {
                 return mapping.toDTOs(resultList);
             }
 
             @Override
-            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<${jpaClazzSimpleName}> cq, Root<${jpaClazzSimpleName}> entityRoot) {
+            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<${model.javaJPAClazzSimpleName}> cq, Root<${model.javaJPAClazzSimpleName}> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
                 #foreach( $property in $properties )
                 #if( !${generatorUtil.isIdField($property.field)})
@@ -91,6 +92,6 @@ public class ${model.javaServiceBasicClazzName} {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }
             }
-        }.build(${jpaClazzSimpleName}.class, em);
+        }.build(${model.javaJPAClazzSimpleName}.class, em);
     }
 }

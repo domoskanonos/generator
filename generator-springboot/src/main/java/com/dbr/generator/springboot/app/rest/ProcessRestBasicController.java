@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.rest;
 
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
-import com.dbr.generator.springboot.app.service.ProcessBasicService;
+import com.dbr.generator.springboot.app.service.ProcessSearchService;
 
 import lombok.RequiredArgsConstructor;
 

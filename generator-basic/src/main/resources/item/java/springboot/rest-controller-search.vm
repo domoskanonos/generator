@@ -1,4 +1,4 @@
-package ${packageName};
+package ${model.javaRestControllerPackageName};
 
 import ${model.javaDTOClazzName};
 import ${model.javaServiceBasicClazzName};
@@ -19,12 +19,12 @@ import java.util.*;
 @Api(tags = "${prefixPath}")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(${javaClazzSimpleName}.PATH_PREFIX)
-public class ${javaClazzSimpleName} {
+@RequestMapping(${model.javaRestControllerSearchClazzSimpleName}.PATH_PREFIX)
+public class ${model.javaRestControllerSearchClazzSimpleName} {
 
-    public static final String PATH_PREFIX = "/${prefixPath}";
+public static final String PATH_PREFIX = "/${model.javaRestControllerPrefix}";
 
-    private final ${model.javaServiceBasicClazzSimpleName} service;
+    private final ${model.javaServiceSearchClazzSimpleName} service;
 
     private Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
 
@@ -37,8 +37,5 @@ public class ${javaClazzSimpleName} {
         @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end){
         return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end));
     }
-
-${fileUploadMethods}
-
 
 }

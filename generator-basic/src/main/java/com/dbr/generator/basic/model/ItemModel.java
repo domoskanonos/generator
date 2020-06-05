@@ -100,6 +100,10 @@ public class ItemModel {
         return new StringBuilder().append(getJavaServiceBasicPackageName()).append(".").append(getJavaServiceBasicClazzSimpleName()).toString();
     }
 
+    public String getJavaServiceSearchClazzName() {
+        return new StringBuilder().append(getJavaServiceBasicPackageName()).append(".").append(getJavaServiceSearchClazzSimpleName()).toString();
+    }
+
     public String getJavaServiceBasicPackageName() {
         return new StringBuilder().append(getJavaPackageName()).append(".service").toString();
     }
@@ -108,16 +112,28 @@ public class ItemModel {
         return new StringBuilder().append(name).append("BasicService").toString();
     }
 
-    public String getJavaRestControllerBasicClazzName() {
-        return new StringBuilder().append(getJavaRestControllerBasicPackageName()).append(".").append(getJavaRestControllerBasicClazzSimpleName()).toString();
+    public String getJavaServiceSearchClazzSimpleName() {
+        return new StringBuilder().append(name).append("SearchService").toString();
     }
 
-    public String getJavaRestControllerBasicPackageName() {
+    public String getJavaRestControllerBasicClazzName() {
+        return new StringBuilder().append(getJavaRestControllerPackageName()).append(".").append(getJavaRestControllerBasicClazzSimpleName()).toString();
+    }
+
+    public String getJavaRestControllerSearchClazzName() {
+        return new StringBuilder().append(getJavaRestControllerPackageName()).append(".").append(getJavaRestControllerSearchClazzSimpleName()).toString();
+    }
+
+    public String getJavaRestControllerPackageName() {
         return new StringBuilder().append(getJavaPackageName()).append(".rest").toString();
     }
 
     public String getJavaRestControllerBasicClazzSimpleName() {
         return new StringBuilder().append(name).append("RestBasicController").toString();
+    }
+
+    public String getJavaRestControllerSearchClazzSimpleName() {
+        return new StringBuilder().append(name).append("RestSearchController").toString();
     }
 
     public String getJavaRestControllerPrefix() {
@@ -255,6 +271,10 @@ public class ItemModel {
                 return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaServiceBasicClazzName()));
             case ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE:
                 return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName()));
+            case ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE:
+                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaServiceSearchClazzName()));
+            case ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE:
+                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerSearchClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:

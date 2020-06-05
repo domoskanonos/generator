@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.rest;
 
 import com.dbr.generator.springboot.app.dto.ItemDTO;
-import com.dbr.generator.springboot.app.service.ItemBasicService;
+import com.dbr.generator.springboot.app.service.ItemSearchService;
 
 import lombok.RequiredArgsConstructor;
 

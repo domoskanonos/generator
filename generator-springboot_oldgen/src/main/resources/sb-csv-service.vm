@@ -62,7 +62,7 @@ public class ${clazzSimpleName} {
         List<${model.javaDTOClazzSimpleName}> dtos = csvImporter.getDTOs(content);
         for (${model.javaDTOClazzSimpleName} dto : dtos) {
             log.debug("import dto: {}", dto.toString());
-            repository.save(mapper.to${jpaClazzSimpleName}(dto));
+            repository.save(mapper.to${model.javaJPAClazzSimpleName}(dto));
         }
         return dtos.size();
     }
