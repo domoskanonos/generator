@@ -5,9 +5,10 @@ import { TypographyType, NidocaTemplate } from '@domoskanonos/nidoca-core';
 export abstract class DefaultPage extends NidocaTemplate {
 
    @property()
-   isAuthenticated: boolean = SecureService.getUniqueInstance().isAuthenticated();
+   //isAuthenticated: boolean = SecureService.getUniqueInstance().isAuthenticated();
+   isAuthenticated: boolean = true;
 
-   @property()
+    @property()
    navigationTitle: string = '';
 
    getTopContent(): TemplateResult {
