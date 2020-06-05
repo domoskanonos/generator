@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(ProjectRestSearchController.PATH_PREFIX)
 public class ProjectRestSearchController {
 
-public static final String PATH_PREFIX = "/PROJECT";
+public static final String PATH_PREFIX = "/PROJECT/SEARCH";
 
     private final ProjectSearchService service;
 

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(ProcessRestSearchController.PATH_PREFIX)
 public class ProcessRestSearchController {
 
-public static final String PATH_PREFIX = "/PROCESS";
+public static final String PATH_PREFIX = "/PROCESS/SEARCH";
 
     private final ProcessSearchService service;
 

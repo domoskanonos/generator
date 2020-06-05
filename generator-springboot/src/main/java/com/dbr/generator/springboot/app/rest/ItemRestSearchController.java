@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(ItemRestSearchController.PATH_PREFIX)
 public class ItemRestSearchController {
 
-public static final String PATH_PREFIX = "/ITEM";
+public static final String PATH_PREFIX = "/ITEM/SEARCH";
 
     private final ItemSearchService service;
 
