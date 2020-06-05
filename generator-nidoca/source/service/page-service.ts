@@ -20,7 +20,7 @@ export class PageService {
         switch (currentPage) {
             case 'propertyedit':
             return html`
-            <${model.editPageTagName}></${model.editPageTagName}>
+            <property-edit-page></property-edit-page>
             `;
             case 'propertylist':
             return html`
@@ -28,7 +28,7 @@ export class PageService {
             `;
             case 'itemedit':
             return html`
-            <${model.editPageTagName}></${model.editPageTagName}>
+            <item-edit-page></item-edit-page>
             `;
             case 'itemlist':
             return html`
@@ -36,7 +36,7 @@ export class PageService {
             `;
             case 'projectedit':
             return html`
-            <${model.editPageTagName}></${model.editPageTagName}>
+            <project-edit-page></project-edit-page>
             `;
             case 'projectlist':
             return html`
@@ -44,7 +44,7 @@ export class PageService {
             `;
             case 'processedit':
             return html`
-            <${model.editPageTagName}></${model.editPageTagName}>
+            <process-edit-page></process-edit-page>
             `;
             case 'processlist':
             return html`

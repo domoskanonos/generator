@@ -10,7 +10,7 @@ NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
 import {${model.getModelName()}} from "../../model/${model.getModelNameLowerCase()}-model";
 
-@customElement('${model.editPageTagName}')
+@customElement('${model.nidocaPageEditTagName}')
 export class ${model.getModelName()}EditPage extends DefaultPage {
 
    constructor() {

@@ -21,7 +21,7 @@ export class PageService {
             #foreach( $model in $model.items)
             case '${model.nidocaPageEditUrl}':
             return html`
-            <${model.editPageTagName}></${model.editPageTagName}>
+            <${model.nidocaPageEditTagName}></${model.nidocaPageEditTagName}>
             `;
             case '${model.nidocaPageListUrl}':
             return html`
