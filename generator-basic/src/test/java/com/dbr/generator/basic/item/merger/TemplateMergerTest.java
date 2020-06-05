@@ -2,7 +2,7 @@ package com.dbr.generator.basic.item.merger;
 
 import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.basic.enumeration.TypeEnum;
-import com.dbr.generator.basic.merger.ItemTemplateMerger;
+import com.dbr.generator.basic.merger.TemplateMerger;
 import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.ItemModel;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertNotNull;
 
-public class ItemTemplateMergerTest {
+public class TemplateMergerTest {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -22,7 +22,7 @@ public class ItemTemplateMergerTest {
         ItemModel item = new ItemModel(GeneratorProjectMetaData.SPRING_BOOT_JAVA_PROJECT_MODEL, "Item", TypeEnum.LONG, TemplateEnum.values());
 
         for (TemplateEnum templateEnum : item.getTemplate()) {
-            String content = new ItemTemplateMerger().create(templateEnum, item);
+            String content = new TemplateMerger().create(templateEnum, item);
             log.info(content);
             assertNotNull(content);
             //assertFalse(content.contains("${"));

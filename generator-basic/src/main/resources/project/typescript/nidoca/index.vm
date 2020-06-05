@@ -17,6 +17,10 @@ import './page-reset-password';
 import './page-terms-of-use';
 import './page-default';
 
+#foreach( $model in $model.items )
+import './${model.typescriptNidocaComponentListFilename}';
+#end
+
 import './app';
 
 import './index.css';

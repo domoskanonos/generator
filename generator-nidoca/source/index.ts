@@ -17,6 +17,11 @@ import './page-reset-password';
 import './page-terms-of-use';
 import './page-default';
 
+import './property';
+import './item';
+import './project';
+import './process';
+
 import './app';
 
 import './index.css';

@@ -166,11 +166,11 @@ public class ItemModel {
         return null;
     }
 
-    private String getTypescriptNidocaComponentListFilename() {
+    public String getTypescriptNidocaComponentListFilename() {
         return new StringBuilder().append(getNameToLowerCase()).toString();
     }
 
-    private String getTypescriptNidocaComponentEditFilename() {
+    public String getTypescriptNidocaComponentEditFilename() {
         return new StringBuilder().append(getNameToLowerCase()).toString();
     }
 
