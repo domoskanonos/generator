@@ -2,21 +2,27 @@ package com.dbr.generator.springboot.app.dto;
 
 import lombok.*;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder(toBuilder=true)
+@Builder(toBuilder = true)
 public class ProcessDTO {
 
     private Long id;
-    private java.util.List projectEntities;
+    private List<ProjectDTO> projects;
     private String processTempPath;
     private String processParentPath;
     private String technicalDescriptor;
 
+    public void addProject(ProjectDTO project) {
+        if (this.projects == null) {
+            this.projects = new ArrayList<>();
+        }
+        this.projects.add(project);
+    }
 }

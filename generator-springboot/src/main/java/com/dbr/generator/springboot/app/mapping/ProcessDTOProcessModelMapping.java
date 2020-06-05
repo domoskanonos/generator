@@ -1,6 +1,7 @@
 package com.dbr.generator.springboot.app.mapping;
 
 import com.dbr.generator.basic.model.ProcessModel;
+import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,12 @@ import java.util.stream.Collectors;
 @Component
 public class ProcessDTOProcessModelMapping {
 
+    private final ProjectDTOProjectModelMapping projectDTOProjectModelMapping;
+
+    public ProcessDTOProcessModelMapping(ProjectDTOProjectModelMapping projectDTOProjectModelMapping) {
+        this.projectDTOProjectModelMapping = projectDTOProjectModelMapping;
+    }
+
     public ProcessModel toModel(ProcessDTO source) {
         ProcessModel dest = new ProcessModel();
         BeanUtils.copyProperties(source, dest);
@@ -20,7 +27,10 @@ public class ProcessDTOProcessModelMapping {
 
     public ProcessDTO toDTO(ProcessModel source) {
         ProcessDTO dest = new ProcessDTO();
-        BeanUtils.copyProperties(source, dest);
+        BeanUtils.copyProperties(source, dest, "projects");
+        for (ProjectModel project : source.getProjects()) {
+            dest.addProject(projectDTOProjectModelMapping.toDTO(project));
+        }
         return dest;
     }
 

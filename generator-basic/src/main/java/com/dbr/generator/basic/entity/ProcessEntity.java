@@ -25,7 +25,7 @@ public class ProcessEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROCESS_PROJECT", joinColumns = @JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private List<ProjectEntity> projectEntities = new ArrayList<>();
+    private List<ProjectEntity> projects = new ArrayList<>();
 
     private String processTempPath;
 
@@ -64,5 +64,12 @@ public class ProcessEntity {
 
     public String getProjectFolderPrefix() {
         return StringUtils.isNotBlank(technicalDescriptor) ? new StringBuilder().append(technicalDescriptor).append("-").toString() : "";
+    }
+
+    public void addProject(ProjectEntity projectEntity) {
+        if (this.projects == null) {
+            this.projects = new ArrayList<>();
+        }
+        this.projects.add(projectEntity);
     }
 }

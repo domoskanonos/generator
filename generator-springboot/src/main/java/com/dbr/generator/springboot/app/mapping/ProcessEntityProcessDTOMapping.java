@@ -2,6 +2,7 @@ package com.dbr.generator.springboot.app.mapping;
 
 import com.dbr.generator.basic.entity.ProcessEntity;
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
+import com.dbr.generator.springboot.app.dto.ProjectDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +13,23 @@ import java.util.stream.Collectors;
 @Component
 public class ProcessEntityProcessDTOMapping {
 
-    public ProcessEntity toEntity(ProcessDTO source)
-    {
+    private final ProjectEntityProjectDTOMapping projectEntityProjectDTOMapping;
+
+    public ProcessEntityProcessDTOMapping(ProjectEntityProjectDTOMapping projectEntityProjectDTOMapping) {
+        this.projectEntityProjectDTOMapping = projectEntityProjectDTOMapping;
+    }
+
+
+    public ProcessEntity toEntity(ProcessDTO source) {
         ProcessEntity dest = new ProcessEntity();
-        BeanUtils.copyProperties(source, dest);
+        BeanUtils.copyProperties(source, dest, "projects");
+        for (ProjectDTO project : source.getProjects()) {
+            dest.addProject(projectEntityProjectDTOMapping.toEntity(project));
+        }
         return dest;
     }
 
-    public ProcessDTO toDTO(ProcessEntity source)
-    {
+    public ProcessDTO toDTO(ProcessEntity source) {
         ProcessDTO dest = new ProcessDTO();
         BeanUtils.copyProperties(source, dest);
         return dest;
@@ -33,7 +42,6 @@ public class ProcessEntityProcessDTOMapping {
     public List<ProcessEntity> toEntities(Collection<ProcessDTO> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
-
 
 
 }
