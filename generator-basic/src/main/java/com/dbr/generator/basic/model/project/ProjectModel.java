@@ -34,16 +34,7 @@ public class ProjectModel {
     }
 
     public File getFilePath(TemplateEnum projectTemplateEnum) {
-        return new File(getProjectFolder(), getFileSuffix(projectTemplateEnum));
+        return new File(getProjectFolder(), projectTemplateEnum.getProjectFilePath(""));
     }
 
-    private String getFileSuffix(TemplateEnum templateEnum) {
-        switch (templateEnum) {
-            case PROJECT_TYPESCRIPT_NIDOCA_PAGE_SERVICE:
-                return templateEnum.getProjectFilePath("");
-            default:
-                throw new RuntimeException("error determinate file path...");
-        }
-
-    }
 }

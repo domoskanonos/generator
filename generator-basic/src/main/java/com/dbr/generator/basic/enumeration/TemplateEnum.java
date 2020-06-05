@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum TemplateEnum {
 
-    PROJECT_TYPESCRIPT_NIDOCA_PAGE_SERVICE("project/typescript/app/page-service.vm", "service/", "page-service", LanguageType.TYPESCRIPT),
+    PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE("project/typescript/app/page-service.vm", "service/", "page-service", LanguageType.TYPESCRIPT),
+    PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT("project/typescript/app/page-default.vm", "pages/", "page-default", LanguageType.TYPESCRIPT),
 
     ITEM_JAVA_DTO_TEMPLATE("item/java/dto.vm", "", "", LanguageType.JAVA),
     ITEM_JAVA_ENTITY_TEMPLATE("item/java/entity.vm", "", "", LanguageType.JAVA),
