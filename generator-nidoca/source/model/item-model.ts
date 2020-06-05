@@ -3,7 +3,6 @@ export class ItemModel {
     projectEntity : any = {};
     name : string = '';
     idTypeEnum : string  = '';
-    namespace : string = '';
     template : any = {};
     properties : any = {};
 }

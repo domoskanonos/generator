@@ -15,7 +15,7 @@ public class RemoteServiceVM extends TypescriptBaseVM {
 
     public RemoteServiceVM(Class<?> modelClazz, String modelName) {
         super(modelClazz, modelName);
-        this.filename = String.format("%s-remote-service.ts", this.getModelName().toLowerCase());
+        this.typescriptRemoteRepositoryFilename = String.format("%s-remote-service.ts", this.getModelName().toLowerCase());
         this.remoteServiceName = String.format("%sRemoteService", this.getModelName());
     }
 }

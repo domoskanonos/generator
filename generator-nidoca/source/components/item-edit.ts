@@ -39,8 +39,6 @@ export class ItemModelEditComponent extends NidocaAbstractComponentEdit<ItemMode
     @property()
     idTypeEnum : string  = '';
     @property()
-    namespace : string = '';
-    @property()
     template : any = {};
     @property()
     properties : any = {};
@@ -66,12 +64,6 @@ export class ItemModelEditComponent extends NidocaAbstractComponentEdit<ItemMode
                     label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.namespace}"
-                    name="namespace"
-                    inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
-            ></nidoca-inputfield>
-            <nidoca-inputfield
                     .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.TEXT}"
@@ -90,7 +82,6 @@ export class ItemModelEditComponent extends NidocaAbstractComponentEdit<ItemMode
         this.projectEntity = itemmodel.projectEntity;
         this.name = itemmodel.name;
         this.idTypeEnum = itemmodel.idTypeEnum;
-        this.namespace = itemmodel.namespace;
         this.template = itemmodel.template;
         this.properties = itemmodel.properties;
     }

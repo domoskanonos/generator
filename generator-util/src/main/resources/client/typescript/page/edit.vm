@@ -8,20 +8,20 @@ import {
 import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
-import {${clazzTypescriptWrapper.getModelName()}} from "../../model/${clazzTypescriptWrapper.getModelNameLowerCase()}-model";
+import {${model.getModelName()}} from "../../model/${model.getModelNameLowerCase()}-model";
 
-@customElement('${clazzTypescriptWrapper.getEditPageTagName()}')
-export class ${clazzTypescriptWrapper.getModelName()}EditPage extends DefaultPage {
+@customElement('${model.editPageTagName}')
+export class ${model.getModelName()}EditPage extends DefaultPage {
 
    constructor() {
       super();
       this.navigationTitle = I18nService.getUniqueInstance().getValue(
-         '${clazzTypescriptWrapper.getI18nEditPageTitleKey()}'
+         '${model.getI18nEditPageTitleKey()}'
       );
    }
 
    @query('#editComponent')
-   editComponent: NidocaAbstractComponentEdit<${clazzTypescriptWrapper.getModelName()}> | undefined;
+   editComponent: NidocaAbstractComponentEdit<${model.getModelName()}> | undefined;
 
    getTopRightComponent(): TemplateResult {
       return html`
@@ -58,7 +58,7 @@ export class ${clazzTypescriptWrapper.getModelName()}EditPage extends DefaultPag
 
    getMainComponent(): TemplateResult {
       return html`
-         <${clazzTypescriptWrapper.getEditComponentTagName()}  id="editComponent"></${clazzTypescriptWrapper.getEditComponentTagName()}>
+         <${model.getNidocaComponentEditTagName()}  id="editComponent"></${model.getNidocaComponentEditTagName()}>
       `;
    }
 

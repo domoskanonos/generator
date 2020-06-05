@@ -21,7 +21,7 @@ public class ClazzTypescriptWrappersVM {
         this.typescriptClientCVM = typescriptClientCVM;
         this.templatePath = templatePath;
         this.folderName = folderName;
-        this.filename = filename;
+        this.typescriptRemoteRepositoryFilename = filename;
         this.clazzTypescriptWrappers = clazzTypescriptWrappers;
     }
 

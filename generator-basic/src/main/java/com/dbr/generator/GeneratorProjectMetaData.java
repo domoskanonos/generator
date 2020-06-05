@@ -31,7 +31,7 @@ public class GeneratorProjectMetaData {
     public static NidocaProjectModel NIDOCA_PROJECT_MODEL;
 
     static {
-        String processParentPath = new File("C:\\_dev\\vhs\\1").getAbsolutePath();
+        String processParentPath = new File("C:\\_dev\\vhs").getAbsolutePath();
         String processTempPath = new File(System.getProperty("java.io.tmpdir"), "generator").getAbsolutePath();
         PROCESS_MODEL = new ProcessModel(processTempPath, processParentPath, "generator");
         List<ProjectModel> projectModels = PROCESS_MODEL.getProjects();

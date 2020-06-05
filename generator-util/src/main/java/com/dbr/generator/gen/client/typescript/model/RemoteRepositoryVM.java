@@ -15,7 +15,7 @@ public class RemoteRepositoryVM extends TypescriptBaseVM {
     public RemoteRepositoryVM(Class modelClazz, String modelName) {
         super(modelClazz, modelName);
         this.remoteRepositoryName = String.format("%sRemoteRepository", this.getModelName());
-        this.filename = String.format("%s-remote-repository.ts", this.getModelName().toLowerCase());
+        this.typescriptRemoteRepositoryFilename = String.format("%s-remote-repository.ts", this.getModelName().toLowerCase());
         String idClazzSimpleName = GeneratorUtil.getIDClazzSimpleName(modelClazz);
         if (idClazzSimpleName != null) {
             this.idClazz = GeneratorUtil.toTypescriptType(idClazzSimpleName);

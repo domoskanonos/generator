@@ -48,6 +48,7 @@ export class ProjectModelSearchNidocaList extends NidocaAbstractComponentSearchL
         >
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.id}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.itemEntities}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.template}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.technicalDescriptor}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.javaBasePackage}"></nidoca-typography>
         </nidoca-flex-container>

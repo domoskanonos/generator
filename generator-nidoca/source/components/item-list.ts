@@ -24,8 +24,6 @@ export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList
             '', ''
                 .concat('&name=')
                 .concat(search)
-                .concat('&namespace=')
-                .concat(search)
         );
         return pageableContainer.content;
     }
@@ -50,7 +48,6 @@ export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.projectEntity}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.name}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.idTypeEnum}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.namespace}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.template}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.properties}"></nidoca-typography>
         </nidoca-flex-container>

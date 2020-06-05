@@ -35,6 +35,8 @@ export class ProjectModelEditComponent extends NidocaAbstractComponentEdit<Proje
     @property()
     itemEntities : any[] = [];
     @property()
+    template : any = {};
+    @property()
     technicalDescriptor : string = '';
     @property()
     javaBasePackage : string = '';
@@ -44,6 +46,12 @@ export class ProjectModelEditComponent extends NidocaAbstractComponentEdit<Proje
             <nidoca-inputfield
                     .value="${this.itemEntities}"
                     name="itemEntities"
+                    inputfieldType="${InputfieldType.TEXT}"
+                    label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .value="${this.template}"
+                    name="template"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('${property.getI18nKey()}')}"
             ></nidoca-inputfield>
@@ -64,6 +72,7 @@ export class ProjectModelEditComponent extends NidocaAbstractComponentEdit<Proje
 
     itemToProperties(projectmodel: ProjectModel): void {
         this.itemEntities = projectmodel.itemEntities;
+        this.template = projectmodel.template;
         this.technicalDescriptor = projectmodel.technicalDescriptor;
         this.javaBasePackage = projectmodel.javaBasePackage;
     }

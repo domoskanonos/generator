@@ -6,7 +6,7 @@ NidocaAbstractPageSearchList
 import {I18nService} from "@domoskanonos/frontend-basis";
 import {${model.typescriptModelName}SearchNidocaList} from '../../components/${model.typescriptModelNameToLowerCase}/search-list';
 
-@customElement('${model.getSearchListPageTagName()}')
+@customElement('${model.getNidocaPageListTagName()}')
 export class ${model.typescriptModelName}SearchListPage extends NidocaAbstractPageSearchList {
 
    constructor() {

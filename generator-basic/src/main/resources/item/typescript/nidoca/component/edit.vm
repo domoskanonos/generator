@@ -4,9 +4,9 @@ import { I18nService } from "@domoskanonos/frontend-basis";
 import {InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
-import {${model.typescriptRemoteRepositoryName}} from "../repo/${model.filename}";
+import {${model.typescriptRemoteRepositoryName}} from "${model.typescriptRemoteRepositoryPath}";
 
-@customElement('${model.getEditComponentTagName()}')
+@customElement('${model.getNidocaComponentEditTagName()}')
 export class ${model.typescriptModelName}EditComponent extends NidocaAbstractComponentEdit<${model.typescriptModelName}> {
 
     getDialogDeleteTitle(): string {

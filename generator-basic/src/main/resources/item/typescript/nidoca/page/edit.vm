@@ -10,7 +10,7 @@ NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
 import {${model.typescriptModelName}} from "${model.typescriptModelPath}";
 
-@customElement('${model.getEditPageTagName()}')
+@customElement('${model.getNidocaPageEditTagName()}')
 export class ${model.typescriptModelName}EditPage extends DefaultPage {
 
    constructor() {
@@ -58,7 +58,7 @@ export class ${model.typescriptModelName}EditPage extends DefaultPage {
 
    getMainComponent(): TemplateResult {
       return html`
-         <${model.getEditComponentTagName()}  id="editComponent"></${model.getEditComponentTagName()}>
+         <${model.getNidocaComponentEditTagName()}  id="editComponent"></${model.getNidocaComponentEditTagName()}>
       `;
    }
 

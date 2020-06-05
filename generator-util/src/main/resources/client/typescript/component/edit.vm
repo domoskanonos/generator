@@ -5,34 +5,34 @@ import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import {${clazzTypescriptWrapper.getModelName()}} from '../../model/${clazzTypescriptWrapper.getModelNameLowerCase()}-model';
-import {${clazzTypescriptWrapper.getModelName()}RemoteRepository} from "../../repo/${clazzTypescriptWrapper.getModelNameLowerCase()}-remote-repository";
+import {${model.getModelName()}} from '../../model/${model.getModelNameLowerCase()}-model';
+import {${model.getModelName()}RemoteRepository} from "../../repo/${model.getModelNameLowerCase()}-remote-repository";
 
-@customElement('${clazzTypescriptWrapper.getEditComponentTagName()}')
-export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends NidocaAbstractComponentEdit<${clazzTypescriptWrapper.getModelName()}> {
+@customElement('${model.getNidocaComponentEditTagName()}')
+export class ${model.getModelName()}EditComponent extends NidocaAbstractComponentEdit<${model.getModelName()}> {
 
     getDialogDeleteTitle(): string {
-        return I18nService.getUniqueInstance().getValue("${clazzTypescriptWrapper.getI18nEditDialogDeleteTitleKey()}");
+        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
     }
 
     getDialogDeleteDescription(): string {
-        return I18nService.getUniqueInstance().getValue("${clazzTypescriptWrapper.getI18nEditDialogDeleteDescriptionKey()}");
+        return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
     }
 
-    async getItemById(identifier: any): Promise<${clazzTypescriptWrapper.getModelName()}> {
-        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().findById(identifier);
+    async getItemById(identifier: any): Promise<${model.getModelName()}> {
+        return ${model.getModelName()}RemoteRepository.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: ${clazzTypescriptWrapper.getModelName()}): Promise<${clazzTypescriptWrapper.getModelName()}> {
-        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().persist(item);
+    async executeSave(item: ${model.getModelName()}): Promise<${model.getModelName()}> {
+        return ${model.getModelName()}RemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: ${clazzTypescriptWrapper.getModelName()}): Promise<${clazzTypescriptWrapper.getModelName()}> {
-        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().update(identifier, item);
+    async executeUpdate(identifier:any, item: ${model.getModelName()}): Promise<${model.getModelName()}> {
+        return ${model.getModelName()}RemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
     async executeDelete(identifier: any): Promise<void> {
-        return ${clazzTypescriptWrapper.getModelName()}RemoteRepository.getUniqueInstance().delete(identifier);
+        return ${model.getModelName()}RemoteRepository.getUniqueInstance().delete(identifier);
     }
 
     #foreach( $property in $model.properties )
@@ -57,16 +57,16 @@ export class ${clazzTypescriptWrapper.getModelName()}EditComponent extends Nidoc
         `;
     }
 
-    itemToProperties(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}): void {
+    itemToProperties(${model.getModelNameLowerCase()}: ${model.getModelName()}): void {
         #foreach( $property in $model.properties )
         #if(!${property.idProperty})
-        this.${property.name} = ${clazzTypescriptWrapper.getModelNameLowerCase()}.${property.name};
+        this.${property.name} = ${model.getModelNameLowerCase()}.${property.name};
         #end
         #end
     }
 
-    getIdentifier(${clazzTypescriptWrapper.getModelNameLowerCase()}: ${clazzTypescriptWrapper.getModelName()}): any {
-        return ${clazzTypescriptWrapper.getModelNameLowerCase()}.${clazzTypescriptWrapper.getIdFieldName()};
+    getIdentifier(${model.getModelNameLowerCase()}: ${model.getModelName()}): any {
+        return ${model.getModelNameLowerCase()}.${model.getIdFieldName()};
     }
 
 

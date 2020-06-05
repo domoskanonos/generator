@@ -46,23 +46,23 @@ public class ClazzTypescriptWrapper {
         return null;
     }
 
-    public String getComboboxComponentTagName() {
+    public String getNidocaComponentComboboxTagName() {
         return new StringBuilder().append(this.getModelNameLowerCase()).append("-combobox-component").toString();
     }
 
-    public String getEditComponentTagName() {
+    public String getNidocaComponentEditTagName() {
         return new StringBuilder().append(this.getModelNameLowerCase()).append("-edit-component").toString();
     }
 
-    public String getSearchNidocaListTagName() {
+    public String getNidocaComponentSearchListTagName() {
         return new StringBuilder().append(this.getModelNameLowerCase()).append("-search-list-component").toString();
     }
 
-    public String getEditPageTagName() {
+    public String getNidocaPageEditTagName() {
         return new StringBuilder().append(this.getModelNameLowerCase()).append("-edit-page").toString();
     }
 
-    public String getSearchListPageTagName() {
+    public String getNidocaPageListTagName() {
         return new StringBuilder().append(this.getModelNameLowerCase()).append("-search-list-page").toString();
     }
 

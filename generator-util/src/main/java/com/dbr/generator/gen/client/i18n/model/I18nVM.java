@@ -19,7 +19,7 @@ public class I18nVM {
     private List<KeyValue> keyValues = new ArrayList<>();
 
     public I18nVM(String filename, List<KeyValue> keyValues) {
-        this.filename = filename;
+        this.typescriptRemoteRepositoryFilename = filename;
         this.keyValues = keyValues;
     }
 

@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum TemplateEnum {
 
-    PROJECT_TYPESCRIPT_NIDOCA_PAGE_SERVICE("project/typescript/app/page-service.vm", "service/", "", LanguageType.TYPESCRIPT),
+    PROJECT_TYPESCRIPT_NIDOCA_PAGE_SERVICE("project/typescript/app/page-service.vm", "service/", "page-service", LanguageType.TYPESCRIPT),
 
     ITEM_JAVA_DTO_TEMPLATE("item/java/dto.vm", "", "", LanguageType.JAVA),
     ITEM_JAVA_ENTITY_TEMPLATE("item/java/entity.vm", "", "", LanguageType.JAVA),
@@ -33,10 +33,16 @@ public enum TemplateEnum {
         this.languageType = languageType;
     }
 
-    public String getFileSuffix(String name) {
-        StringBuilder sb = new StringBuilder();
-        sb = sb.append(this.languageType.getSourceFolderPath()).append(getFilePrefix()).append(name).append(getFileSuffix()).append(".").append(this.languageType.getFileEnding());
-        return sb.toString();
+    public String getProjectFilePath(String name) {
+        return new StringBuffer().append(this.languageType.getSourceFolderPath()).append(getFilenameWithSuffix(name)).toString();
+    }
+
+    public String getFilenameWithSuffix(String name) {
+        return new StringBuffer().append(getFilename(name)).append(".").append(this.languageType.getFileEnding()).toString();
+    }
+
+    public String getFilename(String name) {
+        return new StringBuffer().append(filePrefix).append(name).append(fileSuffix).toString();
     }
 
 }

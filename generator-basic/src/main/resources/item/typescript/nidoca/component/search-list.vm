@@ -12,10 +12,10 @@ SpacerAlignment,
 SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
-import {${model.typescriptRemoteRepositoryName}} from '../repo/${model.filename}';
+import {${model.typescriptRemoteRepositoryName}} from '${model.typescriptRemoteRepositoryPath}';
 import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
 
-@customElement('${model.getSearchNidocaListTagName()}')
+@customElement('${model.getNidocaComponentSearchListTagName()}')
 export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstractComponentSearchList<${model.typescriptModelName}> {
 
     async executeSearch(search: string): Promise<${model.typescriptModelName}[]> {

@@ -18,14 +18,14 @@ export class PageService {
         let currentPage = RouterService.getUniqueInstance().getCurrentPage();
         console.log('render page: '.concat(currentPage));
         switch (currentPage) {
-            #foreach( $clazzTypescriptWrapper in $model.clazzTypescriptWrappers)
-            case '${clazzTypescriptWrapper.getModelEditPageUrl()}':
+            #foreach( $model in $model.items)
+            case '${model.nidocaPageEditUrl}':
             return html`
-            <${clazzTypescriptWrapper.getEditPageTagName()}></${clazzTypescriptWrapper.getEditPageTagName()}>
+            <${model.editPageTagName}></${model.editPageTagName}>
             `;
-            case '${clazzTypescriptWrapper.getModelListPageUrl()}':
+            case '${model.nidocaPageListUrl}':
             return html`
-            <${clazzTypescriptWrapper.getSearchListPageTagName()}></${clazzTypescriptWrapper.getSearchListPageTagName()}>
+            <${model.getNidocaPageListTagName()}></${model.getNidocaPageListTagName()}>
             `;
             #end
             case 'settings':

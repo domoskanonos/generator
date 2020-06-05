@@ -97,13 +97,13 @@ export abstract class DefaultPage extends NidocaTemplate {
                     slot="links"
                     text="$escapeDollar{I18nService.getUniqueInstance().getValue("section_search")}"
             ></nidoca-navigation-section>
-            #foreach( $clazzTypescriptWrapper in $model.clazzTypescriptWrappers )
-            #if(${clazzTypescriptWrapper.getIdFieldName()})
+            #foreach( $model in $model.items )
+            #if(${model.getIdFieldName()})
             <nidoca-navigation-link
                slot="links"
                icon="search"
-               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${clazzTypescriptWrapper.getI18nSearchListKey()}")}"
-               href="${clazzTypescriptWrapper.getModelListPageUrl()}"
+               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${model.getI18nSearchListKey()}")}"
+               href="${model.nidocaPageListUrl}"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
             #end
@@ -113,13 +113,13 @@ export abstract class DefaultPage extends NidocaTemplate {
                  slot="links"
                  text="$escapeDollar{I18nService.getUniqueInstance().getValue("section_add")}"
             ></nidoca-navigation-section>
-            #foreach( $clazzTypescriptWrapper in $model.clazzTypescriptWrappers )
-            #if(${clazzTypescriptWrapper.getIdFieldName()})
+            #foreach( $model in $model.items )
+            #if(${model.getIdFieldName()})
              <nidoca-navigation-link
                slot="links"
                icon="add"
-               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${clazzTypescriptWrapper.getI18nAddKey()}")}"
-               href="${clazzTypescriptWrapper.getModelEditPageUrl()}"
+               text="$escapeDollar{I18nService.getUniqueInstance().getValue("${model.getI18nAddKey()}")}"
+               href="${model.nidocaPageEditUrl}"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
             #end
