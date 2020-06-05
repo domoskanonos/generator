@@ -1,7 +1,7 @@
 package ${model.javaRestControllerPackageName};
 
 import ${model.javaDTOClazzName};
-import ${model.javaServiceBasicClazzName};
+import ${model.javaServiceSearchClazzName};
 
 import lombok.RequiredArgsConstructor;
 
