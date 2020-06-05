@@ -2,16 +2,19 @@ package com.dbr.generator.springboot.app.rest;
 
 import com.dbr.generator.springboot.app.dto.ProjectDTO;
 import com.dbr.generator.springboot.app.service.ProjectBasicService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+
 import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.*;
+import io.swagger.annotations.*;
 
-import javax.validation.Valid;
-import java.util.List;
+import javax.validation.*;
+import java.util.*;
 
 @Api(tags = "PROJECT")
 @RestController

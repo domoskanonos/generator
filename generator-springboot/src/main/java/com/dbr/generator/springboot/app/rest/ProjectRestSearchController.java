@@ -2,17 +2,21 @@ package com.dbr.generator.springboot.app.rest;
 
 import com.dbr.generator.springboot.app.dto.ProjectDTO;
 import com.dbr.generator.springboot.app.service.ProjectSearchService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+
 import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.*;
+import io.swagger.annotations.*;
 
-@Api(tags = "${prefixPath}")
+import javax.validation.Valid;
+import java.util.*;
+
+@Api(tags = "PROJECT")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(ProjectRestSearchController.PATH_PREFIX)

@@ -16,7 +16,7 @@ import io.swagger.annotations.*;
 import javax.validation.Valid;
 import java.util.*;
 
-@Api(tags = "${prefixPath}")
+@Api(tags = "${model.javaRestControllerPrefix}")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(${model.javaRestControllerSearchClazzSimpleName}.PATH_PREFIX)
