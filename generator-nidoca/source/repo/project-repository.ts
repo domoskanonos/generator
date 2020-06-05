@@ -1,7 +1,7 @@
 import {HttpClientService, BasicRemoteRepository} from "@domoskanonos/frontend-basis";
-import {ProjectModel} from "../model/project-model";
+import {Project} from "../model/project-model";
 
-export class ProjectRemoteRepository extends BasicRemoteRepository<ProjectModel, number> {
+export class ProjectRemoteRepository extends BasicRemoteRepository<Project, number> {
 
     private static uniqueInstance: ProjectRemoteRepository;
 

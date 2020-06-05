@@ -6,6 +6,11 @@ import {I18nService, LanguageKey} from '@domoskanonos/frontend-basis';
 I18nService.getUniqueInstance().addData(messageAppDE);
 I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 
+#foreach( $model in $model.items )
+import './${model.typescriptNidocaComponentEditImport}';
+import './${model.typescriptNidocaComponentListImport}';
+#end
+
 import './pages/page-dashboard';
 import './page-settings';
 import './page-register';
@@ -18,8 +23,10 @@ import './page-terms-of-use';
 import './page-default';
 
 #foreach( $model in $model.items )
-import './${model.typescriptNidocaComponentListFilename}';
+import './${model.typescriptNidocaPageEditImport}';
+import './${model.typescriptNidocaPageListImport}';
 #end
+
 
 import './app';
 

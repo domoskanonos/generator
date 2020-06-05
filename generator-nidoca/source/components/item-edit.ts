@@ -2,11 +2,11 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {ItemModel} from '../model/item-model';
+import {Item} from '../model/item-model';
 import {ItemRemoteRepository} from "../repo/item-repository";
 
 @customElement('item-edit-component')
-export class ItemModelEditComponent extends NidocaAbstractComponentEdit<ItemModel> {
+export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
 
     getDialogDeleteTitle(): string {
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
@@ -16,15 +16,15 @@ export class ItemModelEditComponent extends NidocaAbstractComponentEdit<ItemMode
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
     }
 
-    async getItemById(identifier: any): Promise<ItemModel> {
+    async getItemById(identifier: any): Promise<Item> {
         return ItemRemoteRepository.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: ItemModel): Promise<ItemModel> {
+    async executeSave(item: Item): Promise<Item> {
         return ItemRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: ItemModel): Promise<ItemModel> {
+    async executeUpdate(identifier:any, item: Item): Promise<Item> {
         return ItemRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -78,16 +78,16 @@ export class ItemModelEditComponent extends NidocaAbstractComponentEdit<ItemMode
         `;
     }
 
-    itemToProperties(itemmodel: ItemModel): void {
-        this.projectEntity = itemmodel.projectEntity;
-        this.name = itemmodel.name;
-        this.idTypeEnum = itemmodel.idTypeEnum;
-        this.template = itemmodel.template;
-        this.properties = itemmodel.properties;
+    itemToProperties(item: Item): void {
+        this.projectEntity = item.projectEntity;
+        this.name = item.name;
+        this.idTypeEnum = item.idTypeEnum;
+        this.template = item.template;
+        this.properties = item.properties;
     }
 
-    getIdentifier(itemmodel: ItemModel): any {
-        return itemmodel.id;
+    getIdentifier(item: Item): any {
+        return item.id;
     }
 
 

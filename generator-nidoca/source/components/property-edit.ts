@@ -2,11 +2,11 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {PropertyModel} from '../model/property-model';
+import {Property} from '../model/property-model';
 import {PropertyRemoteRepository} from "../repo/property-repository";
 
 @customElement('property-edit-component')
-export class PropertyModelEditComponent extends NidocaAbstractComponentEdit<PropertyModel> {
+export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property> {
 
     getDialogDeleteTitle(): string {
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
@@ -16,15 +16,15 @@ export class PropertyModelEditComponent extends NidocaAbstractComponentEdit<Prop
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
     }
 
-    async getItemById(identifier: any): Promise<PropertyModel> {
+    async getItemById(identifier: any): Promise<Property> {
         return PropertyRemoteRepository.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: PropertyModel): Promise<PropertyModel> {
+    async executeSave(item: Property): Promise<Property> {
         return PropertyRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: PropertyModel): Promise<PropertyModel> {
+    async executeUpdate(identifier:any, item: Property): Promise<Property> {
         return PropertyRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -94,18 +94,18 @@ export class PropertyModelEditComponent extends NidocaAbstractComponentEdit<Prop
         `;
     }
 
-    itemToProperties(propertymodel: PropertyModel): void {
-        this.name = propertymodel.name;
-        this.propertyType = propertymodel.propertyType;
-        this.idProperty = propertymodel.idProperty;
-        this.searchable = propertymodel.searchable;
-        this.nullable = propertymodel.nullable;
-        this.useJPAIdClazz = propertymodel.useJPAIdClazz;
-        this.length = propertymodel.length;
+    itemToProperties(property: Property): void {
+        this.name = property.name;
+        this.propertyType = property.propertyType;
+        this.idProperty = property.idProperty;
+        this.searchable = property.searchable;
+        this.nullable = property.nullable;
+        this.useJPAIdClazz = property.useJPAIdClazz;
+        this.length = property.length;
     }
 
-    getIdentifier(propertymodel: PropertyModel): any {
-        return propertymodel.id;
+    getIdentifier(property: Property): any {
+        return property.id;
     }
 
 

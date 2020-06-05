@@ -1,4 +1,4 @@
-export class ProjectModel {
+export class Project {
     id : number = 0;
     itemEntities : any[] = [];
     template : any = {};

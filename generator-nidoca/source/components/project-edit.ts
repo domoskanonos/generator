@@ -2,11 +2,11 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {ProjectModel} from '../model/project-model';
+import {Project} from '../model/project-model';
 import {ProjectRemoteRepository} from "../repo/project-repository";
 
 @customElement('project-edit-component')
-export class ProjectModelEditComponent extends NidocaAbstractComponentEdit<ProjectModel> {
+export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
 
     getDialogDeleteTitle(): string {
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
@@ -16,15 +16,15 @@ export class ProjectModelEditComponent extends NidocaAbstractComponentEdit<Proje
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
     }
 
-    async getItemById(identifier: any): Promise<ProjectModel> {
+    async getItemById(identifier: any): Promise<Project> {
         return ProjectRemoteRepository.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: ProjectModel): Promise<ProjectModel> {
+    async executeSave(item: Project): Promise<Project> {
         return ProjectRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: ProjectModel): Promise<ProjectModel> {
+    async executeUpdate(identifier:any, item: Project): Promise<Project> {
         return ProjectRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -70,15 +70,15 @@ export class ProjectModelEditComponent extends NidocaAbstractComponentEdit<Proje
         `;
     }
 
-    itemToProperties(projectmodel: ProjectModel): void {
-        this.itemEntities = projectmodel.itemEntities;
-        this.template = projectmodel.template;
-        this.technicalDescriptor = projectmodel.technicalDescriptor;
-        this.javaBasePackage = projectmodel.javaBasePackage;
+    itemToProperties(project: Project): void {
+        this.itemEntities = project.itemEntities;
+        this.template = project.template;
+        this.technicalDescriptor = project.technicalDescriptor;
+        this.javaBasePackage = project.javaBasePackage;
     }
 
-    getIdentifier(projectmodel: ProjectModel): any {
-        return projectmodel.id;
+    getIdentifier(project: Project): any {
+        return project.id;
     }
 
 

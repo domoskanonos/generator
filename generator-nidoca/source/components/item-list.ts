@@ -12,13 +12,13 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {ItemRemoteRepository} from '../repo/item-repository';
-import {ItemModel} from '../model/item-model';
+import {Item} from '../model/item-model';
 
 @customElement('item-search-list-component')
-export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList<ItemModel> {
+export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item> {
 
-    async executeSearch(search: string): Promise<ItemModel[]> {
-        let pageableContainer: PageableContainer<ItemModel> = await ItemRemoteRepository.getUniqueInstance().search(
+    async executeSearch(search: string): Promise<Item[]> {
+        let pageableContainer: PageableContainer<Item> = await ItemRemoteRepository.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
@@ -28,7 +28,7 @@ export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList
         return pageableContainer.content;
     }
 
-    renderListItem(itemmodel: ItemModel) : TemplateResult {
+    renderListItem(item: Item) : TemplateResult {
         return html`
     <nidoca-spacer
     .spacerSize="${SpacerSize.MEDIUM}"
@@ -44,12 +44,12 @@ export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.projectEntity}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.name}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.idTypeEnum}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.template}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${itemmodel.properties}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.id}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.projectEntity}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.name}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.idTypeEnum}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.template}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.properties}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
@@ -59,9 +59,9 @@ export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList
       `;
     }
 
-    itemClicked(itemmodel: ItemModel, index: number): void {
-        console.debug("ItemModel list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : itemmodel.id});
+    itemClicked(item: Item, index: number): void {
+        console.debug("Item list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : item.id});
     }
 
    renderNoRecord(): TemplateResult {
@@ -87,10 +87,10 @@ export class ItemModelSearchNidocaList extends NidocaAbstractComponentSearchList
       `;
    }
 
-   async deleteItems(itemmodels: ItemModel[]): Promise<void> {
-        itemmodels.forEach((itemmodel) => {
-             console.log('delete itemmodel with id: {}', itemmodel.id);
-        ItemRemoteRepository.getUniqueInstance().delete(itemmodel.id);
+   async deleteItems(items: Item[]): Promise<void> {
+        items.forEach((item) => {
+             console.log('delete item with id: {}', item.id);
+        ItemRemoteRepository.getUniqueInstance().delete(item.id);
         });
    }
 

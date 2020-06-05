@@ -12,13 +12,13 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {ProjectRemoteRepository} from '../repo/project-repository';
-import {ProjectModel} from '../model/project-model';
+import {Project} from '../model/project-model';
 
 @customElement('project-search-list-component')
-export class ProjectModelSearchNidocaList extends NidocaAbstractComponentSearchList<ProjectModel> {
+export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<Project> {
 
-    async executeSearch(search: string): Promise<ProjectModel[]> {
-        let pageableContainer: PageableContainer<ProjectModel> = await ProjectRemoteRepository.getUniqueInstance().search(
+    async executeSearch(search: string): Promise<Project[]> {
+        let pageableContainer: PageableContainer<Project> = await ProjectRemoteRepository.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
@@ -30,7 +30,7 @@ export class ProjectModelSearchNidocaList extends NidocaAbstractComponentSearchL
         return pageableContainer.content;
     }
 
-    renderListItem(projectmodel: ProjectModel) : TemplateResult {
+    renderListItem(project: Project) : TemplateResult {
         return html`
     <nidoca-spacer
     .spacerSize="${SpacerSize.MEDIUM}"
@@ -46,11 +46,11 @@ export class ProjectModelSearchNidocaList extends NidocaAbstractComponentSearchL
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.itemEntities}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.template}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.technicalDescriptor}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${projectmodel.javaBasePackage}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.id}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.itemEntities}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.template}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.technicalDescriptor}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.javaBasePackage}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
@@ -60,9 +60,9 @@ export class ProjectModelSearchNidocaList extends NidocaAbstractComponentSearchL
       `;
     }
 
-    itemClicked(projectmodel: ProjectModel, index: number): void {
-        console.debug("ProjectModel list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : projectmodel.id});
+    itemClicked(project: Project, index: number): void {
+        console.debug("Project list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : project.id});
     }
 
    renderNoRecord(): TemplateResult {
@@ -88,10 +88,10 @@ export class ProjectModelSearchNidocaList extends NidocaAbstractComponentSearchL
       `;
    }
 
-   async deleteItems(projectmodels: ProjectModel[]): Promise<void> {
-        projectmodels.forEach((projectmodel) => {
-             console.log('delete projectmodel with id: {}', projectmodel.id);
-        ProjectRemoteRepository.getUniqueInstance().delete(projectmodel.id);
+   async deleteItems(projects: Project[]): Promise<void> {
+        projects.forEach((project) => {
+             console.log('delete project with id: {}', project.id);
+        ProjectRemoteRepository.getUniqueInstance().delete(project.id);
         });
    }
 

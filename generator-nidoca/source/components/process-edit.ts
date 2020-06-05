@@ -2,11 +2,11 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {ProcessModel} from '../model/process-model';
+import {Process} from '../model/process-model';
 import {ProcessRemoteRepository} from "../repo/process-repository";
 
 @customElement('process-edit-component')
-export class ProcessModelEditComponent extends NidocaAbstractComponentEdit<ProcessModel> {
+export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
 
     getDialogDeleteTitle(): string {
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteTitleKey()}");
@@ -16,15 +16,15 @@ export class ProcessModelEditComponent extends NidocaAbstractComponentEdit<Proce
         return I18nService.getUniqueInstance().getValue("${model.getI18nEditDialogDeleteDescriptionKey()}");
     }
 
-    async getItemById(identifier: any): Promise<ProcessModel> {
+    async getItemById(identifier: any): Promise<Process> {
         return ProcessRemoteRepository.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: ProcessModel): Promise<ProcessModel> {
+    async executeSave(item: Process): Promise<Process> {
         return ProcessRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: ProcessModel): Promise<ProcessModel> {
+    async executeUpdate(identifier:any, item: Process): Promise<Process> {
         return ProcessRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -70,15 +70,15 @@ export class ProcessModelEditComponent extends NidocaAbstractComponentEdit<Proce
         `;
     }
 
-    itemToProperties(processmodel: ProcessModel): void {
-        this.projectEntities = processmodel.projectEntities;
-        this.processTempPath = processmodel.processTempPath;
-        this.processParentPath = processmodel.processParentPath;
-        this.technicalDescriptor = processmodel.technicalDescriptor;
+    itemToProperties(process: Process): void {
+        this.projectEntities = process.projectEntities;
+        this.processTempPath = process.processTempPath;
+        this.processParentPath = process.processParentPath;
+        this.technicalDescriptor = process.technicalDescriptor;
     }
 
-    getIdentifier(processmodel: ProcessModel): any {
-        return processmodel.id;
+    getIdentifier(process: Process): any {
+        return process.id;
     }
 
 

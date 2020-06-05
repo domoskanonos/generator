@@ -133,7 +133,7 @@ public class ItemModel {
     }
 
     public String getTypescriptModelName() {
-        return new StringBuilder().append(name).append("Model").toString();
+        return new StringBuilder().append(name).toString();
     }
 
     public String getTypescriptModelNameToLowerCase() {
@@ -164,14 +164,6 @@ public class ItemModel {
             }
         }
         return null;
-    }
-
-    public String getTypescriptNidocaComponentListFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).toString();
-    }
-
-    public String getTypescriptNidocaComponentEditFilename() {
-        return new StringBuilder().append(getNameToLowerCase()).toString();
     }
 
     public String getNidocaPageEditUrl() {
@@ -213,7 +205,23 @@ public class ItemModel {
         return new File(projectFolder, getFileSuffix(templateEnum));
     }
 
-    private String getFileSuffix(TemplateEnum templateEnum) {
+    public String getTypescriptNidocaComponentEditImport() {
+        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT.getFilename(getNameToLowerCase());
+    }
+
+    public String getTypescriptNidocaComponentListImport() {
+        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST.getFilename(getNameToLowerCase());
+    }
+
+    public String getTypescriptNidocaPageEditImport() {
+        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT.getFilename(getNameToLowerCase());
+    }
+
+    public String getTypescriptNidocaPageListImport() {
+        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST.getFilename(getNameToLowerCase());
+    }
+
+    public String getFileSuffix(TemplateEnum templateEnum) {
         switch (templateEnum) {
             case ITEM_JAVA_DTO_TEMPLATE:
                 return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaDTOClazzName()));
@@ -229,13 +237,16 @@ public class ItemModel {
                 return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
-                return templateEnum.getProjectFilePath(getNameToLowerCase());
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
-                return templateEnum.getProjectFilePath(getTypescriptNidocaComponentEditFilename());
+            case ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST:
+            case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
-                return templateEnum.getProjectFilePath(getTypescriptNidocaComponentListFilename());
+                return templateEnum.getProjectFilePath(getNameToLowerCase());
+            case PROJECT_TYPESCRIPT_NIDOCA_INDEX:
+            case PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE:
+            case PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT:
             default:
-                throw new RuntimeException("error determinate file path...");
+                throw new RuntimeException(String.format("error determinate file path for template %s", templateEnum));
         }
 
     }

@@ -22,7 +22,6 @@ public class TemplateMerger {
         VelocityEngine velocityEngine = VelocityUtil.getEngine();
         Template t = velocityEngine.getTemplate(templateEnum.getTemplatePath());
         VelocityContext context = new VelocityContext();
-        context.put("templateEnum", templateEnum);
         context.put("model", model);
         StringWriter writer = new StringWriter();
         t.merge(context, writer);

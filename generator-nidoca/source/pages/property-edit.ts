@@ -1,4 +1,3 @@
-#set( $escapeDollar = '$' )
 import { customElement, html, query, TemplateResult } from 'lit-element';
 import {DefaultPage} from "../pages/page-default";
 import {
@@ -8,10 +7,10 @@ import {
 import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
-import {${model.typescriptModelName}} from "${model.typescriptModelPath}";
+import {Property} from "../model/property-model";
 
-@customElement('${model.getNidocaPageEditTagName()}')
-export class ${model.typescriptModelName}EditPage extends DefaultPage {
+@customElement('property-edit-page')
+export class PropertyEditPage extends DefaultPage {
 
    constructor() {
       super();
@@ -21,14 +20,14 @@ export class ${model.typescriptModelName}EditPage extends DefaultPage {
    }
 
    @query('#editComponent')
-   editComponent: NidocaAbstractComponentEdit<${model.typescriptModelName}> | undefined;
+   editComponent: NidocaAbstractComponentEdit<Property> | undefined;
 
    getTopRightComponent(): TemplateResult {
       return html`
          <nidoca-icon
-            title="$escapeDollar{I18nService.getUniqueInstance().getValue('cancel')}"
+            title="${I18nService.getUniqueInstance().getValue('cancel')}"
             slot="rightComponents"
-            icon="$escapeDollar{RouterService.getUniqueInstance().getStateProperty('id') != null
+            icon="${RouterService.getUniqueInstance().getStateProperty('id') != null
                ? 'arrow_back'
                : 'cancel'}"
             clickable="true"
@@ -36,7 +35,7 @@ export class ${model.typescriptModelName}EditPage extends DefaultPage {
                RouterService.getUniqueInstance().back()}"
          ></nidoca-icon>
          <nidoca-icon
-            title="$escapeDollar{I18nService.getUniqueInstance().getValue('save')}"
+            title="${I18nService.getUniqueInstance().getValue('save')}"
             .rendered="${true}"
             slot="rightComponents"
             icon="save"
@@ -44,8 +43,8 @@ export class ${model.typescriptModelName}EditPage extends DefaultPage {
             @nidoca-event-icon-clicked="${() => this.save()}"
          ></nidoca-icon>
          <nidoca-icon
-            title="$escapeDollar{I18nService.getUniqueInstance().getValue('delete')}"
-            .rendered="$escapeDollar{RouterService.getUniqueInstance().getStateProperty(
+            title="${I18nService.getUniqueInstance().getValue('delete')}"
+            .rendered="${RouterService.getUniqueInstance().getStateProperty(
                'id'
             ) != null}"
             slot="rightComponents"
@@ -58,7 +57,7 @@ export class ${model.typescriptModelName}EditPage extends DefaultPage {
 
    getMainComponent(): TemplateResult {
       return html`
-         <${model.getNidocaComponentEditTagName()}  id="editComponent"></${model.getNidocaComponentEditTagName()}>
+         <property-edit-component  id="editComponent"></property-edit-component>
       `;
    }
 

@@ -12,13 +12,13 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {ProcessRemoteRepository} from '../repo/process-repository';
-import {ProcessModel} from '../model/process-model';
+import {Process} from '../model/process-model';
 
 @customElement('process-search-list-component')
-export class ProcessModelSearchNidocaList extends NidocaAbstractComponentSearchList<ProcessModel> {
+export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<Process> {
 
-    async executeSearch(search: string): Promise<ProcessModel[]> {
-        let pageableContainer: PageableContainer<ProcessModel> = await ProcessRemoteRepository.getUniqueInstance().search(
+    async executeSearch(search: string): Promise<Process[]> {
+        let pageableContainer: PageableContainer<Process> = await ProcessRemoteRepository.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
@@ -32,7 +32,7 @@ export class ProcessModelSearchNidocaList extends NidocaAbstractComponentSearchL
         return pageableContainer.content;
     }
 
-    renderListItem(processmodel: ProcessModel) : TemplateResult {
+    renderListItem(process: Process) : TemplateResult {
         return html`
     <nidoca-spacer
     .spacerSize="${SpacerSize.MEDIUM}"
@@ -48,11 +48,11 @@ export class ProcessModelSearchNidocaList extends NidocaAbstractComponentSearchL
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${processmodel.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${processmodel.projectEntities}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${processmodel.processTempPath}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${processmodel.processParentPath}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${processmodel.technicalDescriptor}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.id}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.projectEntities}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processTempPath}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processParentPath}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.technicalDescriptor}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
@@ -62,9 +62,9 @@ export class ProcessModelSearchNidocaList extends NidocaAbstractComponentSearchL
       `;
     }
 
-    itemClicked(processmodel: ProcessModel, index: number): void {
-        console.debug("ProcessModel list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : processmodel.id});
+    itemClicked(process: Process, index: number): void {
+        console.debug("Process list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : process.id});
     }
 
    renderNoRecord(): TemplateResult {
@@ -90,10 +90,10 @@ export class ProcessModelSearchNidocaList extends NidocaAbstractComponentSearchL
       `;
    }
 
-   async deleteItems(processmodels: ProcessModel[]): Promise<void> {
-        processmodels.forEach((processmodel) => {
-             console.log('delete processmodel with id: {}', processmodel.id);
-        ProcessRemoteRepository.getUniqueInstance().delete(processmodel.id);
+   async deleteItems(processs: Process[]): Promise<void> {
+        processs.forEach((process) => {
+             console.log('delete process with id: {}', process.id);
+        ProcessRemoteRepository.getUniqueInstance().delete(process.id);
         });
    }
 

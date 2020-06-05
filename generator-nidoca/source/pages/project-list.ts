@@ -1,16 +1,15 @@
-#set( $escapeDollar = '$' )
 import {customElement} from 'lit-element';
 import {
 NidocaAbstractPageSearchList
 } from '@domoskanonos/nidoca-app';
 import {I18nService} from "@domoskanonos/frontend-basis";
-import {${model.typescriptModelName}SearchNidocaList} from '../${model.typescriptNidocaComponentListImport}';
+import {ProjectSearchNidocaList} from '../components/project-list';
 
-@customElement('${model.getNidocaPageListTagName()}')
-export class ${model.typescriptModelName}SearchListPage extends NidocaAbstractPageSearchList {
+@customElement('project-search-list-page')
+export class ProjectSearchListPage extends NidocaAbstractPageSearchList {
 
    constructor() {
-      super(new ${model.typescriptModelName}SearchNidocaList());
+      super(new ProjectSearchNidocaList());
    }
 
    getNavigationTitle(): string {

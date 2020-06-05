@@ -12,13 +12,13 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {PropertyRemoteRepository} from '../repo/property-repository';
-import {PropertyModel} from '../model/property-model';
+import {Property} from '../model/property-model';
 
 @customElement('property-search-list-component')
-export class PropertyModelSearchNidocaList extends NidocaAbstractComponentSearchList<PropertyModel> {
+export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<Property> {
 
-    async executeSearch(search: string): Promise<PropertyModel[]> {
-        let pageableContainer: PageableContainer<PropertyModel> = await PropertyRemoteRepository.getUniqueInstance().search(
+    async executeSearch(search: string): Promise<Property[]> {
+        let pageableContainer: PageableContainer<Property> = await PropertyRemoteRepository.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
@@ -28,7 +28,7 @@ export class PropertyModelSearchNidocaList extends NidocaAbstractComponentSearch
         return pageableContainer.content;
     }
 
-    renderListItem(propertymodel: PropertyModel) : TemplateResult {
+    renderListItem(property: Property) : TemplateResult {
         return html`
     <nidoca-spacer
     .spacerSize="${SpacerSize.MEDIUM}"
@@ -44,14 +44,14 @@ export class PropertyModelSearchNidocaList extends NidocaAbstractComponentSearch
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.name}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.propertyType}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.idProperty}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.searchable}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.nullable}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.useJPAIdClazz}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${propertymodel.length}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.id}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.name}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyType}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.idProperty}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.searchable}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.nullable}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.useJPAIdClazz}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.length}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
@@ -61,9 +61,9 @@ export class PropertyModelSearchNidocaList extends NidocaAbstractComponentSearch
       `;
     }
 
-    itemClicked(propertymodel: PropertyModel, index: number): void {
-        console.debug("PropertyModel list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : propertymodel.id});
+    itemClicked(property: Property, index: number): void {
+        console.debug("Property list item clicked, index= {0}", index);
+        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : property.id});
     }
 
    renderNoRecord(): TemplateResult {
@@ -89,10 +89,10 @@ export class PropertyModelSearchNidocaList extends NidocaAbstractComponentSearch
       `;
    }
 
-   async deleteItems(propertymodels: PropertyModel[]): Promise<void> {
-        propertymodels.forEach((propertymodel) => {
-             console.log('delete propertymodel with id: {}', propertymodel.id);
-        PropertyRemoteRepository.getUniqueInstance().delete(propertymodel.id);
+   async deleteItems(propertys: Property[]): Promise<void> {
+        propertys.forEach((property) => {
+             console.log('delete property with id: {}', property.id);
+        PropertyRemoteRepository.getUniqueInstance().delete(property.id);
         });
    }
 

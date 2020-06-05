@@ -1,4 +1,4 @@
-export class ItemModel {
+export class Item {
     id : number = 0;
     projectEntity : any = {};
     name : string = '';

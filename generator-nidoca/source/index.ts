@@ -6,6 +6,15 @@ import {I18nService, LanguageKey} from '@domoskanonos/frontend-basis';
 I18nService.getUniqueInstance().addData(messageAppDE);
 I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 
+import './components/property-edit';
+import './components/property-list';
+import './components/item-edit';
+import './components/item-list';
+import './components/project-edit';
+import './components/project-list';
+import './components/process-edit';
+import './components/process-list';
+
 import './pages/page-dashboard';
 import './page-settings';
 import './page-register';
@@ -17,10 +26,15 @@ import './page-reset-password';
 import './page-terms-of-use';
 import './page-default';
 
-import './property';
-import './item';
-import './project';
-import './process';
+import './pages/property-edit';
+import './pages/property-list';
+import './pages/item-edit';
+import './pages/item-list';
+import './pages/project-edit';
+import './pages/project-list';
+import './pages/process-edit';
+import './pages/process-list';
+
 
 import './app';
 

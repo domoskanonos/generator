@@ -1,4 +1,4 @@
-export class ProcessModel {
+export class Process {
     id : number = 0;
     projectEntities : any[] = [];
     processTempPath : string = '';
