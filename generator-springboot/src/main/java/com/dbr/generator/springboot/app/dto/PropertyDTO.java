@@ -15,6 +15,7 @@ public class PropertyDTO {
     private String name;
     private TypeEnum propertyType;
     private Boolean idProperty;
+    private Boolean mainProperty;
     private Boolean searchable;
     private Boolean nullable;
     private Boolean useJPAIdClazz;

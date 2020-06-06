@@ -6,9 +6,9 @@ import javax.persistence.*;
 import java.util.Date;
 import java.math.BigDecimal;
 
-#if($model.useJPAIdClazz)@IdClass(${model.javaIdClazzSimpleName}.class)#end
+#if($model.useJPAIdClazz)@IdClass(${model.idTypeEnum.javaTypeName}.class)#end
 @Entity
-@Table(name = "${model.subItems[0].tableName}")
+@Table(name = "${model.tableName}")
 @Data
 @ToString
 @Builder(toBuilder = true)

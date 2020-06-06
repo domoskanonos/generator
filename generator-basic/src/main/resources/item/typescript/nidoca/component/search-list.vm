@@ -52,7 +52,9 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
         .alignItems="${FlexAlignItems.CENTER}"
         >
             #foreach( $property in $model.properties )
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${model.typescriptModelNameToLowerCase}.${property.name}}"></nidoca-typography>
+                #if($property.mainProperty)
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="$escapeDollar{${model.typescriptModelNameToLowerCase}.${property.name}}"></nidoca-typography>
+                #end
             #end
         </nidoca-flex-container>
     </nidoca-spacer>

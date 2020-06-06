@@ -29,6 +29,9 @@ public class PropertyEntity {
     @Column(name = "ID_PROPERTY")
     private Boolean idProperty = false;
 
+    @Column(name = "ID_PROPERTY")
+    private Boolean mainProperty = true;
+
     @Column(name = "SEARCHABLE")
     private Boolean searchable = false;
 
