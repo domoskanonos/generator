@@ -1,6 +1,7 @@
 package com.dbr.generator.springboot.app.mapping;
 
 import com.dbr.generator.basic.entity.ProcessEntity;
+import com.dbr.generator.basic.entity.ProjectEntity;
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import com.dbr.generator.springboot.app.dto.ProjectDTO;
 import org.springframework.beans.BeanUtils;
@@ -31,7 +32,10 @@ public class ProcessEntityProcessDTOMapping {
 
     public ProcessDTO toDTO(ProcessEntity source) {
         ProcessDTO dest = new ProcessDTO();
-        BeanUtils.copyProperties(source, dest);
+        BeanUtils.copyProperties(source, dest, "projects");
+        for (ProjectEntity project : source.getProjects()) {
+            dest.addProject(projectEntityProjectDTOMapping.toDTO(project));
+        }
         return dest;
     }
 

@@ -3,6 +3,7 @@ package com.dbr.generator.springboot.app.mapping;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.springboot.app.dto.ItemDTO;
+import com.dbr.generator.springboot.app.dto.PropertyDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,10 @@ public class ItemDTOItemModelMapping {
 
     public ItemModel toModel(ItemDTO source) {
         ItemModel dest = new ItemModel();
-        BeanUtils.copyProperties(source, dest);
+        BeanUtils.copyProperties(source, dest, "items");
+        for (PropertyDTO property : source.getProperties()) {
+            dest.addProperty(propertyDTOPropertyModelMapping.toModel(property));
+        }
         return dest;
     }
 

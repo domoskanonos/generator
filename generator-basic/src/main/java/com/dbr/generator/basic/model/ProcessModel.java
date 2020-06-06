@@ -54,4 +54,11 @@ public class ProcessModel {
     public String getProjectFolderPrefix() {
         return StringUtils.isNotBlank(technicalDescriptor) ? new StringBuilder().append(technicalDescriptor).append("-").toString() : "";
     }
+
+    public void addProject(ProjectModel projectModel) {
+        if (projects == null) {
+            projects = new ArrayList<>();
+        }
+        projects.add(projectModel);
+    }
 }

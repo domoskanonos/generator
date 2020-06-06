@@ -1,11 +1,13 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,7 +25,7 @@ public class ItemEntity {
     private Long id;
 
     @ManyToOne
-    private ProjectEntity projectEntity;
+    private ProjectEntity project;
 
     @Column(name = "NAME")
     private String name;
@@ -39,7 +41,19 @@ public class ItemEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private Set<PropertyEntity> properties = new HashSet<>();
+    private List<PropertyEntity> properties = new ArrayList<>();
 
+    public void addProject(PropertyEntity propertyEntity) {
+        if (this.properties == null) {
+            this.properties = new ArrayList<>();
+        }
+        this.properties.add(propertyEntity);
+    }
 
+    public void addProperty(PropertyEntity propertyEntity) {
+        if (properties == null) {
+            properties = new ArrayList<>();
+        }
+        properties.add(propertyEntity);
+    }
 }
