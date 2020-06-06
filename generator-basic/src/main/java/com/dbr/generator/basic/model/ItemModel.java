@@ -172,6 +172,9 @@ public class ItemModel {
         return new StringBuilder().append(name).append("RemoteRepository").toString();
     }
 
+    public String getIdFieldSetterMethodName() {
+        return "set" + StringUtil.firstLetterToUpperCase(getIdFieldName());
+    }
 
     public String getIdFieldName() {
         for (PropertyModel typescriptProperty : properties) {

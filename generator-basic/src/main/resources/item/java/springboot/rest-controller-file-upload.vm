@@ -1,6 +1,6 @@
     @CrossOrigin
     @PostMapping("/uploadFile${fieldNameFirstLetterUpperCase}/{id}")
-    public ResponseEntity uploadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${idClazz} id, @RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity uploadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${model.idTypeEnum.javaTypeName} id, @RequestParam("file") MultipartFile file) throws IOException {
 
         Optional<${model.javaDTOClazzSimpleName}> dtoOptional = service.findById(id);
         if (!dtoOptional.isPresent()) {
@@ -16,7 +16,7 @@
 
     @CrossOrigin
     @GetMapping("/downloadFile${fieldNameFirstLetterUpperCase}/{id}")
-    public ResponseEntity<InputStreamResource> downloadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${idClazz} id) {
+    public ResponseEntity<InputStreamResource> downloadFile${fieldNameFirstLetterUpperCase}(@PathVariable ${model.idTypeEnum.javaTypeName} id) {
         Optional<${model.javaDTOClazzSimpleName}> dtoOptional = service.findById(id);
         ${model.javaDTOClazzSimpleName} dto = dtoOptional.get();
         boolean imageExist = dtoOptional.isPresent() && dto.get${fieldNameFirstLetterUpperCase}() != null;
