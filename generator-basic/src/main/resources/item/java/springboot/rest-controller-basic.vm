@@ -22,7 +22,7 @@ import java.util.*;
 @RequestMapping(${model.javaRestControllerBasicClazzSimpleName}.PATH_PREFIX)
 public class ${model.javaRestControllerBasicClazzSimpleName} {
 
-    public static final String PATH_PREFIX = "/${model.javaRestControllerPrefix}";
+    public static final String PATH_PREFIX = "/${model.javaRestControllerPrefix}/BASIC";
 
     private final ${model.javaServiceBasicClazzSimpleName} service;
 
