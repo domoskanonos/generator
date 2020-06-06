@@ -50,8 +50,8 @@ public class ProjectSearchService {
      *
      */
     @Transactional
-    public Page<ProjectDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort) {
-        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: ", page, size, sort );
+    public Page<ProjectDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String technicalDescriptor, String javaBasePackage) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} {} ", page, size, sort );
         return new PageBuilder<ProjectEntity, ProjectDTO>(page, size, sort) {
 
             @Override

@@ -22,12 +22,6 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
             0,
             this.resultSize,
             '', ''
-                .concat('&processTempPath=')
-                .concat(search)
-                .concat('&processParentPath=')
-                .concat(search)
-                .concat('&technicalDescriptor=')
-                .concat(search)
         );
         return pageableContainer.content;
     }
@@ -48,11 +42,6 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.projects}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processTempPath}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processParentPath}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.technicalDescriptor}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer

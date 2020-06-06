@@ -50,8 +50,8 @@ public class PropertySearchService {
      *
      */
     @Transactional
-    public Page<PropertyDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort) {
-        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: ", page, size, sort );
+    public Page<PropertyDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String name, Boolean idProperty, Boolean mainProperty, Boolean nullable, Boolean useJPAIdClazz, Integer length) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} {} {} {} {} {} ", page, size, sort );
         return new PageBuilder<PropertyEntity, PropertyDTO>(page, size, sort) {
 
             @Override

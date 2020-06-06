@@ -50,8 +50,8 @@ public class ProcessSearchService {
      *
      */
     @Transactional
-    public Page<ProcessDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort) {
-        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: ", page, size, sort );
+    public Page<ProcessDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String processTempPath, String processParentPath, String technicalDescriptor) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} {} {} ", page, size, sort );
         return new PageBuilder<ProcessEntity, ProcessDTO>(page, size, sort) {
 
             @Override

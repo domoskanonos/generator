@@ -31,7 +31,7 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
     @property()
     idProperty : boolean = false;
     @property()
-    searchable : boolean = false;
+    mainProperty : boolean = false;
     @property()
     nullable : boolean = false;
     @property()
@@ -60,10 +60,10 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
                     label="${I18nService.getUniqueInstance().getValue('property_property_idProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.searchable}"
-                    name="searchable"
+                    .value="${this.mainProperty}"
+                    name="mainProperty"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('property_property_searchable')}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_mainProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.nullable}"
@@ -90,7 +90,7 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
         this.name = property.name;
         this.propertyType = property.propertyType;
         this.idProperty = property.idProperty;
-        this.searchable = property.searchable;
+        this.mainProperty = property.mainProperty;
         this.nullable = property.nullable;
         this.useJPAIdClazz = property.useJPAIdClazz;
         this.length = property.length;

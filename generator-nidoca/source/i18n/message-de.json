@@ -69,7 +69,7 @@
     ,"property_property_name" : "property_property_name"
     ,"property_property_propertyType" : "property_property_propertyType"
     ,"property_property_idProperty" : "property_property_idProperty"
-    ,"property_property_searchable" : "property_property_searchable"
+    ,"property_property_mainProperty" : "property_property_mainProperty"
     ,"property_property_nullable" : "property_property_nullable"
     ,"property_property_useJPAIdClazz" : "property_property_useJPAIdClazz"
     ,"property_property_length" : "property_property_length"

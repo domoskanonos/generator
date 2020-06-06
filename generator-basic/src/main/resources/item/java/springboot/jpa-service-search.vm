@@ -55,8 +55,8 @@ public class ${model.javaServiceSearchClazzSimpleName} {
      *
      */
     @Transactional
-    public Page<${model.javaDTOClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end) {
-        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $property in $properties )#if($property.isSearchable()){} #end#end", page, size, sort #foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end);
+    public Page<${model.javaDTOClazzSimpleName}> findByAllCriteriaQuery(Integer page, Integer size, String sort#foreach( $property in $model.properties )#if(${property.propertyType.searchable}), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: #foreach( $property in $model.properties )#if(${property.propertyType.searchable}){} #end#end", page, size, sort #foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end);
         return new PageBuilder<${model.javaJPAClazzSimpleName}, ${model.javaDTOClazzSimpleName}>(page, size, sort) {
 
             @Override

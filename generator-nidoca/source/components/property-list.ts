@@ -22,8 +22,6 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
             0,
             this.resultSize,
             '', ''
-                .concat('&name=')
-                .concat(search)
         );
         return pageableContainer.content;
     }
@@ -44,14 +42,6 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.name}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyType}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.idProperty}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.searchable}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.nullable}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.useJPAIdClazz}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.length}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer

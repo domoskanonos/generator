@@ -2,19 +2,15 @@ package com.dbr.generator.springboot.app.rest;
 
 import com.dbr.generator.springboot.app.dto.PropertyDTO;
 import com.dbr.generator.springboot.app.service.PropertySearchService;
-
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.*;
-import io.swagger.annotations.*;
-
-import javax.validation.Valid;
-import java.util.*;
 
 @Api(tags = "PROPERTY")
 @RestController
@@ -34,8 +30,8 @@ public static final String PATH_PREFIX = "/PROPERTY/SEARCH";
     public ResponseEntity<Page<PropertyDTO>> findByAllCriteriaQuery(
         @ApiParam(defaultValue = "0", example = "0") @RequestParam(required = false) Integer page,
         @ApiParam(defaultValue = "10", example = "10") @RequestParam(required = false) Integer size,
-        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort){
-        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort));
+        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort, Long id, String name, Boolean idProperty, Boolean mainProperty, Boolean nullable, Boolean useJPAIdClazz, Integer length){
+        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort, id, name, idProperty, mainProperty, nullable, useJPAIdClazz, length));
     }
 
 }

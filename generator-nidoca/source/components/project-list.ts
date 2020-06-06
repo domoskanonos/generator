@@ -22,10 +22,6 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
             0,
             this.resultSize,
             '', ''
-                .concat('&technicalDescriptor=')
-                .concat(search)
-                .concat('&javaBasePackage=')
-                .concat(search)
         );
         return pageableContainer.content;
     }
@@ -46,11 +42,6 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.items}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.template}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.technicalDescriptor}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.javaBasePackage}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer

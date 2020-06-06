@@ -50,8 +50,8 @@ public class ItemSearchService {
      *
      */
     @Transactional
-    public Page<ItemDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort) {
-        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: ", page, size, sort );
+    public Page<ItemDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String name) {
+        log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} ", page, size, sort );
         return new PageBuilder<ItemEntity, ItemDTO>(page, size, sort) {
 
             @Override

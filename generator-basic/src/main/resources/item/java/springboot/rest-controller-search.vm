@@ -34,8 +34,8 @@ public static final String PATH_PREFIX = "/${model.javaRestControllerPrefix}/SEA
     public ResponseEntity<Page<${model.javaDTOClazzSimpleName}>> findByAllCriteriaQuery(
         @ApiParam(defaultValue = "0", example = "0") @RequestParam(required = false) Integer page,
         @ApiParam(defaultValue = "10", example = "10") @RequestParam(required = false) Integer size,
-        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end){
-        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort#foreach( $property in $properties )#if($property.isSearchable()), ${property.name}#end#end));
+        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort#foreach( $property in $model.properties )#if($property.propertyType.searchable), ${property.propertyType.javaTypeSimpleName} ${property.name}#end#end){
+        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort#foreach( $property in $model.properties )#if($property.propertyType.searchable), ${property.name}#end#end));
     }
 
 }

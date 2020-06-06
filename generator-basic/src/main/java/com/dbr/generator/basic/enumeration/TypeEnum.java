@@ -48,7 +48,7 @@ public enum TypeEnum {
     }
 
     TypeEnum(Class<?> type) {
-    this.type = type;
+        this.type = type;
     }
 
     public boolean isEnumeration(Class<?> type) {
@@ -73,6 +73,31 @@ public enum TypeEnum {
             case DATE:
             case DATE_ISO8601:
                 return true;
+            case LIST:
+            case ENUMERATION:
+            case OBJECT:
+            case BYTE_ARRAY:
+            case ARRAY_STRING:
+            default:
+                return false;
+
+        }
+    }
+
+    public boolean isSearchable() {
+        switch (this) {
+            case STRING:
+            case INTEGER:
+            case TYPE_BOOLEAN:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
+            case TYPE_CHAR:
+                return true;
+            case DATE:
+            case DATE_ISO8601:
             case LIST:
             case ENUMERATION:
             case OBJECT:

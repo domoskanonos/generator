@@ -34,8 +34,8 @@ public static final String PATH_PREFIX = "/PROJECT/SEARCH";
     public ResponseEntity<Page<ProjectDTO>> findByAllCriteriaQuery(
         @ApiParam(defaultValue = "0", example = "0") @RequestParam(required = false) Integer page,
         @ApiParam(defaultValue = "10", example = "10") @RequestParam(required = false) Integer size,
-        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort){
-        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort));
+        @ApiParam(defaultValue = "", example = "id:desc;") @RequestParam(required = false) String sort, Long id, String technicalDescriptor, String javaBasePackage){
+        return ResponseEntity.ok(service.findByAllCriteriaQuery(page, size, sort, id, technicalDescriptor, javaBasePackage));
     }
 
 }

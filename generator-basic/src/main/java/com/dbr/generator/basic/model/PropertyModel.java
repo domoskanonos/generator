@@ -13,7 +13,6 @@ public class PropertyModel {
     private TypeEnum propertyType;
     private boolean idProperty;
     private boolean mainProperty;
-    private boolean searchable;
     private boolean nullable;
     private boolean useJPAIdClazz;
     private Integer length;

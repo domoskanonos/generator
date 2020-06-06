@@ -3,7 +3,7 @@ export class Property {
     name : string = '';
     propertyType : string  = '';
     idProperty : boolean = false;
-    searchable : boolean = false;
+    mainProperty : boolean = false;
     nullable : boolean = false;
     useJPAIdClazz : boolean = false;
     length : number = 0;

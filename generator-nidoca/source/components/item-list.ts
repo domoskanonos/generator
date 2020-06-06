@@ -22,8 +22,6 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
             0,
             this.resultSize,
             '', ''
-                .concat('&name=')
-                .concat(search)
         );
         return pageableContainer.content;
     }
@@ -44,12 +42,6 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.project}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.name}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.idTypeEnum}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.template}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.properties}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
