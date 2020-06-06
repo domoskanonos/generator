@@ -5,6 +5,7 @@ import com.dbr.generator.springboot.app.dto.PropertyDTO;
 import com.dbr.generator.springboot.app.mapping.PropertyEntityPropertyDTOMapping;
 import com.dbr.generator.springboot.system.jpa.entities.builder.PageBuilder;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -62,6 +63,34 @@ public class PropertySearchService {
             @Override
             protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<PropertyEntity> cq, Root<PropertyEntity> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
+
+                if (StringUtils.isNotBlank(name)) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("name")), "%" + name.toLowerCase() + "%"));
+                }
+
+
+                if (idProperty != null) {
+                    predicates.add(cb.equal(entityRoot.get("idProperty"), idProperty));
+                }
+
+                if (mainProperty != null) {
+                    predicates.add(cb.equal(entityRoot.get("mainProperty"), mainProperty));
+                }
+
+                if (nullable != null) {
+                    predicates.add(cb.equal(entityRoot.get("nullable"), nullable));
+                }
+
+                if (useJPAIdClazz != null) {
+                    predicates.add(cb.equal(entityRoot.get("useJPAIdClazz"), useJPAIdClazz));
+                }
+
+                if (length != null) {
+                    //TODO:check
+                    predicates.add(cb.equal(entityRoot.get("length"), length));//equal
+                    //predicates.add(cb.ge(entityRoot.get("length"), length));//greater than
+                    //predicates.add(cb.le(entityRoot.get("length"), length));//lower than
+                }
                 if (predicates.size() > 0) {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }

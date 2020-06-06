@@ -5,6 +5,7 @@ import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.system.jpa.entities.builder.PageBuilder;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -62,6 +63,19 @@ public class ProcessSearchService {
             @Override
             protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<ProcessEntity> cq, Root<ProcessEntity> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
+
+
+                if (StringUtils.isNotBlank(processTempPath)) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("processTempPath")), "%" + processTempPath.toLowerCase() + "%"));
+                }
+
+                if (StringUtils.isNotBlank(processParentPath)) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("processParentPath")), "%" + processParentPath.toLowerCase() + "%"));
+                }
+
+                if (StringUtils.isNotBlank(technicalDescriptor)) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("technicalDescriptor")), "%" + technicalDescriptor.toLowerCase() + "%"));
+                }
                 if (predicates.size() > 0) {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }

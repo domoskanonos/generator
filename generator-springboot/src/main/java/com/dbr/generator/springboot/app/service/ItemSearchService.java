@@ -5,6 +5,7 @@ import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.mapping.ItemEntityItemDTOMapping;
 import com.dbr.generator.springboot.system.jpa.entities.builder.PageBuilder;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -62,6 +63,14 @@ public class ItemSearchService {
             @Override
             protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<ItemEntity> cq, Root<ItemEntity> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
+
+
+                if (StringUtils.isNotBlank(name)) {
+                    predicates.add(cb.like(cb.lower(entityRoot.get("name")), "%" + name.toLowerCase() + "%"));
+                }
+
+
+
                 if (predicates.size() > 0) {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }
