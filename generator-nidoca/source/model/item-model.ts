@@ -1,8 +1,8 @@
 export class Item {
     id : number = 0;
-    projectEntity : any = {};
+    project : any = {};
     name : string = '';
     idTypeEnum : string  = '';
     template : any = {};
-    properties : any = {};
+    properties : any[] = [];
 }

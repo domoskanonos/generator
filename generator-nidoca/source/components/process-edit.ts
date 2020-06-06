@@ -25,7 +25,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     }
 
     @property()
-    projectEntities : any[] = [];
+    projects : any[] = [];
     @property()
     processTempPath : string = '';
     @property()
@@ -36,10 +36,10 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     renderFormFields(): TemplateResult {
         return html`
             <nidoca-inputfield
-                    .value="${this.projectEntities}"
-                    name="projectEntities"
+                    .value="${this.projects}"
+                    name="projects"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('process_property_projectEntities')}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.processTempPath}"
@@ -63,7 +63,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     }
 
     itemToProperties(process: Process): void {
-        this.projectEntities = process.projectEntities;
+        this.projects = process.projects;
         this.processTempPath = process.processTempPath;
         this.processParentPath = process.processParentPath;
         this.technicalDescriptor = process.technicalDescriptor;

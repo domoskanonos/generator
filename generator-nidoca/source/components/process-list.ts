@@ -49,7 +49,7 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
         .alignItems="${FlexAlignItems.CENTER}"
         >
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.projectEntities}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.projects}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processTempPath}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processParentPath}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.technicalDescriptor}"></nidoca-typography>
@@ -64,7 +64,7 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
 
     itemClicked(process: Process, index: number): void {
         console.debug("Process list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : process.id});
+        RouterService.getUniqueInstance().navigate('processedit',{ 'id' : process.id});
     }
 
    renderNoRecord(): TemplateResult {

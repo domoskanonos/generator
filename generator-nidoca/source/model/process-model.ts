@@ -1,6 +1,6 @@
 export class Process {
     id : number = 0;
-    projectEntities : any[] = [];
+    projects : any[] = [];
     processTempPath : string = '';
     processParentPath : string = '';
     technicalDescriptor : string = '';

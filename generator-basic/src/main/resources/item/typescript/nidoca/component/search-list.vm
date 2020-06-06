@@ -65,7 +65,7 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
 
     itemClicked(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}, index: number): void {
         console.debug("${model.typescriptModelName} list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
+        RouterService.getUniqueInstance().navigate('${model.nidocaPageEditUrl}',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
     }
 
    renderNoRecord(): TemplateResult {

@@ -1,6 +1,6 @@
 export class Project {
     id : number = 0;
-    itemEntities : any[] = [];
+    items : any[] = [];
     template : any = {};
     technicalDescriptor : string = '';
     javaBasePackage : string = '';

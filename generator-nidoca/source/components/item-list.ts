@@ -45,7 +45,7 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
         .alignItems="${FlexAlignItems.CENTER}"
         >
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.id}"></nidoca-typography>
-            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.projectEntity}"></nidoca-typography>
+            <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.project}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.name}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.idTypeEnum}"></nidoca-typography>
             <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.template}"></nidoca-typography>
@@ -61,7 +61,7 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
 
     itemClicked(item: Item, index: number): void {
         console.debug("Item list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : item.id});
+        RouterService.getUniqueInstance().navigate('itemedit',{ 'id' : item.id});
     }
 
    renderNoRecord(): TemplateResult {

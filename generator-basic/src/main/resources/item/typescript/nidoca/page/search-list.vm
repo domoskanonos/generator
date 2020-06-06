@@ -22,6 +22,6 @@ export class ${model.typescriptModelName}SearchListPage extends NidocaAbstractPa
    }
 
    getEditPageUrl(): string {
-      return '${model.getModelEditPageUrl()}';
+      return '${model.nidocaPageEditUrl}';
    }
 }

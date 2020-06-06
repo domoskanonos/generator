@@ -21,6 +21,6 @@ export class ItemSearchListPage extends NidocaAbstractPageSearchList {
    }
 
    getEditPageUrl(): string {
-      return '${model.getModelEditPageUrl()}';
+      return 'itemedit';
    }
 }

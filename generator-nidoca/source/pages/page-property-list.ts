@@ -21,6 +21,6 @@ export class PropertySearchListPage extends NidocaAbstractPageSearchList {
    }
 
    getEditPageUrl(): string {
-      return '${model.getModelEditPageUrl()}';
+      return 'propertyedit';
    }
 }

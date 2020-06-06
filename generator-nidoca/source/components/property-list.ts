@@ -63,7 +63,7 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
 
     itemClicked(property: Property, index: number): void {
         console.debug("Property list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.getModelEditPageUrl()}',{ 'id' : property.id});
+        RouterService.getUniqueInstance().navigate('propertyedit',{ 'id' : property.id});
     }
 
    renderNoRecord(): TemplateResult {

@@ -21,6 +21,6 @@ export class ProjectSearchListPage extends NidocaAbstractPageSearchList {
    }
 
    getEditPageUrl(): string {
-      return '${model.getModelEditPageUrl()}';
+      return 'projectedit';
    }
 }
