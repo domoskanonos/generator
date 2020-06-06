@@ -47,7 +47,7 @@ public class ${model.javaRestControllerBasicClazzSimpleName} {
     @CrossOrigin
     @ApiOperation(value = "search object by id, method return BadRequest if object not exist, otherwise return the object of type ${model.javaDTOClazzSimpleName}.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @GetMapping("FIND_BY_ID/{id}")
-    public ResponseEntity<${model.javaDTOClazzSimpleName}> findById(@PathVariable ${model.idTypeEnum.javaTypeName} id) {
+    public ResponseEntity<${model.javaDTOClazzSimpleName}> findById(@PathVariable ${model.idTypeEnum.javaTypeSimpleName} id) {
         Optional<${model.javaDTOClazzSimpleName}> dtoOptional = service.findById(id);
         if (dtoOptional.isPresent()) {
             return ResponseEntity.ok(dtoOptional.get());
@@ -60,7 +60,7 @@ public class ${model.javaRestControllerBasicClazzSimpleName} {
     @CrossOrigin
     @ApiOperation(value = "update an existing object with new values, object is from type ${model.javaDTOClazzSimpleName}. if object not found, BadRequest will be returned.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @PutMapping("UPDATE/{id}")
-    public ResponseEntity<${model.javaDTOClazzSimpleName}> update(@PathVariable ${model.idTypeEnum.javaTypeName} id, @Valid @RequestBody ${model.javaDTOClazzSimpleName} dto) {
+    public ResponseEntity<${model.javaDTOClazzSimpleName}> update(@PathVariable ${model.idTypeEnum.javaTypeSimpleName} id, @Valid @RequestBody ${model.javaDTOClazzSimpleName} dto) {
         if (!service.findById(id).isPresent()) {
             log.error("object not updated, id not found, id= {}, please check id", id);
             return ResponseEntity.badRequest().build();
@@ -73,7 +73,7 @@ public class ${model.javaRestControllerBasicClazzSimpleName} {
     @CrossOrigin
     @ApiOperation(value = "delete a object of type ${model.javaDTOClazzSimpleName} by identifier (id). if object not found, BadRequest will be returned.", response = ${model.javaDTOClazzSimpleName}.class, responseContainer = "${model.javaDTOClazzSimpleName}")
     @DeleteMapping("DELETE/{id}")
-    public ResponseEntity delete(@PathVariable ${model.idTypeEnum.javaTypeName} id) {
+    public ResponseEntity delete(@PathVariable ${model.idTypeEnum.javaTypeSimpleName} id) {
         if (!service.findById(id).isPresent()) {
             log.error("object not deleted, id not found, id= {}, please check id", id);
             ResponseEntity.badRequest().build();

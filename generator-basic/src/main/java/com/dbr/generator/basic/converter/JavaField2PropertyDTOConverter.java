@@ -17,6 +17,7 @@ public class JavaField2PropertyDTOConverter {
         PropertyModel propertyModel = new PropertyModel(itemModel, field.getName());
         propertyModel.setUseJPAIdClazz(itemModel.getIdTypeEnum() != null);
         propertyModel.setPropertyType(TypeEnum.byField(field));
+        propertyModel.setMainProperty(true);
         propertyModel.setIdProperty(isIDField(field));
         return propertyModel;
     }

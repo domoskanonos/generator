@@ -46,7 +46,7 @@ public class ProjectRestBasicController {
     @CrossOrigin
     @ApiOperation(value = "search object by id, method return BadRequest if object not exist, otherwise return the object of type ProjectDTO.", response = ProjectDTO.class, responseContainer = "ProjectDTO")
     @GetMapping("FIND_BY_ID/{id}")
-    public ResponseEntity<ProjectDTO> findById(@PathVariable java.lang.Long id) {
+    public ResponseEntity<ProjectDTO> findById(@PathVariable Long id) {
         Optional<ProjectDTO> dtoOptional = service.findById(id);
         if (dtoOptional.isPresent()) {
             return ResponseEntity.ok(dtoOptional.get());
@@ -59,7 +59,7 @@ public class ProjectRestBasicController {
     @CrossOrigin
     @ApiOperation(value = "update an existing object with new values, object is from type ProjectDTO. if object not found, BadRequest will be returned.", response = ProjectDTO.class, responseContainer = "ProjectDTO")
     @PutMapping("UPDATE/{id}")
-    public ResponseEntity<ProjectDTO> update(@PathVariable java.lang.Long id, @Valid @RequestBody ProjectDTO dto) {
+    public ResponseEntity<ProjectDTO> update(@PathVariable Long id, @Valid @RequestBody ProjectDTO dto) {
         if (!service.findById(id).isPresent()) {
             log.error("object not updated, id not found, id= {}, please check id", id);
             return ResponseEntity.badRequest().build();
@@ -72,7 +72,7 @@ public class ProjectRestBasicController {
     @CrossOrigin
     @ApiOperation(value = "delete a object of type ProjectDTO by identifier (id). if object not found, BadRequest will be returned.", response = ProjectDTO.class, responseContainer = "ProjectDTO")
     @DeleteMapping("DELETE/{id}")
-    public ResponseEntity delete(@PathVariable java.lang.Long id) {
+    public ResponseEntity delete(@PathVariable Long id) {
         if (!service.findById(id).isPresent()) {
             log.error("object not deleted, id not found, id= {}, please check id", id);
             ResponseEntity.badRequest().build();
