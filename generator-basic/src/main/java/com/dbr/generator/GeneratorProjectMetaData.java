@@ -43,13 +43,13 @@ public class GeneratorProjectMetaData {
         //projectDTOS.add(SPRING_BOOT_PROJECT_DTO);
 
         SPRING_BOOT_JAVA_PROJECT_MODEL = new JavaProjectModel(PROCESS_MODEL, "springboot", javaBasePackage);
-        //projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
+        projectModels.add(SPRING_BOOT_JAVA_PROJECT_MODEL);
 
         NIDOCA_PROJECT_MODEL = new NidocaProjectModel(PROCESS_MODEL, "nidoca", TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_INDEX, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_I18N);
         projectModels.add(NIDOCA_PROJECT_MODEL);
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
-            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_JAVA_DTO_TEMPLATE, TemplateEnum.ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE);
+            ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE);
             ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST);
             for (Field field : clazz.getDeclaredFields()) {
                 PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
