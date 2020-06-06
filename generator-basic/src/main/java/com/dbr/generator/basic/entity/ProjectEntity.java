@@ -26,7 +26,7 @@ public class ProjectEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROJECT_ITEM", joinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private List<ItemEntity> itemEntities = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
 
     @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "PROJECT_TEMPLATE", joinColumns = @JoinColumn(name = "PROJECT_ID", referencedColumnName = "ID"))
@@ -39,5 +39,10 @@ public class ProjectEntity {
     @Column(name = "JAVA_BASE_PACKAGE")
     private String javaBasePackage;
 
-
+    public void addItem(ItemEntity item) {
+        if (items == null) {
+            items = new ArrayList<>();
+        }
+        items.add(item);
+    }
 }

@@ -37,4 +37,10 @@ public class ProjectModel {
         return new File(getProjectFolder(), projectTemplateEnum.getProjectFilePath(""));
     }
 
+    public void addItem(ItemModel item) {
+        if (items == null) {
+            items = new ArrayList<>();
+        }
+        items.add(item);
+    }
 }
