@@ -22,6 +22,8 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
             0,
             this.resultSize,
             '', ''
+                .concat('&name=')
+                .concat(search)
         );
         return pageableContainer.content;
     }

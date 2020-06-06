@@ -22,6 +22,12 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
             0,
             this.resultSize,
             '', ''
+                .concat('&processTempPath=')
+                .concat(search)
+                .concat('&processParentPath=')
+                .concat(search)
+                .concat('&technicalDescriptor=')
+                .concat(search)
         );
         return pageableContainer.content;
     }

@@ -22,6 +22,10 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
             0,
             this.resultSize,
             '', ''
+                .concat('&technicalDescriptor=')
+                .concat(search)
+                .concat('&javaBasePackage=')
+                .concat(search)
         );
         return pageableContainer.content;
     }
