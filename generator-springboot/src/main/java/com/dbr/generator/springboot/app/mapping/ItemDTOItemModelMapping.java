@@ -20,7 +20,7 @@ public class ItemDTOItemModelMapping {
 
     public ItemModel toModel(ItemDTO source) {
         ItemModel dest = new ItemModel();
-        BeanUtils.copyProperties(source, dest, "items");
+        BeanUtils.copyProperties(source, dest, "properties");
         for (PropertyDTO property : source.getProperties()) {
             dest.addProperty(propertyDTOPropertyModelMapping.toModel(property));
         }
@@ -29,7 +29,7 @@ public class ItemDTOItemModelMapping {
 
     public ItemDTO toDTO(ItemModel source) {
         ItemDTO dest = new ItemDTO();
-        BeanUtils.copyProperties(source, dest, "items");
+        BeanUtils.copyProperties(source, dest, "properties");
         for (PropertyModel property : source.getProperties()) {
             dest.addProperty(propertyDTOPropertyModelMapping.toDTO(property));
         }

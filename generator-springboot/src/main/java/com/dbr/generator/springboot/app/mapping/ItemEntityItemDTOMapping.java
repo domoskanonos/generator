@@ -23,7 +23,7 @@ public class ItemEntityItemDTOMapping {
 
     public ItemEntity toEntity(ItemDTO source) {
         ItemEntity dest = new ItemEntity();
-        BeanUtils.copyProperties(source, dest, "items");
+        BeanUtils.copyProperties(source, dest, "properties");
         for (PropertyDTO property : source.getProperties()) {
             dest.addProperty(propertyEntityPropertyDTOMapping.toEntity(property));
         }
@@ -32,7 +32,7 @@ public class ItemEntityItemDTOMapping {
 
     public ItemDTO toDTO(ItemEntity source) {
         ItemDTO dest = new ItemDTO();
-        BeanUtils.copyProperties(source, dest, "items");
+        BeanUtils.copyProperties(source, dest, "properties");
         for (PropertyEntity property : source.getProperties()) {
             dest.addProperty(propertyEntityPropertyDTOMapping.toDTO(property));
         }
