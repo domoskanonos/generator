@@ -67,8 +67,8 @@ public class ${model.javaServiceSearchClazzSimpleName} {
             @Override
             protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<${model.javaJPAClazzSimpleName}> cq, Root<${model.javaJPAClazzSimpleName}> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
-                #foreach( $property in $properties )
-                #if( !${generatorUtil.isIdField($property.field)})
+                #foreach( $property in $model.properties )
+                #if( !$property.idProperty)
 
                 #if(${property.propertyType.javaTypeSimpleName} == 'String')
                 if (StringUtils.isNotBlank(${property.name})) {

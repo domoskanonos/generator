@@ -24,16 +24,6 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
             '', ''
                 .concat('&name=')
                 .concat(search)
-                .concat('&idProperty=')
-                .concat(search)
-                .concat('&mainProperty=')
-                .concat(search)
-                .concat('&nullable=')
-                .concat(search)
-                .concat('&useJPAIdClazz=')
-                .concat(search)
-                .concat('&length=')
-                .concat(search)
         );
         return pageableContainer.content;
     }
