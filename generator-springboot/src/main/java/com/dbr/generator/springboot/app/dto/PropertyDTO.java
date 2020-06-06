@@ -1,9 +1,7 @@
 package com.dbr.generator.springboot.app.dto;
 
+import com.dbr.generator.basic.enumeration.TypeEnum;
 import lombok.*;
-
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Data
 @ToString
@@ -15,7 +13,7 @@ public class PropertyDTO {
 
     private Long id;
     private String name;
-    private java.lang.Enum propertyType;
+    private TypeEnum propertyType;
     private Boolean idProperty;
     private Boolean searchable;
     private Boolean nullable;
