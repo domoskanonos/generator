@@ -45,7 +45,6 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
         .alignItems="${FlexAlignItems.CENTER}"
         >
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.id}"></nidoca-typography>
-                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.project}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.name}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.idTypeEnum}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.template}"></nidoca-typography>

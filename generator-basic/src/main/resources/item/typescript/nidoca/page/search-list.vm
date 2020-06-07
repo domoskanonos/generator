@@ -14,7 +14,7 @@ export class ${model.typescriptModelName}SearchListPage extends NidocaAbstractPa
    }
 
    getNavigationTitle(): string {
-      return I18nService.getUniqueInstance().getValue('${model.i18nNavigationEditName}');
+      return I18nService.getUniqueInstance().getValue('${model.i18nNavigationListName}');
    }
 
    getAddTitle(): string {

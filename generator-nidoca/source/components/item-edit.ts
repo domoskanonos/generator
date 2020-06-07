@@ -25,8 +25,6 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
     }
 
     @property()
-    project : any = {};
-    @property()
     name : string = '';
     @property()
     idTypeEnum : string  = '';
@@ -37,12 +35,6 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
 
     renderFormFields(): TemplateResult {
         return html`
-            <nidoca-inputfield
-                    .options="${this.project}"
-                    name="project"
-                    inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('item_property_project')}"
-            ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.name}"
                     name="name"
@@ -61,16 +53,16 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
-            <property-combobox-component
+            <nidoca-inputfield
                     .value="${this.properties}"
                     name="properties"
+                    inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
-            ></property-combobox-component>
+            ></nidoca-inputfield>
         `;
     }
 
     itemToProperties(item: Item): void {
-        this.project = item.project;
         this.name = item.name;
         this.idTypeEnum = item.idTypeEnum;
         this.template = item.template;

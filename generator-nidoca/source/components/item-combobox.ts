@@ -7,6 +7,7 @@ export class ItemCombobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
+      this.multiple = true;
          ItemRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {

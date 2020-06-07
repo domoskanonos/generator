@@ -7,6 +7,7 @@ export class ProcessCombobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
+      this.multiple = true;
          ProcessRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {

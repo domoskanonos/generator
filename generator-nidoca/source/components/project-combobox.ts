@@ -7,6 +7,7 @@ export class ProjectCombobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
+      this.multiple = true;
          ProjectRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {
