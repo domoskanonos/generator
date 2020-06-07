@@ -36,13 +36,13 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     renderFormFields(): TemplateResult {
         return html`
             <nidoca-inputfield
-                    .value="${this.items}"
+                    .options="${this.items}"
                     name="items"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.template}"
+                    .options="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"

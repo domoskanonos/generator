@@ -37,7 +37,7 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
             #foreach( $property in $model.properties )
             #if(!${property.idProperty})
             <nidoca-inputfield
-                    .value="$escapeDollar{this.${property.name}}"
+                    ${property.propertyType.typescriptNidocaInputfieldValueFieldName}="$escapeDollar{this.${property.name}}"
                     name="${property.name}"
                     inputfieldType="${property.propertyType.typescriptNidocaInputfieldType}"
                     label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.i18nEditName}')}"

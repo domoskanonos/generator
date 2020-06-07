@@ -54,33 +54,33 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
                     label="${I18nService.getUniqueInstance().getValue('property_property_propertyType')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.idProperty}"
+                    .checked="${this.idProperty}"
                     name="idProperty"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_idProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.mainProperty}"
+                    .checked="${this.mainProperty}"
                     name="mainProperty"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_mainProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.nullable}"
+                    .checked="${this.nullable}"
                     name="nullable"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_nullable')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.useJPAIdClazz}"
+                    .checked="${this.useJPAIdClazz}"
                     name="useJPAIdClazz"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_useJPAIdClazz')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.length}"
                     name="length"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.NUMBER}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_length')}"
             ></nidoca-inputfield>
         `;

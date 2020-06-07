@@ -38,7 +38,7 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
     renderFormFields(): TemplateResult {
         return html`
             <nidoca-inputfield
-                    .value="${this.project}"
+                    .options="${this.project}"
                     name="project"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_project')}"
@@ -56,13 +56,13 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     label="${I18nService.getUniqueInstance().getValue('item_property_idTypeEnum')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.template}"
+                    .options="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.properties}"
+                    .options="${this.properties}"
                     name="properties"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"

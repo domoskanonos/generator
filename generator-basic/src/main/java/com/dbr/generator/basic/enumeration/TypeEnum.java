@@ -11,7 +11,7 @@ public enum TypeEnum {
     BYTE_ARRAY(byte[].class),
     STRING(String.class),
     INTEGER(Integer.class),
-    TYPE_BOOLEAN(Boolean.class),
+    BOOLEAN(Boolean.class),
     BIG_DECIMAL(BigDecimal.class),
     LONG(Long.class),
     FLOAT(Float.class),
@@ -63,7 +63,7 @@ public enum TypeEnum {
         switch (typeEnum) {
             case STRING:
             case INTEGER:
-            case TYPE_BOOLEAN:
+            case BOOLEAN:
             case BIG_DECIMAL:
             case LONG:
             case FLOAT:
@@ -88,7 +88,7 @@ public enum TypeEnum {
         switch (this) {
             case STRING:
             case INTEGER:
-            case TYPE_BOOLEAN:
+            case BOOLEAN:
             case BIG_DECIMAL:
             case LONG:
             case FLOAT:
@@ -122,7 +122,7 @@ public enum TypeEnum {
             case SHORT:
             case DOUBLE:
                 return "number";
-            case TYPE_BOOLEAN:
+            case BOOLEAN:
                 return "boolean";
             case DATE:
             case DATE_ISO8601:
@@ -149,7 +149,7 @@ public enum TypeEnum {
             case ENUMERATION:
             case STRING:
                 return "''";
-            case TYPE_BOOLEAN:
+            case BOOLEAN:
                 return "false";
             case INTEGER:
             case BIG_DECIMAL:
@@ -176,7 +176,35 @@ public enum TypeEnum {
             case BYTE_ARRAY:
             case ENUMERATION:
             case STRING:
-            case TYPE_BOOLEAN:
+                return "${InputfieldType.TEXT}";
+            case BOOLEAN:
+                return "${InputfieldType.SWITCH}";
+            case INTEGER:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
+                return "${InputfieldType.NUMBER}";
+            case DATE:
+            case DATE_ISO8601:
+                return "${InputfieldType.DATE}";
+            case ARRAY_STRING:
+            case LIST:
+            case OBJECT:
+            default:
+                return "${InputfieldType.TEXT}";
+        }
+    }
+    public String getTypescriptNidocaInputfieldValueFieldName() {
+        switch (this) {
+             case BOOLEAN:
+                return ".checked";
+            case ARRAY_STRING:
+            case LIST:
+            case OBJECT:
+            case BYTE_ARRAY:
+                return ".options";
             case INTEGER:
             case BIG_DECIMAL:
             case LONG:
@@ -185,14 +213,13 @@ public enum TypeEnum {
             case DOUBLE:
             case DATE:
             case DATE_ISO8601:
-            case ARRAY_STRING:
-            case LIST:
-            case OBJECT:
+            case TYPE_CHAR:
+            case ENUMERATION:
+            case STRING:
             default:
-                return "${InputfieldType.TEXT}";
+                return ".value";
         }
     }
-
 
     public static TypeEnum byJavaTypeSimpleName(String javaTypeSimpleName) {
         for (TypeEnum typeEnum : TypeEnum.values()) {
