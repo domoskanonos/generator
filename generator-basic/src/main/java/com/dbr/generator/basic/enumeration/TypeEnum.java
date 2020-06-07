@@ -201,7 +201,6 @@ public enum TypeEnum {
              case BOOLEAN:
                 return ".checked";
             case ARRAY_STRING:
-            case LIST:
             case OBJECT:
             case BYTE_ARRAY:
                 return ".options";
@@ -216,6 +215,7 @@ public enum TypeEnum {
             case TYPE_CHAR:
             case ENUMERATION:
             case STRING:
+            case LIST:
             default:
                 return ".value";
         }

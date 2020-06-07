@@ -36,7 +36,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     renderFormFields(): TemplateResult {
         return html`
             <nidoca-inputfield
-                    .options="${this.projects}"
+                    .value="${this.projects}"
                     name="projects"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"

@@ -23,7 +23,8 @@ public enum TemplateEnum {
     ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT("item/typescript/nidoca/page/edit.vm", "pages/page-", "-edit", LanguageType.TYPESCRIPT),
     ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST("item/typescript/nidoca/page/search-list.vm", "pages/page-", "-list", LanguageType.TYPESCRIPT),
     ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT("item/typescript/nidoca/component/edit.vm", "components/", "-edit", LanguageType.TYPESCRIPT),
-    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST("item/typescript/nidoca/component/search-list.vm", "components/", "-list", LanguageType.TYPESCRIPT);
+    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST("item/typescript/nidoca/component/search-list.vm", "components/", "-list", LanguageType.TYPESCRIPT),
+    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX("item/typescript/nidoca/component/combobox.vm", "components/", "-combobox", LanguageType.TYPESCRIPT);
 
     private String templatePath;
 

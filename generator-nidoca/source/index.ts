@@ -8,12 +8,16 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 
 import './components/property-edit';
 import './components/property-list';
+import './components/property-combobox';
 import './components/item-edit';
 import './components/item-list';
+import './components/item-combobox';
 import './components/project-edit';
 import './components/project-list';
+import './components/project-combobox';
 import './components/process-edit';
 import './components/process-list';
+import './components/process-combobox';
 
 import './pages/page-dashboard';
 import './pages/page-settings';

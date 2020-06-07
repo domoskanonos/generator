@@ -9,6 +9,7 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 #foreach( $model in $model.items )
 import './${model.typescriptNidocaComponentEditImport}';
 import './${model.typescriptNidocaComponentListImport}';
+import './${model.typescriptNidocaComponentComboboxImport}';
 #end
 
 import './pages/page-dashboard';

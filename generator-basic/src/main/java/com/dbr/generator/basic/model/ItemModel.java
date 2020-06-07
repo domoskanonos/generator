@@ -224,6 +224,10 @@ public class ItemModel {
         return new File(projectFolder, getFileSuffix(templateEnum));
     }
 
+    public String getTypescriptNidocaComponentComboboxImport() {
+        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX.getFilename(getNameToLowerCase());
+    }
+
     public String getTypescriptNidocaComponentEditImport() {
         return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT.getFilename(getNameToLowerCase());
     }
@@ -284,7 +288,9 @@ public class ItemModel {
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
+            case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX:
                 return templateEnum.getProjectFilePath(getNameToLowerCase());
+            case PROJECT_TYPESCRIPT_NIDOCA_I18N:
             case PROJECT_TYPESCRIPT_NIDOCA_INDEX:
             case PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE:
             case PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT:
