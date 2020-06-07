@@ -5,7 +5,9 @@ import com.dbr.generator.basic.enumeration.TypeEnum;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @ToString
@@ -19,8 +21,8 @@ public class ItemDTO {
     private java.lang.Object projectEntity;
     private String name;
     private TypeEnum idTypeEnum;
-    private TemplateEnum template;
     private List<PropertyDTO> properties;
+    private Set<TemplateEnum> template = new HashSet<>();
 
     public void addProperty(PropertyDTO propertyDTO) {
         if (this.properties == null) {

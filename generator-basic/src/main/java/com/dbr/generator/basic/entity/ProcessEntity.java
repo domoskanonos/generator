@@ -3,6 +3,8 @@ package com.dbr.generator.basic.entity;
 import com.dbr.generator.basic.util.ValidationUtil;
 import lombok.*;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.File;
@@ -25,6 +27,7 @@ public class ProcessEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROCESS_PROJECT", joinColumns = @JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<ProjectEntity> projects = new ArrayList<>();
 
     private String processTempPath;

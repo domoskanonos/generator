@@ -3,6 +3,8 @@ package com.dbr.generator.basic.entity;
 import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.enumeration.TypeEnum;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,9 +26,6 @@ public class ItemEntity {
     @Column(name = "ID", unique = true, nullable = false)
     private Long id;
 
-    @ManyToOne
-    private ProjectEntity project;
-
     @Column(name = "NAME")
     private String name;
 
@@ -40,15 +39,9 @@ public class ItemEntity {
     private Set<TemplateEnum> template = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
     private List<PropertyEntity> properties = new ArrayList<>();
-
-    public void addProject(PropertyEntity propertyEntity) {
-        if (this.properties == null) {
-            this.properties = new ArrayList<>();
-        }
-        this.properties.add(propertyEntity);
-    }
 
     public void addProperty(PropertyEntity propertyEntity) {
         if (properties == null) {
