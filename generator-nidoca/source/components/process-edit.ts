@@ -1,6 +1,6 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
-import {InputfieldType} from "@domoskanonos/nidoca-core";
+import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {Process} from '../model/process-model';
 import {ProcessRemoteRepository} from "../repo/process-repository";

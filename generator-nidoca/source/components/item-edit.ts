@@ -1,6 +1,6 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
-import {InputfieldType} from "@domoskanonos/nidoca-core";
+import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {Item} from '../model/item-model';
 import {ItemRemoteRepository} from "../repo/item-repository";
@@ -65,7 +65,12 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
     itemToProperties(item: Item): void {
         this.name = item.name;
         this.idTypeEnum = item.idTypeEnum;
-        this.template = item.template;
+        this.template = NidocaInputfield.object2KeyValueDataArray(
+        item.template,
+        'id',
+        'id',
+        true
+        );
         this.properties = item.properties;
     }
 
