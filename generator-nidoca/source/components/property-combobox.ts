@@ -14,6 +14,7 @@ export class PropertyCombobox extends NidocaInputfield {
          .getAll()
          .then((value) => {
              this.options = value;
+            this.size=this.options.length;
          });
    }
 }

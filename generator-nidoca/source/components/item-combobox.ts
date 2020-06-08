@@ -9,6 +9,7 @@ export class ItemCombobox extends NidocaInputfield {
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.optionKeyField = "id";
       this.optionValueField = "id";
+      this.size=50;
          ItemRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {
