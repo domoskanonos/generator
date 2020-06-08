@@ -27,7 +27,7 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     @property()
     items : any[] = [];
     @property()
-    template : any = {};
+    template : any[] = [];
     @property()
     technicalDescriptor : string = '';
     @property()
@@ -42,7 +42,7 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .options="${this.template}"
+                    .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
@@ -69,7 +69,12 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
         'id',
         true
         );
-        this.template = project.template;
+        this.template = NidocaInputfield.object2KeyValueDataArray(
+        project.template,
+        'id',
+        'id',
+        true
+        );
         this.technicalDescriptor = project.technicalDescriptor;
         this.javaBasePackage = project.javaBasePackage;
     }

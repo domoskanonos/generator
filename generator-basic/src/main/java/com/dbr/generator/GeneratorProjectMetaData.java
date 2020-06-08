@@ -50,7 +50,7 @@ public class GeneratorProjectMetaData {
 
         for (Class clazz : new Class[]{PropertyEntity.class, ItemEntity.class, ProjectEntity.class, ProcessEntity.class}) {
             ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE);
-            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX);
+            ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.ITEM_TYPESCRIPT_REMOTE_SERVICE, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX);
             for (Field field : clazz.getDeclaredFields()) {
                 PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
                 itemModel.addProperty(propertyModel);

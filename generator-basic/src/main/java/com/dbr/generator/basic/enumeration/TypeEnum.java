@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public enum TypeEnum {
 
@@ -21,7 +22,9 @@ public enum TypeEnum {
     DATE(Date.class),
     DATE_ISO8601(Date.class),
     ARRAY_STRING(String[].class),
+    ARRAY_ENUMERATION(Enum[].class),
     LIST(List.class),
+    SET(Set.class),
     ENUMERATION(Enum.class),
     OBJECT(Object.class);
 
@@ -99,6 +102,7 @@ public enum TypeEnum {
             case DATE:
             case DATE_ISO8601:
             case LIST:
+            case SET:
             case ENUMERATION:
             case OBJECT:
             case BYTE_ARRAY:
@@ -131,6 +135,7 @@ public enum TypeEnum {
                 return "string[]";
             case BYTE_ARRAY:
             case LIST:
+            case SET:
                 return "any[]";
             case ENUMERATION:
                 return "string ";
@@ -163,6 +168,7 @@ public enum TypeEnum {
                 return "new Date()";
             case ARRAY_STRING:
             case LIST:
+            case SET:
                 return "[]";
             case OBJECT:
             default:
@@ -190,6 +196,7 @@ public enum TypeEnum {
             case DATE_ISO8601:
                 return "${InputfieldType.DATE}";
             case LIST:
+            case SET:
             case OBJECT:
                 return "${InputfieldType.COMBOBOX}";
             case ARRAY_STRING:
@@ -217,6 +224,7 @@ public enum TypeEnum {
             case ENUMERATION:
             case STRING:
             case LIST:
+            case SET:
             default:
                 return ".value";
         }

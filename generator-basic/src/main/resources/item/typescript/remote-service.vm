@@ -1,15 +1,15 @@
-export class ${remoteServiceName} {
+export class ${model.typescriptRemoteServiceName} {
 
-    private static uniqueInstance: ${remoteServiceName};
+    private static uniqueInstance: ${model.typescriptRemoteServiceName};
 
     constructor() {
     }
 
     static getUniqueInstance() {
-        if (!${remoteServiceName}.uniqueInstance) {
-            ${remoteServiceName}.uniqueInstance = new ${remoteServiceName}();
+        if (!${model.typescriptRemoteServiceName}.uniqueInstance) {
+            ${model.typescriptRemoteServiceName}.uniqueInstance = new ${model.typescriptRemoteServiceName}();
         }
-        return ${remoteServiceName}.uniqueInstance;
+        return ${model.typescriptRemoteServiceName}.uniqueInstance;
     }
 
 }

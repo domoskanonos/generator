@@ -172,6 +172,10 @@ public class ItemModel {
         return new StringBuilder().append(name).append("RemoteRepository").toString();
     }
 
+    public String getTypescriptRemoteServiceName() {
+        return new StringBuilder().append(name).append("RemoteService").toString();
+    }
+
     public String getIdFieldSetterMethodName() {
         return "set" + StringUtil.firstLetterToUpperCase(getIdFieldName());
     }
@@ -284,6 +288,7 @@ public class ItemModel {
                 return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerSearchClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
+            case ITEM_TYPESCRIPT_REMOTE_SERVICE:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
