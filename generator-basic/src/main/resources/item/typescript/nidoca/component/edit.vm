@@ -1,7 +1,7 @@
 #set( $escapeDollar = '$' )
 import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
-import {InputfieldType} from "@domoskanonos/nidoca-core";
+import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
 import {${model.typescriptRemoteRepositoryName}} from "${model.typescriptRemoteRepositoryPath}";
@@ -50,7 +50,16 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
     itemToProperties(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}): void {
         #foreach( $property in $model.properties )
         #if(!${property.idProperty})
-        this.${property.name} = ${model.typescriptModelNameToLowerCase}.${property.name};
+            #if(${property.propertyType.typescriptType} == "any")
+                this.${property.name} = NidocaInputfield.object2KeyValueDataArray(
+                ${model.typescriptModelNameToLowerCase}.${property.name},
+                'id',
+                'id',
+                true
+                );
+            #else
+                this.${property.name} = ${model.typescriptModelNameToLowerCase}.${property.name};
+            #end
         #end
         #end
     }
