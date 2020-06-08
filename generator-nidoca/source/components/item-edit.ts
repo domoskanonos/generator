@@ -4,6 +4,7 @@ import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {Item} from '../model/item-model';
 import {ItemRemoteRepository} from "../repo/item-repository";
+import {KeyValueData} from "@domoskanonos/nidoca-core/lib";
 
 @customElement('item-edit-component')
 export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
@@ -25,13 +26,13 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
     }
 
     @property()
-    name : string = '';
+    name: string = '';
     @property()
-    idTypeEnum : string  = '';
+    idTypeEnum: string[] = '';
     @property()
-    template : any = {};
+    template: any = {};
     @property()
-    properties : any[] = [];
+    properties: any[] = [];
 
     renderFormFields(): TemplateResult {
         return html`
@@ -50,13 +51,13 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
             <nidoca-inputfield
                     .options="${this.template}"
                     name="template"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.properties}"
                     name="properties"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
             ></nidoca-inputfield>
         `;
@@ -64,18 +65,37 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
 
     itemToProperties(item: Item): void {
         this.name = item.name;
-        this.idTypeEnum = item.idTypeEnum;
-        this.template = NidocaInputfield.object2KeyValueDataArray(
-        item.template,
-        'id',
-        'id',
-        true
+
+
+        this.template = NidocaInputfield.stringArray2KeyValueDataArrayWithI18nValueMapping(item.template, "template_", true);
+        this.properties = NidocaInputfield.object2KeyValueDataArray(
+            item.properties,
+            'id',
+            'id',
+            true
         );
-        this.properties = item.properties;
     }
 
     getIdentifier(item: Item): any {
         return item.id;
+    }
+
+    static stringArray2KeyValueDataArrayWithI18nValueMapping(
+        arr: string[],
+        i18nPrefix: string,
+        withEmptyItem: boolean = false
+    ): KeyValueData[] {
+        let options: KeyValueData[] = [];
+        if (withEmptyItem) {
+            options.push(new KeyValueData());
+        }
+        Object.values(arr).forEach((value: any) => {
+            options.push(<KeyValueData>{
+                key: value,
+                value: I18nService.getUniqueInstance().getValue(i18nPrefix.concat(value))
+            });
+        });
+        return options;
     }
 
 

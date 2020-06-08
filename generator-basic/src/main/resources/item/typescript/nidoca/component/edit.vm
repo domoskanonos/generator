@@ -50,13 +50,15 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
     itemToProperties(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}): void {
         #foreach( $property in $model.properties )
         #if(!${property.idProperty})
-        #if(${property.propertyType.typescriptType} == "any")
+        #if(${property.propertyType.typescriptType} == "any[]")
         this.${property.name} = NidocaInputfield.object2KeyValueDataArray(
         ${model.typescriptModelNameToLowerCase}.${property.name},
         'id',
         'id',
         true
         );
+        #elseif(${property.propertyType.typescriptType} == "string[]")
+        this.${property.name} = NidocaInputfield.stringArray2KeyValueDataArrayWithI18nValueMapping(${model.typescriptModelNameToLowerCase}.${property.name}, "${property.name}_", true);
         #else
         this.${property.name} = ${model.typescriptModelNameToLowerCase}.${property.name};
         #end

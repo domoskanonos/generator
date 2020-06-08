@@ -38,13 +38,13 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
             <nidoca-inputfield
                     .value="${this.items}"
                     name="items"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .options="${this.template}"
                     name="template"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
@@ -63,13 +63,13 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     }
 
     itemToProperties(project: Project): void {
-        this.items = project.items;
-        this.template = NidocaInputfield.object2KeyValueDataArray(
-        project.template,
+        this.items = NidocaInputfield.object2KeyValueDataArray(
+        project.items,
         'id',
         'id',
         true
         );
+        this.template = project.template;
         this.technicalDescriptor = project.technicalDescriptor;
         this.javaBasePackage = project.javaBasePackage;
     }

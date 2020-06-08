@@ -189,9 +189,10 @@ public enum TypeEnum {
             case DATE:
             case DATE_ISO8601:
                 return "${InputfieldType.DATE}";
-            case ARRAY_STRING:
             case LIST:
             case OBJECT:
+                return "${InputfieldType.COMBOBOX}";
+            case ARRAY_STRING:
             default:
                 return "${InputfieldType.TEXT}";
         }

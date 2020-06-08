@@ -38,7 +38,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
             <nidoca-inputfield
                     .value="${this.projects}"
                     name="projects"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
@@ -63,7 +63,12 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     }
 
     itemToProperties(process: Process): void {
-        this.projects = process.projects;
+        this.projects = NidocaInputfield.object2KeyValueDataArray(
+        process.projects,
+        'id',
+        'id',
+        true
+        );
         this.processTempPath = process.processTempPath;
         this.processParentPath = process.processParentPath;
         this.technicalDescriptor = process.technicalDescriptor;
