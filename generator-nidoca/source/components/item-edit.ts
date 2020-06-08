@@ -50,6 +50,7 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
             <nidoca-inputfield
                     .value="${this.template}"
                     name="template"
+                    multiple="true"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
