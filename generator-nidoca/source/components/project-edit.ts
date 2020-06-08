@@ -63,18 +63,8 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     }
 
     itemToProperties(project: Project): void {
-        this.items = NidocaInputfield.object2KeyValueDataArray(
-        project.items,
-        'id',
-        'id',
-        true
-        );
-        this.template = NidocaInputfield.object2KeyValueDataArray(
-        project.template,
-        'id',
-        'id',
-        true
-        );
+        this.items = project.items;
+        this.template = project.template;
         this.technicalDescriptor = project.technicalDescriptor;
         this.javaBasePackage = project.javaBasePackage;
     }

@@ -8,15 +8,12 @@ export class ${model.typescriptModelName}Combobox extends NidocaInputfield {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.multiple = true;
+      this.optionKeyField = "id";
+      this.optionValueField = "id";
          ${model.typescriptRemoteRepositoryName}.getUniqueInstance()
          .getAll()
          .then((value) => {
-            this.options = NidocaInputfield.object2KeyValueDataArray(
-               value,
-               'id',
-               'id',
-               true
-            );
+             this.options = value;
          });
    }
 }

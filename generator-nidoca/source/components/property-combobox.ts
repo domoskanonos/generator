@@ -8,15 +8,12 @@ export class PropertyCombobox extends NidocaInputfield {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.multiple = true;
+      this.optionKeyField = "id";
+      this.optionValueField = "name";
          PropertyRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {
-            this.options = NidocaInputfield.object2KeyValueDataArray(
-               value,
-               'id',
-               'id',
-               true
-            );
+             this.options = value;
          });
    }
 }

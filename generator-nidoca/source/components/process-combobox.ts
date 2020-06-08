@@ -7,16 +7,12 @@ export class ProcessCombobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
-      this.multiple = true;
+      this.optionKeyField = "id";
+      this.optionValueField = "id";
          ProcessRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {
-            this.options = NidocaInputfield.object2KeyValueDataArray(
-               value,
-               'id',
-               'id',
-               true
-            );
+             this.options = value;
          });
    }
 }

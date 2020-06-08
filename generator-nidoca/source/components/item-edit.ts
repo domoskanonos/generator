@@ -53,30 +53,20 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
-            <nidoca-inputfield
+            <property-combobox-component
                     .value="${this.properties}"
                     name="properties"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
-            ></nidoca-inputfield>
+            ></property-combobox-component>
         `;
     }
 
     itemToProperties(item: Item): void {
         this.name = item.name;
         this.idTypeEnum = item.idTypeEnum;
-        this.template = NidocaInputfield.object2KeyValueDataArray(
-        item.template,
-        'id',
-        'id',
-        true
-        );
-        this.properties = NidocaInputfield.object2KeyValueDataArray(
-        item.properties,
-        'id',
-        'id',
-        true
-        );
+        this.template = item.template;
+        this.properties = item.properties;
     }
 
     getIdentifier(item: Item): any {

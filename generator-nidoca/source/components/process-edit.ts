@@ -63,12 +63,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     }
 
     itemToProperties(process: Process): void {
-        this.projects = NidocaInputfield.object2KeyValueDataArray(
-        process.projects,
-        'id',
-        'id',
-        true
-        );
+        this.projects = process.projects;
         this.processTempPath = process.processTempPath;
         this.processParentPath = process.processParentPath;
         this.technicalDescriptor = process.technicalDescriptor;
