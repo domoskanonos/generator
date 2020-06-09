@@ -3,5 +3,6 @@ export class Project {
     items : any[] = [];
     template : any[] = [];
     technicalDescriptor : string = '';
-    namespace : string = '';
+    namespase : string = '';
+    deactivated : boolean = false;
 }

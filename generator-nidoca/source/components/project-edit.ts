@@ -31,7 +31,9 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     @property()
     technicalDescriptor : string = '';
     @property()
-    javaBasePackage : string = '';
+    namespase : string = '';
+    @property()
+    deactivated : boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
@@ -54,10 +56,16 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
                     label="${I18nService.getUniqueInstance().getValue('project_property_technicalDescriptor')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.javaBasePackage}"
-                    name="javaBasePackage"
+                    .value="${this.namespase}"
+                    name="namespase"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('project_property_javaBasePackage')}"
+                    label="${I18nService.getUniqueInstance().getValue('project_property_namespase')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('project_property_deactivated')}"
             ></nidoca-inputfield>
         `;
     }
@@ -66,7 +74,8 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
         this.items = project.items;
         this.template = project.template;
         this.technicalDescriptor = project.technicalDescriptor;
-        this.javaBasePackage = project.javaBasePackage;
+        this.namespase = project.namespase;
+        this.deactivated = project.deactivated;
     }
 
     getIdentifier(project: Project): any {

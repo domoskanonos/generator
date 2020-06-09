@@ -27,6 +27,8 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
     @property()
     name : string = '';
     @property()
+    deactivated : boolean = false;
+    @property()
     propertyType : string  = '';
     @property()
     idProperty : boolean = false;
@@ -46,6 +48,12 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
                     name="name"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_name')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_deactivated')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.propertyType}"
@@ -88,6 +96,7 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
 
     itemToProperties(property: Property): void {
         this.name = property.name;
+        this.deactivated = property.deactivated;
         this.propertyType = property.propertyType;
         this.idProperty = property.idProperty;
         this.mainProperty = property.mainProperty;

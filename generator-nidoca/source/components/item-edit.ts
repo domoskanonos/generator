@@ -27,6 +27,8 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
     @property()
     name : string = '';
     @property()
+    deactivated : boolean = false;
+    @property()
     idTypeEnum : string  = '';
     @property()
     template : any[] = [];
@@ -42,6 +44,12 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     label="${I18nService.getUniqueInstance().getValue('item_property_name')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_deactivated')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
                     .value="${this.idTypeEnum}"
                     name="idTypeEnum"
                     inputfieldType="${InputfieldType.TEXT}"
@@ -50,21 +58,21 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
             <nidoca-inputfield
                     .value="${this.template}"
                     name="template"
-                    multiple="true"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
-            <property-combobox-component
+            <nidoca-inputfield
                     .value="${this.properties}"
                     name="properties"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
-            ></property-combobox-component>
+            ></nidoca-inputfield>
         `;
     }
 
     itemToProperties(item: Item): void {
         this.name = item.name;
+        this.deactivated = item.deactivated;
         this.idTypeEnum = item.idTypeEnum;
         this.template = item.template;
         this.properties = item.properties;

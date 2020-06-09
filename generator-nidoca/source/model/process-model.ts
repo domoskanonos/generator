@@ -4,4 +4,5 @@ export class Process {
     processTempPath : string = '';
     processParentPath : string = '';
     technicalDescriptor : string = '';
+    deactivated : boolean = false;
 }

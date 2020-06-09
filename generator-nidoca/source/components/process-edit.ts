@@ -32,15 +32,17 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     processParentPath : string = '';
     @property()
     technicalDescriptor : string = '';
+    @property()
+    deactivated : boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
-            <project-combobox-component
+            <nidoca-inputfield
                     .value="${this.projects}"
                     name="projects"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"
-            ></project-combobox-component>
+            ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.processTempPath}"
                     name="processTempPath"
@@ -59,6 +61,12 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_technicalDescriptor')}"
             ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_deactivated')}"
+            ></nidoca-inputfield>
         `;
     }
 
@@ -67,6 +75,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
         this.processTempPath = process.processTempPath;
         this.processParentPath = process.processParentPath;
         this.technicalDescriptor = process.technicalDescriptor;
+        this.deactivated = process.deactivated;
     }
 
     getIdentifier(process: Process): any {

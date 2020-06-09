@@ -46,6 +46,7 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
         >
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.id}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.name}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.deactivated}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyType}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.idProperty}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.mainProperty}"></nidoca-typography>
