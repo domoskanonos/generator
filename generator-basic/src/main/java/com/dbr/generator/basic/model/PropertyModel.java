@@ -17,6 +17,8 @@ public class PropertyModel {
     private boolean useJPAIdClazz;
     private Integer length;
 
+    private Boolean deactivated;
+
     public PropertyModel(ItemModel itemModel, String name) {
         this.itemModel = itemModel;
         this.name = name;

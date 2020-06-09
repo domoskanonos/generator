@@ -20,6 +20,8 @@ public class ProcessModel {
 
     private String technicalDescriptor;
 
+    private Boolean deactivated;
+
     private List<ProjectModel> projects = new ArrayList<>();
 
     public ProcessModel(String processTempPath, String processParentPath, String technicalDescriptor) {

@@ -30,11 +30,17 @@ public class ProcessEntity {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<ProjectEntity> projects = new ArrayList<>();
 
+    @Column(name = "PROCESS_TEMP_PATH")
     private String processTempPath;
 
+    @Column(name = "PROCESS_PARENT_PATH")
     private String processParentPath;
 
+    @Column(name = "TECHNICAL_DESCRIPTOR")
     private String technicalDescriptor;
+
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
 
     public ProcessEntity(String processTempPath, String processParentPath, String technicalDescriptor) {
         this.processTempPath = processTempPath;

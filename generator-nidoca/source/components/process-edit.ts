@@ -35,12 +35,12 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
 
     renderFormFields(): TemplateResult {
         return html`
-            <nidoca-inputfield
+            <project-combobox-component
                     .value="${this.projects}"
                     name="projects"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"
-            ></nidoca-inputfield>
+            ></project-combobox-component>
             <nidoca-inputfield
                     .value="${this.processTempPath}"
                     name="processTempPath"

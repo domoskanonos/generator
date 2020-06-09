@@ -17,6 +17,8 @@ public class ItemModel {
 
     private String name;
 
+    private Boolean deactivated;
+
     private Set<TemplateEnum> template = new HashSet<>();
 
     private TypeEnum idTypeEnum;

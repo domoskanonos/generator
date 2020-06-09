@@ -8,11 +8,13 @@ export class ProjectCombobox extends NidocaInputfield {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.optionKeyField = "id";
-      this.optionValueField = "id";
+      this.optionValueField = "technicalDescriptor";
          ProjectRemoteRepository.getUniqueInstance()
          .getAll()
          .then((value) => {
              this.options = value;
+             this.size = this.options.length;
+             console.debug("find options, size {}", this.size);
          });
    }
 }

@@ -19,7 +19,8 @@ public class ProjectDTO {
     private List<ItemDTO> items;
     private Set<TemplateEnum> template;
     private String technicalDescriptor;
-    private String javaBasePackage;
+    private String namespace;
+    private Boolean deactivated;
 
     public void addItem(ItemDTO item) {
         if (this.items == null) {

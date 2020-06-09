@@ -15,6 +15,8 @@ public class ProjectModel {
 
     protected String namespase;
 
+    private Boolean deactivated;
+
     private ProcessModel processModel;
 
     private List<ItemModel> items = new ArrayList<>();

@@ -36,11 +36,14 @@ public class ProjectEntity {
     @Enumerated(EnumType.STRING)
     private Set<TemplateEnum> template = new HashSet<>();
 
-    @Column(name = "NAME")
+    @Column(name = "TECHNICAL_DESCRIPTOR")
     private String technicalDescriptor;
 
     @Column(name = "NAMESPACE")
     private String namespase;
+
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
 
     public void addItem(ItemEntity item) {
         if (items == null) {

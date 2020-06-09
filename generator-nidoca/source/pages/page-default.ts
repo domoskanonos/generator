@@ -62,6 +62,20 @@ export abstract class DefaultPage extends NidocaTemplate {
             <nidoca-navigation-link
                slot="links"
                icon="search"
+               text="${I18nService.getUniqueInstance().getValue("process_nav_list")}"
+               href="processlist"
+               .rendered="${this.isAuthenticated}"
+            ></nidoca-navigation-link>
+                        <nidoca-navigation-link
+               slot="links"
+               icon="search"
+               text="${I18nService.getUniqueInstance().getValue("project_nav_list")}"
+               href="projectlist"
+               .rendered="${this.isAuthenticated}"
+            ></nidoca-navigation-link>
+             <nidoca-navigation-link
+               slot="links"
+               icon="search"
                text="${I18nService.getUniqueInstance().getValue("property_nav_list")}"
                href="propertylist"
                .rendered="${this.isAuthenticated}"
@@ -73,21 +87,7 @@ export abstract class DefaultPage extends NidocaTemplate {
                href="itemlist"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
-            <nidoca-navigation-link
-               slot="links"
-               icon="search"
-               text="${I18nService.getUniqueInstance().getValue("project_nav_list")}"
-               href="projectlist"
-               .rendered="${this.isAuthenticated}"
-            ></nidoca-navigation-link>
-            <nidoca-navigation-link
-               slot="links"
-               icon="search"
-               text="${I18nService.getUniqueInstance().getValue("process_nav_list")}"
-               href="processlist"
-               .rendered="${this.isAuthenticated}"
-            ></nidoca-navigation-link>
-            <nidoca-navigation-section
+           <nidoca-navigation-section
                 .rendered="${this.isAuthenticated}"
                  slot="links"
                  text="${I18nService.getUniqueInstance().getValue("section_add")}"

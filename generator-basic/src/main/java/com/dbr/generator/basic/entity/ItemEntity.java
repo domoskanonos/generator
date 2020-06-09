@@ -29,6 +29,9 @@ public class ItemEntity {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "ID_TYPE")
     private TypeEnum idTypeEnum = TypeEnum.LONG;

@@ -22,6 +22,9 @@ public class PropertyEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
+
     @Column(name = "PROPERTY_TYPE", nullable = false)
     @Enumerated
     private TypeEnum propertyType;

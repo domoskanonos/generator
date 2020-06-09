@@ -18,6 +18,7 @@ public class ProcessDTO {
     private String processTempPath;
     private String processParentPath;
     private String technicalDescriptor;
+    private Boolean deactivated;
 
     public void addProject(ProjectDTO project) {
         if (this.projects == null) {

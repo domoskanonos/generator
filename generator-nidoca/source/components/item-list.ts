@@ -40,7 +40,7 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
     >
         <nidoca-flex-container
         .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-        itemFlexBasisValue="100%"
+        flexItemBasisValue="100%"
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
@@ -67,7 +67,7 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
       return html`
          <nidoca-flex-container
             .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-            itemFlexBasisValue="auto"
+            flexItemBasisValue="auto"
             .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
             .alignItems="${FlexAlignItems.CENTER}"
          >

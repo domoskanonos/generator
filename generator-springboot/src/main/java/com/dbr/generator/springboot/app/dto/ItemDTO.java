@@ -23,6 +23,7 @@ public class ItemDTO {
     private TypeEnum idTypeEnum;
     private List<PropertyDTO> properties;
     private Set<TemplateEnum> template = new HashSet<>();
+    private Boolean deactivated;
 
     public void addProperty(PropertyDTO propertyDTO) {
         if (this.properties == null) {
