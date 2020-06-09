@@ -39,8 +39,8 @@ public class ProjectEntity {
     @Column(name = "NAME")
     private String technicalDescriptor;
 
-    @Column(name = "JAVA_BASE_PACKAGE")
-    private String javaBasePackage;
+    @Column(name = "NAMESPACE")
+    private String namespase;
 
     public void addItem(ItemEntity item) {
         if (items == null) {
