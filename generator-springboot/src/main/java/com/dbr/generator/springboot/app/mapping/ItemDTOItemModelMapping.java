@@ -1,7 +1,9 @@
 package com.dbr.generator.springboot.app.mapping;
 
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
+import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.dto.PropertyDTO;
 import org.springframework.beans.BeanUtils;
@@ -18,8 +20,8 @@ public class ItemDTOItemModelMapping {
     @Autowired
     PropertyDTOPropertyModelMapping propertyDTOPropertyModelMapping;
 
-    public ItemModel toModel(ItemDTO source) {
-        ItemModel dest = new ItemModel();
+    public ItemModel toModel(ItemDTO source, ProjectModel projectModel) {
+        ItemModel dest = new ItemModel(projectModel, source.getName(), source.getIdTypeEnum(), source.getTemplate().toArray(new TemplateEnum[source.getTemplate().size()]));
         BeanUtils.copyProperties(source, dest, "properties");
         for (PropertyDTO property : source.getProperties()) {
             dest.addProperty(propertyDTOPropertyModelMapping.toModel(property));
@@ -38,10 +40,6 @@ public class ItemDTOItemModelMapping {
 
     public List<ItemDTO> toDTOs(Collection<ItemModel> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
-    }
-
-    public List<ItemModel> toModels(Collection<ItemDTO> sources) {
-        return sources.stream().map(source -> toModel(source)).collect(Collectors.toList());
     }
 
 

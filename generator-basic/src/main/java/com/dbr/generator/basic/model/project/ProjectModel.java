@@ -4,13 +4,11 @@ import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.ProcessModel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.util.*;
 
 @Data
-@NoArgsConstructor
 public class ProjectModel {
 
     private String technicalDescriptor;

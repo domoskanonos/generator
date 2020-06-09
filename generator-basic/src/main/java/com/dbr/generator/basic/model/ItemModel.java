@@ -6,13 +6,11 @@ import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.util.*;
 
 @Data
-@NoArgsConstructor
 public class ItemModel {
 
     private ProjectModel projectModel;
