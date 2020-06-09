@@ -1,5 +1,5 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import { I18nService } from "@domoskanonos/frontend-basis";
+import {I18nService} from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
 import {Project} from '../model/project-model';
@@ -16,7 +16,7 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
         return ProjectRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: Project): Promise<Project> {
+    async executeUpdate(identifier: any, item: Project): Promise<Project> {
         return ProjectRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -25,15 +25,15 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     }
 
     @property()
-    items : any[] = [];
+    items: any[] = [];
     @property()
-    template : any[] = [];
+    template: any[] = [];
     @property()
-    technicalDescriptor : string = '';
+    technicalDescriptor: string = '';
     @property()
-    namespase : string = '';
+    namespace: string = '';
     @property()
-    deactivated : boolean = false;
+    deactivated: boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
@@ -56,16 +56,17 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
                     label="${I18nService.getUniqueInstance().getValue('project_property_technicalDescriptor')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.namespase}"
-                    name="namespase"
+                    .value="${this.namespace}"
+                    name="namespace"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('project_property_namespase')}"
+                    label="${I18nService.getUniqueInstance().getValue('project_property_namespace')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.deactivated}"
                     name="deactivated"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_deactivated')}"
+                    assistiveText ="${I18nService.getUniqueInstance().getValue("project_property_assitive_text")}"
             ></nidoca-inputfield>
         `;
     }
@@ -74,7 +75,7 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
         this.items = project.items;
         this.template = project.template;
         this.technicalDescriptor = project.technicalDescriptor;
-        this.namespase = project.namespase;
+        this.namespace = project.namespace;
         this.deactivated = project.deactivated;
     }
 

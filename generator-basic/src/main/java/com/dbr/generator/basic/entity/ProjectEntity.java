@@ -40,7 +40,7 @@ public class ProjectEntity {
     private String technicalDescriptor;
 
     @Column(name = "NAMESPACE")
-    private String namespase;
+    private String namespace;
 
     @Column(name = "DEACTIVATED")
     private Boolean deactivated;

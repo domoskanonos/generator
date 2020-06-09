@@ -13,7 +13,7 @@ public class ProjectModel {
 
     private String technicalDescriptor;
 
-    protected String namespase;
+    protected String namespace;
 
     private Boolean deactivated;
 

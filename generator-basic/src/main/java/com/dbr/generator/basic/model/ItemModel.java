@@ -45,7 +45,7 @@ public class ItemModel {
     }
 
     public String getJavaPackageName() {
-        return projectModel.getNamespase();
+        return projectModel.getNamespace();
     }
 
     public String getJavaMappingClazzName() {

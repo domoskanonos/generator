@@ -12,19 +12,19 @@ public class JavaProjectModel extends ProjectModel {
 
     public JavaProjectModel(ProcessModel processModel, String technicalDescriptor, String javaBasePackage, TemplateEnum... projectTemplates) {
         super(processModel, technicalDescriptor,projectTemplates);
-        this.namespase = javaBasePackage;
+        this.namespace = javaBasePackage;
     }
 
     public String getProjectGroupId() {
-        return getNamespase();
+        return getNamespace();
     }
 
     public String getJavaEntityPackageName() {
-        return new StringBuilder().append(getNamespase()).append(".entity").toString();
+        return new StringBuilder().append(getNamespace()).append(".entity").toString();
     }
 
     public String getJavaDTOPackageName() {
-        return new StringBuilder().append(getNamespase()).append(".dto").toString();
+        return new StringBuilder().append(getNamespace()).append(".dto").toString();
     }
 
 }

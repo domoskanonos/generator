@@ -22,8 +22,8 @@ public class SpringBootProjectModel extends JavaProjectModel {
     private Boolean addSpringBootStorageModule = false;
 
     @Override
-    public String getNamespase() {
-        return new StringBuilder().append(super.getNamespase()).append(".springboot").toString();
+    public String getNamespace() {
+        return new StringBuilder().append(super.getNamespace()).append(".springboot").toString();
     }
 
     public File getSpringBootTemplateFolder() {
@@ -55,11 +55,11 @@ public class SpringBootProjectModel extends JavaProjectModel {
     }
 
     public File getSpringBootProjectSourceBasePackageFolder() {
-        return new File(getSpringBootProjectSourceFolder(), getNamespase().replaceAll("\\.", "\\/"));
+        return new File(getSpringBootProjectSourceFolder(), getNamespace().replaceAll("\\.", "\\/"));
     }
 
     public File getSpringBootProjectTestSourceBasePackageFolder() {
-        return new File(getSpringBootProjectTestSourceFolder(), getNamespase().replaceAll("\\.", "\\/"));
+        return new File(getSpringBootProjectTestSourceFolder(), getNamespace().replaceAll("\\.", "\\/"));
     }
 
     public File getProcessTempFolder() {
