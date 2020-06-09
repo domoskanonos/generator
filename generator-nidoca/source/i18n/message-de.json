@@ -97,8 +97,9 @@
   "process_edit": "Prozess neu",
   "process_list": "Prozesse",
   "process_property_id": "process_property_id",
-  "process_property_projects": "process_property_projects",
-  "process_property_processTempPath": "process_property_processTempPath",
-  "process_property_processParentPath": "process_property_processParentPath",
-  "process_property_technicalDescriptor": "process_property_technicalDescriptor"
+  "process_property_projects": "Projekte",
+  "process_property_processTempPath": "Temp-Pfad",
+  "process_property_processParentPath": "Root-Pfad",
+  "process_property_technicalDescriptor": "Technischer Bezeichner",
+  "process_property_deactivated": "Déaktivieren ?"
 }
