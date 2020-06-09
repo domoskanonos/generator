@@ -316,7 +316,7 @@ public class GeneratorUtil {
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
             String typeName = parameterizedType.getActualTypeArguments()[0].getTypeName();
-            return typeName.substring(typeName.lastIndexOf("."));
+            return typeName.substring(typeName.lastIndexOf(".") + 1);
         }
         return "";
 

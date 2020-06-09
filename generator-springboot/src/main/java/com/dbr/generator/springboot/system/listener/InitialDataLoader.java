@@ -5,7 +5,6 @@ import com.dbr.generator.springboot.app.mapping.ProcessDTOProcessModelMapping;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
 import com.dbr.generator.springboot.system.ApplicationProperties;
-import com.dbr.generator.springboot.system.enumeration.BuildEnvironment;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -27,9 +26,9 @@ public class InitialDataLoader implements ApplicationListener<ContextRefreshedEv
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        if (applicationProperties.getBuildEnvironments().contains(BuildEnvironment.DEV)) {
+        //if (applicationProperties.getBuildEnvironments().contains(BuildEnvironment.DEV)) {
             processJPARepository.save(processEntityProcessDTOMapping.toEntity(processDTOProcessModelMapping.toDTO(GeneratorProjectMetaData.PROCESS_MODEL)));
-        }
+        //}
     }
 
 }
