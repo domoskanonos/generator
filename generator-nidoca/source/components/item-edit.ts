@@ -61,12 +61,12 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
-            <nidoca-inputfield
+            <property-combobox-component
                     .value="${this.properties}"
                     name="properties"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
-            ></nidoca-inputfield>
+            ></property-combobox-component>
         `;
     }
 
