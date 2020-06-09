@@ -20,5 +20,6 @@ public class PropertyDTO {
     private Boolean useJPAIdClazz;
     private Integer length;
     private Boolean deactivated;
+    private String propertyTypeName;
 
 }

@@ -29,6 +29,9 @@ public class PropertyEntity {
     @Enumerated
     private TypeEnum propertyType;
 
+    @Column(name = "PROPERTY_TYPE_NAME")
+    private String propertyTypeName;
+
     @Column(name = "ID_PROPERTY")
     private Boolean idProperty = false;
 

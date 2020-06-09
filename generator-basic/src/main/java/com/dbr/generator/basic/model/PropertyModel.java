@@ -11,6 +11,7 @@ public class PropertyModel {
 
     private String name;
     private TypeEnum propertyType;
+    private String propertyTypeName;
     private boolean idProperty;
     private boolean mainProperty;
     private boolean nullable;

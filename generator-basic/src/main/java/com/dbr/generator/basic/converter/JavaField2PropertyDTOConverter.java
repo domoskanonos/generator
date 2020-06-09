@@ -3,6 +3,7 @@ package com.dbr.generator.basic.converter;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.util.GeneratorUtil;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ public class JavaField2PropertyDTOConverter {
         propertyModel.setPropertyType(TypeEnum.byField(field));
         propertyModel.setMainProperty(true);
         propertyModel.setIdProperty(isIDField(field));
+        propertyModel.setPropertyTypeName(GeneratorUtil.getActualTypeArgument(field.getGenericType()));
         return propertyModel;
     }
 
