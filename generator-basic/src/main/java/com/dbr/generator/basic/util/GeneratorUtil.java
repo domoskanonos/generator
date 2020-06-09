@@ -313,12 +313,12 @@ public class GeneratorUtil {
     }
 
     public static String getActualTypeArgument(Type type) {
+        String typeName = type.getTypeName();
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
-            String typeName = parameterizedType.getActualTypeArguments()[0].getTypeName();
-            return typeName.substring(typeName.lastIndexOf(".") + 1);
-        }
-        return "";
+            typeName = parameterizedType.getActualTypeArguments()[0].getTypeName();
 
+        }
+        return typeName.substring(typeName.lastIndexOf(".") + 1);
     }
 }
