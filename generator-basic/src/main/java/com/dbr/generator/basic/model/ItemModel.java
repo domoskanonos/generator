@@ -287,6 +287,8 @@ public class ItemModel {
             case ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE:
                 return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerSearchClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
+            case ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE:
+                return "";
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
             case ITEM_TYPESCRIPT_REMOTE_SERVICE:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
@@ -294,7 +296,6 @@ public class ItemModel {
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX:
-            case ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE:
                 return template.getProjectFilePath(getNameToLowerCase());
             case PROJECT_TYPESCRIPT_NIDOCA_I18N:
             case PROJECT_TYPESCRIPT_NIDOCA_INDEX:
