@@ -1,4 +1,5 @@
-import {BasicEnumRepository} from "@domoskanonos/frontend-basis";
+import {EnumKeyValue, BasicEnumRepository} from "@domoskanonos/frontend-basis";
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 
 export class TemplateBasicEnumRepository extends BasicEnumRepository {
 
@@ -9,6 +10,10 @@ export class TemplateBasicEnumRepository extends BasicEnumRepository {
             TemplateBasicEnumRepository.uniqueInstance = new TemplateBasicEnumRepository();
         }
         return TemplateBasicEnumRepository.uniqueInstance;
+    }
+
+    public asI18nEnumKeyValueArray(): EnumKeyValue[] {
+        return this.asEnumKeyValueArrayI18n(Template);
     }
 
 }

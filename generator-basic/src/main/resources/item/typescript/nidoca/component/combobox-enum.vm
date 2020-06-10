@@ -17,7 +17,7 @@ export class ${model.typescriptModelName}Combobox extends NidocaInputfield {
         if (
             changedProperties.get('value') != undefined
         ) {
-            this.options = ${model.typescriptEnumRepositoryName}.getUniqueInstance().asEnumKeyValueArrayI18n(Template);
+            this.options = ${model.typescriptEnumRepositoryName}.getUniqueInstance().asI18nEnumKeyValueArray();
             this.size = this.options.length;
         }
    }

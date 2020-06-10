@@ -1,4 +1,5 @@
-import {BasicEnumRepository} from "@domoskanonos/frontend-basis";
+import {EnumKeyValue, BasicEnumRepository} from "@domoskanonos/frontend-basis";
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 
 export class LanguageTypeBasicEnumRepository extends BasicEnumRepository {
 
@@ -9,6 +10,10 @@ export class LanguageTypeBasicEnumRepository extends BasicEnumRepository {
             LanguageTypeBasicEnumRepository.uniqueInstance = new LanguageTypeBasicEnumRepository();
         }
         return LanguageTypeBasicEnumRepository.uniqueInstance;
+    }
+
+    public asI18nEnumKeyValueArray(): EnumKeyValue[] {
+        return this.asEnumKeyValueArrayI18n(LanguageType);
     }
 
 }
