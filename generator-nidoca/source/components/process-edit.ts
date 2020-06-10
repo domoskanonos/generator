@@ -1,8 +1,8 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import { I18nService } from "@domoskanonos/frontend-basis";
+import {I18nService} from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Process} from '../model/process-model';
+import {Property, Item, Project, Process, PropertyType, LanguageType, Template} from '../model/model'
 import {ProcessRemoteRepository} from "../repo/process-repository";
 
 @customElement('process-edit-component')
@@ -16,7 +16,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
         return ProcessRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: Process): Promise<Process> {
+    async executeUpdate(identifier: any, item: Process): Promise<Process> {
         return ProcessRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -25,23 +25,24 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     }
 
     @property()
-    projects : any[] = [];
+    projects: Project[] = [];
     @property()
-    processTempPath : string = '';
+    processTempPath: string = '';
     @property()
-    processParentPath : string = '';
+    processParentPath: string = '';
     @property()
-    technicalDescriptor : string = '';
+    technicalDescriptor: string = '';
     @property()
-    deactivated : boolean = false;
+    deactivated: boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
-            <project-combobox-component
+            <nidoca-inputfield
                     .value="${this.projects}"
                     name="projects"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"
-            ></project-combobox-component>
+            ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.processTempPath}"
                     name="processTempPath"
@@ -75,8 +76,6 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
         this.processParentPath = process.processParentPath;
         this.technicalDescriptor = process.technicalDescriptor;
         this.deactivated = process.deactivated;
-        console.log("XXXXXXXXX YYYYYYYYY");
-        this.requestUpdate();
     }
 
     getIdentifier(process: Process): any {

@@ -9,7 +9,7 @@ export class PropertyCombobox extends NidocaInputfield {
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.multiple = true;
       this.optionKeyField = "id";
-      this.optionValueField = "name";
+      this.optionValueField = "id";
    }
 
    protected update(changedProperties: Map<PropertyKey, unknown>): void {

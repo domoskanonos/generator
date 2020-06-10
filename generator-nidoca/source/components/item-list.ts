@@ -12,7 +12,7 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {ItemRemoteRepository} from '../repo/item-repository';
-import {Item} from '../model/item-model';
+import {Item} from '../model/model';
 
 @customElement('item-search-list-component')
 export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item> {
@@ -47,7 +47,7 @@ export class ItemSearchNidocaList extends NidocaAbstractComponentSearchList<Item
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.id}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.name}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.deactivated}"></nidoca-typography>
-                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.idTypeEnum}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.idPropertyType}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.template}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${item.properties}"></nidoca-typography>
         </nidoca-flex-container>

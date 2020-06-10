@@ -159,6 +159,21 @@ public class ItemModel {
     public String getNameToLowerCase() {
         return name.toLowerCase();
     }
+    
+    public String getTypescriptModelImports() {
+        String modelImportClassNames = "";
+        int index = 0;
+        for (ItemModel itemModel : projectModel.getItems()) {
+            if (itemModel.getTemplate().contains(Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE) || itemModel.getTemplate().contains(Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE)) {
+                if (index > 0) {
+                    modelImportClassNames = new StringBuilder().append(modelImportClassNames).append(",").toString();
+                }
+                modelImportClassNames = new StringBuilder().append(modelImportClassNames).append(itemModel.getTypescriptModelName()).toString();
+                index++;
+            }
+        }
+        return new StringBuilder().append("import {").append(modelImportClassNames).append("} from '").append(getTypescriptModelPath()).append("'").toString();
+    }
 
     public String getTypescriptModelPath() {
         return "../" + Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilename("");

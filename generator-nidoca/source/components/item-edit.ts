@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Item} from '../model/item-model';
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 import {ItemRemoteRepository} from "../repo/item-repository";
 
 @customElement('item-edit-component')
@@ -29,11 +29,11 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
     @property()
     deactivated : boolean = false;
     @property()
-    idTypeEnum : string  = '';
+    idPropertyType : PropertyType | undefined = undefined;
     @property()
-    template : any[] = [];
+    template : Template[] = [];
     @property()
-    properties : any[] = [];
+    properties : Property[] = [];
 
     renderFormFields(): TemplateResult {
         return html`
@@ -50,10 +50,10 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     label="${I18nService.getUniqueInstance().getValue('item_property_deactivated')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.idTypeEnum}"
-                    name="idTypeEnum"
+                    .value="${this.idPropertyType}"
+                    name="idPropertyType"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('item_property_idTypeEnum')}"
+                    label="${I18nService.getUniqueInstance().getValue('item_property_idPropertyType')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.template}"
@@ -61,19 +61,19 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></nidoca-inputfield>
-            <property-combobox-component
+            <nidoca-inputfield
                     .value="${this.properties}"
                     name="properties"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
-            ></property-combobox-component>
+            ></nidoca-inputfield>
         `;
     }
 
     itemToProperties(item: Item): void {
         this.name = item.name;
         this.deactivated = item.deactivated;
-        this.idTypeEnum = item.idTypeEnum;
+        this.idPropertyType = item.idPropertyType;
         this.template = item.template;
         this.properties = item.properties;
     }

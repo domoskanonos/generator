@@ -18,7 +18,7 @@ SpacerSize
 import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
-import {Property} from "../model/property-model";
+import {Property} from "../model/model";
 
 @customElement('property-edit-page')
 export class PropertyEditPage extends DefaultPage {

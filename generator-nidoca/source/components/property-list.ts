@@ -12,7 +12,7 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {PropertyRemoteRepository} from '../repo/property-repository';
-import {Property} from '../model/property-model';
+import {Property} from '../model/model';
 
 @customElement('property-search-list-component')
 export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<Property> {
@@ -23,6 +23,8 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
             this.resultSize,
             '', ''
                 .concat('&name=')
+                .concat(search)
+                .concat('&propertyTypeName=')
                 .concat(search)
         );
         return pageableContainer.content;
@@ -48,6 +50,7 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.name}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.deactivated}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyType}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyTypeName}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.idProperty}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.mainProperty}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.nullable}"></nidoca-typography>

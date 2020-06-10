@@ -1,8 +1,8 @@
 import {customElement, html, property, TemplateResult} from 'lit-element';
-import {I18nService} from "@domoskanonos/frontend-basis";
+import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Project} from '../model/project-model';
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 import {ProjectRemoteRepository} from "../repo/project-repository";
 
 @customElement('project-edit-component')
@@ -16,7 +16,7 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
         return ProjectRemoteRepository.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier: any, item: Project): Promise<Project> {
+    async executeUpdate(identifier:any, item: Project): Promise<Project> {
         return ProjectRemoteRepository.getUniqueInstance().update(identifier, item);
     }
 
@@ -25,30 +25,30 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     }
 
     @property()
-    items: any[] = [];
+    items : Item[] = [];
     @property()
-    template: any[] = [];
+    template : Template[] = [];
     @property()
-    technicalDescriptor: string = '';
+    technicalDescriptor : string = '';
     @property()
-    namespace: string = '';
+    namespace : string = '';
     @property()
-    deactivated: boolean = false;
+    deactivated : boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
-            <item-combobox-component
+            <nidoca-inputfield
                     .value="${this.items}"
                     name="items"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
-            ></item-combobox-component>
-            <template-combobox-component
+            ></nidoca-inputfield>
+            <nidoca-inputfield
                     .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
-            ></template-combobox-component>
+            ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"
@@ -66,7 +66,6 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
                     name="deactivated"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_deactivated')}"
-                    assistiveText ="${I18nService.getUniqueInstance().getValue("project_property_assitive_text")}"
             ></nidoca-inputfield>
         `;
     }

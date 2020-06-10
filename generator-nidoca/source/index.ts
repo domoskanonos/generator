@@ -18,6 +18,15 @@ import './components/project-combobox';
 import './components/process-edit';
 import './components/process-list';
 import './components/process-combobox';
+import './components/propertytype-edit';
+import './components/propertytype-list';
+import './components/propertytype-combobox';
+import './components/languagetype-edit';
+import './components/languagetype-list';
+import './components/languagetype-combobox';
+import './components/template-edit';
+import './components/template-list';
+import './components/template-combobox';
 
 import './pages/page-dashboard';
 import './pages/page-settings';
@@ -38,6 +47,12 @@ import './pages/page-project-edit';
 import './pages/page-project-list';
 import './pages/page-process-edit';
 import './pages/page-process-list';
+import './pages/page-propertytype-edit';
+import './pages/page-propertytype-list';
+import './pages/page-languagetype-edit';
+import './pages/page-languagetype-list';
+import './pages/page-template-edit';
+import './pages/page-template-list';
 
 
 import './app';

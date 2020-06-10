@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Property} from '../model/property-model';
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 import {PropertyRemoteRepository} from "../repo/property-repository";
 
 @customElement('property-edit-component')
@@ -29,7 +29,9 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
     @property()
     deactivated : boolean = false;
     @property()
-    propertyType : string  = '';
+    propertyType : PropertyType | undefined = undefined;
+    @property()
+    propertyTypeName : string = '';
     @property()
     idProperty : boolean = false;
     @property()
@@ -60,6 +62,12 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
                     name="propertyType"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_propertyType')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .value="${this.propertyTypeName}"
+                    name="propertyTypeName"
+                    inputfieldType="${InputfieldType.TEXT}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_propertyTypeName')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.idProperty}"
@@ -98,6 +106,7 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
         this.name = property.name;
         this.deactivated = property.deactivated;
         this.propertyType = property.propertyType;
+        this.propertyTypeName = property.propertyTypeName;
         this.idProperty = property.idProperty;
         this.mainProperty = property.mainProperty;
         this.nullable = property.nullable;

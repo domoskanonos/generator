@@ -18,7 +18,7 @@ SpacerSize
 import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
-import {Process} from "../model/process-model";
+import {Process} from "../model/model";
 
 @customElement('process-edit-page')
 export class ProcessEditPage extends DefaultPage {

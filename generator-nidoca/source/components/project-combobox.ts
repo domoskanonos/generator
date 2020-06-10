@@ -9,7 +9,7 @@ export class ProjectCombobox extends NidocaInputfield {
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.multiple = true;
       this.optionKeyField = "id";
-      this.optionValueField = "technicalDescriptor";
+      this.optionValueField = "id";
    }
 
    protected update(changedProperties: Map<PropertyKey, unknown>): void {
