@@ -260,11 +260,11 @@ public class ItemModel {
     }
 
     public String getTypescriptNidocaComponentComboboxEnumImport() {
-        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM.getFilename(name);
     }
 
     public String getTypescriptNidocaComponentComboboxImport() {
-        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX.getFilename(name);
     }
 
     public String getTypescriptNidocaComponentEditImport() {

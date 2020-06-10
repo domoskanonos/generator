@@ -21,8 +21,8 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
     import './components/project-combobox';
     import './components/process-combobox';
 
-    import './components/propertytype-enum-combobox';
-    import './components/languagetype-enum-combobox';
+    import './components/property-type-enum-combobox';
+    import './components/language-type-enum-combobox';
     import './components/template-enum-combobox';
 
 import './pages/page-dashboard';
