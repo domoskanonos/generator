@@ -12,6 +12,27 @@ public class ProjectGenerator<T extends ProjectModel> {
     private TemplateMerger templateMerger = new TemplateMerger();
 
     public void execute(T model) throws Exception {
+
+        for (Template template : model.getTemplate()) {
+            if (template.isAppendToFile()) {
+                File filePath = model.getFilePath(template);
+                if (filePath.isFile() && filePath.exists()) {
+                    filePath.delete();
+                }
+            }
+        }
+
+        for (ItemModel itemModel : model.getItems()) {
+            for (Template template : itemModel.getTemplate()) {
+                if (template.isAppendToFile()) {
+                    File file = itemModel.getFilePath(model.getProjectFolder(), template);
+                    if (file.isFile() && file.exists()) {
+                        file.delete();
+                    }
+                }
+            }
+        }
+
         for (Template template : model.getTemplate()) {
             templateMerger.writeDown(model.getFilePath(template), template, model);
         }
@@ -22,6 +43,7 @@ public class ProjectGenerator<T extends ProjectModel> {
                 templateMerger.writeDown(file, template, itemModel);
             }
         }
+
     }
 
     public void validate(T model) {

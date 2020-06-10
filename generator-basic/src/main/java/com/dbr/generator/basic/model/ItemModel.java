@@ -161,7 +161,7 @@ public class ItemModel {
     }
 
     public String getTypescriptModelPath() {
-        return "../" + Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilename(getNameToLowerCase());
+        return "../" + Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilename("");
     }
 
     public String getTypescriptRemoteRepositoryPath() {
