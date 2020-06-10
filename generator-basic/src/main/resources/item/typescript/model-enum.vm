@@ -1,5 +1,5 @@
 export enum ${model.typescriptModelName} {
 #foreach( $property in $model.properties )
-    ${property.name} : ${property.typescriptType} = ${property.propertyType.typescriptInitValue};
+    ${property.name},
 #end
 }
