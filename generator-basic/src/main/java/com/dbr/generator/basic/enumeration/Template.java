@@ -28,8 +28,8 @@ public enum Template {
     ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST("item/typescript/nidoca/page/search-list.vm", "pages/page-", "-list", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT("item/typescript/nidoca/component/edit.vm", "components/", "-edit", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST("item/typescript/nidoca/component/search-list.vm", "components/", "-list", LanguageType.TYPESCRIPT, false),
-    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI("item/typescript/nidoca/component/combobox.vm", "components/", "-combobox", LanguageType.TYPESCRIPT, false),
-    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI_ENUM("item/typescript/nidoca/component/combobox-enum.vm", "components/", "-enum-combobox", LanguageType.TYPESCRIPT, false);
+    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX("item/typescript/nidoca/component/combobox.vm", "components/", "-combobox", LanguageType.TYPESCRIPT, false),
+    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM("item/typescript/nidoca/component/combobox-enum.vm", "components/", "-enum-combobox", LanguageType.TYPESCRIPT, false);
 
     private String templatePath;
 

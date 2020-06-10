@@ -21,9 +21,9 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
     import './components/project-combobox';
     import './components/process-combobox';
 
-    import './${model.typescriptNidocaComponentComboboxEnumImport}';
-    import './${model.typescriptNidocaComponentComboboxEnumImport}';
-    import './${model.typescriptNidocaComponentComboboxEnumImport}';
+    import './components/propertytype-enum-combobox';
+    import './components/languagetype-enum-combobox';
+    import './components/template-enum-combobox';
 
 import './pages/page-dashboard';
 import './pages/page-settings';
