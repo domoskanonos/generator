@@ -20,9 +20,7 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
     import './components/item-combobox';
     import './components/project-combobox';
     import './components/process-combobox';
-    import './components/propertytype-combobox';
-    import './components/languagetype-combobox';
-    import './components/template-combobox';
+
 
 import './pages/page-dashboard';
 import './pages/page-settings';

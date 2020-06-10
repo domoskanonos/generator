@@ -321,4 +321,16 @@ public class GeneratorUtil {
         }
         return typeName.substring(typeName.lastIndexOf(".") + 1);
     }
+
+    public static String upperCaseToHyphen(String name) {
+        String newName = "";
+        for (char c : name.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                newName += "-";
+            } else {
+                newName += c;
+            }
+        }
+        return newName;
+    }
 }

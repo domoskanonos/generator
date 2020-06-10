@@ -67,7 +67,7 @@ public class PropertyModel {
     }
 
     public String getTypescriptNidocaInputfieldTag() {
-        return propertyType.getTypescriptBaseType() != null ? "nidoca-inputfield" : getPropertyTypeNameToLowerCase() + "-combobox";
+        return propertyType.getTypescriptBaseType() != null ? "nidoca-inputfield" : getPropertyTypeNameToLowerCase() + "-combobox-component";
     }
 
     public String getPropertyTypeNameToLowerCase() {

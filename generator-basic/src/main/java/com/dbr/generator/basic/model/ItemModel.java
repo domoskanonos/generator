@@ -187,6 +187,14 @@ public class ItemModel {
         return new StringBuilder().append(name).append("RemoteRepository").toString();
     }
 
+    public String getTypescriptEnumRepositoryName() {
+        return new StringBuilder().append(name).append("BasicEnumRepository").toString();
+    }
+
+    public String getTypescriptEnumRepositoryPath() {
+        return "../" + Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY.getFilename(getNameToLowerCase());
+    }
+
     public String getTypescriptRemoteServiceName() {
         return new StringBuilder().append(name).append("RemoteService").toString();
     }
@@ -248,7 +256,7 @@ public class ItemModel {
     }
 
     public String getTypescriptNidocaComponentComboboxImport() {
-        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI.getFilename(getNameToLowerCase());
     }
 
     public String getTypescriptNidocaComponentEditImport() {
@@ -309,13 +317,15 @@ public class ItemModel {
             case ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE:
                 return template.getProjectFilePath("");
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
+            case ITEM_TYPESCRIPT_ENUM_REPOSITORY:
             case ITEM_TYPESCRIPT_REMOTE_SERVICE:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
-            case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX:
-                return template.getProjectFilePath(getNameToLowerCase());
+            case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI:
+            case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI_ENUM:
+                return template.getProjectFilePath(name);
             case PROJECT_TYPESCRIPT_NIDOCA_I18N:
             case PROJECT_TYPESCRIPT_NIDOCA_INDEX:
             case PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE:

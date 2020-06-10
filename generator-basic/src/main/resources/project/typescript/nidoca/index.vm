@@ -19,8 +19,14 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 #end
 
 #foreach( $model in $model.items )
-    #if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX'))
+    #if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI'))
     import './${model.typescriptNidocaComponentComboboxImport}';
+    #end
+#end
+
+#foreach( $model in $model.items )
+    #if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI_ENUM'))
+    import './${model.typescriptNidocaComponentComboboxEnumImport}';
     #end
 #end
 

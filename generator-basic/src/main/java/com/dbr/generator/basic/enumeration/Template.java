@@ -1,5 +1,6 @@
 package com.dbr.generator.basic.enumeration;
 
+import com.dbr.generator.basic.util.GeneratorUtil;
 import lombok.Getter;
 
 @Getter
@@ -21,12 +22,14 @@ public enum Template {
     ITEM_TYPESCRIPT_MODEL_TEMPLATE("item/typescript/model.vm", "model/", "model", LanguageType.TYPESCRIPT, true),
     ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE("item/typescript/model-enum.vm", "model/", "model", LanguageType.TYPESCRIPT, true),
     ITEM_TYPESCRIPT_REMOTE_REPOSITORY("item/typescript/remote-repository.vm", "repo/", "-repository", LanguageType.TYPESCRIPT, false),
+    ITEM_TYPESCRIPT_ENUM_REPOSITORY("item/typescript/enum-repository.vm", "repo/", "-enum-repository", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_REMOTE_SERVICE("item/typescript/remote-service.vm", "service/", "-service", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT("item/typescript/nidoca/page/edit.vm", "pages/page-", "-edit", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST("item/typescript/nidoca/page/search-list.vm", "pages/page-", "-list", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT("item/typescript/nidoca/component/edit.vm", "components/", "-edit", LanguageType.TYPESCRIPT, false),
     ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST("item/typescript/nidoca/component/search-list.vm", "components/", "-list", LanguageType.TYPESCRIPT, false),
-    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX("item/typescript/nidoca/component/combobox.vm", "components/", "-combobox", LanguageType.TYPESCRIPT, false);
+    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI("item/typescript/nidoca/component/combobox.vm", "components/", "-combobox", LanguageType.TYPESCRIPT, false),
+    ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI_ENUM("item/typescript/nidoca/component/combobox-enum.vm", "components/", "-enum-combobox", LanguageType.TYPESCRIPT, false);
 
     private String templatePath;
 
@@ -55,7 +58,14 @@ public enum Template {
     }
 
     public String getFilename(String name) {
-        return new StringBuffer().append(filePrefix).append(name).append(fileSuffix).toString();
+        switch (languageType) {
+            case JAVA:
+                return new StringBuffer().append(filePrefix).append(name).append(fileSuffix).toString();
+            case TYPESCRIPT:
+            case JSON:
+                return new StringBuffer().append(filePrefix).append(GeneratorUtil.upperCaseToHyphen(name)).append(fileSuffix).toString();
+        }
+        return name;
     }
 
 }

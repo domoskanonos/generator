@@ -1,9 +1,9 @@
 import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
-import {ProcessRemoteRepository} from '../repo/process-repository';
+import {${model.typescriptEnumRepositoryName}} from '${model.typescriptEnumRepositoryPath}';
 
-@customElement('process-combobox-component')
-export class ProcessCombobox extends NidocaInputfield {
+@customElement('${model.getNidocaComponentComboboxEnumTagName()}')
+export class ${model.typescriptModelName}Combobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
@@ -17,7 +17,7 @@ export class ProcessCombobox extends NidocaInputfield {
         if (
             changedProperties.get('value') != undefined
         ) {
-            ProcessRemoteRepository.getUniqueInstance()
+            ${model.typescriptEnumRepositoryName}.getUniqueInstance()
             .getAll()
             .then((value) => {
                 this.options = value;
