@@ -3,21 +3,21 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import * as model from '${model.typescriptModelPath}';
+import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
 import {${model.typescriptRemoteRepositoryName}} from "${model.typescriptRemoteRepositoryPath}";
 
 @customElement('${model.getNidocaComponentEditTagName()}')
-export class model.${model.typescriptModelName}EditComponent extends NidocaAbstractComponentEdit<model.${model.typescriptModelName}> {
+export class ${model.typescriptModelName}EditComponent extends NidocaAbstractComponentEdit<${model.typescriptModelName}> {
 
-    async getItemById(identifier: any): Promise<model.${model.typescriptModelName}> {
+    async getItemById(identifier: any): Promise<${model.typescriptModelName}> {
         return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().findById(identifier);
     }
 
-    async executeSave(item: model.${model.typescriptModelName}): Promise<model.${model.typescriptModelName}> {
+    async executeSave(item: ${model.typescriptModelName}): Promise<${model.typescriptModelName}> {
         return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().persist(item);
     }
 
-    async executeUpdate(identifier:any, item: model.${model.typescriptModelName}): Promise<model.${model.typescriptModelName}> {
+    async executeUpdate(identifier:any, item: ${model.typescriptModelName}): Promise<${model.typescriptModelName}> {
         return ${model.typescriptRemoteRepositoryName}.getUniqueInstance().update(identifier, item);
     }
 
@@ -47,16 +47,16 @@ export class model.${model.typescriptModelName}EditComponent extends NidocaAbstr
         `;
     }
 
-    itemToProperties(model.${model.typescriptModelNameToLowerCase}: model.${model.typescriptModelName}): void {
+    itemToProperties(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}): void {
         #foreach( $property in $model.properties )
         #if(!${property.idProperty})
-        this.${property.name} = model.${model.typescriptModelNameToLowerCase}.${property.name};
+        this.${property.name} = ${model.typescriptModelNameToLowerCase}.${property.name};
         #end
         #end
     }
 
-    getIdentifier(model.${model.typescriptModelNameToLowerCase}: model.${model.typescriptModelName}): any {
-        return model.${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()};
+    getIdentifier(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}): any {
+        return ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()};
     }
 
 
