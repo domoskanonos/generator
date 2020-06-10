@@ -19,6 +19,8 @@ public class JavaEnum2ItemDTOConverter {
         itemModel.getTemplate().addAll(Arrays.asList(templateEnum));
         for (Object enumConstant : enumClazz.getEnumConstants()) {
             PropertyModel propertyModel = new PropertyModel(itemModel, enumConstant.toString());
+            propertyModel.setPropertyType(PropertyTypeEnum.STRING);
+            propertyModel.setPropertyTypeName("String");
             itemModel.addProperty(propertyModel);
         }
         return itemModel;
