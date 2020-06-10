@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.repository;
 
 import com.dbr.generator.GeneratorProjectMetaData;
-import com.dbr.generator.basic.entity.ProcessEntity;
+import com.dbr.generator.basic.entity.Process;
 import com.dbr.generator.springboot.app.mapping.ProcessDTOProcessModelMapping;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class GeneratorProcessEntitySaveTest {
+public class GeneratorProcessSaveTest {
 
     @Autowired
     private ProcessEntityProcessDTOMapping processEntityProcessDTOMapping;
@@ -31,8 +31,8 @@ public class GeneratorProcessEntitySaveTest {
 
     @Test
     public void saveProcess() {
-        ProcessEntity processEntity = processJPARepository.save(processEntityProcessDTOMapping.toEntity(processDTOProcessModelMapping.toDTO(GeneratorProjectMetaData.PROCESS_MODEL)));
-        assertThat(processEntity.getId()).isNotNull();
+        Process process = processJPARepository.save(processEntityProcessDTOMapping.toEntity(processDTOProcessModelMapping.toDTO(GeneratorProjectMetaData.PROCESS_MODEL)));
+        assertThat(process.getId()).isNotNull();
     }
 
 }

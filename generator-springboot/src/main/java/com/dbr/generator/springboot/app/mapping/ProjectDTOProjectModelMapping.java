@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.mapping;
 
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.ProcessModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
@@ -23,7 +23,7 @@ public class ProjectDTOProjectModelMapping {
     }
 
     public ProjectModel toModel(ProjectDTO source, ProcessModel processModel) {
-        ProjectModel dest = new ProjectModel(processModel, source.getTechnicalDescriptor(), source.getTemplate().toArray(new TemplateEnum[source.getTemplate().size()]));
+        ProjectModel dest = new ProjectModel(processModel, source.getTechnicalDescriptor(), source.getTemplate().toArray(new Template[source.getTemplate().size()]));
         BeanUtils.copyProperties(source, dest, "items");
         for (ItemDTO item : source.getItems()) {
             dest.addItem(itemDTOItemModelMapping.toModel(item, dest));

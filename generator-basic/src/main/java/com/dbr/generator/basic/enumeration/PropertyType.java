@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public enum PropertyTypeEnum {
+public enum PropertyType {
 
     BYTE_ARRAY(byte[].class),
     STRING(String.class),
@@ -50,7 +50,7 @@ public enum PropertyTypeEnum {
         return type.isEnum();
     }
 
-    PropertyTypeEnum(Class<?> type) {
+    PropertyType(Class<?> type) {
         this.type = type;
     }
 
@@ -62,8 +62,8 @@ public enum PropertyTypeEnum {
         return isBaseJavaType(this) || this.type.isPrimitive();
     }
 
-    public boolean isBaseJavaType(PropertyTypeEnum propertyTypeEnum) {
-        switch (propertyTypeEnum) {
+    public boolean isBaseJavaType(PropertyType propertyType) {
+        switch (propertyType) {
             case STRING:
             case INTEGER:
             case BOOLEAN:
@@ -223,34 +223,34 @@ public enum PropertyTypeEnum {
         }
     }
 
-    public static PropertyTypeEnum byJavaTypeSimpleName(String javaTypeSimpleName) {
-        for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
-            if (propertyTypeEnum.getJavaTypeSimpleName().equals(javaTypeSimpleName)) {
-                return propertyTypeEnum;
+    public static PropertyType byJavaTypeSimpleName(String javaTypeSimpleName) {
+        for (PropertyType propertyType : PropertyType.values()) {
+            if (propertyType.getJavaTypeSimpleName().equals(javaTypeSimpleName)) {
+                return propertyType;
             }
         }
-        return PropertyTypeEnum.OBJECT;
+        return PropertyType.OBJECT;
     }
 
-    public static PropertyTypeEnum byTypescriptType(String typescriptType) {
-        for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
-            if (propertyTypeEnum.getTypescriptType().equals(typescriptType)) {
-                return propertyTypeEnum;
+    public static PropertyType byTypescriptType(String typescriptType) {
+        for (PropertyType propertyType : PropertyType.values()) {
+            if (propertyType.getTypescriptType().equals(typescriptType)) {
+                return propertyType;
             }
         }
-        return PropertyTypeEnum.OBJECT;
+        return PropertyType.OBJECT;
     }
 
-    public static PropertyTypeEnum byField(Field source) {
+    public static PropertyType byField(Field source) {
         if (source.getType().isEnum()) {
-            return PropertyTypeEnum.ENUMERATION;
+            return PropertyType.ENUMERATION;
         }
-        for (PropertyTypeEnum propertyTypeEnum : PropertyTypeEnum.values()) {
-            Class<?> type = propertyTypeEnum.getType();
+        for (PropertyType propertyType : PropertyType.values()) {
+            Class<?> type = propertyType.getType();
             if (Objects.equals(type.getSimpleName().toLowerCase(), source.getType().getSimpleName().toLowerCase())) {
-                return propertyTypeEnum;
+                return propertyType;
             }
         }
-        return PropertyTypeEnum.OBJECT;
+        return PropertyType.OBJECT;
     }
 }

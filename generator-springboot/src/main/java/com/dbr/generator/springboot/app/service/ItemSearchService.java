@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.entity.ItemEntity;
+import com.dbr.generator.basic.entity.Item;
 import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.mapping.ItemEntityItemDTOMapping;
 import com.dbr.generator.springboot.system.jpa.entities.builder.PageBuilder;
@@ -53,15 +53,15 @@ public class ItemSearchService {
     @Transactional
     public Page<ItemDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String name) {
         log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} ", page, size, sort );
-        return new PageBuilder<ItemEntity, ItemDTO>(page, size, sort) {
+        return new PageBuilder<Item, ItemDTO>(page, size, sort) {
 
             @Override
-            protected List<ItemDTO> toDTOs(List<ItemEntity> resultList) {
+            protected List<ItemDTO> toDTOs(List<Item> resultList) {
                 return mapping.toDTOs(resultList);
             }
 
             @Override
-            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<ItemEntity> cq, Root<ItemEntity> entityRoot) {
+            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<Item> cq, Root<Item> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
 
 
@@ -75,6 +75,6 @@ public class ItemSearchService {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }
             }
-        }.build(ItemEntity.class, em);
+        }.build(Item.class, em);
     }
 }

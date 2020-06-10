@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.model.project;
 
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.model.ProcessModel;
 import lombok.Data;
 
@@ -9,7 +9,7 @@ import java.io.File;
 @Data
 public class SpringBootProjectModel extends JavaProjectModel {
 
-    public SpringBootProjectModel(ProcessModel processModel, String technicalDescriptor, String javaBasePackage, TemplateEnum... projectTemplates) {
+    public SpringBootProjectModel(ProcessModel processModel, String technicalDescriptor, String javaBasePackage, Template... projectTemplates) {
         super(processModel, technicalDescriptor, javaBasePackage, projectTemplates);
     }
 

@@ -51,7 +51,7 @@ public class ${model.javaServiceBasicClazzSimpleName} {
      * @param id of hibernate entity
      * @return optional object of type <code>Optional<${model.javaDTOClazzSimpleName}></code>
      */
-    public Optional<${model.javaDTOClazzSimpleName}> findById(${model.idPropertyTypeEnum.javaTypeSimpleName} id) {
+    public Optional<${model.javaDTOClazzSimpleName}> findById(${model.idPropertyType.javaTypeSimpleName} id) {
         log.debug("findById: {}", id);
         Optional<${model.javaJPAClazzSimpleName}> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
@@ -73,7 +73,7 @@ public class ${model.javaServiceBasicClazzSimpleName} {
      *
      * @param id
      */
-    public void deleteById(${model.idPropertyTypeEnum.javaTypeSimpleName} id) {
+    public void deleteById(${model.idPropertyType.javaTypeSimpleName} id) {
         log.debug("delete by id: {}", id);
         repository.deleteById(id);
     }

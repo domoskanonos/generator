@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.entity.PropertyEntity;
+import com.dbr.generator.basic.entity.Property;
 import com.dbr.generator.springboot.app.dto.PropertyDTO;
 import com.dbr.generator.springboot.app.mapping.PropertyEntityPropertyDTOMapping;
 import com.dbr.generator.springboot.app.repository.PropertyJPARepository;
@@ -51,7 +51,7 @@ public class PropertyBasicService {
      */
     public Optional<PropertyDTO> findById(Long id) {
         log.debug("findById: {}", id);
-        Optional<PropertyEntity> entityOptional = repository.findById(id);
+        Optional<Property> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
     }
 

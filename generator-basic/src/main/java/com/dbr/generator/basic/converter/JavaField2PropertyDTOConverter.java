@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyType;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
@@ -16,8 +16,8 @@ public class JavaField2PropertyDTOConverter {
 
     public PropertyModel convert(ItemModel itemModel, Field field) {
         PropertyModel propertyModel = new PropertyModel(itemModel, field.getName());
-        propertyModel.setUseJPAIdClazz(itemModel.getIdPropertyTypeEnum() != null);
-        propertyModel.setPropertyType(PropertyTypeEnum.byField(field));
+        propertyModel.setUseJPAIdClazz(itemModel.getIdPropertyType() != null);
+        propertyModel.setPropertyType(PropertyType.byField(field));
         propertyModel.setMainProperty(true);
         propertyModel.setIdProperty(isIDField(field));
         propertyModel.setPropertyTypeName(GeneratorUtil.getActualTypeArgument(field.getGenericType()));

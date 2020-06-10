@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.model;
 
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyType;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
@@ -10,7 +10,7 @@ public class PropertyModel {
     private ItemModel itemModel;
 
     private String name;
-    private PropertyTypeEnum propertyType;
+    private PropertyType propertyType;
     private String propertyTypeName;
     private boolean idProperty;
     private boolean mainProperty;

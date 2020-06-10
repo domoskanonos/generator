@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.entity.PropertyEntity;
+import com.dbr.generator.basic.entity.Property;
 import com.dbr.generator.springboot.app.dto.PropertyDTO;
 import com.dbr.generator.springboot.app.mapping.PropertyEntityPropertyDTOMapping;
 import com.dbr.generator.springboot.system.jpa.entities.builder.PageBuilder;
@@ -53,15 +53,15 @@ public class PropertySearchService {
     @Transactional
     public Page<PropertyDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String name, Boolean idProperty, Boolean mainProperty, Boolean nullable, Boolean useJPAIdClazz, Integer length) {
         log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} {} {} {} {} {} ", page, size, sort );
-        return new PageBuilder<PropertyEntity, PropertyDTO>(page, size, sort) {
+        return new PageBuilder<Property, PropertyDTO>(page, size, sort) {
 
             @Override
-            protected List<PropertyDTO> toDTOs(List<PropertyEntity> resultList) {
+            protected List<PropertyDTO> toDTOs(List<Property> resultList) {
                 return mapping.toDTOs(resultList);
             }
 
             @Override
-            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<PropertyEntity> cq, Root<PropertyEntity> entityRoot) {
+            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<Property> cq, Root<Property> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
 
                 if (StringUtils.isNotBlank(name)) {
@@ -95,6 +95,6 @@ public class PropertySearchService {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }
             }
-        }.build(PropertyEntity.class, em);
+        }.build(Property.class, em);
     }
 }

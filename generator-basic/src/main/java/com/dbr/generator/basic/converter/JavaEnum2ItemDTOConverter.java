@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.PropertyType;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
@@ -14,22 +14,22 @@ import java.util.*;
 
 public class JavaEnum2ItemDTOConverter {
 
-    public ItemModel convert(ProjectModel projectModel, Class<?> enumClazz, TemplateEnum... templateEnum) {
-        ItemModel itemModel = new ItemModel(projectModel, enumClazz.getSimpleName(), PropertyTypeEnum.ENUMERATION, templateEnum);
-        itemModel.getTemplate().addAll(Arrays.asList(templateEnum));
+    public ItemModel convert(ProjectModel projectModel, Class<?> enumClazz, Template... template) {
+        ItemModel itemModel = new ItemModel(projectModel, enumClazz.getSimpleName(), PropertyType.ENUMERATION, template);
+        itemModel.getTemplate().addAll(Arrays.asList(template));
         for (Object enumConstant : enumClazz.getEnumConstants()) {
             PropertyModel propertyModel = new PropertyModel(itemModel, enumConstant.toString());
-            propertyModel.setPropertyType(PropertyTypeEnum.STRING);
+            propertyModel.setPropertyType(PropertyType.STRING);
             propertyModel.setPropertyTypeName("String");
             itemModel.addProperty(propertyModel);
         }
         return itemModel;
     }
 
-    public List<ItemModel> convert(ProjectModel projectModel, TemplateEnum templateEnum, Collection<Class<?>> enumClazzes) {
+    public List<ItemModel> convert(ProjectModel projectModel, Template template, Collection<Class<?>> enumClazzes) {
         List<ItemModel> retval = new ArrayList<>();
         for (Class<?> clazz : enumClazzes) {
-            retval.add(convert(projectModel, clazz, templateEnum));
+            retval.add(convert(projectModel, clazz, template));
         }
         return retval;
     }
