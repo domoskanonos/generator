@@ -61,4 +61,27 @@ public class PropertyModel {
         return new StringBuilder().append(this.itemModel.getNameToLowerCase()).append("_property_").toString();
     }
 
+    public String getTypescriptType() {
+        String typescriptType = this.propertyType.getTypescriptType();
+        return typescriptType != null ? typescriptType : getTypescriptTypeByPropertyTypeName();
+    }
+
+    private String getTypescriptTypeByPropertyTypeName() {
+        if (this.getPropertyTypeName() == null || this.propertyTypeName.length() == 0) {
+            return "any";
+        }
+        switch (this.propertyType) {
+            case ARRAY_STRING:
+                return "string[] array string";
+            case BYTE_ARRAY:
+            case LIST:
+            case SET:
+                return this.getPropertyTypeName()+"[]";
+            case ENUMERATION:
+            case OBJECT:
+            default:
+                return this.getPropertyTypeName();
+        }
+    }
+
 }
