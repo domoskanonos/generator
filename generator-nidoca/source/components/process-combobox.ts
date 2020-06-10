@@ -8,6 +8,7 @@ export class ProcessCombobox extends NidocaInputfield {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.multiple = true;
+      this.valueKeyField = "id";
       this.optionKeyField = "id";
       this.optionValueField = "id";
    }
