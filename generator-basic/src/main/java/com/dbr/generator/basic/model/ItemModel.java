@@ -145,7 +145,7 @@ public class ItemModel {
     }
 
     public String getTypescriptType() {
-        return this.idPropertyType.getTypescriptType();
+        return this.idPropertyType.getTypescriptBaseType();
     }
 
     public String getTypescriptModelName() {
@@ -159,7 +159,7 @@ public class ItemModel {
     public String getNameToLowerCase() {
         return name.toLowerCase();
     }
-    
+
     public String getTypescriptModelImports() {
         String modelImportClassNames = "";
         int index = 0;
@@ -230,6 +230,10 @@ public class ItemModel {
 
     public String getNidocaPageListTagName() {
         return new StringBuilder().append(this.getNameToLowerCase()).append("-search-list-page").toString();
+    }
+
+    public boolean hasTemplate(String templateName) {
+        return getTemplate().contains(Template.valueOf(templateName));
     }
 
     public void addProperty(PropertyModel propertyModel) {

@@ -113,7 +113,7 @@ public enum PropertyType {
         }
     }
 
-    public String getTypescriptType() {
+    public String getTypescriptBaseType() {
 
         switch (this) {
             case STRING:
@@ -234,7 +234,7 @@ public enum PropertyType {
 
     public static PropertyType byTypescriptType(String typescriptType) {
         for (PropertyType propertyType : PropertyType.values()) {
-            if (propertyType.getTypescriptType().equals(typescriptType)) {
+            if (propertyType.getTypescriptBaseType().equals(typescriptType)) {
                 return propertyType;
             }
         }

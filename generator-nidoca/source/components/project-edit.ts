@@ -37,18 +37,18 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
 
     renderFormFields(): TemplateResult {
         return html`
-            <nidoca-inputfield
+            <item-combobox
                     .value="${this.items}"
                     name="items"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
-            ></nidoca-inputfield>
-            <nidoca-inputfield
+            ></item-combobox>
+            <template-combobox
                     .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
-            ></nidoca-inputfield>
+            ></template-combobox>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"

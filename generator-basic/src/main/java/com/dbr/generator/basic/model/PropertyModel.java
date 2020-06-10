@@ -62,11 +62,19 @@ public class PropertyModel {
     }
 
     public String getTypescriptType() {
-        String typescriptType = this.propertyType.getTypescriptType();
+        String typescriptType = this.propertyType.getTypescriptBaseType();
         return typescriptType != null ? typescriptType : getTypescriptTypeByPropertyTypeName();
     }
 
-    private String getTypescriptTypeByPropertyTypeName() {
+    public String getTypescriptNidocaInputfieldTag() {
+        return propertyType.getTypescriptBaseType() != null ? "nidoca-inputfield" : getPropertyTypeNameToLowerCase() + "-combobox";
+    }
+
+    public String getPropertyTypeNameToLowerCase() {
+        return this.propertyTypeName.toLowerCase();
+    }
+
+    public String getTypescriptTypeByPropertyTypeName() {
         if (this.getPropertyTypeName() == null || this.propertyTypeName.length() == 0) {
             return "any";
         }
@@ -76,7 +84,7 @@ public class PropertyModel {
             case BYTE_ARRAY:
             case LIST:
             case SET:
-                return this.getPropertyTypeName()+"[]";
+                return this.getPropertyTypeName() + "[]";
             case ENUMERATION:
             case OBJECT:
             default:

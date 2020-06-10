@@ -62,9 +62,9 @@ public class GeneratorProjectMetaData {
             NIDOCA_PROJECT_MODEL.getItems().add(itemModelNidoca);
         }
 
-        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, PropertyType.class, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE));
-        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, LanguageType.class, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE));
-        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, Template.class, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, PropertyType.class, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, LanguageType.class, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, Template.class, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX));
 
     }
 
