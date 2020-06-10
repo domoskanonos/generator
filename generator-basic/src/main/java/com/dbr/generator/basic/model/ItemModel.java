@@ -294,6 +294,7 @@ public class ItemModel {
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX:
+            case ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE:
                 return templateEnum.getProjectFilePath(getNameToLowerCase());
             case PROJECT_TYPESCRIPT_NIDOCA_I18N:
             case PROJECT_TYPESCRIPT_NIDOCA_INDEX:
