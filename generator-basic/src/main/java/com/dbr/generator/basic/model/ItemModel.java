@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.model;
 
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import com.dbr.generator.basic.enumeration.TemplateEnum;
-import com.dbr.generator.basic.enumeration.TypeEnum;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
@@ -21,19 +21,19 @@ public class ItemModel {
 
     private Set<TemplateEnum> template = new HashSet<>();
 
-    private TypeEnum idTypeEnum;
+    private PropertyTypeEnum idPropertyTypeEnum;
 
     private List<PropertyModel> properties = new ArrayList<>();
 
-    public ItemModel(ProjectModel projectModel, String name, TypeEnum idTypeEnum, TemplateEnum... template) {
+    public ItemModel(ProjectModel projectModel, String name, PropertyTypeEnum idPropertyTypeEnum, TemplateEnum... template) {
         this.projectModel = projectModel;
         this.name = name;
         this.template.addAll(Arrays.asList(template));
-        this.idTypeEnum = idTypeEnum;
+        this.idPropertyTypeEnum = idPropertyTypeEnum;
     }
 
     public Boolean useJPAIdClazz() {
-        return this.idTypeEnum != null;
+        return this.idPropertyTypeEnum != null;
     }
 
     public String getTableName() {
@@ -141,11 +141,11 @@ public class ItemModel {
     }
 
     public String getJavaIdClazzSimpleName() {
-        return this.idTypeEnum.getJavaTypeSimpleName();
+        return this.idPropertyTypeEnum.getJavaTypeSimpleName();
     }
 
     public String getTypescriptType() {
-        return this.idTypeEnum.getTypescriptType();
+        return this.idPropertyTypeEnum.getTypescriptType();
     }
 
     public String getTypescriptModelName() {

@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.converter;
 
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.PropertyModel;
@@ -18,7 +18,7 @@ import java.util.List;
 public class JavaClass2ItemDTOConverter {
 
     public ItemModel convert(ProjectModel projectModel, TemplateEnum templateEnum, Class<?> clazz) {
-        ItemModel itemModel = new ItemModel(projectModel, clazz.getName(), TypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), templateEnum);
+        ItemModel itemModel = new ItemModel(projectModel, clazz.getName(), PropertyTypeEnum.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), templateEnum);
         itemModel.getTemplate().addAll(Arrays.asList(templateEnum));
         for (Field field : clazz.getDeclaredFields()) {
             PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);

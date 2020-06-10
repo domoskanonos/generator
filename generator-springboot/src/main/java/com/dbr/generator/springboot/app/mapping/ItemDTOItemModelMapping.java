@@ -21,7 +21,7 @@ public class ItemDTOItemModelMapping {
     PropertyDTOPropertyModelMapping propertyDTOPropertyModelMapping;
 
     public ItemModel toModel(ItemDTO source, ProjectModel projectModel) {
-        ItemModel dest = new ItemModel(projectModel, source.getName(), source.getIdTypeEnum(), source.getTemplate().toArray(new TemplateEnum[source.getTemplate().size()]));
+        ItemModel dest = new ItemModel(projectModel, source.getName(), source.getIdPropertyTypeEnum(), source.getTemplate().toArray(new TemplateEnum[source.getTemplate().size()]));
         BeanUtils.copyProperties(source, dest, "properties");
         for (PropertyDTO property : source.getProperties()) {
             dest.addProperty(propertyDTOPropertyModelMapping.toModel(property, dest));

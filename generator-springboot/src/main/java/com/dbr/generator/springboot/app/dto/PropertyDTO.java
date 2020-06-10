@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.dto;
 
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import lombok.*;
 
 @Data
@@ -13,7 +13,7 @@ public class PropertyDTO {
 
     private Long id;
     private String name;
-    private TypeEnum propertyType;
+    private PropertyTypeEnum propertyType;
     private Boolean idProperty;
     private Boolean mainProperty;
     private Boolean nullable;

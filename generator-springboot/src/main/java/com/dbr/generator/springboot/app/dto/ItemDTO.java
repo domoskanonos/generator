@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.dto;
 
 import com.dbr.generator.basic.enumeration.TemplateEnum;
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ItemDTO {
     private Long id;
     private java.lang.Object projectEntity;
     private String name;
-    private TypeEnum idTypeEnum;
+    private PropertyTypeEnum idPropertyTypeEnum;
     private List<PropertyDTO> properties;
     private Set<TemplateEnum> template = new HashSet<>();
     private Boolean deactivated;

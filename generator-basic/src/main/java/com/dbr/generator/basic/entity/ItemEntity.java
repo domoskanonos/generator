@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.entity;
 
 import com.dbr.generator.basic.enumeration.TemplateEnum;
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -34,7 +34,7 @@ public class ItemEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ID_TYPE")
-    private TypeEnum idTypeEnum = TypeEnum.LONG;
+    private PropertyTypeEnum idPropertyTypeEnum = PropertyTypeEnum.LONG;
 
     @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "ITEM_TEMPLATE", joinColumns = @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID"))
