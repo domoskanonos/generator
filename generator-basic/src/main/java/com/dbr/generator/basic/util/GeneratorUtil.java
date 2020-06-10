@@ -322,13 +322,16 @@ public class GeneratorUtil {
         return typeName.substring(typeName.lastIndexOf(".") + 1);
     }
 
-    public static String upperCaseToHyphen(String name) {
+    public static String toTypescriptFileName(String name) {
         String newName = "";
         for (char c : name.toCharArray()) {
+            if (name.length() == 0) {
+                newName = new StringBuilder().append(newName).append(String.valueOf(c).toLowerCase()).toString();
+            }
             if (Character.isUpperCase(c)) {
-                newName += "-";
+                newName = new StringBuilder().append(newName).append("-").toString();
             } else {
-                newName += c;
+                newName = new StringBuilder().append(newName).append(c).toString();
             }
         }
         return newName;

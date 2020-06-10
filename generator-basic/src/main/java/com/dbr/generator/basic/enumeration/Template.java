@@ -63,7 +63,7 @@ public enum Template {
                 return new StringBuffer().append(filePrefix).append(name).append(fileSuffix).toString();
             case TYPESCRIPT:
             case JSON:
-                return new StringBuffer().append(filePrefix).append(GeneratorUtil.upperCaseToHyphen(name)).append(fileSuffix).toString();
+                return new StringBuffer().append(filePrefix).append(GeneratorUtil.toTypescriptFileName(name)).append(fileSuffix).toString();
         }
         return name;
     }
