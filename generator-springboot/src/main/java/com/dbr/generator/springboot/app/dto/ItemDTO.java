@@ -21,7 +21,7 @@ public class ItemDTO {
     private java.lang.Object projectEntity;
     private String name;
     private PropertyTypeEnum idPropertyTypeEnum;
-    private List<PropertyDTO> properties;
+    private List<PropertyDTO> properties = new ArrayList<>();
     private Set<TemplateEnum> template = new HashSet<>();
     private Boolean deactivated;
 

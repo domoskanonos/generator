@@ -60,9 +60,9 @@ public class GeneratorProjectMetaData {
             NIDOCA_PROJECT_MODEL.getItems().add(itemModelNidoca);
         }
 
-        SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "LanguageType", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
-        SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "PropertyTypeEnum", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
-        SPRING_BOOT_JAVA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "TemplateEnum", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "LanguageType", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "PropertyTypeEnum", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "TemplateEnum", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
 
     }
 
