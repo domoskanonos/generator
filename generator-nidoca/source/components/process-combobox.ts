@@ -2,7 +2,7 @@ import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
 import {ProcessRemoteRepository} from '../repo/process-repository';
 
-@customElement('process-combobox-component')
+@customElement('components/process-combobox-combobox-component')
 export class ProcessCombobox extends NidocaInputfield {
    constructor() {
       super();

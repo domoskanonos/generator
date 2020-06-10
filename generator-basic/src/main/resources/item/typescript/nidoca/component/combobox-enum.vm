@@ -8,8 +8,8 @@ export class ${model.typescriptModelName}Combobox extends NidocaInputfield {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
       this.multiple = true;
-      this.optionKeyField = "id";
-      this.optionValueField = "id";
+      this.optionKeyField = "key";
+      this.optionValueField = "value";
    }
 
    protected update(changedProperties: Map<PropertyKey, unknown>): void {
@@ -17,13 +17,8 @@ export class ${model.typescriptModelName}Combobox extends NidocaInputfield {
         if (
             changedProperties.get('value') != undefined
         ) {
-            ${model.typescriptEnumRepositoryName}.getUniqueInstance()
-            .getAll()
-            .then((value) => {
-                this.options = value;
-                this.size = this.options.length;
-                console.debug("find options, size {}", this.size);
-            });
+            this.options = ${model.typescriptEnumRepositoryName}.getUniqueInstance().asEnumKeyValueArrayI18n(Template);
+            this.size = this.options.length;
         }
    }
 

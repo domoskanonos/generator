@@ -328,7 +328,7 @@ public class GeneratorUtil {
             if (newName.length() == 0) {
                 newName = new StringBuilder().append(newName).append(String.valueOf(c).toLowerCase()).toString();
             } else if (Character.isUpperCase(c)) {
-                newName = new StringBuilder().append(newName).append("-").toString();
+                newName = new StringBuilder().append(newName).append("-").append(String.valueOf(c).toLowerCase()).toString();
             } else {
                 newName = new StringBuilder().append(newName).append(c).toString();
             }

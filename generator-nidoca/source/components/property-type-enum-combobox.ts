@@ -1,9 +1,9 @@
 import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
-import {ProjectRemoteRepository} from '../repo/project-repository';
+import {PropertyTypeBasicEnumRepository} from '../repo/property-type-enum-repository';
 
-@customElement('components/project-combobox-combobox-component')
-export class ProjectCombobox extends NidocaInputfield {
+@customElement('components/property-type-enum-combobox-combobox-enum-component')
+export class PropertyTypeCombobox extends NidocaInputfield {
    constructor() {
       super();
       this.inputfieldType = InputfieldType.COMBOBOX;
@@ -17,7 +17,7 @@ export class ProjectCombobox extends NidocaInputfield {
         if (
             changedProperties.get('value') != undefined
         ) {
-            ProjectRemoteRepository.getUniqueInstance()
+            PropertyTypeBasicEnumRepository.getUniqueInstance()
             .getAll()
             .then((value) => {
                 this.options = value;
