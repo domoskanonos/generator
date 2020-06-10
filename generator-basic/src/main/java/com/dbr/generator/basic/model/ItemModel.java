@@ -288,7 +288,7 @@ public class ItemModel {
                 return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerSearchClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
             case ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE:
-                return template.getLanguageType().getSourceFolderPath();
+                return template.getProjectFilePath("");
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
             case ITEM_TYPESCRIPT_REMOTE_SERVICE:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
