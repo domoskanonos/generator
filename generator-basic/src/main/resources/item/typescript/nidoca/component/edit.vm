@@ -28,7 +28,7 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
     #foreach( $property in $model.properties )
     #if(!${property.idProperty})
     @property()
-    ${property.name} : ${property.typescriptType} = ${property.propertyType.typescriptInitValue};
+    ${property.name} : ${property.typescriptType} ${property.propertyType.typescriptInitValue};
     #end
     #end
 

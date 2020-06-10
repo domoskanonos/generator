@@ -30,7 +30,7 @@ public class TemplateMerger {
     public void writeDown(File file, Template template, Object model) throws IOException {
         String content = create(template, model);
         log.info("merger, write down content to file: {}", file.getAbsolutePath());
-        FileUtils.writeStringToFile(file, content, Charset.defaultCharset());
+        FileUtils.writeStringToFile(file, content, Charset.defaultCharset(), template.isAppendToFile());
     }
 
 }
