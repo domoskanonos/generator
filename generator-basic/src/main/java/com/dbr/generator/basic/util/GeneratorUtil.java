@@ -325,7 +325,7 @@ public class GeneratorUtil {
     public static String toTypescriptFileName(String name) {
         String newName = "";
         for (char c : name.toCharArray()) {
-            if (name.length() == 0) {
+            if (newName.length() == 0) {
                 newName = new StringBuilder().append(newName).append(String.valueOf(c).toLowerCase()).toString();
             } else if (Character.isUpperCase(c)) {
                 newName = new StringBuilder().append(newName).append("-").toString();
