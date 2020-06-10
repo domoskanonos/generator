@@ -19,6 +19,7 @@ public enum TemplateEnum {
     ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE("item/java/springboot/rest-controller-basic.vm", "", "", LanguageTypeEnum.JAVA),
     ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE("item/java/springboot/rest-controller-search.vm", "", "", LanguageTypeEnum.JAVA),
     ITEM_TYPESCRIPT_MODEL_TEMPLATE("item/typescript/model.vm", "model/", "-model", LanguageTypeEnum.TYPESCRIPT),
+    ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE("item/typescript/model-enum.vm", "model/", "-model", LanguageTypeEnum.TYPESCRIPT),
     ITEM_TYPESCRIPT_REMOTE_REPOSITORY("item/typescript/remote-repository.vm", "repo/", "-repository", LanguageTypeEnum.TYPESCRIPT),
     ITEM_TYPESCRIPT_REMOTE_SERVICE("item/typescript/remote-service.vm", "service/", "-service", LanguageTypeEnum.TYPESCRIPT),
     ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT("item/typescript/nidoca/page/edit.vm", "pages/page-", "-edit", LanguageTypeEnum.TYPESCRIPT),

@@ -25,7 +25,7 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
             '', ''
             #foreach( $property in $model.properties )
                 #set( $isNotIdField = !${property.idProperty} )
-                #set( $isString = ${property.propertyType.typescriptType} == "string" )
+                #set( $isString = ${property.typescriptType} == "string" )
                 #if($isNotIdField && $isString)
                 .concat('&${property.name}=')
                 .concat(search)

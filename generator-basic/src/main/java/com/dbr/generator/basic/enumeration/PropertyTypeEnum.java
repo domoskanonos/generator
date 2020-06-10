@@ -131,17 +131,8 @@ public enum PropertyTypeEnum {
             case DATE:
             case DATE_ISO8601:
                 return "Date";
-            case ARRAY_STRING:
-                return "string[]";
-            case BYTE_ARRAY:
-            case LIST:
-            case SET:
-                return "any[]";
-            case ENUMERATION:
-                return "string ";
-            case OBJECT:
             default:
-                return "any";
+                return null;
         }
 
 
