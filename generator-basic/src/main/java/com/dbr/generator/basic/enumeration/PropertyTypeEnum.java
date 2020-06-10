@@ -142,28 +142,29 @@ public enum PropertyTypeEnum {
         switch (this) {
             case TYPE_CHAR:
             case BYTE_ARRAY:
-            case ENUMERATION:
             case STRING:
-                return "''";
+                return "= ''";
             case BOOLEAN:
-                return "false";
+                return "= false";
             case INTEGER:
             case BIG_DECIMAL:
             case LONG:
             case FLOAT:
             case SHORT:
             case DOUBLE:
-                return "0";
+                return "= 0";
             case DATE:
             case DATE_ISO8601:
-                return "new Date()";
+                return "= new Date()";
             case ARRAY_STRING:
             case LIST:
             case SET:
-                return "[]";
+                return "= []";
+            case ENUMERATION:
+                return "| undefined = undefined";
             case OBJECT:
             default:
-                return "{}";
+                return "= {}";
         }
     }
 
@@ -195,9 +196,10 @@ public enum PropertyTypeEnum {
                 return "${InputfieldType.TEXT}";
         }
     }
+
     public String getTypescriptNidocaInputfieldValueFieldName() {
         switch (this) {
-             case BOOLEAN:
+            case BOOLEAN:
                 return ".checked";
             case ARRAY_STRING:
             case OBJECT:
