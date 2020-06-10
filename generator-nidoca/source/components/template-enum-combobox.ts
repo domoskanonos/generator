@@ -2,7 +2,7 @@ import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
 import {TemplateBasicEnumRepository} from '../repo/template-enum-repository';
 
-@customElement('components/template-enum-combobox-combobox-enum-component')
+@customElement('template-combobox-enum-component')
 export class TemplateCombobox extends NidocaInputfield {
    constructor() {
       super();

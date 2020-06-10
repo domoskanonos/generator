@@ -225,11 +225,11 @@ public class ItemModel {
     }
 
     public String getNidocaComponentComboboxEnumTagName() {
-        return new StringBuilder().append(Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI_ENUM.getFilename(name)).append("-combobox-enum-component").toString();
+        return new StringBuilder().append(GeneratorUtil.toTypescriptFileName(name)).append("-combobox-enum-component").toString();
     }
 
     public String getNidocaComponentComboboxTagName() {
-        return new StringBuilder().append(Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_MULTI.getFilename(name)).append("-combobox-component").toString();
+        return new StringBuilder().append(GeneratorUtil.toTypescriptFileName(name)).append("-combobox-component").toString();
     }
 
     public String getNidocaComponentSearchListTagName() {

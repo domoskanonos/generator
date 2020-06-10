@@ -2,7 +2,7 @@ import { NidocaInputfield, InputfieldType } from '@domoskanonos/nidoca-core';
 import { customElement } from 'lit-element';
 import {ProjectRemoteRepository} from '../repo/project-repository';
 
-@customElement('components/project-combobox-combobox-component')
+@customElement('project-combobox-component')
 export class ProjectCombobox extends NidocaInputfield {
    constructor() {
       super();
