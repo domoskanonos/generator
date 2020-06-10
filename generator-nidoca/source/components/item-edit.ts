@@ -49,18 +49,18 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_deactivated')}"
             ></nidoca-inputfield>
-            <propertytype-combobox-component
+            <property-type-combobox-enum-component
                     .value="${this.idPropertyType}"
                     name="idPropertyType"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_idPropertyType')}"
-            ></propertytype-combobox-component>
-            <template-combobox-component
+            ></property-type-combobox-enum-component>
+            <template-combobox-enum-component
                     .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
-            ></template-combobox-component>
+            ></template-combobox-enum-component>
             <property-combobox-component
                     .value="${this.properties}"
                     name="properties"

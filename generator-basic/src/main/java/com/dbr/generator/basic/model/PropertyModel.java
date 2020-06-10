@@ -1,6 +1,7 @@
 package com.dbr.generator.basic.model;
 
 import com.dbr.generator.basic.enumeration.PropertyType;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ public class PropertyModel {
 
     private String name;
     private PropertyType propertyType;
+    private String propertyTypeSimpleName;
     private String propertyTypeName;
     private boolean idProperty;
     private boolean mainProperty;
@@ -67,15 +69,34 @@ public class PropertyModel {
     }
 
     public String getTypescriptNidocaInputfieldTag() {
-        return propertyType.getTypescriptBaseType() != null ? "nidoca-inputfield" : getPropertyTypeNameToLowerCase() + "-combobox-component";
+        if (propertyType.getTypescriptBaseType() != null) {
+            return "nidoca-inputfield";
+        }
+        switch (propertyType) {
+            case ENUMERATION:
+            case ARRAY_ENUMERATION:
+            case LIST:
+            case SET:
+            case OBJECT:
+            default:
+                return new StringBuilder().append(GeneratorUtil.toTypescriptFileName(propertyTypeSimpleName)).append("-combobox").append(isEnumeration() ? "-enum" : "").append("-component").toString();
+        }
+    }
+
+    public boolean isEnumeration() {
+        try {
+            return Class.forName(propertyTypeName).isEnum();
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 
     public String getPropertyTypeNameToLowerCase() {
-        return this.propertyTypeName.toLowerCase();
+        return this.propertyTypeSimpleName.toLowerCase();
     }
 
     public String getTypescriptTypeByPropertyTypeName() {
-        if (this.getPropertyTypeName() == null || this.propertyTypeName.length() == 0) {
+        if (this.getPropertyTypeSimpleName() == null || this.propertyTypeSimpleName.length() == 0) {
             return "any";
         }
         switch (this.propertyType) {
@@ -84,11 +105,11 @@ public class PropertyModel {
             case BYTE_ARRAY:
             case LIST:
             case SET:
-                return this.getPropertyTypeName() + "[]";
+                return this.getPropertyTypeSimpleName() + "[]";
             case ENUMERATION:
             case OBJECT:
             default:
-                return this.getPropertyTypeName();
+                return this.getPropertyTypeSimpleName();
         }
     }
 

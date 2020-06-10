@@ -43,12 +43,12 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
             ></item-combobox-component>
-            <template-combobox-component
+            <template-combobox-enum-component
                     .value="${this.template}"
                     name="template"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
-            ></template-combobox-component>
+            ></template-combobox-enum-component>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"

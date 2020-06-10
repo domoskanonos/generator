@@ -20,7 +20,8 @@ public class JavaField2PropertyDTOConverter {
         propertyModel.setPropertyType(PropertyType.byField(field));
         propertyModel.setMainProperty(true);
         propertyModel.setIdProperty(isIDField(field));
-        propertyModel.setPropertyTypeName(GeneratorUtil.getActualTypeArgument(field.getGenericType()));
+        propertyModel.setPropertyTypeSimpleName(GeneratorUtil.getActualTypeArgumentSimpleName(field.getGenericType()));
+        propertyModel.setPropertyTypeName(GeneratorUtil.getActualTypeArgumentName(field.getGenericType()));
         return propertyModel;
     }
 

@@ -57,12 +57,12 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_deactivated')}"
             ></nidoca-inputfield>
-            <propertytype-combobox-component
+            <property-type-combobox-enum-component
                     .value="${this.propertyType}"
                     name="propertyType"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_propertyType')}"
-            ></propertytype-combobox-component>
+            ></property-type-combobox-enum-component>
             <nidoca-inputfield
                     .value="${this.propertyTypeName}"
                     name="propertyTypeName"

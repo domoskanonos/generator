@@ -312,14 +312,19 @@ public class GeneratorUtil {
         return javaClazzName.substring(0, javaClazzName.lastIndexOf("."));
     }
 
-    public static String getActualTypeArgument(Type type) {
+    public static String getActualTypeArgumentSimpleName(Type type) {
+        String typeName = getActualTypeArgumentName(type);
+        return typeName.substring(typeName.lastIndexOf(".") + 1);
+    }
+
+    public static String getActualTypeArgumentName(Type type) {
         String typeName = type.getTypeName();
         if (type instanceof ParameterizedType) {
             ParameterizedType parameterizedType = (ParameterizedType) type;
             typeName = parameterizedType.getActualTypeArguments()[0].getTypeName();
 
         }
-        return typeName.substring(typeName.lastIndexOf(".") + 1);
+        return typeName;
     }
 
     public static String toTypescriptFileName(String name) {

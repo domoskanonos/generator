@@ -11,19 +11,19 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
     import './components/project-edit';
     import './components/process-edit';
 
-    import './components/property-list';
-    import './components/item-list';
-    import './components/project-list';
-    import './components/process-list';
+import './components/property-list';
+import './components/item-list';
+import './components/project-list';
+import './components/process-list';
 
-    import './components/property-combobox';
-    import './components/item-combobox';
-    import './components/project-combobox';
-    import './components/process-combobox';
+import './components/property-combobox';
+import './components/item-combobox';
+import './components/project-combobox';
+import './components/process-combobox';
 
-    import './components/property-type-enum-combobox';
-    import './components/language-type-enum-combobox';
-    import './components/template-enum-combobox';
+import './components/property-type-enum-combobox';
+import './components/language-type-enum-combobox';
+import './components/template-enum-combobox';
 
 import './pages/page-dashboard';
 import './pages/page-settings';

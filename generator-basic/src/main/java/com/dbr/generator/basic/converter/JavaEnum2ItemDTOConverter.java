@@ -20,7 +20,8 @@ public class JavaEnum2ItemDTOConverter {
         for (Object enumConstant : enumClazz.getEnumConstants()) {
             PropertyModel propertyModel = new PropertyModel(itemModel, enumConstant.toString());
             propertyModel.setPropertyType(PropertyType.STRING);
-            propertyModel.setPropertyTypeName("String");
+            propertyModel.setPropertyTypeSimpleName("String");
+            propertyModel.setPropertyTypeSimpleName("java.lang.String");
             itemModel.addProperty(propertyModel);
         }
         return itemModel;
