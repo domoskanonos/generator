@@ -1,12 +1,14 @@
 package com.dbr.generator;
 
+import com.dbr.generator.basic.converter.JavaEnum2ItemDTOConverter;
 import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
 import com.dbr.generator.basic.entity.ItemEntity;
 import com.dbr.generator.basic.entity.ProcessEntity;
 import com.dbr.generator.basic.entity.ProjectEntity;
 import com.dbr.generator.basic.entity.PropertyEntity;
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.LanguageTypeEnum;
 import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.TemplateEnum;
 import com.dbr.generator.basic.generator.process.ProcessGenerator;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.ProcessModel;
@@ -60,9 +62,9 @@ public class GeneratorProjectMetaData {
             NIDOCA_PROJECT_MODEL.getItems().add(itemModelNidoca);
         }
 
-        NIDOCA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "LanguageType", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
-        NIDOCA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "PropertyTypeEnum", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
-        NIDOCA_PROJECT_MODEL.getItems().add(new ItemModel(NIDOCA_PROJECT_MODEL, "TemplateEnum", PropertyTypeEnum.ENUMERATION, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, PropertyTypeEnum.class, TemplateEnum.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, LanguageTypeEnum.class, TemplateEnum.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, TemplateEnum.class, TemplateEnum.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE));
 
     }
 
