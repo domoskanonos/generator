@@ -3,6 +3,7 @@ export class Property {
     name : string = '';
     deactivated : boolean = false;
     propertyType : string  = '';
+    propertyTypeName : string = '';
     idProperty : boolean = false;
     mainProperty : boolean = false;
     nullable : boolean = false;
