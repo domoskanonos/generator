@@ -40,30 +40,35 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
             <item-combobox-component
                     .value="${this.items}"
                     name="items"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
             ></item-combobox-component>
             <template-combobox-enum-component
                     .value="${this.template}"
                     name="template"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
             ></template-combobox-enum-component>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_technicalDescriptor')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.namespace}"
                     name="namespace"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_namespace')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.deactivated}"
                     name="deactivated"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_deactivated')}"
             ></nidoca-inputfield>

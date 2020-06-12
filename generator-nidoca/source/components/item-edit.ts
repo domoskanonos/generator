@@ -40,30 +40,35 @@ export class ItemEditComponent extends NidocaAbstractComponentEdit<Item> {
             <nidoca-inputfield
                     .value="${this.name}"
                     name="name"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_name')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.deactivated}"
                     name="deactivated"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_deactivated')}"
             ></nidoca-inputfield>
             <property-type-combobox-enum-component
-                    .value="${this.idPropertyType}"
+                    value="${this.idPropertyType}"
                     name="idPropertyType"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_idPropertyType')}"
             ></property-type-combobox-enum-component>
             <template-combobox-enum-component
                     .value="${this.template}"
                     name="template"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_template')}"
             ></template-combobox-enum-component>
             <property-combobox-component
                     .value="${this.properties}"
                     name="properties"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('item_property_properties')}"
             ></property-combobox-component>

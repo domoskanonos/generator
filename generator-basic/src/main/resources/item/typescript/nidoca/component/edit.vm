@@ -39,6 +39,7 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
             <${property.typescriptNidocaInputfieldTag}
                     ${property.propertyType.typescriptNidocaInputfieldValueFieldName}="$escapeDollar{this.${property.name}}"
                     name="${property.name}"
+                    .multiple="$escapeDollar{${property.propertyType.listType}}"
                     inputfieldType="${property.propertyType.typescriptNidocaInputfieldType}"
                     label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.i18nEditName}')}"
             ></${property.typescriptNidocaInputfieldTag}>

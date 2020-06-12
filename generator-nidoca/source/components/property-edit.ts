@@ -48,54 +48,63 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
             <nidoca-inputfield
                     .value="${this.name}"
                     name="name"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_name')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.deactivated}"
                     name="deactivated"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_deactivated')}"
             ></nidoca-inputfield>
             <property-type-combobox-enum-component
-                    .value="${this.propertyType}"
+                    value="${this.propertyType}"
                     name="propertyType"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_propertyType')}"
             ></property-type-combobox-enum-component>
             <nidoca-inputfield
                     .value="${this.propertyTypeName}"
                     name="propertyTypeName"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_propertyTypeName')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.idProperty}"
                     name="idProperty"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_idProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.mainProperty}"
                     name="mainProperty"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_mainProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.nullable}"
                     name="nullable"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_nullable')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.useJPAIdClazz}"
                     name="useJPAIdClazz"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_useJPAIdClazz')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.length}"
                     name="length"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.NUMBER}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_length')}"
             ></nidoca-inputfield>

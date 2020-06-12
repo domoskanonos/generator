@@ -172,7 +172,6 @@ public enum PropertyType {
         switch (this) {
             case TYPE_CHAR:
             case BYTE_ARRAY:
-            case ENUMERATION:
             case STRING:
                 return "${InputfieldType.TEXT}";
             case BOOLEAN:
@@ -190,10 +189,36 @@ public enum PropertyType {
             case LIST:
             case SET:
             case OBJECT:
+            case ENUMERATION:
                 return "${InputfieldType.COMBOBOX}";
             case ARRAY_STRING:
             default:
                 return "${InputfieldType.TEXT}";
+        }
+    }
+
+    public boolean isListType() {
+        switch (this) {
+            case LIST:
+            case SET:
+            case OBJECT:
+            case ARRAY_STRING:
+                return true;
+            case ENUMERATION:
+            case TYPE_CHAR:
+            case BYTE_ARRAY:
+            case STRING:
+            case BOOLEAN:
+            case INTEGER:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
+            case DATE:
+            case DATE_ISO8601:
+            default:
+                return false;
         }
     }
 
@@ -205,6 +230,8 @@ public enum PropertyType {
             case OBJECT:
             case BYTE_ARRAY:
                 return ".options";
+            case ENUMERATION:
+                return "value";
             case INTEGER:
             case BIG_DECIMAL:
             case LONG:
@@ -214,7 +241,6 @@ public enum PropertyType {
             case DATE:
             case DATE_ISO8601:
             case TYPE_CHAR:
-            case ENUMERATION:
             case STRING:
             case LIST:
             case SET:
