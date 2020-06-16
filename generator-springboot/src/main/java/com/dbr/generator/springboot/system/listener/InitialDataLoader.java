@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.system.listener;
 
-import com.dbr.generator.springboot.GeneratorProjectMetaData;
+import com.dbr.generator.GeneratorProjectMetaData;
 import com.dbr.generator.springboot.app.mapping.ProcessDTOProcessModelMapping;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
