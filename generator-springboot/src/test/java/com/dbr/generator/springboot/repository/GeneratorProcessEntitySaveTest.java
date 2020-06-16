@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.repository;
 
-import com.dbr.generator.GeneratorProjectMetaData;
+import com.dbr.generator.springboot.GeneratorProjectMetaData;
 import com.dbr.generator.basic.entity.ProcessEntity;
 import com.dbr.generator.springboot.app.mapping.ProcessDTOProcessModelMapping;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
