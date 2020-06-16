@@ -26,6 +26,22 @@ export class PageService {
             return html`
             <authuser-search-list-page></authuser-search-list-page>
             `;
+            case 'authuserroleedit':
+            return html`
+            <authuserrole-edit-page></authuserrole-edit-page>
+            `;
+            case 'authuserrolelist':
+            return html`
+            <authuserrole-search-list-page></authuserrole-search-list-page>
+            `;
+            case 'authuserprivilegeedit':
+            return html`
+            <authuserprivilege-edit-page></authuserprivilege-edit-page>
+            `;
+            case 'authuserprivilegelist':
+            return html`
+            <authuserprivilege-search-list-page></authuserprivilege-search-list-page>
+            `;
             case 'settings':
             return html`
                <page-settings

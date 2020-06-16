@@ -9,6 +9,12 @@ I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 import './components/authuser-edit';
 import './components/authuser-list';
 import './components/authuser-combobox';
+import './components/authuserrole-edit';
+import './components/authuserrole-list';
+import './components/authuserrole-combobox';
+import './components/authuserprivilege-edit';
+import './components/authuserprivilege-list';
+import './components/authuserprivilege-combobox';
 
 import './pages/page-dashboard';
 import './pages/page-settings';
@@ -23,6 +29,10 @@ import './pages/page-default';
 
 import './pages/page-authuser-edit';
 import './pages/page-authuser-list';
+import './pages/page-authuserrole-edit';
+import './pages/page-authuserrole-list';
+import './pages/page-authuserprivilege-edit';
+import './pages/page-authuserprivilege-list';
 
 
 import './app';

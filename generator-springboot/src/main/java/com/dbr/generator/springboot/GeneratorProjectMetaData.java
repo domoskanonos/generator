@@ -12,6 +12,8 @@ import com.dbr.generator.basic.model.project.NidocaProjectModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.model.project.SpringBootProjectModel;
 import com.dbr.generator.springboot.system.auth.entity.AuthUser;
+import com.dbr.generator.springboot.system.auth.entity.AuthUserPrivilege;
+import com.dbr.generator.springboot.system.auth.entity.AuthUserRole;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -45,7 +47,7 @@ public class GeneratorProjectMetaData {
         NIDOCA_PROJECT_MODEL = new NidocaProjectModel(PROCESS_MODEL, "nidoca", TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_INDEX, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE, TemplateEnum.PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT);
         projectModels.add(NIDOCA_PROJECT_MODEL);
 
-        for (Class clazz : new Class[]{AuthUser.class}) {
+        for (Class clazz : new Class[]{AuthUser.class, AuthUserRole.class, AuthUserPrivilege.class}) {
             ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE, TemplateEnum.ITEM_JAVA_DTO_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, TemplateEnum.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE);
             ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), TypeEnum.LONG, TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE, TemplateEnum.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, TemplateEnum.ITEM_TYPESCRIPT_REMOTE_SERVICE, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT, TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX);
             for (Field field : clazz.getDeclaredFields()) {

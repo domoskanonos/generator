@@ -66,6 +66,20 @@ export abstract class DefaultPage extends NidocaTemplate {
                href="authuserlist"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
+            <nidoca-navigation-link
+               slot="links"
+               icon="search"
+               text="${I18nService.getUniqueInstance().getValue("authuserrole_nav_list")}"
+               href="authuserrolelist"
+               .rendered="${this.isAuthenticated}"
+            ></nidoca-navigation-link>
+            <nidoca-navigation-link
+               slot="links"
+               icon="search"
+               text="${I18nService.getUniqueInstance().getValue("authuserprivilege_nav_list")}"
+               href="authuserprivilegelist"
+               .rendered="${this.isAuthenticated}"
+            ></nidoca-navigation-link>
             <nidoca-navigation-section
                 .rendered="${this.isAuthenticated}"
                  slot="links"
@@ -76,6 +90,20 @@ export abstract class DefaultPage extends NidocaTemplate {
                icon="add"
                text="${I18nService.getUniqueInstance().getValue("authuser_nav_edit")}"
                href="authuseredit"
+               .rendered="${this.isAuthenticated}"
+            ></nidoca-navigation-link>
+             <nidoca-navigation-link
+               slot="links"
+               icon="add"
+               text="${I18nService.getUniqueInstance().getValue("authuserrole_nav_edit")}"
+               href="authuserroleedit"
+               .rendered="${this.isAuthenticated}"
+            ></nidoca-navigation-link>
+             <nidoca-navigation-link
+               slot="links"
+               icon="add"
+               text="${I18nService.getUniqueInstance().getValue("authuserprivilege_nav_edit")}"
+               href="authuserprivilegeedit"
                .rendered="${this.isAuthenticated}"
             ></nidoca-navigation-link>
             <nidoca-divider slot="links"></nidoca-divider>
