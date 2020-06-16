@@ -1,29 +1,29 @@
 package com.dbr.generator.basic.model.project;
 
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.ProcessModel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.util.*;
 
 @Data
-@NoArgsConstructor
 public class ProjectModel {
 
     private String technicalDescriptor;
 
-    protected String namespase;
+    protected String namespace;
+
+    private Boolean deactivated;
 
     private ProcessModel processModel;
 
     private List<ItemModel> items = new ArrayList<>();
 
-    private Set<TemplateEnum> template = new HashSet<>();
+    private Set<Template> template = new HashSet<>();
 
-    public ProjectModel(ProcessModel processModel, String technicalDescriptor, TemplateEnum... projectTemplates) {
+    public ProjectModel(ProcessModel processModel, String technicalDescriptor, Template... projectTemplates) {
         this.processModel = processModel;
         this.technicalDescriptor = technicalDescriptor;
         this.template = new HashSet<>(Arrays.asList(projectTemplates));
@@ -33,8 +33,8 @@ public class ProjectModel {
         return new File(processModel.getProcessFolder(), new StringBuilder().append(processModel.getProjectFolderPrefix()).append(technicalDescriptor).toString());
     }
 
-    public File getFilePath(TemplateEnum projectTemplateEnum) {
-        return new File(getProjectFolder(), projectTemplateEnum.getProjectFilePath(""));
+    public File getFilePath(Template projectTemplate) {
+        return new File(getProjectFolder(), projectTemplate.getProjectFilePath(""));
     }
 
     public void addItem(ItemModel item) {

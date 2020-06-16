@@ -7,9 +7,27 @@ I18nService.getUniqueInstance().addData(messageAppDE);
 I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 
 #foreach( $model in $model.items )
-import './${model.typescriptNidocaComponentEditImport}';
+    #if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT'))
+    import './${model.typescriptNidocaComponentEditImport}';
+    #end
+#end
+
+#foreach( $model in $model.items )
+#if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST'))
 import './${model.typescriptNidocaComponentListImport}';
+#end
+#end
+
+#foreach( $model in $model.items )
+#if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX'))
 import './${model.typescriptNidocaComponentComboboxImport}';
+#end
+#end
+
+#foreach( $model in $model.items )
+#if($model.hasTemplate('ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM'))
+import './${model.typescriptNidocaComponentComboboxEnumImport}';
+#end
 #end
 
 import './pages/page-dashboard';
@@ -24,8 +42,10 @@ import './pages/page-terms-of-use';
 import './pages/page-default';
 
 #foreach( $model in $model.items )
-import './${model.typescriptNidocaPageEditImport}';
-import './${model.typescriptNidocaPageListImport}';
+    #if($model.idPropertyType != 'ENUMERATION')
+    import './${model.typescriptNidocaPageEditImport}';
+    import './${model.typescriptNidocaPageListImport}';
+    #end
 #end
 
 

@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.mapping;
 
-import com.dbr.generator.basic.entity.ItemEntity;
-import com.dbr.generator.basic.entity.ProjectEntity;
+import com.dbr.generator.basic.entity.Item;
+import com.dbr.generator.basic.entity.Project;
 import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.dto.ProjectDTO;
 import org.springframework.beans.BeanUtils;
@@ -20,8 +20,8 @@ public class ProjectEntityProjectDTOMapping {
         this.itemEntityItemDTOMapping = itemEntityItemDTOMapping;
     }
 
-    public ProjectEntity toEntity(ProjectDTO source) {
-        ProjectEntity dest = new ProjectEntity();
+    public Project toEntity(ProjectDTO source) {
+        Project dest = new Project();
         BeanUtils.copyProperties(source, dest, "items");
         for (ItemDTO item : source.getItems()) {
             dest.addItem(itemEntityItemDTOMapping.toEntity(item));
@@ -29,20 +29,20 @@ public class ProjectEntityProjectDTOMapping {
         return dest;
     }
 
-    public ProjectDTO toDTO(ProjectEntity source) {
+    public ProjectDTO toDTO(Project source) {
         ProjectDTO dest = new ProjectDTO();
         BeanUtils.copyProperties(source, dest, "items");
-        for (ItemEntity item : source.getItems()) {
+        for (Item item : source.getItems()) {
             dest.addItem(itemEntityItemDTOMapping.toDTO(item));
         }
         return dest;
     }
 
-    public List<ProjectDTO> toDTOs(Collection<ProjectEntity> sources) {
+    public List<ProjectDTO> toDTOs(Collection<Project> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<ProjectEntity> toEntities(Collection<ProjectDTO> sources) {
+    public List<Project> toEntities(Collection<ProjectDTO> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

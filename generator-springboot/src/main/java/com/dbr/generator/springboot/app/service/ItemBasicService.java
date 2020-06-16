@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.entity.ItemEntity;
+import com.dbr.generator.basic.entity.Item;
 import com.dbr.generator.springboot.app.dto.ItemDTO;
 import com.dbr.generator.springboot.app.mapping.ItemEntityItemDTOMapping;
 import com.dbr.generator.springboot.app.repository.ItemJPARepository;
@@ -51,7 +51,7 @@ public class ItemBasicService {
      */
     public Optional<ItemDTO> findById(Long id) {
         log.debug("findById: {}", id);
-        Optional<ItemEntity> entityOptional = repository.findById(id);
+        Optional<Item> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
     }
 

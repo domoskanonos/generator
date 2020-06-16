@@ -12,7 +12,7 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {PropertyRemoteRepository} from '../repo/property-repository';
-import {Property} from '../model/property-model';
+import {Property} from '../model/model';
 
 @customElement('property-search-list-component')
 export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<Property> {
@@ -23,6 +23,8 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
             this.resultSize,
             '', ''
                 .concat('&name=')
+                .concat(search)
+                .concat('&propertyTypeName=')
                 .concat(search)
         );
         return pageableContainer.content;
@@ -40,13 +42,15 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
     >
         <nidoca-flex-container
         .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-        itemFlexBasisValue="100%"
+        flexItemBasisValue="100%"
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.id}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.name}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.deactivated}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyType}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.propertyTypeName}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.idProperty}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.mainProperty}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${property.nullable}"></nidoca-typography>
@@ -70,7 +74,7 @@ export class PropertySearchNidocaList extends NidocaAbstractComponentSearchList<
       return html`
          <nidoca-flex-container
             .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-            itemFlexBasisValue="auto"
+            flexItemBasisValue="auto"
             .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
             .alignItems="${FlexAlignItems.CENTER}"
          >

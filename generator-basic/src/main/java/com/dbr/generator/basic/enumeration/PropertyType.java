@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public enum TypeEnum {
+public enum PropertyType {
 
     BYTE_ARRAY(byte[].class),
     STRING(String.class),
@@ -50,7 +50,7 @@ public enum TypeEnum {
         return type.isEnum();
     }
 
-    TypeEnum(Class<?> type) {
+    PropertyType(Class<?> type) {
         this.type = type;
     }
 
@@ -62,8 +62,8 @@ public enum TypeEnum {
         return isBaseJavaType(this) || this.type.isPrimitive();
     }
 
-    public boolean isBaseJavaType(TypeEnum typeEnum) {
-        switch (typeEnum) {
+    public boolean isBaseJavaType(PropertyType propertyType) {
+        switch (propertyType) {
             case STRING:
             case INTEGER:
             case BOOLEAN:
@@ -113,7 +113,7 @@ public enum TypeEnum {
         }
     }
 
-    public String getTypescriptType() {
+    public String getTypescriptBaseType() {
 
         switch (this) {
             case STRING:
@@ -131,17 +131,8 @@ public enum TypeEnum {
             case DATE:
             case DATE_ISO8601:
                 return "Date";
-            case ARRAY_STRING:
-                return "string[]";
-            case BYTE_ARRAY:
-            case LIST:
-            case SET:
-                return "any[]";
-            case ENUMERATION:
-                return "string ";
-            case OBJECT:
             default:
-                return "any";
+                return null;
         }
 
 
@@ -151,28 +142,29 @@ public enum TypeEnum {
         switch (this) {
             case TYPE_CHAR:
             case BYTE_ARRAY:
-            case ENUMERATION:
             case STRING:
-                return "''";
+                return "= ''";
             case BOOLEAN:
-                return "false";
+                return "= false";
             case INTEGER:
             case BIG_DECIMAL:
             case LONG:
             case FLOAT:
             case SHORT:
             case DOUBLE:
-                return "0";
+                return "= 0";
             case DATE:
             case DATE_ISO8601:
-                return "new Date()";
+                return "= new Date()";
             case ARRAY_STRING:
             case LIST:
             case SET:
-                return "[]";
+                return "= []";
+            case ENUMERATION:
+                return "| undefined = undefined";
             case OBJECT:
             default:
-                return "{}";
+                return "= {}";
         }
     }
 
@@ -180,7 +172,6 @@ public enum TypeEnum {
         switch (this) {
             case TYPE_CHAR:
             case BYTE_ARRAY:
-            case ENUMERATION:
             case STRING:
                 return "${InputfieldType.TEXT}";
             case BOOLEAN:
@@ -198,20 +189,49 @@ public enum TypeEnum {
             case LIST:
             case SET:
             case OBJECT:
+            case ENUMERATION:
                 return "${InputfieldType.COMBOBOX}";
             case ARRAY_STRING:
             default:
                 return "${InputfieldType.TEXT}";
         }
     }
+
+    public boolean isListType() {
+        switch (this) {
+            case LIST:
+            case SET:
+            case OBJECT:
+            case ARRAY_STRING:
+                return true;
+            case ENUMERATION:
+            case TYPE_CHAR:
+            case BYTE_ARRAY:
+            case STRING:
+            case BOOLEAN:
+            case INTEGER:
+            case BIG_DECIMAL:
+            case LONG:
+            case FLOAT:
+            case SHORT:
+            case DOUBLE:
+            case DATE:
+            case DATE_ISO8601:
+            default:
+                return false;
+        }
+    }
+
     public String getTypescriptNidocaInputfieldValueFieldName() {
         switch (this) {
-             case BOOLEAN:
+            case BOOLEAN:
                 return ".checked";
             case ARRAY_STRING:
             case OBJECT:
             case BYTE_ARRAY:
                 return ".options";
+            case ENUMERATION:
+                return "value";
             case INTEGER:
             case BIG_DECIMAL:
             case LONG:
@@ -221,7 +241,6 @@ public enum TypeEnum {
             case DATE:
             case DATE_ISO8601:
             case TYPE_CHAR:
-            case ENUMERATION:
             case STRING:
             case LIST:
             case SET:
@@ -230,34 +249,34 @@ public enum TypeEnum {
         }
     }
 
-    public static TypeEnum byJavaTypeSimpleName(String javaTypeSimpleName) {
-        for (TypeEnum typeEnum : TypeEnum.values()) {
-            if (typeEnum.getJavaTypeSimpleName().equals(javaTypeSimpleName)) {
-                return typeEnum;
+    public static PropertyType byJavaTypeSimpleName(String javaTypeSimpleName) {
+        for (PropertyType propertyType : PropertyType.values()) {
+            if (propertyType.getJavaTypeSimpleName().equals(javaTypeSimpleName)) {
+                return propertyType;
             }
         }
-        return TypeEnum.OBJECT;
+        return PropertyType.OBJECT;
     }
 
-    public static TypeEnum byTypescriptType(String typescriptType) {
-        for (TypeEnum typeEnum : TypeEnum.values()) {
-            if (typeEnum.getTypescriptType().equals(typescriptType)) {
-                return typeEnum;
+    public static PropertyType byTypescriptType(String typescriptType) {
+        for (PropertyType propertyType : PropertyType.values()) {
+            if (propertyType.getTypescriptBaseType().equals(typescriptType)) {
+                return propertyType;
             }
         }
-        return TypeEnum.OBJECT;
+        return PropertyType.OBJECT;
     }
 
-    public static TypeEnum byField(Field source) {
+    public static PropertyType byField(Field source) {
         if (source.getType().isEnum()) {
-            return TypeEnum.ENUMERATION;
+            return PropertyType.ENUMERATION;
         }
-        for (TypeEnum typeEnum : TypeEnum.values()) {
-            Class<?> type = typeEnum.getType();
+        for (PropertyType propertyType : PropertyType.values()) {
+            Class<?> type = propertyType.getType();
             if (Objects.equals(type.getSimpleName().toLowerCase(), source.getType().getSimpleName().toLowerCase())) {
-                return typeEnum;
+                return propertyType;
             }
         }
-        return TypeEnum.OBJECT;
+        return PropertyType.OBJECT;
     }
 }

@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Process} from '../model/process-model';
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 import {ProcessRemoteRepository} from "../repo/process-repository";
 
 @customElement('process-edit-component')
@@ -25,39 +25,52 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
     }
 
     @property()
-    projects : any[] = [];
+    projects : Project[] = [];
     @property()
     processTempPath : string = '';
     @property()
     processParentPath : string = '';
     @property()
     technicalDescriptor : string = '';
+    @property()
+    deactivated : boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
-            <nidoca-inputfield
+            <project-combobox-component
                     .value="${this.projects}"
                     name="projects"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_projects')}"
-            ></nidoca-inputfield>
+            ></project-combobox-component>
             <nidoca-inputfield
                     .value="${this.processTempPath}"
                     name="processTempPath"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_processTempPath')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.processParentPath}"
                     name="processParentPath"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_processParentPath')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('process_property_technicalDescriptor')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('process_property_deactivated')}"
             ></nidoca-inputfield>
         `;
     }
@@ -67,6 +80,7 @@ export class ProcessEditComponent extends NidocaAbstractComponentEdit<Process> {
         this.processTempPath = process.processTempPath;
         this.processParentPath = process.processParentPath;
         this.technicalDescriptor = process.technicalDescriptor;
+        this.deactivated = process.deactivated;
     }
 
     getIdentifier(process: Process): any {

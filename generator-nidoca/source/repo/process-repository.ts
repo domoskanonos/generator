@@ -1,5 +1,5 @@
 import {HttpClientService, BasicRemoteRepository} from "@domoskanonos/frontend-basis";
-import {Process} from "../model/process-model";
+import {Process} from "../model/model";
 
 export class ProcessRemoteRepository extends BasicRemoteRepository<Process, number> {
 

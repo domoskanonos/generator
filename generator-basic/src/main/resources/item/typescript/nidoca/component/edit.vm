@@ -3,7 +3,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
+${model.typescriptModelImports}
 import {${model.typescriptRemoteRepositoryName}} from "${model.typescriptRemoteRepositoryPath}";
 
 @customElement('${model.getNidocaComponentEditTagName()}')
@@ -28,7 +28,7 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
     #foreach( $property in $model.properties )
     #if(!${property.idProperty})
     @property()
-    ${property.name} : ${property.propertyType.typescriptType} = ${property.propertyType.typescriptInitValue};
+    ${property.name} : ${property.typescriptType} ${property.propertyType.typescriptInitValue};
     #end
     #end
 
@@ -36,12 +36,13 @@ export class ${model.typescriptModelName}EditComponent extends NidocaAbstractCom
         return html`
             #foreach( $property in $model.properties )
             #if(!${property.idProperty})
-            <nidoca-inputfield
+            <${property.typescriptNidocaInputfieldTag}
                     ${property.propertyType.typescriptNidocaInputfieldValueFieldName}="$escapeDollar{this.${property.name}}"
                     name="${property.name}"
+                    .multiple="$escapeDollar{${property.propertyType.listType}}"
                     inputfieldType="${property.propertyType.typescriptNidocaInputfieldType}"
                     label="$escapeDollar{I18nService.getUniqueInstance().getValue('${property.i18nEditName}')}"
-            ></nidoca-inputfield>
+            ></${property.typescriptNidocaInputfieldTag}>
             #end
             #end
         `;

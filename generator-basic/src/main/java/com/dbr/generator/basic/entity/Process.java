@@ -18,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProcessEntity {
+public class Process {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +28,21 @@ public class ProcessEntity {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "PROCESS_PROJECT", joinColumns = @JoinColumn(name = "PROCESS_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROJECT_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<ProjectEntity> projects = new ArrayList<>();
+    private List<Project> projects = new ArrayList<>();
 
+    @Column(name = "PROCESS_TEMP_PATH")
     private String processTempPath;
 
+    @Column(name = "PROCESS_PARENT_PATH")
     private String processParentPath;
 
+    @Column(name = "TECHNICAL_DESCRIPTOR")
     private String technicalDescriptor;
 
-    public ProcessEntity(String processTempPath, String processParentPath, String technicalDescriptor) {
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
+
+    public Process(String processTempPath, String processParentPath, String technicalDescriptor) {
         this.processTempPath = processTempPath;
         this.processParentPath = processParentPath;
         this.technicalDescriptor = technicalDescriptor;
@@ -69,10 +75,10 @@ public class ProcessEntity {
         return StringUtils.isNotBlank(technicalDescriptor) ? new StringBuilder().append(technicalDescriptor).append("-").toString() : "";
     }
 
-    public void addProject(ProjectEntity projectEntity) {
+    public void addProject(Project project) {
         if (this.projects == null) {
             this.projects = new ArrayList<>();
         }
-        this.projects.add(projectEntity);
+        this.projects.add(project);
     }
 }

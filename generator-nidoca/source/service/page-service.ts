@@ -42,6 +42,30 @@ export class PageService {
             return html`
             <authuserprivilege-search-list-page></authuserprivilege-search-list-page>
             `;
+            case 'propertytypeedit':
+            return html`
+            <propertytype-edit-page></propertytype-edit-page>
+            `;
+            case 'propertytypelist':
+            return html`
+            <propertytype-search-list-page></propertytype-search-list-page>
+            `;
+            case 'languagetypeedit':
+            return html`
+            <languagetype-edit-page></languagetype-edit-page>
+            `;
+            case 'languagetypelist':
+            return html`
+            <languagetype-search-list-page></languagetype-search-list-page>
+            `;
+            case 'templateedit':
+            return html`
+            <template-edit-page></template-edit-page>
+            `;
+            case 'templatelist':
+            return html`
+            <template-search-list-page></template-search-list-page>
+            `;
             case 'settings':
             return html`
                <page-settings

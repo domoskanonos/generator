@@ -1,7 +1,7 @@
 package com.dbr.generator.springboot.app.mapping;
 
-import com.dbr.generator.basic.entity.ProcessEntity;
-import com.dbr.generator.basic.entity.ProjectEntity;
+import com.dbr.generator.basic.entity.Process;
+import com.dbr.generator.basic.entity.Project;
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import com.dbr.generator.springboot.app.dto.ProjectDTO;
 import org.springframework.beans.BeanUtils;
@@ -21,8 +21,8 @@ public class ProcessEntityProcessDTOMapping {
     }
 
 
-    public ProcessEntity toEntity(ProcessDTO source) {
-        ProcessEntity dest = new ProcessEntity();
+    public Process toEntity(ProcessDTO source) {
+        Process dest = new Process();
         BeanUtils.copyProperties(source, dest, "projects");
         for (ProjectDTO project : source.getProjects()) {
             dest.addProject(projectEntityProjectDTOMapping.toEntity(project));
@@ -30,20 +30,20 @@ public class ProcessEntityProcessDTOMapping {
         return dest;
     }
 
-    public ProcessDTO toDTO(ProcessEntity source) {
+    public ProcessDTO toDTO(Process source) {
         ProcessDTO dest = new ProcessDTO();
         BeanUtils.copyProperties(source, dest, "projects");
-        for (ProjectEntity project : source.getProjects()) {
+        for (Project project : source.getProjects()) {
             dest.addProject(projectEntityProjectDTOMapping.toDTO(project));
         }
         return dest;
     }
 
-    public List<ProcessDTO> toDTOs(Collection<ProcessEntity> sources) {
+    public List<ProcessDTO> toDTOs(Collection<Process> sources) {
         return sources.stream().map(source -> toDTO(source)).collect(Collectors.toList());
     }
 
-    public List<ProcessEntity> toEntities(Collection<ProcessDTO> sources) {
+    public List<Process> toEntities(Collection<ProcessDTO> sources) {
         return sources.stream().map(source -> toEntity(source)).collect(Collectors.toList());
     }
 

@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Property} from '../model/property-model';
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 import {PropertyRemoteRepository} from "../repo/property-repository";
 
 @customElement('property-edit-component')
@@ -27,7 +27,11 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
     @property()
     name : string = '';
     @property()
-    propertyType : string  = '';
+    deactivated : boolean = false;
+    @property()
+    propertyType : PropertyType | undefined = undefined;
+    @property()
+    propertyTypeName : string = '';
     @property()
     idProperty : boolean = false;
     @property()
@@ -44,42 +48,63 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
             <nidoca-inputfield
                     .value="${this.name}"
                     name="name"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_name')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.propertyType}"
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_deactivated')}"
+            ></nidoca-inputfield>
+            <property-type-combobox-enum-component
+                    value="${this.propertyType}"
                     name="propertyType"
-                    inputfieldType="${InputfieldType.TEXT}"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_propertyType')}"
+            ></property-type-combobox-enum-component>
+            <nidoca-inputfield
+                    .value="${this.propertyTypeName}"
+                    name="propertyTypeName"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.TEXT}"
+                    label="${I18nService.getUniqueInstance().getValue('property_property_propertyTypeName')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.idProperty}"
                     name="idProperty"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_idProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.mainProperty}"
                     name="mainProperty"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_mainProperty')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.nullable}"
                     name="nullable"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_nullable')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .checked="${this.useJPAIdClazz}"
                     name="useJPAIdClazz"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.SWITCH}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_useJPAIdClazz')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
                     .value="${this.length}"
                     name="length"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.NUMBER}"
                     label="${I18nService.getUniqueInstance().getValue('property_property_length')}"
             ></nidoca-inputfield>
@@ -88,7 +113,9 @@ export class PropertyEditComponent extends NidocaAbstractComponentEdit<Property>
 
     itemToProperties(property: Property): void {
         this.name = property.name;
+        this.deactivated = property.deactivated;
         this.propertyType = property.propertyType;
+        this.propertyTypeName = property.propertyTypeName;
         this.idProperty = property.idProperty;
         this.mainProperty = property.mainProperty;
         this.nullable = property.nullable;

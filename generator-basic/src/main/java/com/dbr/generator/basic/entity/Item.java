@@ -1,7 +1,7 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.enumeration.TemplateEnum;
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.Template;
+import com.dbr.generator.basic.enumeration.PropertyType;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -19,7 +19,7 @@ import java.util.Set;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ItemEntity {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,24 +29,27 @@ public class ItemEntity {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "ID_TYPE")
-    private TypeEnum idTypeEnum = TypeEnum.LONG;
+    private PropertyType idPropertyType = PropertyType.LONG;
 
-    @ElementCollection(targetClass = TemplateEnum.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Template.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "ITEM_TEMPLATE", joinColumns = @JoinColumn(name = "ITEM_ID", referencedColumnName = "ID"))
     @Enumerated(EnumType.STRING)
-    private Set<TemplateEnum> template = new HashSet<>();
+    private Set<Template> template = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "ITEM_PROPERTY", joinColumns = @JoinColumn(name = "ITEM_ID", nullable = false, updatable = false, referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PROPERTY_ID", nullable = false, updatable = false, referencedColumnName = "ID"))
-    private List<PropertyEntity> properties = new ArrayList<>();
+    private List<Property> properties = new ArrayList<>();
 
-    public void addProperty(PropertyEntity propertyEntity) {
+    public void addProperty(Property property) {
         if (properties == null) {
             properties = new ArrayList<>();
         }
-        properties.add(propertyEntity);
+        properties.add(property);
     }
 }

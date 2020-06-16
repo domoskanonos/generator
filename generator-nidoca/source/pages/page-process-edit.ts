@@ -5,9 +5,20 @@ import {
    RouterService
 } from '@domoskanonos/frontend-basis';
 import {
+FlexAlignItems,
+FlexContainerProperties,
+FlexDirection,
+FlexJustifyContent,
+FlexWrap,
+GridAlignItems,
+GridJustifyItems,
+SpacerAlignment,
+SpacerSize
+} from '@domoskanonos/nidoca-core';
+import {
 NidocaAbstractComponentEdit
 } from '@domoskanonos/nidoca-app';
-import {Process} from "../model/process-model";
+import {Process} from "../model/model";
 
 @customElement('process-edit-page')
 export class ProcessEditPage extends DefaultPage {
@@ -55,11 +66,45 @@ export class ProcessEditPage extends DefaultPage {
       `;
    }
 
-   getMainComponent(): TemplateResult {
-      return html`
-         <process-edit-component  id="editComponent"></process-edit-component>
-      `;
-   }
+ getMainComponent(): TemplateResult {
+    return html`
+      <nidoca-grid-container
+        .gridJustifyItems="${GridJustifyItems.CENTER}"
+        .gridAlignItems="${GridAlignItems.START}"
+        .gridTemplateRows="${['1fr']}"
+        .gridTemplateColumns="${['1fr']}"
+        height="100vh"
+      >
+        <nidoca-flex-container
+          style="width: 400px;"
+          .flexContainerProperties="${[
+            FlexContainerProperties.CONTAINER_WIDTH_100,
+            FlexContainerProperties.SMARTPHONE_MAX_WIDTH,
+            FlexContainerProperties.SMARTPHONE_HORIZONTAL_PADDING,
+          ]}"
+          flexItemBasisValue="auto"
+          .flexDirection="${FlexDirection.COLUMN}"
+          .flexWrap="${FlexWrap.NO_WRAP}"
+          .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
+          .flexAlignItems="${FlexAlignItems.STRETCH}"
+        >
+          <nidoca-icon
+            color="var(--app-color-primary-background)"
+            size="128"
+            icon="edit"
+            .withIconSpace="${false}"
+          ></nidoca-icon>
+          <nidoca-spacer
+            style="text-align:center;"
+            spacerSize="${SpacerSize.MEDIUM}"
+            .spacerAlignment="${SpacerAlignment.VERTICAL}"
+          >
+          </nidoca-spacer>
+           <process-edit-component  id="editComponent"></process-edit-component>
+         </nidoca-flex-container>
+      </nidoca-grid-container>
+    `;
+  }
 
    private save() {
       if (this.editComponent?.identifier == null) {

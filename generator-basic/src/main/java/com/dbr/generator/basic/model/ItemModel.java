@@ -1,39 +1,39 @@
 package com.dbr.generator.basic.model;
 
-import com.dbr.generator.basic.enumeration.TemplateEnum;
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyType;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.model.project.ProjectModel;
 import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.util.StringUtil;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.util.*;
 
 @Data
-@NoArgsConstructor
 public class ItemModel {
 
     private ProjectModel projectModel;
 
     private String name;
 
-    private Set<TemplateEnum> template = new HashSet<>();
+    private Boolean deactivated;
 
-    private TypeEnum idTypeEnum;
+    private Set<Template> template = new HashSet<>();
+
+    private PropertyType idPropertyType;
 
     private List<PropertyModel> properties = new ArrayList<>();
 
-    public ItemModel(ProjectModel projectModel, String name, TypeEnum idTypeEnum, TemplateEnum... template) {
+    public ItemModel(ProjectModel projectModel, String name, PropertyType idPropertyType, Template... template) {
         this.projectModel = projectModel;
         this.name = name;
         this.template.addAll(Arrays.asList(template));
-        this.idTypeEnum = idTypeEnum;
+        this.idPropertyType = idPropertyType;
     }
 
     public Boolean useJPAIdClazz() {
-        return this.idTypeEnum != null;
+        return this.idPropertyType != null;
     }
 
     public String getTableName() {
@@ -45,7 +45,7 @@ public class ItemModel {
     }
 
     public String getJavaPackageName() {
-        return projectModel.getNamespase();
+        return projectModel.getNamespace();
     }
 
     public String getJavaMappingClazzName() {
@@ -141,11 +141,11 @@ public class ItemModel {
     }
 
     public String getJavaIdClazzSimpleName() {
-        return this.idTypeEnum.getJavaTypeSimpleName();
+        return this.idPropertyType.getJavaTypeSimpleName();
     }
 
     public String getTypescriptType() {
-        return this.idTypeEnum.getTypescriptType();
+        return this.idPropertyType.getTypescriptBaseType();
     }
 
     public String getTypescriptModelName() {
@@ -160,16 +160,39 @@ public class ItemModel {
         return name.toLowerCase();
     }
 
+    public String getTypescriptModelImports() {
+        String modelImportClassNames = "";
+        int index = 0;
+        for (ItemModel itemModel : projectModel.getItems()) {
+            if (itemModel.getTemplate().contains(Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE) || itemModel.getTemplate().contains(Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE)) {
+                if (index > 0) {
+                    modelImportClassNames = new StringBuilder().append(modelImportClassNames).append(",").toString();
+                }
+                modelImportClassNames = new StringBuilder().append(modelImportClassNames).append(itemModel.getTypescriptModelName()).toString();
+                index++;
+            }
+        }
+        return new StringBuilder().append("import {").append(modelImportClassNames).append("} from '").append(getTypescriptModelPath()).append("'").toString();
+    }
+
     public String getTypescriptModelPath() {
-        return "../" + TemplateEnum.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilename(getNameToLowerCase());
+        return "../" + Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE.getFilename("");
     }
 
     public String getTypescriptRemoteRepositoryPath() {
-        return "../" + TemplateEnum.ITEM_TYPESCRIPT_REMOTE_REPOSITORY.getFilename(getNameToLowerCase());
+        return "../" + Template.ITEM_TYPESCRIPT_REMOTE_REPOSITORY.getFilename(name);
     }
 
     public String getTypescriptRemoteRepositoryName() {
         return new StringBuilder().append(name).append("RemoteRepository").toString();
+    }
+
+    public String getTypescriptEnumRepositoryName() {
+        return new StringBuilder().append(name).append("BasicEnumRepository").toString();
+    }
+
+    public String getTypescriptEnumRepositoryPath() {
+        return "../" + Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY.getFilename(name);
     }
 
     public String getTypescriptRemoteServiceName() {
@@ -201,8 +224,12 @@ public class ItemModel {
         return new StringBuilder().append(this.getNameToLowerCase()).append("-edit-component").toString();
     }
 
+    public String getNidocaComponentComboboxEnumTagName() {
+        return new StringBuilder().append(GeneratorUtil.toTypescriptFileName(name)).append("-combobox-enum-component").toString();
+    }
+
     public String getNidocaComponentComboboxTagName() {
-        return new StringBuilder().append(this.getNameToLowerCase()).append("-combobox-component").toString();
+        return new StringBuilder().append(GeneratorUtil.toTypescriptFileName(name)).append("-combobox-component").toString();
     }
 
     public String getNidocaComponentSearchListTagName() {
@@ -217,6 +244,10 @@ public class ItemModel {
         return new StringBuilder().append(this.getNameToLowerCase()).append("-search-list-page").toString();
     }
 
+    public boolean hasTemplate(String templateName) {
+        return getTemplate().contains(Template.valueOf(templateName));
+    }
+
     public void addProperty(PropertyModel propertyModel) {
         if (properties == null) {
             properties = new ArrayList<>();
@@ -224,28 +255,32 @@ public class ItemModel {
         properties.add(propertyModel);
     }
 
-    public File getFilePath(File projectFolder, TemplateEnum templateEnum) {
-        return new File(projectFolder, getFileSuffix(templateEnum));
+    public File getFilePath(File projectFolder, Template template) {
+        return new File(projectFolder, getFileSuffix(template));
+    }
+
+    public String getTypescriptNidocaComponentComboboxEnumImport() {
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM.getFilename(name);
     }
 
     public String getTypescriptNidocaComponentComboboxImport() {
-        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX.getFilename(name);
     }
 
     public String getTypescriptNidocaComponentEditImport() {
-        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT.getFilename(getNameToLowerCase());
     }
 
     public String getTypescriptNidocaComponentListImport() {
-        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST.getFilename(getNameToLowerCase());
     }
 
     public String getTypescriptNidocaPageEditImport() {
-        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT.getFilename(getNameToLowerCase());
     }
 
     public String getTypescriptNidocaPageListImport() {
-        return TemplateEnum.ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST.getFilename(getNameToLowerCase());
+        return Template.ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST.getFilename(getNameToLowerCase());
     }
 
     public String getI18nEditName() {
@@ -268,39 +303,43 @@ public class ItemModel {
         return new StringBuilder().append(getNameToLowerCase()).append("_").toString();
     }
 
-    public String getFileSuffix(TemplateEnum templateEnum) {
-        switch (templateEnum) {
+    public String getFileSuffix(Template template) {
+        switch (template) {
             case ITEM_JAVA_DTO_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaDTOClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaDTOClazzName()));
             case ITEM_JAVA_ENTITY_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaJPAClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaJPAClazzName()));
             case ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaMappingClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaMappingClazzName()));
             case ITEM_JAVA_SPRINGBOOT_JPA_REPOSITORY_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaJPARepositoryClazzName()));
             case ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaServiceBasicClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaServiceBasicClazzName()));
             case ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerBasicClazzName()));
             case ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaServiceSearchClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaServiceSearchClazzName()));
             case ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE:
-                return templateEnum.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerSearchClazzName()));
+                return template.getProjectFilePath(GeneratorUtil.getPackagePath(getJavaRestControllerSearchClazzName()));
             case ITEM_TYPESCRIPT_MODEL_TEMPLATE:
+            case ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE:
+                return template.getProjectFilePath("");
             case ITEM_TYPESCRIPT_REMOTE_REPOSITORY:
+            case ITEM_TYPESCRIPT_ENUM_REPOSITORY:
             case ITEM_TYPESCRIPT_REMOTE_SERVICE:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST:
             case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX:
-                return templateEnum.getProjectFilePath(getNameToLowerCase());
+            case ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM:
+                return template.getProjectFilePath(name);
             case PROJECT_TYPESCRIPT_NIDOCA_I18N:
             case PROJECT_TYPESCRIPT_NIDOCA_INDEX:
             case PROJECT_TYPESCRIPT_NIDOCA_SERVICE_PAGE:
             case PROJECT_TYPESCRIPT_NIDOCA_PAGE_DEFAULT:
             default:
-                throw new RuntimeException(String.format("error determinate file path for template %s", templateEnum));
+                throw new RuntimeException(String.format("error determinate file path for template %s", template));
         }
 
     }

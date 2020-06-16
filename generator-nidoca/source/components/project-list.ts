@@ -12,7 +12,7 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {ProjectRemoteRepository} from '../repo/project-repository';
-import {Project} from '../model/project-model';
+import {Project} from '../model/model';
 
 @customElement('project-search-list-component')
 export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<Project> {
@@ -24,7 +24,7 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
             '', ''
                 .concat('&technicalDescriptor=')
                 .concat(search)
-                .concat('&javaBasePackage=')
+                .concat('&namespace=')
                 .concat(search)
         );
         return pageableContainer.content;
@@ -42,7 +42,7 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
     >
         <nidoca-flex-container
         .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-        itemFlexBasisValue="100%"
+        flexItemBasisValue="100%"
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
@@ -50,7 +50,8 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.items}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.template}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.technicalDescriptor}"></nidoca-typography>
-                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.javaBasePackage}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.namespace}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${project.deactivated}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
@@ -69,7 +70,7 @@ export class ProjectSearchNidocaList extends NidocaAbstractComponentSearchList<P
       return html`
          <nidoca-flex-container
             .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-            itemFlexBasisValue="auto"
+            flexItemBasisValue="auto"
             .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
             .alignItems="${FlexAlignItems.CENTER}"
          >

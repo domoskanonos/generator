@@ -1,5 +1,5 @@
 import {HttpClientService, BasicRemoteRepository} from "@domoskanonos/frontend-basis";
-import {Property} from "../model/property-model";
+import {Property} from "../model/model";
 
 export class PropertyRemoteRepository extends BasicRemoteRepository<Property, number> {
 

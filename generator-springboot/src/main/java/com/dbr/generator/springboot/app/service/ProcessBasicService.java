@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.entity.ProcessEntity;
+import com.dbr.generator.basic.entity.Process;
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.app.repository.ProcessJPARepository;
@@ -51,7 +51,7 @@ public class ProcessBasicService {
      */
     public Optional<ProcessDTO> findById(Long id) {
         log.debug("findById: {}", id);
-        Optional<ProcessEntity> entityOptional = repository.findById(id);
+        Optional<Process> entityOptional = repository.findById(id);
         return entityOptional.isPresent() ? Optional.of(mapping.toDTO(entityOptional.get())) : Optional.ofNullable(null);
     }
 

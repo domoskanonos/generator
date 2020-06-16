@@ -15,6 +15,8 @@ import javax.persistence.IdClass;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -183,7 +185,6 @@ public class GeneratorUtil {
     }
 
 
-
     public static String getSampleDataTypescript(Field field) {
         Integer maxLength = null;
         Column columnAnnotation = field.getAnnotation(Column.class);
@@ -276,7 +277,7 @@ public class GeneratorUtil {
     }
 
     public static void createFromArchetype(File folder, String artifactId, String groupId, String archetypeArtifactId,
-                                     String archetypeGroupId) throws IOException, InterruptedException {
+                                           String archetypeGroupId) throws IOException, InterruptedException {
         _log.info("execute create from maven archetype command, path: {}", folder.getAbsolutePath());
         String createFromArchetypeCommand = new StringBuilder().append("mvn -DgroupId=").append(groupId).append(" -DartifactId=").append(artifactId)
                 .append(" -Dversion=1.0.0 archetype:generate -B -DarchetypeGroupId=").append(archetypeGroupId)
@@ -309,5 +310,34 @@ public class GeneratorUtil {
 
     public static String getJavaPackageName(String javaClazzName) {
         return javaClazzName.substring(0, javaClazzName.lastIndexOf("."));
+    }
+
+    public static String getActualTypeArgumentSimpleName(Type type) {
+        String typeName = getActualTypeArgumentName(type);
+        return typeName.substring(typeName.lastIndexOf(".") + 1);
+    }
+
+    public static String getActualTypeArgumentName(Type type) {
+        String typeName = type.getTypeName();
+        if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            typeName = parameterizedType.getActualTypeArguments()[0].getTypeName();
+
+        }
+        return typeName;
+    }
+
+    public static String toTypescriptFileName(String name) {
+        String newName = "";
+        for (char c : name.toCharArray()) {
+            if (newName.length() == 0) {
+                newName = new StringBuilder().append(newName).append(String.valueOf(c).toLowerCase()).toString();
+            } else if (Character.isUpperCase(c)) {
+                newName = new StringBuilder().append(newName).append("-").append(String.valueOf(c).toLowerCase()).toString();
+            } else {
+                newName = new StringBuilder().append(newName).append(c).toString();
+            }
+        }
+        return newName;
     }
 }

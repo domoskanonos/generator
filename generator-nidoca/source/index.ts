@@ -6,15 +6,24 @@ import {I18nService, LanguageKey} from '@domoskanonos/frontend-basis';
 I18nService.getUniqueInstance().addData(messageAppDE);
 I18nService.getUniqueInstance().addData(messageAppEN, LanguageKey.EN);
 
-import './components/authuser-edit';
-import './components/authuser-list';
-import './components/authuser-combobox';
-import './components/authuserrole-edit';
-import './components/authuserrole-list';
-import './components/authuserrole-combobox';
-import './components/authuserprivilege-edit';
-import './components/authuserprivilege-list';
-import './components/authuserprivilege-combobox';
+    import './components/property-edit';
+    import './components/item-edit';
+    import './components/project-edit';
+    import './components/process-edit';
+
+import './components/property-list';
+import './components/item-list';
+import './components/project-list';
+import './components/process-list';
+
+import './components/property-combobox';
+import './components/item-combobox';
+import './components/project-combobox';
+import './components/process-combobox';
+
+import './components/property-type-enum-combobox';
+import './components/language-type-enum-combobox';
+import './components/template-enum-combobox';
 
 import './pages/page-dashboard';
 import './pages/page-settings';
@@ -27,12 +36,14 @@ import './pages/page-reset-password';
 import './pages/page-terms-of-use';
 import './pages/page-default';
 
-import './pages/page-authuser-edit';
-import './pages/page-authuser-list';
-import './pages/page-authuserrole-edit';
-import './pages/page-authuserrole-list';
-import './pages/page-authuserprivilege-edit';
-import './pages/page-authuserprivilege-list';
+    import './pages/page-property-edit';
+    import './pages/page-property-list';
+    import './pages/page-item-edit';
+    import './pages/page-item-list';
+    import './pages/page-project-edit';
+    import './pages/page-project-list';
+    import './pages/page-process-edit';
+    import './pages/page-process-list';
 
 
 import './app';

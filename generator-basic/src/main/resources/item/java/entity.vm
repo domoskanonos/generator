@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.math.BigDecimal;
 
-#if($model.useJPAIdClazz)@IdClass(${model.idTypeEnum.javaTypeSimpleName}.class)#end
+#if($model.useJPAIdClazz)@IdClass(${model.idPropertyType.javaTypeSimpleName}.class)#end
 @Entity
 @Table(name = "${model.tableName}")
 @Data

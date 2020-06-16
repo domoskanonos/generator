@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.generator.project;
 
-import com.dbr.generator.basic.enumeration.TemplateEnum;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.merger.TemplateMerger;
 import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.project.ProjectModel;
@@ -12,16 +12,38 @@ public class ProjectGenerator<T extends ProjectModel> {
     private TemplateMerger templateMerger = new TemplateMerger();
 
     public void execute(T model) throws Exception {
-        for (TemplateEnum templateEnum : model.getTemplate()) {
-            templateMerger.writeDown(model.getFilePath(templateEnum), templateEnum, model);
+
+        for (Template template : model.getTemplate()) {
+            if (template.isAppendToFile()) {
+                File filePath = model.getFilePath(template);
+                if (filePath.isFile() && filePath.exists()) {
+                    filePath.delete();
+                }
+            }
         }
 
         for (ItemModel itemModel : model.getItems()) {
-            for (TemplateEnum templateEnum : itemModel.getTemplate()) {
-                File file = itemModel.getFilePath(model.getProjectFolder(), templateEnum);
-                templateMerger.writeDown(file, templateEnum, itemModel);
+            for (Template template : itemModel.getTemplate()) {
+                if (template.isAppendToFile()) {
+                    File file = itemModel.getFilePath(model.getProjectFolder(), template);
+                    if (file.isFile() && file.exists()) {
+                        file.delete();
+                    }
+                }
             }
         }
+
+        for (Template template : model.getTemplate()) {
+            templateMerger.writeDown(model.getFilePath(template), template, model);
+        }
+
+        for (ItemModel itemModel : model.getItems()) {
+            for (Template template : itemModel.getTemplate()) {
+                File file = itemModel.getFilePath(model.getProjectFolder(), template);
+                templateMerger.writeDown(file, template, itemModel);
+            }
+        }
+
     }
 
     public void validate(T model) {

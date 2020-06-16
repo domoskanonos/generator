@@ -1,6 +1,6 @@
 package com.dbr.generator.basic.entity;
 
-import com.dbr.generator.basic.enumeration.TypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropertyEntity {
+public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,15 @@ public class PropertyEntity {
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @Column(name = "DEACTIVATED")
+    private Boolean deactivated;
+
     @Column(name = "PROPERTY_TYPE", nullable = false)
     @Enumerated
-    private TypeEnum propertyType;
+    private PropertyType propertyType;
+
+    @Column(name = "PROPERTY_TYPE_NAME")
+    private String propertyTypeName;
 
     @Column(name = "ID_PROPERTY")
     private Boolean idProperty = false;

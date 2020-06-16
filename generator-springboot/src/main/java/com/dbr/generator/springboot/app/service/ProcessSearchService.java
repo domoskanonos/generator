@@ -1,6 +1,6 @@
 package com.dbr.generator.springboot.app.service;
 
-import com.dbr.generator.basic.entity.ProcessEntity;
+import com.dbr.generator.basic.entity.Process;
 import com.dbr.generator.springboot.app.dto.ProcessDTO;
 import com.dbr.generator.springboot.app.mapping.ProcessEntityProcessDTOMapping;
 import com.dbr.generator.springboot.system.jpa.entities.builder.PageBuilder;
@@ -53,15 +53,15 @@ public class ProcessSearchService {
     @Transactional
     public Page<ProcessDTO> findByAllCriteriaQuery(Integer page, Integer size, String sort, Long id, String processTempPath, String processParentPath, String technicalDescriptor) {
         log.debug("findByAllCriteriaQuery, page: {}, size: {}, sort: {}, values: {} {} {} {} ", page, size, sort );
-        return new PageBuilder<ProcessEntity, ProcessDTO>(page, size, sort) {
+        return new PageBuilder<Process, ProcessDTO>(page, size, sort) {
 
             @Override
-            protected List<ProcessDTO> toDTOs(List<ProcessEntity> resultList) {
+            protected List<ProcessDTO> toDTOs(List<Process> resultList) {
                 return mapping.toDTOs(resultList);
             }
 
             @Override
-            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<ProcessEntity> cq, Root<ProcessEntity> entityRoot) {
+            protected void createPredicates(CriteriaBuilder cb, CriteriaQuery<Process> cq, Root<Process> entityRoot) {
                 List<Predicate> predicates = new ArrayList<>();
 
 
@@ -80,6 +80,6 @@ public class ProcessSearchService {
                     cq.where(cb.or(predicates.toArray(new Predicate[predicates.size()])));
                 }
             }
-        }.build(ProcessEntity.class, em);
+        }.build(Process.class, em);
     }
 }

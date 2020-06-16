@@ -2,7 +2,7 @@ import {customElement, html, property, TemplateResult} from 'lit-element';
 import { I18nService } from "@domoskanonos/frontend-basis";
 import {NidocaInputfield, InputfieldType} from "@domoskanonos/nidoca-core";
 import {NidocaAbstractComponentEdit} from '@domoskanonos/nidoca-app';
-import {Project} from '../model/project-model';
+import {Property,Item,Project,Process,PropertyType,LanguageType,Template} from '../model/model'
 import {ProjectRemoteRepository} from "../repo/project-repository";
 
 @customElement('project-edit-component')
@@ -25,39 +25,52 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
     }
 
     @property()
-    items : any[] = [];
+    items : Item[] = [];
     @property()
-    template : any[] = [];
+    template : Template[] = [];
     @property()
     technicalDescriptor : string = '';
     @property()
-    javaBasePackage : string = '';
+    namespace : string = '';
+    @property()
+    deactivated : boolean = false;
 
     renderFormFields(): TemplateResult {
         return html`
-            <nidoca-inputfield
+            <item-combobox-component
                     .value="${this.items}"
                     name="items"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_items')}"
-            ></nidoca-inputfield>
-            <nidoca-inputfield
+            ></item-combobox-component>
+            <template-combobox-enum-component
                     .value="${this.template}"
                     name="template"
+                    .multiple="${true}"
                     inputfieldType="${InputfieldType.COMBOBOX}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_template')}"
-            ></nidoca-inputfield>
+            ></template-combobox-enum-component>
             <nidoca-inputfield
                     .value="${this.technicalDescriptor}"
                     name="technicalDescriptor"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
                     label="${I18nService.getUniqueInstance().getValue('project_property_technicalDescriptor')}"
             ></nidoca-inputfield>
             <nidoca-inputfield
-                    .value="${this.javaBasePackage}"
-                    name="javaBasePackage"
+                    .value="${this.namespace}"
+                    name="namespace"
+                    .multiple="${false}"
                     inputfieldType="${InputfieldType.TEXT}"
-                    label="${I18nService.getUniqueInstance().getValue('project_property_javaBasePackage')}"
+                    label="${I18nService.getUniqueInstance().getValue('project_property_namespace')}"
+            ></nidoca-inputfield>
+            <nidoca-inputfield
+                    .checked="${this.deactivated}"
+                    name="deactivated"
+                    .multiple="${false}"
+                    inputfieldType="${InputfieldType.SWITCH}"
+                    label="${I18nService.getUniqueInstance().getValue('project_property_deactivated')}"
             ></nidoca-inputfield>
         `;
     }
@@ -66,7 +79,8 @@ export class ProjectEditComponent extends NidocaAbstractComponentEdit<Project> {
         this.items = project.items;
         this.template = project.template;
         this.technicalDescriptor = project.technicalDescriptor;
-        this.javaBasePackage = project.javaBasePackage;
+        this.namespace = project.namespace;
+        this.deactivated = project.deactivated;
     }
 
     getIdentifier(project: Project): any {

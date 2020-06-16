@@ -25,7 +25,7 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
             '', ''
             #foreach( $property in $model.properties )
                 #set( $isNotIdField = !${property.idProperty} )
-                #set( $isString = ${property.propertyType.typescriptType} == "string" )
+                #set( $isString = ${property.typescriptType} == "string" )
                 #if($isNotIdField && $isString)
                 .concat('&${property.name}=')
                 .concat(search)
@@ -47,7 +47,7 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
     >
         <nidoca-flex-container
         .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-        itemFlexBasisValue="100%"
+        flexItemBasisValue="100%"
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
@@ -72,7 +72,7 @@ export class ${model.getModelName()}SearchNidocaList extends NidocaAbstractCompo
       return html`
          <nidoca-flex-container
             .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-            itemFlexBasisValue="auto"
+            flexItemBasisValue="auto"
             .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
             .alignItems="${FlexAlignItems.CENTER}"
          >

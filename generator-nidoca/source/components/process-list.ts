@@ -12,7 +12,7 @@ SpacerSize,
 FlexContainerProperties
 } from '@domoskanonos/nidoca-core';
 import {ProcessRemoteRepository} from '../repo/process-repository';
-import {Process} from '../model/process-model';
+import {Process} from '../model/model';
 
 @customElement('process-search-list-component')
 export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<Process> {
@@ -44,7 +44,7 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
     >
         <nidoca-flex-container
         .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-        itemFlexBasisValue="100%"
+        flexItemBasisValue="100%"
         .justifyContent="${FlexJustifyContent.FLEX_START}"
         .alignItems="${FlexAlignItems.CENTER}"
         >
@@ -53,6 +53,7 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processTempPath}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.processParentPath}"></nidoca-typography>
                     <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.technicalDescriptor}"></nidoca-typography>
+                    <nidoca-typography .typographyType="${TypographyType.BODY1}" text="${process.deactivated}"></nidoca-typography>
         </nidoca-flex-container>
     </nidoca-spacer>
     <nidoca-spacer
@@ -71,7 +72,7 @@ export class ProcessSearchNidocaList extends NidocaAbstractComponentSearchList<P
       return html`
          <nidoca-flex-container
             .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-            itemFlexBasisValue="auto"
+            flexItemBasisValue="auto"
             .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
             .alignItems="${FlexAlignItems.CENTER}"
          >

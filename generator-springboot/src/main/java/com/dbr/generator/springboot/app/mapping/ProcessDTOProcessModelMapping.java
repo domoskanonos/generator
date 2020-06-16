@@ -24,7 +24,7 @@ public class ProcessDTOProcessModelMapping {
         ProcessModel dest = new ProcessModel();
         BeanUtils.copyProperties(source, dest, "projects");
         for (ProjectDTO project : source.getProjects()) {
-            dest.addProject(projectDTOProjectModelMapping.toModel(project));
+            dest.addProject(projectDTOProjectModelMapping.toModel(project, dest));
         }
         return dest;
     }

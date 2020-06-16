@@ -1,9 +1,11 @@
 package com.dbr.generator.springboot.app.dto;
 
+import com.dbr.generator.basic.enumeration.Template;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @ToString
@@ -15,9 +17,10 @@ public class ProjectDTO {
 
     private Long id;
     private List<ItemDTO> items;
-    private java.lang.Object template;
+    private Set<Template> template;
     private String technicalDescriptor;
-    private String javaBasePackage;
+    private String namespace;
+    private Boolean deactivated;
 
     public void addItem(ItemDTO item) {
         if (this.items == null) {
