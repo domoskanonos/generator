@@ -18,37 +18,13 @@ export class PageService {
         let currentPage = RouterService.getUniqueInstance().getCurrentPage();
         console.log('render page: '.concat(currentPage));
         switch (currentPage) {
-            case 'propertyedit':
+            case 'authuseredit':
             return html`
-            <property-edit-page></property-edit-page>
+            <authuser-edit-page></authuser-edit-page>
             `;
-            case 'propertylist':
+            case 'authuserlist':
             return html`
-            <property-search-list-page></property-search-list-page>
-            `;
-            case 'itemedit':
-            return html`
-            <item-edit-page></item-edit-page>
-            `;
-            case 'itemlist':
-            return html`
-            <item-search-list-page></item-search-list-page>
-            `;
-            case 'projectedit':
-            return html`
-            <project-edit-page></project-edit-page>
-            `;
-            case 'projectlist':
-            return html`
-            <project-search-list-page></project-search-list-page>
-            `;
-            case 'processedit':
-            return html`
-            <process-edit-page></process-edit-page>
-            `;
-            case 'processlist':
-            return html`
-            <process-search-list-page></process-search-list-page>
+            <authuser-search-list-page></authuser-search-list-page>
             `;
             case 'settings':
             return html`
