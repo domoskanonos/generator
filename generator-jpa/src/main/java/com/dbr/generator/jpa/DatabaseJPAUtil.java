@@ -366,16 +366,20 @@ public class DatabaseJPAUtil {
             return this.isIdClazz() && getColumnImportedKeyReferencesIdFields().size() > 0;
         }
 
+        public ColumnReference getIdColumn() {
+            for (ColumnReference columnReference : columnReferences) {
+                if (isIdColumn(columnReference)) {
+                    return columnReference;
+                }
+            }
+            return null;
+        }
 
         public boolean isIdColumn(ColumnReference columnReference) {
             for (PrimaryKeyReference primaryKeyReference : this.primaryKeyReferences) {
                 if (primaryKeyReference.columnName.equals(columnReference.columnName)) {
                     return true;
                 }
-            }
-
-            if (isView() && (columnReference.primaryKey || columnReference.columnName.toLowerCase().contains("id"))) {
-                return true;
             }
 
             if (isView() && columnReferences.size() > 0) {
@@ -541,7 +545,7 @@ public class DatabaseJPAUtil {
             return StringUtil.toPropertieName(columnName);
         }
 
-        public String getJavaType() {
+        public String getJavaTypeSimpleName() {
             switch (dataType) {
                 case Types.CHAR:
                 case Types.VARCHAR:

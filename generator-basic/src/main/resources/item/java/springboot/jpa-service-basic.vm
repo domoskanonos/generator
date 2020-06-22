@@ -11,6 +11,8 @@ import ${model.javaMappingClazzName};
 import javax.persistence.*;
 
 import java.util.*;
+import java.math.*;
+import java.lang.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

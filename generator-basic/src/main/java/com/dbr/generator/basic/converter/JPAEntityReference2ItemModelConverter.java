@@ -15,16 +15,16 @@ import java.util.List;
 public class JPAEntityReference2ItemModelConverter {
 
     public ItemModel convert(ProjectModel projectModel, DatabaseJPAUtil.JPAEntityReference jpaEntityReference, Template... template) {
-        ItemModel itemModel = new ItemModel(projectModel, jpaEntityReference.getJavaClassName(), PropertyType.byJavaTypeSimpleName(jpaEntityReference.getJavaIdClassName()), template);
+        ItemModel itemModel = new ItemModel(projectModel, jpaEntityReference.getJavaClassName(), PropertyType.byJavaTypeSimpleName(jpaEntityReference.getIdColumn().getJavaTypeSimpleName()), template);
         itemModel.getTemplate().addAll(Arrays.asList(template));
         for (DatabaseJPAUtil.ColumnReference columnReference : jpaEntityReference.getColumnReferences()) {
             PropertyModel propertyModel = new PropertyModel(itemModel, columnReference.getJavaFieldName());
             propertyModel.setUseJPAIdClazz(itemModel.getIdPropertyType() != null);
-            propertyModel.setPropertyType(PropertyType.byJavaTypeSimpleName(columnReference.getJavaType()));
+            propertyModel.setPropertyType(PropertyType.byJavaTypeSimpleName(columnReference.getJavaTypeSimpleName()));
             propertyModel.setMainProperty(true);
             propertyModel.setIdProperty(jpaEntityReference.isIdColumn(columnReference));
-            propertyModel.setPropertyTypeSimpleName(columnReference.getJavaType());
-            propertyModel.setPropertyTypeName(columnReference.getJavaType());
+            propertyModel.setPropertyTypeSimpleName(columnReference.getJavaTypeSimpleName());
+            propertyModel.setPropertyTypeName(columnReference.getJavaTypeSimpleName());
             itemModel.addProperty(propertyModel);
         }
         return itemModel;

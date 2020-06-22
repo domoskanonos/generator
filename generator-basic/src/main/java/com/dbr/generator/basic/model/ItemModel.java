@@ -48,12 +48,16 @@ public class ItemModel {
         return projectModel.getNamespace();
     }
 
+    public String getJavaAppPackageName() {
+        return new StringBuilder().append(getJavaPackageName()).append(".app").toString();
+    }
+
     public String getJavaMappingClazzName() {
         return new StringBuilder().append(getJavaMappingPackageName()).append(".").append(getJavaMappingClazzSimpleName()).toString();
     }
 
     public String getJavaMappingPackageName() {
-        return new StringBuilder().append(getJavaPackageName()).append(".mapping").toString();
+        return new StringBuilder().append(getJavaAppPackageName()).append(".mapping").toString();
     }
 
     public String getJavaMappingClazzSimpleName() {
@@ -65,7 +69,7 @@ public class ItemModel {
     }
 
     public String getJavaJPAPackageName() {
-        return new StringBuilder().append(getJavaPackageName()).append(".entity").toString();
+        return new StringBuilder().append(getJavaAppPackageName()).append(".entity").toString();
     }
 
     public String getJavaDTOClazzSimpleName() {
@@ -77,7 +81,7 @@ public class ItemModel {
     }
 
     public String getJavaJPARepositoryPackageName() {
-        return new StringBuilder().append(getJavaPackageName()).append(".repository").toString();
+        return new StringBuilder().append(getJavaAppPackageName()).append(".repository").toString();
     }
 
     public String getJavaJPARepositoryClazzSimpleName() {
@@ -89,7 +93,7 @@ public class ItemModel {
     }
 
     public String getJavaDTOPackageName() {
-        return new StringBuilder().append(getJavaPackageName()).append(".dto").toString();
+        return new StringBuilder().append(getJavaAppPackageName()).append(".dto").toString();
     }
 
     public String getJavaJPAClazzSimpleName() {
@@ -105,7 +109,7 @@ public class ItemModel {
     }
 
     public String getJavaServiceBasicPackageName() {
-        return new StringBuilder().append(getJavaPackageName()).append(".service").toString();
+        return new StringBuilder().append(getJavaAppPackageName()).append(".service").toString();
     }
 
     public String getJavaServiceBasicClazzSimpleName() {
@@ -125,7 +129,7 @@ public class ItemModel {
     }
 
     public String getJavaRestControllerPackageName() {
-        return new StringBuilder().append(getJavaPackageName()).append(".rest").toString();
+        return new StringBuilder().append(getJavaAppPackageName()).append(".rest").toString();
     }
 
     public String getJavaRestControllerBasicClazzSimpleName() {

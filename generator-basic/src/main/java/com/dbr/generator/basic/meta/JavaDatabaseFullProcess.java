@@ -39,7 +39,10 @@ public class JavaDatabaseFullProcess extends ProcessModel {
 
         DatabaseJPAUtil databaseJPAUtil = new DatabaseJPAUtil(databaseType, host, port, username, password, catalog, schema);
         List<DatabaseJPAUtil.JPAEntityReference> jpaEntityReferences = databaseJPAUtil.getJPAEntityReferences(javaBasePackage);
-        Collection<ItemModel> itemModels = new JPAEntityReference2ItemModelConverter().convert(springBootProjectModel, jpaEntityReferences, Template.ITEM_JAVA_ENTITY_TEMPLATE);
+
+        Template[] springBootItemBasicTemplates = {Template.ITEM_JAVA_DTO_TEMPLATE, Template.ITEM_JAVA_ENTITY_TEMPLATE, Template.ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE};
+
+        Collection<ItemModel> itemModels = new JPAEntityReference2ItemModelConverter().convert(springBootProjectModel, jpaEntityReferences, springBootItemBasicTemplates);
         springBootProjectModel.getItems().addAll(itemModels);
 
 
