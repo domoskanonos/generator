@@ -35,19 +35,19 @@ public class JavaDatabaseFullProcess extends ProcessModel {
 
         SpringBootProjectModel springBootProjectModel = new SpringBootProjectModel(this, "springboot", javaBasePackage);
         springBootProjectModel.setAddSpringBootSecurityModule(true);
-        getProjects().add(springBootProjectModel);
-
         DatabaseJPAUtil databaseJPAUtil = new DatabaseJPAUtil(databaseType, host, port, username, password, catalog, schema);
         List<DatabaseJPAUtil.JPAEntityReference> jpaEntityReferences = databaseJPAUtil.getJPAEntityReferences(javaBasePackage);
-
         Template[] springBootItemBasicTemplates = {Template.ITEM_JAVA_DTO_TEMPLATE, Template.ITEM_JAVA_ENTITY_TEMPLATE, Template.ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE};
-
         Collection<ItemModel> itemModels = new JPAEntityReference2ItemModelConverter().convert(springBootProjectModel, jpaEntityReferences, springBootItemBasicTemplates);
         springBootProjectModel.getItems().addAll(itemModels);
+        //getProjects().add(springBootProjectModel);
 
 
         NidocaProjectModel nidocaProjectModel = new NidocaProjectModel(this, "nidoca");
-        //getProjects().add(nidocaProjectModel);
+        Template[] nidocaItemTemplates = {Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE, Template.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, Template.ITEM_TYPESCRIPT_REMOTE_SERVICE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST};
+        Collection<ItemModel> nidocaIemModels = new JPAEntityReference2ItemModelConverter().convert(nidocaProjectModel, jpaEntityReferences, nidocaItemTemplates);
+        nidocaProjectModel.getItems().addAll(nidocaIemModels);
+        getProjects().add(nidocaProjectModel);
 
 
     }

@@ -10,10 +10,6 @@ public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProje
 
     @Override
     public void execute(SpringBootProjectModel model) throws Exception {
-        super.execute(model);
-
-        if(true)
-            return;
         GeneratorUtil.deleteFile(model.getSpringBootProjectFolder());
         File springBootZipFile = GeneratorUtil.copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
                 model.getSpringBootTemplateZipFile());
