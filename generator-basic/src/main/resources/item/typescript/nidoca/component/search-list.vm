@@ -19,14 +19,14 @@ import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
 export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstractComponentSearchList<${model.typescriptModelName}> {
 
     async executeSearch(search: string): Promise<${model.typescriptModelName}[]> {
+        console.log('search query, value: %s', search);
         let pageableContainer: PageableContainer<${model.typescriptModelName}> = await ${model.typescriptRemoteRepositoryName}.getUniqueInstance().search(
             0,
             this.resultSize,
             '', ''
             #foreach( $property in $model.properties )
-                #set( $isNotIdField = !${property.idProperty} )
                 #set( $isString = ${property.typescriptType} == "string" )
-                #if($isNotIdField && $isString)
+                #if($isString)
                 .concat('&${property.name}=')
                 .concat(search)
                 #end
@@ -95,8 +95,8 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
 
    async deleteItems(${model.typescriptModelNameToLowerCase}s: ${model.typescriptModelName}[]): Promise<void> {
         ${model.typescriptModelNameToLowerCase}s.forEach((${model.typescriptModelNameToLowerCase}) => {
-             console.log('delete ${model.typescriptModelNameToLowerCase} with id: {}', ${model.typescriptModelNameToLowerCase}.id);
-        ${model.typescriptRemoteRepositoryName}.getUniqueInstance().delete(${model.typescriptModelNameToLowerCase}.id);
+             console.log('delete ${model.typescriptModelNameToLowerCase} with id: {}', ${model.typescriptModelNameToLowerCase}.${model.idFieldName});
+        ${model.typescriptRemoteRepositoryName}.getUniqueInstance().delete(${model.typescriptModelNameToLowerCase}.${model.idFieldName});
         });
    }
 
