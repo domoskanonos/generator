@@ -255,7 +255,7 @@ public enum PropertyType {
                 return propertyType;
             }
         }
-        return PropertyType.OBJECT;
+        return null;
     }
 
     public static PropertyType byTypescriptType(String typescriptType) {
@@ -264,7 +264,7 @@ public enum PropertyType {
                 return propertyType;
             }
         }
-        return PropertyType.OBJECT;
+        return null;
     }
 
     public static PropertyType byField(Field source) {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class JavaField2PropertyDTOConverter {
+public class JavaField2PropertyModelConverter {
 
     public PropertyModel convert(ItemModel itemModel, Field field) {
         PropertyModel propertyModel = new PropertyModel(itemModel, field.getName());

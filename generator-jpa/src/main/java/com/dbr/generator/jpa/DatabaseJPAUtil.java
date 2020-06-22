@@ -92,17 +92,9 @@ public class DatabaseJPAUtil {
         databaseJPAUtil.createJPAEntities("com.dbr.generator.weightmanager");
     }
 
-    public void createJPAEntities(String packageName) throws SQLException, IOException, URISyntaxException {
+    public void createJPAEntities(String packageName) throws SQLException, IOException {
 
-        List<JPAEntityReference> jpaEntityReferences = new ArrayList<>();
-
-        //get jpa data from database
-        for (TableReference tableReference : this.getTables(null, TableType.TABLE, TableType.VIEW)) {
-            List<PrimaryKeyReference> primaryKeyReferences = getPrimaryKeys(tableReference.tableName);
-            List<ColumnReference> columnReferences = getColumns(tableReference.tableName);
-            List<ImportedKeyReference> importedKeys = getImportedKeys(tableReference.tableName);
-            jpaEntityReferences.add(new JPAEntityReference(packageName, tableReference, columnReferences, primaryKeyReferences, importedKeys));
-        }
+        List<JPAEntityReference> jpaEntityReferences = getJPAEntityReferences(packageName);
 
         //create jpa entities
         for (JPAEntityReference jpaEntityReference : jpaEntityReferences) {
@@ -112,8 +104,22 @@ public class DatabaseJPAUtil {
         //update jpa entities with relations
         //Glaube das brauchen wir gar nicht
         //for (JPAEntityReference jpaEntityReference : jpaEntityReferences) {
-            //updateJPAEntityWithRelations(jpaEntityReference);
+        //updateJPAEntityWithRelations(jpaEntityReference);
         //}
+
+    }
+
+    public List<JPAEntityReference> getJPAEntityReferences(String packageName) throws SQLException {
+        List<JPAEntityReference> jpaEntityReferences = new ArrayList<>();
+
+        //get jpa data from database
+        for (TableReference tableReference : this.getTables(null, TableType.TABLE, TableType.VIEW)) {
+            List<PrimaryKeyReference> primaryKeyReferences = getPrimaryKeys(tableReference.tableName);
+            List<ColumnReference> columnReferences = getColumns(tableReference.tableName);
+            List<ImportedKeyReference> importedKeys = getImportedKeys(tableReference.tableName);
+            jpaEntityReferences.add(new JPAEntityReference(packageName, tableReference, columnReferences, primaryKeyReferences, importedKeys));
+        }
+        return jpaEntityReferences;
 
     }
 
@@ -292,7 +298,7 @@ public class DatabaseJPAUtil {
         return importedKeyReferences;
     }
 
-    protected List<ColumnReference> getColumns(String tableName) throws SQLException {
+    public List<ColumnReference> getColumns(String tableName) throws SQLException {
 
         Connection connection = null;
         List<ColumnReference> columnReferences = new ArrayList<>();
@@ -541,11 +547,11 @@ public class DatabaseJPAUtil {
                 case Types.NUMERIC:
                 case Types.DECIMAL:
                 case Types.BIGINT:
-                    return decimalDigits != null && decimalDigits > 0 ? BigDecimal.class.getName() : Long.class.getSimpleName();
+                    return decimalDigits != null && decimalDigits > 0 ? BigDecimal.class.getSimpleName() : Long.class.getSimpleName();
                 case Types.TIMESTAMP:
                 case Types.OTHER:
                 case Types.DATE:
-                    return Date.class.getName();
+                    return Date.class.getSimpleName();
                 case Types.FLOAT:
                     return Float.class.getSimpleName();
                 case Types.BIT:

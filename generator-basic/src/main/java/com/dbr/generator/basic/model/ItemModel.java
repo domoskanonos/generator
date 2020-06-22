@@ -57,11 +57,11 @@ public class ItemModel {
     }
 
     public String getJavaMappingClazzSimpleName() {
-        return new StringBuilder().append(getjavaJPAClazzSimpleName()).append(getJavaDTOClazzSimpleName()).append("Mapping").toString();
+        return new StringBuilder().append(getJavaJPAClazzSimpleName()).append(getJavaDTOClazzSimpleName()).append("Mapping").toString();
     }
 
     public String getJavaJPAClazzName() {
-        return new StringBuilder().append(getJavaJPAPackageName()).append(".").append(getjavaJPAClazzSimpleName()).toString();
+        return new StringBuilder().append(getJavaJPAPackageName()).append(".").append(getJavaJPAClazzSimpleName()).toString();
     }
 
     public String getJavaJPAPackageName() {
@@ -92,7 +92,7 @@ public class ItemModel {
         return new StringBuilder().append(getJavaPackageName()).append(".dto").toString();
     }
 
-    public String getjavaJPAClazzSimpleName() {
+    public String getJavaJPAClazzSimpleName() {
         return new StringBuilder().append(name).append("Entity").toString();
     }
 

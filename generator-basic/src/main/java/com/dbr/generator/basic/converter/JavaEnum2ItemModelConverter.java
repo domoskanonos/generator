@@ -10,27 +10,27 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-public class JavaClass2ItemDTOConverter {
+public class JavaEnum2ItemModelConverter {
 
-    public ItemModel convert(ProjectModel projectModel, Template template, Class<?> clazz) {
-        ItemModel itemModel = new ItemModel(projectModel, clazz.getName(), PropertyType.byJavaTypeSimpleName(getIDClazzSimpleName(clazz)), template);
+    public ItemModel convert(ProjectModel projectModel, Class<?> enumClazz, Template... template) {
+        ItemModel itemModel = new ItemModel(projectModel, enumClazz.getSimpleName(), PropertyType.ENUMERATION, template);
         itemModel.getTemplate().addAll(Arrays.asList(template));
-        for (Field field : clazz.getDeclaredFields()) {
-            PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
+        for (Object enumConstant : enumClazz.getEnumConstants()) {
+            PropertyModel propertyModel = new PropertyModel(itemModel, enumConstant.toString());
+            propertyModel.setPropertyType(PropertyType.STRING);
+            propertyModel.setPropertyTypeSimpleName("String");
+            propertyModel.setPropertyTypeSimpleName("java.lang.String");
             itemModel.addProperty(propertyModel);
         }
         return itemModel;
     }
 
-    public List<ItemModel> convert(ProjectModel projectModel, Template template, Collection<Class<?>> clazzes) {
+    public List<ItemModel> convert(ProjectModel projectModel, Template template, Collection<Class<?>> enumClazzes) {
         List<ItemModel> retval = new ArrayList<>();
-        for (Class<?> clazz : clazzes) {
-            retval.add(convert(projectModel, template, clazz));
+        for (Class<?> clazz : enumClazzes) {
+            retval.add(convert(projectModel, clazz, template));
         }
         return retval;
     }

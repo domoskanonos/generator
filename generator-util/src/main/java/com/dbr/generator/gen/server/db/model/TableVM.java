@@ -14,7 +14,7 @@ public class TableVM {
 
     public String getJavaName() {
         return String.valueOf(tableName.charAt(0)).toUpperCase()
-                + StringUtil.underscoreToUpperLetter(tableName.substring(1).toLowerCase()) + "Entity";
+                + StringUtil.underscoreToUpperLetter(tableName.substring(1).toLowerCase());
     }
 
 }

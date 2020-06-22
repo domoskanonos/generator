@@ -1,7 +1,7 @@
 package com.dbr.generator;
 
-import com.dbr.generator.basic.converter.JavaEnum2ItemDTOConverter;
-import com.dbr.generator.basic.converter.JavaField2PropertyDTOConverter;
+import com.dbr.generator.basic.converter.JavaEnum2ItemModelConverter;
+import com.dbr.generator.basic.converter.JavaField2PropertyModelConverter;
 import com.dbr.generator.basic.entity.Item;
 import com.dbr.generator.basic.entity.Process;
 import com.dbr.generator.basic.entity.Project;
@@ -54,7 +54,7 @@ public class GeneratorProjectMetaData {
             ItemModel itemModel = new ItemModel(SPRING_BOOT_JAVA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), PropertyType.LONG, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE);
             ItemModel itemModelNidoca = new ItemModel(NIDOCA_PROJECT_MODEL, clazz.getSimpleName().replace("Entity", ""), PropertyType.LONG, Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE, Template.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, Template.ITEM_TYPESCRIPT_REMOTE_SERVICE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST, Template.ITEM_TYPESCRIPT_NIDOCA_PAGE_EDIT, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX);
             for (Field field : clazz.getDeclaredFields()) {
-                PropertyModel propertyModel = new JavaField2PropertyDTOConverter().convert(itemModel, field);
+                PropertyModel propertyModel = new JavaField2PropertyModelConverter().convert(itemModel, field);
                 itemModel.addProperty(propertyModel);
                 itemModelNidoca.addProperty(propertyModel);
             }
@@ -62,9 +62,9 @@ public class GeneratorProjectMetaData {
             NIDOCA_PROJECT_MODEL.getItems().add(itemModelNidoca);
         }
 
-        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, PropertyType.class, Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM));
-        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, LanguageType.class, Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM));
-        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemDTOConverter().convert(NIDOCA_PROJECT_MODEL, Template.class, Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemModelConverter().convert(NIDOCA_PROJECT_MODEL, PropertyType.class, Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemModelConverter().convert(NIDOCA_PROJECT_MODEL, LanguageType.class, Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM));
+        NIDOCA_PROJECT_MODEL.getItems().add(new JavaEnum2ItemModelConverter().convert(NIDOCA_PROJECT_MODEL, Template.class, Template.ITEM_TYPESCRIPT_ENUM_REPOSITORY, Template.ITEM_TYPESCRIPT_MODEL_ENUM_TEMPLATE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX_ENUM));
 
     }
 

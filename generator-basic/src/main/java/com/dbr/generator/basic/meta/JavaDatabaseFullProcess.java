@@ -1,10 +1,17 @@
 package com.dbr.generator.basic.meta;
 
+import com.dbr.generator.basic.converter.JPAEntityReference2ItemModelConverter;
+import com.dbr.generator.basic.enumeration.Template;
 import com.dbr.generator.basic.generator.process.ProcessGenerator;
+import com.dbr.generator.basic.model.ItemModel;
 import com.dbr.generator.basic.model.ProcessModel;
 import com.dbr.generator.basic.model.project.NidocaProjectModel;
 import com.dbr.generator.basic.model.project.SpringBootProjectModel;
 import com.dbr.generator.jpa.DatabaseJPAUtil;
+
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.List;
 
 public class JavaDatabaseFullProcess extends ProcessModel {
 
@@ -14,7 +21,7 @@ public class JavaDatabaseFullProcess extends ProcessModel {
         String processParentPath = "C:\\_dev\\vhs\\git";
         String javaBasePackage = "com.dbr.weightmanager";
         DatabaseJPAUtil.DatabaseType databaseType = DatabaseJPAUtil.DatabaseType.MYSQL;
-        String databaseHost = "nidoca.de";
+        String databaseHost = "85.235.67.10";
         int databasePort = 3306;
         String databaseUser = "root";
         String databasePSWD = "tgz014vb";
@@ -23,17 +30,21 @@ public class JavaDatabaseFullProcess extends ProcessModel {
     }
 
 
-    public JavaDatabaseFullProcess(String processTempPath, String processParentPath, String technicalDescriptor, String javaBasePackage, DatabaseJPAUtil.DatabaseType databaseType, String host, int port, String username, String password, String catalog, String schema) throws ClassNotFoundException {
+    public JavaDatabaseFullProcess(String processTempPath, String processParentPath, String technicalDescriptor, String javaBasePackage, DatabaseJPAUtil.DatabaseType databaseType, String host, int port, String username, String password, String catalog, String schema) throws ClassNotFoundException, SQLException {
         super(processTempPath, processParentPath, technicalDescriptor);
-        DatabaseJPAUtil databaseJPAUtil = new DatabaseJPAUtil(databaseType, host, port, username, password, catalog, schema);
 
         SpringBootProjectModel springBootProjectModel = new SpringBootProjectModel(this, "springboot", javaBasePackage);
         springBootProjectModel.setAddSpringBootSecurityModule(true);
         getProjects().add(springBootProjectModel);
 
+        DatabaseJPAUtil databaseJPAUtil = new DatabaseJPAUtil(databaseType, host, port, username, password, catalog, schema);
+        List<DatabaseJPAUtil.JPAEntityReference> jpaEntityReferences = databaseJPAUtil.getJPAEntityReferences(javaBasePackage);
+        Collection<ItemModel> itemModels = new JPAEntityReference2ItemModelConverter().convert(springBootProjectModel, jpaEntityReferences, Template.ITEM_JAVA_ENTITY_TEMPLATE);
+        springBootProjectModel.getItems().addAll(itemModels);
+
 
         NidocaProjectModel nidocaProjectModel = new NidocaProjectModel(this, "nidoca");
-        getProjects().add(nidocaProjectModel);
+        //getProjects().add(nidocaProjectModel);
 
 
     }

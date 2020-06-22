@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class ${model.javaClazzSimpleName} {
+public class ${model.javaJPAClazzSimpleName} {
 #foreach( $property in $model.properties )
     ${property.jpaPropertyAnnotations}
     private #if(${property.propertyType.javaTypeSimpleName}=='TYPE_DATE_ISO8601')Date#else${property.propertyType.javaTypeSimpleName}#end ${property.name};
