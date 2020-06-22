@@ -1,11 +1,15 @@
 package com.dbr.generator.jpa;
 
-import com.dbr.generator.basic.util.VelocityUtil;
 import com.dbr.util.StringUtil;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
 
 import java.io.File;
 import java.io.IOException;
@@ -113,11 +117,20 @@ public class DatabaseJPAUtil {
 
     }
 
+    public static VelocityEngine getEngine() {
+        VelocityEngine velocityEngine = new VelocityEngine();
+        velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
+        velocityEngine.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
+        // velocityEngine.setProperty("file.resource.loader.class", ClasspathResourceLoader.class.getTypescriptName());
+        velocityEngine.init();
+        return velocityEngine;
+    }
+
     private void updateJPAEntityWithRelations(JPAEntityReference jpaEntityReference) throws IOException {
         String writeDownPath = this.getClass().getResource("/").getPath() + "../../src/main/java/" + jpaEntityReference.getPackagePath();
         File path = new File(writeDownPath);
 
-        VelocityEngine velocityEngine = VelocityUtil.getEngine();
+        VelocityEngine velocityEngine = getEngine();
 
         for (ImportedKeyReference importedKeyReference : jpaEntityReference.getImportedKeys()) {
             Template templateEntity = velocityEngine.getTemplate("entity-mn-relation.vm");
@@ -149,7 +162,7 @@ public class DatabaseJPAUtil {
             path.mkdirs();
         }
 
-        VelocityEngine velocityEngine = VelocityUtil.getEngine();
+        VelocityEngine velocityEngine = getEngine();
 
         Template templateEntity = velocityEngine.getTemplate("entity.vm");
         VelocityContext contextEntity = new VelocityContext();

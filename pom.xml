@@ -1306,16 +1306,16 @@
   
   
   <modules>
-                                            
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+    <module>generator-jpa</module>
+
+
+
     <module>generator-basic</module>
 
 

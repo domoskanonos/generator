@@ -10,6 +10,11 @@
             <version>2.0.1.Final</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.dbr.generator</groupId>
+            <artifactId>generator-jpa</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <parent>
         <artifactId>generator</artifactId>
@@ -19,6 +24,5 @@
     <groupId>com.dbr.generator</groupId>
     <artifactId>generator-basic</artifactId>
     <version>1.0.0</version>
-
 
 </project>
