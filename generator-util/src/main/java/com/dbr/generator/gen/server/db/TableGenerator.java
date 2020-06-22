@@ -1,6 +1,6 @@
 package com.dbr.generator.gen.server.db;
 
-import com.dbr.generator.basic.enumeration.PropertyTypeEnum;
+import com.dbr.generator.basic.enumeration.PropertyType;
 import com.dbr.generator.gen.server.db.model.Column;
 import com.dbr.generator.gen.server.db.model.PrimaryKey;
 import com.dbr.generator.gen.server.db.model.TableVM;
@@ -63,7 +63,7 @@ public class TableGenerator extends AbstractDatabaseGenerator {
             entityProperty.setName(StringUtil.toPropertieName(column.getName()));
             entityProperty.setColumnName(column.getName());
             entityProperty.setSize(column.getSize());
-            entityProperty.setPropertyType(PropertyTypeEnum.byJavaTypeSimpleName(column.getJavaType()));
+            entityProperty.setPropertyType(PropertyType.byJavaTypeSimpleName(column.getJavaType()));
             entityProperty.setNullable(column.getNullable());
             entityProperties.add(entityProperty);
         });

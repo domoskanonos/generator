@@ -373,6 +373,15 @@ public class DatabaseJPAUtil {
                     return true;
                 }
             }
+
+            if (isView() && (columnReference.primaryKey || columnReference.columnName.toLowerCase().contains("id"))) {
+                return true;
+            }
+
+            if (isView() && columnReferences.size() > 0) {
+                return columnReferences.get(0).getColumnName() == columnReference.getColumnName();
+            }
+
             return false;
         }
 
