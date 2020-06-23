@@ -10,7 +10,9 @@ FlexJustifyContent,
 FlexAlignItems,
 SpacerAlignment,
 SpacerSize,
-FlexContainerProperties
+FlexContainerProperties,
+FlexAlignContent,
+FlexDirection
 } from '@domoskanonos/nidoca-core';
 import {${model.typescriptRemoteRepositoryName}} from '${model.typescriptRemoteRepositoryPath}';
 import {${model.typescriptModelName}} from '${model.typescriptModelPath}';
@@ -76,24 +78,27 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
 
    renderNoRecord(): TemplateResult {
       return html`
-         <nidoca-flex-container
-            .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
-            flexItemBasisValue="auto"
-            .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
-            .alignItems="${FlexAlignItems.CENTER}"
-         >
-            <nidoca-spacer
-               .spacerSize="${SpacerSize.BIG}"
-               spacerAlignment="${SpacerAlignment.BOTH}"
-            >
-               <nidoca-typography
-                  .typographyType="${TypographyType.BUTTON}"
-                  text="${I18nService.getUniqueInstance().getValue(
-                     'no_entry_found'
-                  )}"
-               ></nidoca-typography>
-            </nidoca-spacer>
-         </nidoca-flex-container>
+        <nidoca-flex-container
+        .flexContainerProperties="${[FlexContainerProperties.CONTAINER_WIDTH_100]}"
+        flexItemBasisValue="auto"
+        .flexDirection="${FlexDirection.COLUMN}"
+        .flexJustifyContent="${FlexJustifyContent.SPACE_AROUND}"
+        .flexAlignItems="${FlexAlignItems.CENTER}"
+        .flexAlignContent="${FlexAlignContent.SPACE_AROUND}"
+      >
+        <nidoca-spacer .spacerSize="${SpacerSize.NORMAL}" spacerAlignment="${SpacerAlignment.BOTH}">
+          <nidoca-typography
+            .typographyType="${TypographyType.BUTTON}"
+            text="${I18nService.getUniqueInstance().getValue('no_entry_found')}"
+          ></nidoca-typography>
+        </nidoca-spacer>
+
+        <nidoca-spacer .spacerSize="${SpacerSize.NORMAL}" spacerAlignment="${SpacerAlignment.VERTICAL}">
+          <nidoca-button @nidoca-event-button-clicked="${() => this.addItem()}"
+            >${I18nService.getUniqueInstance().getValue('add_entry')}</nidoca-button
+          >
+        </nidoca-spacer>
+      </nidoca-flex-container>
       `;
    }
 
