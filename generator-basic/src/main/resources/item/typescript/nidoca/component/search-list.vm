@@ -65,12 +65,12 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
     }
 
     itemClicked(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}, index: number): void {
-        console.debug("${model.typescriptModelName} list item clicked, index= {0}, id= {1}", index, ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()});
+        console.debug("${model.typescriptModelNameToLowerCase} list item clicked, index= {0}, id= {1}", index, ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()});
         BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, 'produkt-list-event-item-clicked',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
     }
 
     addItem(): void {
-        console.debug("add new item, search value= {0]", this.search);
+        console.debug("add new ${model.typescriptModelNameToLowerCase} item, search value= {0]", this.search);
         BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, 'produkt-list-event-item-add',this.search);
     }
 
