@@ -2,7 +2,7 @@
 import {
 NidocaAbstractComponentSearchList
 } from '@domoskanonos/nidoca-app';
-import { PageableContainer, RouterService, I18nService } from '@domoskanonos/frontend-basis';
+import { PageableContainer, BasicService, I18nService } from '@domoskanonos/frontend-basis';
 import { customElement, html, TemplateResult } from 'lit-element';
 import {
 TypographyType,
@@ -66,8 +66,8 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
     }
 
     itemClicked(${model.typescriptModelNameToLowerCase}: ${model.typescriptModelName}, index: number): void {
-        console.debug("${model.typescriptModelName} list item clicked, index= {0}", index);
-        RouterService.getUniqueInstance().navigate('${model.nidocaPageEditUrl}',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
+        console.debug("${model.typescriptModelName} list item clicked, index= {0}, id= {1}", index, ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()});
+        BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, 'produkt-list-event-item-clicked',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
     }
 
    renderNoRecord(): TemplateResult {
