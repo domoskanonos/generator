@@ -40,7 +40,7 @@ public class JavaDatabaseFullProcess extends ProcessModel {
         Template[] springBootItemBasicTemplates = {Template.ITEM_JAVA_DTO_TEMPLATE, Template.ITEM_JAVA_ENTITY_TEMPLATE, Template.ITEM_JAVA_CLAZZ_MAPPING_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_REPOSITORY_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_JPA_SERVICE_SEARCH_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_BASIC_TEMPLATE, Template.ITEM_JAVA_SPRINGBOOT_REST_CONTROLLER_SEARCH_TEMPLATE};
         Collection<ItemModel> itemModels = new JPAEntityReference2ItemModelConverter().convert(springBootProjectModel, jpaEntityReferences, springBootItemBasicTemplates);
         springBootProjectModel.getItems().addAll(itemModels);
-        //getProjects().add(springBootProjectModel);
+        getProjects().add(springBootProjectModel);
 
 
         NidocaProjectModel nidocaProjectModel = new NidocaProjectModel(this, "nidoca");

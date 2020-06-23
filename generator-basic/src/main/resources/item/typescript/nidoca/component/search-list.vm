@@ -25,8 +25,7 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
             this.resultSize,
             '', ''
             #foreach( $property in $model.properties )
-                #set( $isString = ${property.typescriptType} == "string" )
-                #if($isString)
+                #if($property.mainProperty)
                 .concat('&${property.name}=')
                 .concat(search)
                 #end
