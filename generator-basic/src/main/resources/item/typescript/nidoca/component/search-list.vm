@@ -69,6 +69,11 @@ export class ${model.typescriptModelName}SearchNidocaList extends NidocaAbstract
         BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, 'produkt-list-event-item-clicked',{ 'id' : ${model.typescriptModelNameToLowerCase}.${model.getIdFieldName()}});
     }
 
+    addItem(): void {
+        console.debug("add new item, search value= {0]", this.search);
+        BasicService.getUniqueInstance().dispatchSimpleCustomEvent(this, 'produkt-list-event-item-add',this.search);
+    }
+
    renderNoRecord(): TemplateResult {
       return html`
          <nidoca-flex-container
