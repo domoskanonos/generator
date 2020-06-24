@@ -48,6 +48,15 @@ public class ItemModel {
         return projectModel.getNamespace();
     }
 
+    public PropertyModel getMainProperty() {
+        for (PropertyModel propertyModel : getProperties()) {
+            if (propertyModel.isMainProperty()) {
+                return propertyModel;
+            }
+        }
+        return null;
+    }
+
     public String getJavaAppPackageName() {
         return new StringBuilder().append(getJavaPackageName()).append(".app").toString();
     }

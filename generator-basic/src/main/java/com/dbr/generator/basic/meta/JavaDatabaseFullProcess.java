@@ -44,7 +44,7 @@ public class JavaDatabaseFullProcess extends ProcessModel {
 
 
         NidocaProjectModel nidocaProjectModel = new NidocaProjectModel(this, "nidoca");
-        Template[] nidocaItemTemplates = {Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE, Template.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, Template.ITEM_TYPESCRIPT_REMOTE_SERVICE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST};
+        Template[] nidocaItemTemplates = {Template.ITEM_TYPESCRIPT_MODEL_TEMPLATE, Template.ITEM_TYPESCRIPT_REMOTE_REPOSITORY, Template.ITEM_TYPESCRIPT_REMOTE_SERVICE, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_LIST, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_EDIT, Template.ITEM_TYPESCRIPT_NIDOCA_COMPONENT_COMBOBOX};
         Collection<ItemModel> nidocaIemModels = new JPAEntityReference2ItemModelConverter().convert(nidocaProjectModel, jpaEntityReferences, nidocaItemTemplates);
         nidocaProjectModel.getItems().addAll(nidocaIemModels);
         getProjects().add(nidocaProjectModel);
