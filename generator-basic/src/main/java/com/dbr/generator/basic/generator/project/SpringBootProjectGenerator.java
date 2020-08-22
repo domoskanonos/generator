@@ -1,13 +1,15 @@
 package com.dbr.generator.basic.generator.project;
 
 import com.dbr.generator.basic.model.project.SpringBootProjectModel;
+import com.dbr.generator.basic.util.GeneratorUtil;
 import com.dbr.generator.basic.util.ValidationUtil;
+
+import java.io.File;
 
 public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProjectModel> {
 
     @Override
     public void execute(SpringBootProjectModel model) throws Exception {
-        /**
         GeneratorUtil.deleteFile(model.getSpringBootProjectFolder());
         File springBootZipFile = GeneratorUtil.copyUrlToTempFolder(model.getSpringBootTemplateZipUrl(),
                 model.getSpringBootTemplateZipFile());
@@ -32,7 +34,6 @@ public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProje
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectTestSourceBasePackageFolder(), "system/storage"));
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "upload.properties"));
         }
-         **/
         super.execute(model);
     }
 
