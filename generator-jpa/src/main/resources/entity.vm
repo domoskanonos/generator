@@ -3,6 +3,7 @@ package ${model.packageName};
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "${model.tableReference.tableName}"#if(${model.tableReference.tableCat}), catalog="${model.tableReference.tableCat}"#end#if(${model.tableReference.tableSchema}), schema="${model.tableReference.tableSchema}"#end)

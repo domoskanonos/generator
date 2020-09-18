@@ -3,6 +3,7 @@ package ${model.packageName};
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.*;
 
 import java.io.Serializable;
 
