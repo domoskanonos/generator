@@ -1,4 +1,4 @@
-package ${model.javaBasePackage};
+package ${model.packageName};
 
 import lombok.*;
 
@@ -35,7 +35,7 @@ public class ${model.javaClassName} {
     #end
     #end
     @Column(name = "${columnReference.columnName}"#if(${columnReference.nullable}), nullable=false#end#if(${columnReference.generateColumnLength}), length=${columnReference.columnSize}#end)
-    private ${columnReference.type} ${columnReference.javaFieldName};
+    private ${columnReference.javaTypeSimpleName} ${columnReference.javaFieldName};
 
     #end
 }

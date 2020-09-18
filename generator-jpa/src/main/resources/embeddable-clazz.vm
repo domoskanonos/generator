@@ -1,4 +1,4 @@
-package ${model.javaBasePackage};
+package ${model.packageName};
 
 import lombok.*;
 
@@ -22,7 +22,7 @@ public class ${model.javaIdClassName} implements Serializable {
         private ${importedKeyReference.javaPkClassName} ${importedKeyReference.javaPkFieldName};
         #else
         @Column(name = "${columnReference.columnName}")
-        private ${columnReference.type} ${columnReference.javaFieldName};
+        private ${columnReference.javaTypeSimpleName} ${columnReference.javaFieldName};
         #end
 
     #end
