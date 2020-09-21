@@ -1,4 +1,4 @@
-import {EnumKeyValue, BasicEnumRepository} from "@domoskanonos/frontend-basis";
+import {KeyValuePair, BasicEnumRepository} from "@domoskanonos/frontend-basis";
 ${model.typescriptModelImports}
 
 export class ${model.typescriptEnumRepositoryName} extends BasicEnumRepository {
@@ -12,7 +12,7 @@ export class ${model.typescriptEnumRepositoryName} extends BasicEnumRepository {
         return ${model.typescriptEnumRepositoryName}.uniqueInstance;
     }
 
-    public asI18nEnumKeyValueArray(): EnumKeyValue[] {
+    public asI18nEnumKeyValueArray(): KeyValuePair[] {
         return this.asEnumKeyValueArrayI18n(${model.typescriptModelName});
     }
 

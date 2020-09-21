@@ -17,7 +17,6 @@ public class SpringBootProjectModel extends JavaProjectModel {
     private String springBootTemplateFilename = "spring-boot-template-master";
     private String springBootTemplateZipFilename = new StringBuilder().append(springBootTemplateFilename).append(".zip")
             .toString();
-    private Boolean addSpringBootMailRestController = false;
     private Boolean addSpringBootSecurityModule = false;
     private Boolean addSpringBootStorageModule = false;
 

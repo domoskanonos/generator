@@ -19,14 +19,10 @@ public class SpringBootProjectGenerator extends ProjectGenerator<SpringBootProje
                 model.getProjectGroupId(), model.getSpringBootArchetypeArtifactId(),
                 model.getSpringBootGroupId());
 
-        if (!model.getAddSpringBootMailRestController()) {
-            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/mail/rest/MailRestController.java"));
-        }
-
         if (!model.getAddSpringBootSecurityModule()) {
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectSourceBasePackageFolder(), "system/auth"));
             GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "public/login.html"));
-            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-disable-security.properties"));
+            GeneratorUtil.deleteFile(new File(model.getSpringBootProjectResourceFolder(), "application-enable-security.properties"));
         }
 
         if (!model.getAddSpringBootStorageModule()) {
